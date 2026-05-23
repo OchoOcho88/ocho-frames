@@ -1,0 +1,50 @@
+# Secrets — NEVER commit
+.env
+.env.local
+.env.*.local
+*.key
+*.pem
+
+# Node
+node_modules/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# HyperFrames build artifacts
+dist/
+build/
+out/
+*.mp4
+*.mov
+*.webm
+# (Keep finished renders out of git — they're big. Store in cloud or a separate assets backup.)
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Sandbox cache from cloned repos
+main-source/hyperframes/node_modules/
+examples/*/node_modules/
+my-projects/*/node_modules/
+
+# ========================================================
+# Cloned REFERENCE repos — too big (~940MB) to commit.
+# These are excluded from this repo. To restore them after
+# a fresh clone, run: ./setup.sh
+# ========================================================
+main-source/hyperframes/
+examples/launch-video/
+examples/student-kit/
+
+# Keep the empty container folders tracked via .gitkeep
+!main-source/.gitkeep
+!examples/.gitkeep
