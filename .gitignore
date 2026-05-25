@@ -48,3 +48,17 @@ examples/student-kit/
 # Keep the empty container folders tracked via .gitkeep
 !main-source/.gitkeep
 !examples/.gitkeep
+
+# ========================================================
+# outputs/ — track lightweight markdown analyses, ignore big binaries
+# ========================================================
+outputs/downloads/*
+outputs/generated-images/*
+outputs/voiceovers/*
+
+# But keep the folder structure visible via .gitkeep
+!outputs/downloads/.gitkeep
+!outputs/generated-images/.gitkeep
+!outputs/voiceovers/.gitkeep
+
+# Keep video-analyses (markdown reports) tracked — they're our intel library

@@ -46,7 +46,9 @@ What I want from the breakdown:
    - 3 specific techniques worth borrowing
    - 1 thing they did that I should NOT do (overdone, confusing, etc.)
 
-Save the breakdown to scripts/competitor-analyses/[competitor-name]-[YYYY-MM-DD].md
+Save the breakdown to outputs/video-analyses/[competitor-name]-[descriptor]-[YYYY-MM-DD].md
+
+If you downloaded the video first to analyze it, save the video file to outputs/downloads/ using the same naming convention.
 
 If you have access to the video-analyzer skill, USE IT — actually watch the video, don't guess.
 ```

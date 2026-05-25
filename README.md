@@ -30,7 +30,13 @@ hyperframes/
 ├── brand/                   ← brand kit: colors, fonts, voice, style guide
 │   └── brand-kit.md         ← starter (modern default — customize when you're ready)
 │
-└── scripts/                 ← content scripts, storyboards, voiceover scripts
+├── scripts/                 ← INPUTS: content scripts, storyboards, voiceover scripts
+│
+└── outputs/                 ← OUTPUTS: AI-generated content lands here
+    ├── video-analyses/      ← markdown reports from video-analyzer (tracked in git)
+    ├── downloads/           ← competitor videos (gitignored)
+    ├── generated-images/    ← AI image generations (gitignored)
+    └── voiceovers/          ← AI narration audio (gitignored)
 ```
 
 ## Quick commands (run from Terminal)

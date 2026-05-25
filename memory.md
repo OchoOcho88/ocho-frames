@@ -61,6 +61,13 @@ From Session 002:
 - **Verified no conflict with Altarize project:** Altarize Active Campaign (`~/Desktop/OrbitAll/Altarize Active Campaign`) uses ActiveCampaign, Railway, Supabase, Metabase, Claude, Resend, Perplexity — but NOT Gemini. Zero risk of the new hyperframes key being picked up by Altarize.
 - **Documented the install in `skills/video-analyzer/README.md`** — the workspace has a pointer doc even though the actual skill lives outside the workspace (at `~/.claude/skills/`)
 - **Updated `setup.sh`** to install the video-analyzer skill + google-genai automatically on fresh clones
+- **Added `outputs/` folder** at workspace root for everything the AI/pipeline produces (vs `scripts/` which is for inputs):
+  - `outputs/video-analyses/` — markdown reports from video-analyzer (tracked in git, builds a competitive intel library over time)
+  - `outputs/downloads/` — competitor videos (gitignored — copyright + size)
+  - `outputs/generated-images/` — AI image generations (gitignored)
+  - `outputs/voiceovers/` — AI narration audio (gitignored)
+  - Updated `prompts/competitor-analysis.md` to route output to `outputs/video-analyses/` instead of `scripts/`
+  - Updated `README.md` to document the inputs-vs-outputs distinction
 
 ### What we learned
 - **Two ways to manage API keys, each appropriate for different things:**
