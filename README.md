@@ -96,4 +96,54 @@ API keys go in `.env` (copy `.env.example` to start). Never commit `.env`.
 - Catalog (50+ ready-made blocks): https://hyperframes.heygen.com/catalog
 - Prompting guide: https://hyperframes.heygen.com/guides/prompting
 - vs Remotion: https://hyperframes.heygen.com/guides/hyperframes-vs-remotion
-- GitHub: https://github.com/heygen-com/hyperframes
+- HyperFrames GitHub: https://github.com/heygen-com/hyperframes
+
+## First time setting this up on a new machine?
+
+This workspace lives at https://github.com/OchoOcho88/ocho-frames. To clone it fresh:
+
+```bash
+# Clone the repo
+git clone https://github.com/OchoOcho88/ocho-frames.git ~/Desktop/hyperframes
+cd ~/Desktop/hyperframes
+
+# Restore the ~940MB of reference repos (not committed to keep this repo small)
+./setup.sh
+
+# Set up your API keys
+cp .env.example .env
+# then open .env and fill in real values
+
+# Install the starter project's dependencies
+cd my-projects/starter
+npm install
+npm run dev
+```
+
+Requirements: Node.js v22+, FFmpeg, Git. See session 001 in `memory.md` for the exact setup steps if anything's missing.
+
+## Contributing
+
+This is currently a personal workspace, but if you're collaborating with me:
+
+1. **Branch for your work.** Don't commit directly to `main`.
+   ```bash
+   git checkout -b your-name/short-description
+   ```
+
+2. **Update `memory.md`.** Every session that does meaningful work should add an entry at the top, following the format in the template comment at the bottom of the file.
+
+3. **Save new prompts to `prompts/`** if you've refined a workflow over 2–3 uses.
+
+4. **Save new recipes to `recipes/`** when a workflow is proven. Use `_template.md` as the starting point.
+
+5. **Keep secrets out of git.** Never commit `.env`, API keys, or anything in `assets/` that's licensed or personal. The `.gitignore` covers `.env` but be deliberate about other media.
+
+6. **Push when done.** Open a PR back to `main` if you have one set up, or commit + push directly if we're moving fast.
+   ```bash
+   git add .
+   git commit -m "what changed, in one line"
+   git push -u origin your-name/short-description
+   ```
+
+7. **Ask Claude for help.** Most of the prompt templates, brand alignment, and recipe writing can be delegated. See `prompts/` for starting points.

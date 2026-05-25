@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ocho-frames — HyperFrames workspace</title>
+  <meta name="description" content="A HyperFrames workspace for animated charts, product intros, AI-narrated videos, and competitor analysis." />
+  <style>
+    :root {
+      --c-ink: #0F172A;
+      --c-mist: #F8FAFC;
+      --c-accent: #6366F1;
+      --c-steel: #475569;
+      --c-cloud: #E2E8F0;
+      --c-glow: #A5B4FC;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', sans-serif;
+      background: var(--c-mist);
+      color: var(--c-ink);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 80px 24px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      background: var(--c-glow);
+      color: var(--c-ink);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+    h1 {
+      font-size: clamp(40px, 8vw, 64px);
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+    .accent { color: var(--c-accent); }
+    .lede {
+      font-size: 20px;
+      color: var(--c-steel);
+      max-width: 580px;
+      margin-bottom: 48px;
+    }
+    h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin: 48px 0 16px;
+      letter-spacing: -0.01em;
+    }
+    p, li { color: var(--c-steel); font-size: 16px; }
+    ul { list-style: none; padding: 0; }
+    li {
+      padding: 16px 20px;
+      background: white;
+      border: 1px solid var(--c-cloud);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      transition: all 0.2s ease;
+    }
+    li:hover {
+      border-color: var(--c-glow);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.08);
+    }
+    li strong { color: var(--c-ink); display: block; margin-bottom: 4px; }
+    .cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 32px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 20px;
+      border-radius: 10px;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+    }
+    .btn-primary { background: var(--c-accent); color: white; }
+    .btn-primary:hover { background: #4F46E5; transform: translateY(-1px); }
+    .btn-secondary { background: white; color: var(--c-ink); border: 1px solid var(--c-cloud); }
+    .btn-secondary:hover { border-color: var(--c-glow); }
+    footer {
+      margin-top: 96px;
+      padding-top: 32px;
+      border-top: 1px solid var(--c-cloud);
+      font-size: 14px;
+      color: var(--c-steel);
+    }
+    footer a { color: var(--c-accent); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    code {
+      font-family: 'JetBrains Mono', 'SF Mono', Menlo, monospace;
+      font-size: 13px;
+      background: var(--c-cloud);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+
+    <span class="badge">HyperFrames workspace</span>
+
+    <h1>
+      ocho<span class="accent">-</span>frames
+    </h1>
+
+    <p class="lede">
+      A personal video studio built on HyperFrames — animated charts, product intros, AI-narrated TikTok hooks, PDF-to-video summaries, and competitor analysis.
+    </p>
+
+    <div class="cta-row">
+      <a class="btn btn-primary" href="https://github.com/OchoOcho88/ocho-frames">View on GitHub</a>
+      <a class="btn btn-secondary" href="https://hyperframes.heygen.com/introduction">What's HyperFrames?</a>
+    </div>
+
+    <h2>What lives here</h2>
+    <ul>
+      <li>
+        <strong>my-projects/</strong>
+        Each video lives in its own folder, with a HyperFrames composition and 15 AI skills auto-loaded for the coding agent.
+      </li>
+      <li>
+        <strong>prompts/</strong>
+        Reusable prompt templates for the workflows that come up most: CSV to chart, PDF to summary, TikTok hook, product intro, competitor analysis.
+      </li>
+      <li>
+        <strong>recipes/</strong>
+        Step-by-step workflows that have been proven. Each one points back to a real project that shipped using it.
+      </li>
+      <li>
+        <strong>brand/</strong>
+        Color palette, typography, motion principles. Drop the CSS variables into any composition for instant brand alignment.
+      </li>
+      <li>
+        <strong>skills/</strong>
+        Custom skills that work across every project — like a video analyzer for studying what competitors are doing.
+      </li>
+      <li>
+        <strong>memory.md</strong>
+        Session log. Every meaningful work session adds an entry — what we did, what we learned, what's still open.
+      </li>
+    </ul>
+
+    <h2>Set up on a new machine</h2>
+    <p>Clone, restore the reference repos, add your API keys, and you're running.</p>
+    <pre style="background: var(--c-ink); color: var(--c-mist); padding: 20px; border-radius: 12px; overflow-x: auto; margin-top: 12px; font-family: 'JetBrains Mono', 'SF Mono', monospace; font-size: 13px; line-height: 1.7;">git clone https://github.com/OchoOcho88/ocho-frames.git ~/Desktop/hyperframes
+cd ~/Desktop/hyperframes
+./setup.sh
+cp .env.example .env  <span style="color: var(--c-glow);"># fill in keys</span>
+cd my-projects/starter && npm install && npm run dev</pre>
+
+    <footer>
+      Built with <a href="https://hyperframes.heygen.com">HyperFrames</a> by HeyGen.
+      Maintained by <a href="https://github.com/OchoOcho88">@OchoOcho88</a>.
+    </footer>
+
+  </div>
+</body>
+</html>

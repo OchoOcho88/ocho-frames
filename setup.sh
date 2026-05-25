@@ -63,11 +63,43 @@ fi
 echo ""
 
 echo "================================================"
-echo "  Done! Total reference material: ~940MB"
+echo "  Reference repos restored (~940MB)"
 echo "================================================"
 echo ""
-echo "Next steps:"
-echo "  1. cp .env.example .env   # then fill in your API keys"
-echo "  2. cd my-projects/starter && npm install"
-echo "  3. npm run dev            # preview the starter project"
+
+# 4. Install the video-analyzer Claude Code skill (lives outside this workspace
+#    at ~/.claude/skills/video-analyzer/ because the skill hardcodes that path)
+if [ ! -d "$HOME/.claude/skills/video-analyzer" ]; then
+  echo "→ Installing video-analyzer skill into ~/.claude/skills/..."
+  mkdir -p "$HOME/.claude/skills"
+  git clone --depth 1 https://github.com/mikefutia/claude-vision.git "$HOME/.claude/skills/video-analyzer"
+  echo "  ✓ video-analyzer skill installed"
+else
+  echo "✓ video-analyzer skill already installed at ~/.claude/skills/video-analyzer"
+fi
+echo ""
+
+# 5. Install Python dependency for video-analyzer
+echo "→ Installing google-genai Python SDK (Gemini)..."
+pip3 install google-genai 2>/dev/null || pip3 install google-genai --break-system-packages 2>/dev/null || echo "  ⚠ pip3 install failed — install manually with: pip3 install google-genai"
+echo ""
+
+echo "================================================"
+echo "  All automated setup complete!"
+echo "================================================"
+echo ""
+echo "Manual next steps:"
+echo "  1. Get a Gemini API key (free): https://aistudio.google.com/apikey"
+echo "     Tip: create a project named 'Hyperframes' to track usage separately."
+echo ""
+echo "  2. Set the key as a shell env var (paste the key when prompted):"
+echo "     printf \"Paste Gemini key: \" && read -s K && echo && printf 'export GEMINI_API_KEY=\"%s\"\\n' \"\$K\" >> ~/.zshrc && source ~/.zshrc && unset K"
+echo ""
+echo "  3. Copy and fill in your other API keys:"
+echo "     cp .env.example .env"
+echo ""
+echo "  4. Install the starter project's deps:"
+echo "     cd my-projects/starter && npm install && npm run dev"
+echo ""
+echo "  See skills/video-analyzer/README.md for full details."
 echo ""
