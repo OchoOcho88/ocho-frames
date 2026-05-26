@@ -15,7 +15,7 @@ Specs:
 - Duration: [N] seconds
 - Resolution: [1920x1080 / 1080x1920 / 1080x1080]
 - FPS: [30 or 60]
-- Style: pull colors and fonts from /Users/hugobrizuela/Desktop/hyperframes/brand/brand-kit.md
+- Style: pull colors and fonts from /Users/hugobrizuela/Desktop/hyperframes/brand/agency-brand-kit.md
 
 Animation behavior:
 - Bars/values should [grow from zero / count up / race to final position]
@@ -27,7 +27,7 @@ Title: "[your title]"
 Subtitle / context: "[optional secondary line]"
 Data source label (small, bottom corner): "[where the data came from]"
 
-Output to my-projects/[project-name]/
+Output to compositions/[project-name]/
 ```
 
 ## Notes

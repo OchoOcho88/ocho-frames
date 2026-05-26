@@ -27,7 +27,7 @@ Specs:
 - Sound: subtle UI clicks and woosh transitions
 
 Style:
-- Pull all colors, fonts, and motion principles from brand/brand-kit.md
+- Pull all colors, fonts, and motion principles from brand/agency-brand-kit.md
 - Generous whitespace
 - One idea per frame, never crowded
 - Smooth transitions — use shader-transitions from the catalog (flash-through-white, etc.)
@@ -37,7 +37,7 @@ Assets I can provide:
 - Product screenshots: [paths or "make abstract visuals"]
 - Demo footage: [path or "skip — go fully animated"]
 
-Output to my-projects/[project-name]/
+Output to compositions/[project-name]/
 ```
 
 ## Notes

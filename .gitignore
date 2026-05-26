@@ -34,7 +34,7 @@ Thumbs.db
 # Sandbox cache from cloned repos
 main-source/hyperframes/node_modules/
 examples/*/node_modules/
-my-projects/*/node_modules/
+compositions/*/node_modules/
 
 # ========================================================
 # Cloned REFERENCE repos — too big (~940MB) to commit.
@@ -62,3 +62,14 @@ outputs/voiceovers/*
 !outputs/voiceovers/.gitkeep
 
 # Keep video-analyses (markdown reports) tracked — they're our intel library
+
+# ========================================================
+# clients/ — track strategy markdown, ignore client binary assets
+# ========================================================
+# Ignore everything inside any client's assets/ folder...
+clients/*/assets/*
+# ...but keep .gitkeep so the folder structure is preserved
+!clients/*/assets/.gitkeep
+# And keep markdown notes if anyone drops them in assets/
+!clients/*/assets/*.md
+

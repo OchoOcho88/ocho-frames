@@ -8,7 +8,7 @@ Workflows that **worked**. When we figure out a sequence of steps that produces 
 - The exact steps in order
 - The key configs (resolution, FPS, voice, model versions, etc.)
 - What to watch out for ("if this happens, do that")
-- A link to a finished example in `my-projects/`
+- A link to a finished example in `compositions/`
 
 ## What does NOT belong
 

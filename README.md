@@ -18,7 +18,7 @@ hyperframes/
 │   ├── launch-video/        ← HeyGen's actual launch video (production-quality reference)
 │   └── student-kit/         ← 12 finished motion-graphics projects + GSAP teaching kit
 │
-├── my-projects/             ← your own video projects live here
+├── compositions/             ← your own video projects live here
 │   └── starter/             ← scaffolded starter project (with 15 AI skills pre-installed)
 │
 ├── assets/                  ← reusable media — shared across projects
@@ -43,7 +43,7 @@ hyperframes/
 
 ```bash
 # Open the starter project
-cd ~/Desktop/hyperframes/my-projects/starter
+cd ~/Desktop/hyperframes/compositions/starter
 
 # Install dependencies (first time only)
 npm install
@@ -61,7 +61,7 @@ npm run render
 ## Creating a new project
 
 ```bash
-cd ~/Desktop/hyperframes/my-projects
+cd ~/Desktop/hyperframes/compositions
 npx hyperframes init my-new-video
 cd my-new-video
 npm install
@@ -121,7 +121,7 @@ cp .env.example .env
 # then open .env and fill in real values
 
 # Install the starter project's dependencies
-cd my-projects/starter
+cd compositions/starter
 npm install
 npm run dev
 ```

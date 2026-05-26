@@ -12,7 +12,7 @@ outputs/
 └── voiceovers/            ← AI-generated audio narration (gitignored)
 ```
 
-**Renders (finished MP4s) do NOT live here.** Each video project keeps its own renders inside `my-projects/<project>/out/` so the render stays alongside the composition that produced it.
+**Renders (finished MP4s) do NOT live here.** Each video project keeps its own renders inside `compositions/<project>/out/` so the render stays alongside the composition that produced it.
 
 ## Naming convention
 

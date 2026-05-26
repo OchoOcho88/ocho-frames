@@ -1,6 +1,6 @@
 # Shared Assets
 
-Reusable media that more than one project will use. Project-specific one-off assets should live inside the project folder under `my-projects/<project>/assets/`.
+Reusable media that more than one project will use. Project-specific one-off assets should live inside the project folder under `compositions/<project>/assets/`.
 
 ## Folders
 

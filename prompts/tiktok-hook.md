@@ -23,13 +23,13 @@ Production notes:
 - Caption style: yellow text on a dark drop shadow for max readability
 - Background: dynamic — use stock b-roll from assets/video/ if available, or solid gradient with floating brand-color particles
 - Music: low-volume background music that ducks under the voice
-- Brand: pull from brand/brand-kit.md but lean toward MORE saturated, MORE bold (TikTok needs contrast)
+- Brand: pull from brand/agency-brand-kit.md but lean toward MORE saturated, MORE bold (TikTok needs contrast)
 
 Topic: [your topic]
 Key claim or insight: [what makes this scroll-stopping]
 Target viewer: [who you're talking to]
 
-Output to my-projects/[project-name]/
+Output to compositions/[project-name]/
 ```
 
 ## Notes

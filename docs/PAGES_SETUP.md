@@ -33,7 +33,7 @@ The `index.html` at the workspace root renders as the homepage. It includes:
 - A "Set up on a new machine" code block for anyone (or future you) who needs to clone
 - Links back to the GitHub repo and HyperFrames docs
 
-The styling uses the same colors/typography as `brand/brand-kit.md` so the page is on-brand.
+The styling uses the same colors/typography as `brand/agency-brand-kit.md` so the page is on-brand.
 
 ## Updating the page
 

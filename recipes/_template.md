@@ -37,7 +37,7 @@
 - **[Problem]** → [fix]
 
 ## Reference implementation
-- `my-projects/[project-name]/` — the project where this was first proven
+- `compositions/[project-name]/` — the project where this was first proven
 
 ## Variations worth trying
 - [Variation 1]

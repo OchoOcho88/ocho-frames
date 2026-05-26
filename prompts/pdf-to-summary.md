@@ -28,7 +28,7 @@ Important:
 - Each point gets its own scene with a relevant visual (stat callout, icon, simple chart, etc.)
 - Cite the PDF title + author in the final frame
 
-Output to my-projects/[project-name]/
+Output to compositions/[project-name]/
 ```
 
 ## Notes
