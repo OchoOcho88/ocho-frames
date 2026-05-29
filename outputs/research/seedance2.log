@@ -1,0 +1,11 @@
+[perplexity] async model=sonar-deep-research max_tokens=6000
+[perplexity] query: ByteDance has officially launched Seedance 2.0 (the successor to Seedance 1.0 / 1.0 Pro), an AI video generation model. ...
+[perplexity] async job submitted: id=921194f1-2eee-4509-9db0-70967d7301ad, polling every 15s (max 1800s)
+[perplexity] status=IN_PROGRESS (15s elapsed)
+[perplexity] status=IN_PROGRESS (30s elapsed)
+[perplexity] status=IN_PROGRESS (45s elapsed)
+[perplexity] status=IN_PROGRESS (60s elapsed)
+[perplexity] status=IN_PROGRESS (75s elapsed)
+[perplexity] status=IN_PROGRESS (90s elapsed)
+[perplexity] status=COMPLETED (105s elapsed)
+[perplexity] tokens: prompt=374 completion=2647 total=3021

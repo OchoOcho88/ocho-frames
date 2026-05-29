@@ -1,0 +1,8 @@
+[perplexity] async model=sonar-deep-research max_tokens=800
+[perplexity] query: What is the documented maximum video duration in seconds for ByteDance Seedance 1.0 Pro? Answer in 2 sentences.
+[perplexity] async job submitted: id=72295a5f-b4fb-4977-b69c-15464f2cc151, polling every 10s (max 900s)
+[perplexity] status=IN_PROGRESS (10s elapsed)
+[perplexity] status=IN_PROGRESS (20s elapsed)
+[perplexity] status=IN_PROGRESS (30s elapsed)
+[perplexity] status=COMPLETED (40s elapsed)
+[perplexity] tokens: prompt=28 completion=78 total=106

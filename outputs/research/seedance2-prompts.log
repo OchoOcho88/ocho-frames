@@ -1,0 +1,3 @@
+[perplexity] sync model=sonar-pro max_tokens=5000
+[perplexity] query: For ByteDance Seedance 2.0 (the 2026 multimodal audio-video AI generation model with @image/@video/@audio reference tags...
+[perplexity] tokens: prompt=288 completion=3050 total=3338

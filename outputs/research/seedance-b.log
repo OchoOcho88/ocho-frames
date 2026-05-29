@@ -1,0 +1,3 @@
+[perplexity] model=sonar-pro max_tokens=4000
+[perplexity] query: For ByteDance's Seedance 1.0 / Seedance Pro AI video generation model (2025-2026): Give a detailed current answer on (1)...
+[perplexity] tokens: prompt=210 completion=4000 total=4210

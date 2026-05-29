@@ -150,10 +150,9 @@ clients/
 
 **Status: BUILT ✓ (for video) — `prompts/competitor-analysis.md`**
 
-- 12-section marketing-conversion framework (Format / Hook / Audience / Pain / Angle / Product Intro / Proof / Beat-by-Beat / CTA / What Works / What's Weak / Steal-Worthy Patterns).
+- 12-section marketing-conversion framework (Format / Hook / Audience / Pain / Angle / Product Intro / Proof / Beat-by-Beat / CTA / What Works / What's Weak / Steal-Worthy Patterns) + Section 13 What's Next? closing offer (Stage 6, added Session 005).
 - Invoked via: `analyze_video.py --prompt-file prompts/competitor-analysis.md`.
 - Output: markdown report saved to `clients/<client>/competitor-analyses/<source>-<descriptor>-<date>.md`.
-- **TODO:** Append "What's Next?" offer block to the prompt so analysis outputs end with offered next moves (Stage 6 pattern).
 
 ### Stage 3 — Strategic Synthesis (mode-aware)
 
@@ -196,7 +195,7 @@ Saved as: `clients/<client>/campaigns/<slug>-review-notes.md` (one per campaign)
 
 ### Stage 6 — "What's Next?" Offer Pattern
 
-**Status: DESIGN, no code yet (was Stage 5 before review-iterate was added)**
+**Status: BUILT for Stage 2 ✓ (Session 005). DESIGN-only for other stages until they exist.**
 
 Every prompt in the pipeline ends with a closing block:
 

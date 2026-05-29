@@ -1,0 +1,3 @@
+[perplexity] model=sonar-pro max_tokens=4000
+[perplexity] query: For OpenAI's current image generation (GPT-4o native image generation released 2025, the gpt-image-1 API model, sometime...
+[perplexity] tokens: prompt=229 completion=1822 total=2051

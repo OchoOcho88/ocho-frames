@@ -1,0 +1,12 @@
+[perplexity] async model=sonar-deep-research max_tokens=6000
+[perplexity] query: I am building an agency reference doc on prompting OpenAI's LATEST image generation model as of 2026. First, determine t...
+[perplexity] async job submitted: id=cc36b518-b328-486f-bb70-f7c4de681ec8, polling every 15s (max 1800s)
+[perplexity] status=IN_PROGRESS (15s elapsed)
+[perplexity] status=IN_PROGRESS (30s elapsed)
+[perplexity] status=IN_PROGRESS (45s elapsed)
+[perplexity] status=IN_PROGRESS (60s elapsed)
+[perplexity] status=IN_PROGRESS (75s elapsed)
+[perplexity] status=IN_PROGRESS (90s elapsed)
+[perplexity] status=IN_PROGRESS (105s elapsed)
+[perplexity] status=COMPLETED (120s elapsed)
+[perplexity] tokens: prompt=344 completion=1482 total=1826

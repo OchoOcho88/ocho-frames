@@ -379,6 +379,208 @@ Resume Opus-writes from here (advisor mode does brainstorming and reviews only).
 
 ---
 
+## Session 005 — 2026-05-28 to 2026-05-29 — Sportif onboarding fired, marketing fundamentals doc, Perplexity integration, post-Lucy trigger system
+
+The longest session so far. The Sportif intake email went out, the Perplexity API got wired into the workspace, and the agency-wide marketing knowledge base was written. Two new auto-memory entries created in the memory directory so future Claude sessions auto-load Sportif context and the "Lucy responded" trigger.
+
+### What we did
+
+**Sportif intake fired (2026-05-28).**
+- Confirmed the questionnaire at `clients/sportif/intake/questionnaire.md` was effectively ready (Lucy in greeting, signoff set, no bracketed placeholders left).
+- Hugo sent the intake email to Lucy with subject "Lauren put me in touch about Sportif". Decision: kept the deadline open-ended ("at your earliest convenience so we stay on track for September") to match the no-fee/favor framing rather than create a transactional feel.
+- Lucy responded same-day confirming she'll return answers in ~5 days. Expected return: ~2026-06-03.
+
+**SWOT research and synthesis (Opportunities + Threats populated).**
+- Ran 9 WebSearch queries: category dynamics, top brands, underserved segments, DTC failures, regulatory restrictions, Bala content strategy, insurgent brands, Pilates trend, Bala competitors.
+- Wrote 8 Opportunities into `swot-analysis.md` (Pilates as cultural tailwind topping fitness charts three years running, the vanity-to-sanity positioning gap, underserved older-adult and women-specific niches, the Bala design-led playbook proven to work without paid ads for years, FitTok format alignment with accessories, sustainability as a real purchase signal in this category, clean-slate launch advantage).
+- Wrote 10 Threats with the heaviest emphasis on the 2026 Meta/TikTok ad enforcement changes, paid-acquisition CPM inflation (Meta CPM up from $34 in 2021 to $57 in 2024), undercapitalization killing 45% of failed DTC brands, Amazon dupes destroying margins on commoditizable accessories, channel concentration risk across Meta/TikTok, and rising body-image backlash.
+- Added 23 source links grouped by research bucket so every claim is traceable.
+- Wrote a preliminary Strategic Synthesis (3 priorities, initially 4 then 5 don'ts, 4 ninety-day hypotheses) flagged as pre-questionnaire and to be hardened once Lucy responds.
+
+**Critical nuance found on the Meta restriction (mid-session pivot).**
+- Initial threat #1 read "Meta restricts fitness/wellness brands from optimizing on lower-funnel events and flags audiences whose metadata implies sensitive traits."
+- Hugo asked for deeper explanation. WebFetched the AuditSocials and Accelerated Digital Media sources directly. Discovered the trigger is claim-making language, NOT product category. "Fitness accessories" is NOT automatically in Meta's Restricted Health and Wellness bucket. It enters that bucket only if the brand makes a specific health-outcome claim ("improves cardiovascular performance," "burns X calories," "reduces soreness by Y%").
+- Rewrote threat #1 with the nuance, added "no specific health-outcome claims in product copy or ads" as a fifth do-not-do rule. Reframed the threat as a creative-positioning lever Sportif controls, not a fixed external constraint. This is now a hard rule across all Sportif creative.
+
+**Built `clients/sportif/intake/swot-summary.md` as a pullable distillation.**
+- Self-contained (jargon cheat sheet baked in for DTC, FitTok, UGC, CPM, CAGR, SKU, ACSM, lookalike audience, lower-funnel events, pre-launch waitlist).
+- Headline takeaway in one sentence at the top.
+- Top 3 opportunities, top 3 threats, 3 strategic priorities, 5 don'ts, hypotheses.
+- Cross-link footer pointing back to the full SWOT, questionnaire, brand.md skeleton, and architecture doc.
+- Designed for two uses: Hugo can pull it out as a screenshotable artifact, and future Claude sessions can use it as a quick reference without loading the full SWOT.
+
+**Locked in: Sportif is Australian.**
+- During the marketing-fundamentals doc scoping, Hugo confirmed Sportif is an Australian business. Previously the SWOT placeholder said "[TBD: assume UK/US until told otherwise]".
+- Saved as auto-memory at `~/.claude/projects/-Users-hugobrizuela-Desktop-hyperframes/memory/sportif-australia.md` (first project auto-memory created in this workspace). Future Claude sessions will auto-load this context.
+- Implications captured: AUD-denominated benchmarks, AEST/AEDT timing, the Australian fitness creator ecosystem (Kayla Itsines, Tammy Hembrow, Chloe Ting, Ashy Bines, Chontel Duncan, Lauren Simpson, plus TikTok's fastest-growing AU fitness creator Eddie Williams). Australian competitors to consider beyond what Lucy names: Tropeaka, Bondi Sands, Bared Footwear, Pillar Performance.
+
+**Wrote `docs/marketing-fundamentals.md` (9,084 words, agency-wide knowledge base).**
+- Scope confirmed via four scoping questions: thorough reference depth, Australia primary plus UK/US sections, AI stack woven through, one combined doc.
+- 4 additional WebSearch queries for Australian Meta CPMs (~$9.80 AUD), Australian TikTok CPMs (~$4-10 AUD with Health & Fitness as the cheapest vertical at ~$6.50), Australian fitness creators by tier with AUD rates, and email tool comparison (Klaviyo wins for ecom at 3.8x revenue per subscriber vs Mailchimp).
+- Nine parts: lay of the land (the five channels, the funnel, the flywheel, what changed since 2021), paid ads platform-by-platform (Meta auction mechanics, account structure, targeting, formats, the Restricted Health and Wellness trap recap; TikTok Spark Ads with AU benchmarks; brief Google and YouTube coverage), organic content per platform (Instagram Reels-first, TikTok FYP mechanics, the truth about FB organic, YouTube Shorts vs long-form, the repurposing system), email (why post-iOS-14 it's the most reliable channel, the five core flows, Klaviyo vs Mailchimp vs ConvertKit vs Beehiiv with AUD pricing, deliverability basics), creators (the four tiers with AU follower bands and rates, terminology decoded, top AU fitness creators by name, briefing template, compensation models, AI stack integration), metrics stack (all acronyms defined in one table, attribution challenges since iOS 14, post-purchase surveys as the affordable attribution layer, MER as the integrating metric), campaign structure (pre-launch/launch/sustain phasing), Sportif applied blueprint (four phases mapped to dates from now to September to year-end, KPIs per phase, three budget bands lean $5-10K/mid $15-30K/scale $50K+ AUD for launch month, channel-mix table across phases, AI stack integration per phase, risk register), and staying current (newsletters, podcasts, operators, signals your playbook needs updating).
+- Zero em dashes (voice rule maintained throughout). Word count 9,084.
+
+**Perplexity integration set up.**
+- Honest discussion of Perplexity vs WebSearch tradeoffs. Decision: don't re-run SWOT/marketing-fundamentals (sufficient quality already), save Perplexity for Lucy's research where source quality matters most (AU industry reports, regional segment data).
+- Hugo provided his API key. Initial path was `~/.zshrc` (matching the GEMINI_API_KEY video-analyzer pattern). Hugo redirected to project-scoped `.env` for security. Updated approach accordingly.
+- Wrote `scripts/perplexity_search.py` (dependency-free Python helper that auto-loads `.env` from workspace root, supports all four models: sonar, sonar-pro, sonar-reasoning-pro, sonar-deep-research). Output to stdout, progress to stderr.
+- Created `skills/perplexity-search/README.md` as a pointer doc with setup steps, model cheat sheet, usage examples, and cost guidance.
+- Updated `.env.example` with the Perplexity slot and instructions.
+- **Security incident caught:** Hugo pasted the real API key into `.env.example` (which is tracked in git). Caught before any commit. Cleaned up: created `.env` with the real key, restored `.env.example` to placeholder, verified `.gitignore` correctly excludes `.env`. Recommended rotation; Hugo rotated the key as the conservative move. Confirmed the new key authenticates with a small smoke test.
+
+**Added "What's Next?" Section 13 to `prompts/competitor-analysis.md` (Stage 6 build).**
+- New Section 13 instructs the model to end every competitor analysis with a numbered list of 3 to 4 specific next moves, each tied to something concrete from THIS analysis (a pattern name from Section 12, the hook from Section 2, a specific proof moment, the next competitor in the client list, etc.). Ends with the line "Or tell me something else you want."
+- Includes a worked example using Sportif/Pilates language so future runs anchor on the right tone.
+- Added a rule to the Critical Rules block: "Section 13 closing offer is required. Never end with Section 12."
+- Updated `docs/pipeline-architecture.md` Stage 2 and Stage 6 statuses to reflect built state.
+
+**Built the post-Lucy trigger system (the big institutional artifact).**
+- Wrote `clients/sportif/intake/post-lucy-research-plan.md`. Contains: a 12-step to-do list for processing Lucy's responses end-to-end, 5 ready-to-run Perplexity passes (segment profile, per-competitor deep dives, brand-reference reverse-engineering, cultural lane validation, budget benchmarking) with exact bash commands and template prompts, save locations per output, estimated cost per pass (total ~$7 AUD), what's blocked vs unblocked, and the "why Perplexity for AU segment" rationale baked in so it's not lost.
+- Saved auto-memory at `~/.claude/projects/-Users-hugobrizuela-Desktop-hyperframes/memory/sportif-post-lucy-trigger.md`. Lists trigger phrases ("Lucy has responded" / "Lucy's answers are in" / "the questionnaire is back" / etc.). When Hugo says one of those phrases in any future session, Claude auto-loads the plan and executes rather than improvising.
+- Updated workspace MEMORY.md index at the auto-memory directory with both entries (sportif-australia + sportif-post-lucy-trigger). Em-dash sweep applied.
+- Cross-linked `swot-summary.md`'s "Where everything lives" footer to point at the new plan. So anyone reading the SWOT lands on the research queue naturally.
+
+### What we learned
+
+- **The Meta Restricted Health and Wellness trigger is claim-making language, not product category.** "Stylish wrist weights" stays outside the bucket. "Wrist weights proven to boost cardio" goes inside. This makes the threat manageable rather than fatal, and aligns the creative-positioning answer with the cultural shift away from transformation language. Critical for Sportif copy.
+- **Pilates is the dominant 2026 fitness cultural tailwind.** Topped global charts three years running, 15M ClassPass bookings, 66% YoY reservation growth. Stronger than expected. If Sportif's product mix touches Pilates at all, that becomes the lead positional lever.
+- **Bala built a multi-million-dollar fitness accessories brand without paid marketing for years.** Their template (design-led product treated as jewelry, color/aesthetic, heavy UGC, influencer seeding) is the proven reference for new accessory brands. Confirmed via Shopify case study. Sportif's reference template should be Bala (not Gymshark or Alo, which are too big and apparel-led).
+- **The default 2026 fitness-DTC ad playbook is broken.** TikTok bans before-and-after transformation imagery in paid regardless of claims. Meta's Restricted Health and Wellness bucket restricts lower-funnel optimization plus flags audiences/conversions with sensitive-trait metadata. Anyone selling "we'll just run Meta ads" is selling 2022 advice.
+- **Klaviyo is the clear default for ecom email.** 3.8x revenue per subscriber vs Mailchimp at $5K-contact scale. Mailchimp requires $160/mo Premium for ecom automation; Klaviyo includes it at $100/mo.
+- **Australian Meta CPM (~$9.80 AUD) runs 23% below US, 18% above UK.** TikTok in AU is 30% cheaper than Meta with Health & Fitness as the cheapest vertical (~$6.50 AUD CPM). Sydney CPM premium is 20-50% during peaks. Seasonality is significant: November AU CPM hits $24.80 vs January $10.68. Plan around Australian summer for Sportif.
+- **Perplexity's edge over WebSearch is largest on AU and regional segment research.** It surfaces IBISWorld AU, Roy Morgan, Statista AU, ABS, Nielsen AU as primary sources where WebSearch returns US-centric SEO content. Cross-source synthesis with line-by-line citations. The advantage compounds in `sonar-deep-research` mode where it runs 30+ autonomous queries on a single segment question.
+- **Project-scoped `.env` beats `~/.zshrc` for workspace-internal scripts.** The video-analyzer pattern was specific to skills installed at `~/.claude/skills/` (system-wide). For helpers that live inside the workspace, project-scoped `.env` is the correct security pattern. Established this clearly for any future API key.
+- **API keys can leak through `.env.example` if you're not careful.** It's a tracked file. The placeholder pattern (`pplx-...`) needs to stay placeholder. Real keys go only in `.env` (gitignored). Caught a paste-mistake in this session and rotated the key. Process now clear for future keys.
+- **Em dashes leak in when you're not paying attention.** Caught several in my own output across the session, especially in templated sections (link titles, table cells). Manual grep after every multi-edit is necessary. Workspace voice rule holds firm.
+
+### Decisions
+
+- **Sportif's intake deadline:** open-ended. No specific date in Lucy's email. Matches the no-fee/favor framing.
+- **Sportif is Australian.** AUD benchmarks, AEST timing, AU creator landscape. Recorded as auto-memory so future sessions auto-load.
+- **Sportif's chosen cultural lane:** not yet locked. Will be decided after Lucy's Q1, Q2, Q3, Q7, Q8 answers. Candidate lanes from the SWOT remain: Pilates, longevity, design-led, inclusive-fitness.
+- **Meta and TikTok creative rule for Sportif:** no health-outcome claims in any copy. Lead with aesthetic, lifestyle, and function. This is hard rule, applies workspace-wide.
+- **Perplexity integration:** project-scoped `.env`, not `~/.zshrc`. Helper at `scripts/perplexity_search.py` is dependency-free (no `python-dotenv` install needed).
+- **Perplexity usage strategy:** don't re-run already-shipped research. Save Perplexity for Lucy's questionnaire processing where the source quality differential is largest.
+- **Per-competitor Pass 2 not capped.** Run Perplexity sonar-deep-research on every competitor Lucy names in Q4. Judgment call applied at the time if she names 6+.
+- **Post-Lucy trigger phrases:** "Lucy has responded" / "Lucy's answers are in" / "the questionnaire is back" / "Lucy sent the questionnaire back" / "we got Lucy's intake" all activate the queued research plan. Documented in auto-memory.
+- **Section 13 "What's Next?" closing offer:** now mandatory for every competitor analysis output. Stage 6 of the pipeline is built for Stage 2 (design-only for the rest until they exist).
+- **Marketing fundamentals doc** (`docs/marketing-fundamentals.md`) is the agency knowledge base, not a Sportif-specific doc. Part 8 IS Sportif-specific. Refresh structural Parts (1, 6, 7) less often than channel Parts (2, 3, 4, 5) which need updating ~every 6 months as platforms evolve.
+
+### Open questions / next steps
+
+**Top of queue for Session 006:**
+
+1. **Research Seadance + ChatGPT Image 2.0 current prompt formats.** Stage 4 prerequisite. Use Perplexity sonar-deep-research now that it's wired in (prompt-engineering doc changes fast, Perplexity's source quality matters here). Output target: a reference doc at `docs/platform-prompt-formats.md` or similar that captures current spec for both, with examples, character limits, format quirks, and what's changed in the last 6 months. ~30-60 minute focused task.
+
+2. **Write `prompts/synthesis-creative-brief.md`** (Stage 3, mode-aware brand-first vs competitor-first template). Template scaffold can be written without Lucy's specifics; the actual synthesis runs after her responses + Perplexity passes.
+
+3. **Build voice-memo-to-questionnaire transcription recipe.** Whisper is already installed (Session 001). Likely needed when Lucy sends voice memos (one of the three answer formats we offered). Save at `recipes/transcribe-voice-memos.md`.
+
+4. **Add image-analyzer skill (Stage 1 second path).** Static image competitor analysis. Standalone build, likely its own session.
+
+**Sportif-active (waiting on Lucy):**
+
+- [ ] Lucy returns questionnaire ~2026-06-03. Trigger phrase activates the queued plan at `clients/sportif/intake/post-lucy-research-plan.md`.
+- [ ] Run the 5 Perplexity passes (~$7 AUD total).
+- [ ] Populate `clients/sportif/brand.md` from responses + research.
+- [ ] Draft Stage 3 synthesis brief at `clients/sportif/campaigns/launch-2026-09/synthesis-brief.md`.
+- [ ] Update `docs/marketing-fundamentals.md` Part 8 budget bands with Sportif-specific AUD numbers.
+- [ ] Send Lucy a "where we are" summary email after research is in.
+- [ ] Hugo to send work-samples follow-up email (promised in intake P.S.).
+
+**Workspace housekeeping (deferred, not urgent):**
+
+- Wider em-dash sweep: `docs/pipeline-architecture.md` (still has em dashes in the Stage 6 example block), top-level `README.md`, older starter prompts (`csv-to-chart.md`, `pdf-to-summary.md`, etc.), recipes, skills READMEs.
+- `from __future__ annotations` shim resilience for the video-analyzer skill on fresh clones. Either PR upstream, modify setup.sh to re-apply, or upgrade Python.
+- Python 3.10+ upgrade via Homebrew. Would retire the shim need.
+- OpenAI + HeyGen keys still pending (Session 001 carryover). HeyGen needed before any avatar work.
+- Repo visibility decision for GitHub Pages (private requires Pro; public is free).
+- The "Subject line convention" pattern from Session 004 (lead with mutual connection's name) worked for Lucy. Confirmed pattern. No action needed.
+
+**Pipeline build queue (per architecture doc):**
+
+- Stage 4 production-brief prompt + first adapter (Seadance or ChatGPT Image, pick based on Sportif's first content need from Lucy's Q12 timeline answer).
+- Second Stage 4 adapter once first is proven.
+- Stage 5 review-and-iterate workflow (design exists, no code yet; build when first synthesis brief gets reviewed by Hugo or Lucy).
+
+### Two-Claude sync note
+
+For the Cowork advisor catching up via this entry: the working pattern for Session 005 was Opus-writes (this session) with no advisor brainstorm needed mid-session. The post-Lucy trigger system means the advisor can also recognize trigger phrases when Hugo brings them up in advisor mode. Both sessions should now use the same auto-memory directory at `~/.claude/projects/-Users-hugobrizuela-Desktop-hyperframes/memory/` and the same MEMORY.md index. The plan file at `clients/sportif/intake/post-lucy-research-plan.md` is the single source of truth for what runs the moment Lucy responds.
+
+---
+
+## Session 006 (2026-05-29): Platform prompt-format research (Stage 4 prerequisite)
+
+Short, focused session. Lucy had not responded yet (expected ~2026-06-03, no trigger phrase used), so the post-Lucy plan stayed parked. Executed the top Session 006 priority: researched current Seedance and GPT-4o image prompt formats and wrote the Stage 4 reference doc.
+
+### What we did
+
+**Wrote `docs/platform-prompt-formats.md` (the Stage 4 prerequisite).**
+- Covers both primary platforms: Seedance (video) and GPT-4o image generation / gpt-image-1 (static).
+- Per platform: at-a-glance spec table, prompt structure, length guidance, camera/motion vocab (Seedance) or text-rendering (gpt-image-1), style/quality modifiers (what helps vs what is noise), failure-mode table with fixes, supported parameters, one Sportif-shaped fitness-accessory worked example, and a "what changed in the last 90 days" section.
+- Added a naming-reconciliation table at the top, a cross-platform cheat sheet, an "open items for Stage 4 build" section, and 21 cited sources. Confidence levels marked [official] vs [inferred] throughout.
+- Em-dash AND en-dash swept clean (zero of both).
+
+**Research method: deep-research failed, fell back to split sonar-pro.**
+- Ran 3 `sonar-deep-research` calls (2 platforms + 1 retry). All 3 failed with `http.client.RemoteDisconnected: Remote end closed connection without response`. This is a gateway/timeout drop: the synchronous urllib call in `scripts/perplexity_search.py` (600s timeout) gets cut before deep-research finishes its long autonomous run. Consistent 3/3 failure, not transient.
+- Pivoted to 4 `sonar-pro` calls (2 focused queries per platform: structure/params, then quality/failures/changes). All 4 completed cleanly and gave rich, well-cited output.
+- Raw outputs preserved at `outputs/research/` (seedance-a/b.md, chatgpt-a/b.md) and referenced from the doc footer.
+
+### What we learned
+
+- **`sonar-deep-research` does not work through our current helper.** The synchronous POST gets dropped on the long-running deep-research job (RemoteDisconnected, no HTTP status). Until the script is hardened, deep-research is effectively unavailable via `scripts/perplexity_search.py`. The post-Lucy plan assumes deep-research for the 5 passes, so this needs a fix BEFORE Lucy responds (see open items). `sonar-pro` works fine.
+- **Splitting one broad question into 2 focused `sonar-pro` queries is a good substitute for deep-research depth** and far more reliable. Cost stayed tiny.
+- **Naming: "Seadance" is really Seedance (ByteDance), "ChatGPT Image 2.0" is really GPT-4o image gen / gpt-image-1 (OpenAI).** There is no product literally called "ChatGPT Image 2.0." Recorded in the doc's naming table so the workspace stops targeting the wrong names.
+- **Both platforms reward natural-language prose over keyword stacks, one-primary-subject discipline, and iterative refinement.** Generic quality-stacker buzzwords ("8k, masterpiece, trending on artstation") are noise on both.
+- **gpt-image-1's standout is accurate in-image text** (quote it exactly, keep it short). Seedance's standout is multi-shot narrative coherence in a single prompt ("Shot 1 / Shot 2 / Shot 3").
+- **Watch for Seedance 2.0.** A Seed-site "seedance2_0" page reference surfaced but is not yet backed by official capability docs. If it goes live, the camera/multi-shot guidance needs a refresh.
+
+### Decisions
+
+- **Doc location and shape:** single combined reference at `docs/platform-prompt-formats.md` (not two files), matching how the architecture doc treats the two platforms together.
+- **Research model:** `sonar-pro` split queries, given deep-research is broken via the helper. Did not burn more time retrying deep-research.
+- **Worked examples honor the Sportif no-health-claims rule** (aesthetic/lifestyle/function only), so they double as Stage 4 pressure-test fixtures.
+- **Cost:** ~14.7K total tokens across 4 sonar-pro calls, roughly $0.50 AUD. Well under the $2-3 AUD estimate because deep-research was abandoned (failed calls returned nothing billable).
+
+### Open questions / next steps
+
+**Newly surfaced (priority):**
+- [ ] **Harden `scripts/perplexity_search.py` for deep-research BEFORE Lucy responds.** The post-Lucy plan's 5 passes assume `sonar-deep-research`, which currently fails with RemoteDisconnected. Options: add retry-with-backoff, switch deep-research to Perplexity's async/polling API surface, or change the plan to use split `sonar-pro` queries instead. This is now a blocker on the post-Lucy plan working as written.
+- [ ] **Confirm `gpt-image-1` live parameter set** (`quality`, `input_fidelity`, `background`, `output_format`) against the OpenAI API reference before writing the Stage 4 adapter parameter block. Research could not pin exact accepted values.
+- [ ] **Pick the standard Seedance reseller** (fal.ai / Pollo / Wavespeed / Dreamina direct). Field names differ per host; the adapter should target one.
+
+**Carried from Session 005 (still queued):**
+- [ ] Write `prompts/synthesis-creative-brief.md` (Stage 3 template, mode-aware).
+- [ ] Build voice-memo-to-questionnaire transcription recipe (Whisper) at `recipes/transcribe-voice-memos.md`.
+- [ ] Add image-analyzer skill (Stage 1 second path).
+- [ ] Write Stage 4 adapters (`prompts/production-seadance.md`, `prompts/production-chatgpt-image.md`) now that the format spec exists. Pick first adapter from Lucy's Q12 timeline answer.
+
+**Sportif-active (waiting on Lucy, ~2026-06-03):** unchanged from Session 005. Trigger phrase activates `clients/sportif/intake/post-lucy-research-plan.md`. The deep-research blocker noted above was FIXED later in this same session (see addendum).
+
+### Session 006 addendum (same session): deep-research fixed + Seedance 2.0 discovered
+
+**Fixed the deep-research blocker.** Hugo asked to fix the script immediately. Root cause: `sonar-deep-research` cannot run as a synchronous HTTP call (the long autonomous job gets dropped by the gateway, RemoteDisconnected). Fix: `scripts/perplexity_search.py` now auto-routes `sonar-deep-research` to Perplexity's async API (submit to `/async/chat/completions`, poll `/async/chat/completions/{id}` until COMPLETED), and added retry-with-backoff to the sync path for other models. Discovered the async endpoint ONLY accepts deep-research (other models 400 there), so routing is automatic, not a user flag (removed an initial `--async` flag that would always error).
+- **Validated end-to-end:** a small deep-research query submitted, polled IN_PROGRESS x3, COMPLETED at ~40s, returned a clean answer plus 30 cited sources. Log/output preserved at `outputs/research/async-test.*`.
+- Updated the post-Lucy plan with an operational note (deep-research now async, shows IN_PROGRESS, `>` redirects still clean). Updated auto-memory `perplexity-deep-research-broken.md` from "blocker" to "resolved / how it works."
+
+**Seedance 2.0 has officially launched (new finding).** The validation deep-research run surfaced an official ByteDance Seed launch blog ("Official Launch of Seedance 2.0") plus a Seed 2.0 model page and 2.0-vs-Sora-2 comparisons. This corrects the sonar-pro reading in `docs/platform-prompt-formats.md`, which had only found an unconfirmed 2.0 page reference. Concrete proof of deep-research's source-quality edge over sonar-pro. Updated the platform doc's A8 and Part D to reflect the launch and flag that Part A (the 1.0 spec) needs a 2.0-focused refresh. The 1.0 spec stays valid as a baseline since 1.0 is still widely hosted.
+
+**New next step (added):** run a `sonar-deep-research` pass on Seedance 2.0 prompt format and what changed vs 1.0, then refresh Part A of the platform doc. Now unblocked since deep-research works.
+
+### Session 006 second addendum (same session): both platforms had shipped 2.0, doc rewritten
+
+Hugo asked to research Seedance 2.0 AND "GPT Image 2.0." Ran 2 sonar-deep-research passes (via the now-working async path) plus 2 sonar-pro follow-ups for prompt mechanics. Both platforms turned out to have shipped major April 2026 flagships that the original doc completely missed. Rewrote `docs/platform-prompt-formats.md` to be 2.0-first.
+
+**Seedance 2.0 (confirmed live, April 2026):** unified multimodal audio-video model (Dual-Branch Diffusion Transformer, ~4.5B params). Generates synchronized stereo audio (dialogue, SFX, music, phoneme-level lip-sync in 8+ languages) jointly with video. Accepts text + up to 9 images + 3 video + 3 audio as inputs via a new `@image1`/`@video1`/`@audio1` reference syntax (role-assigned in natural language, up to 12 assets). Directorial prompt format: Subject, Action, Environment, Camera, Style, Constraints. 4 to 15s, 480p/720p/1080p (+2K, 4K upscale), aspect 16:9/9:16/4:3/3:4/1:1/21:9. Strong physics. Editing/extension. 1.0 is now the legacy baseline (still hosted).
+
+**GPT Image 2.0 IS REAL (Hugo was right).** The real model is `gpt-image-2` (API), snapshot `gpt-image-2-2026-04-21`, branded "ChatGPT Images 2.0," launched April 2026. Lineage: DALL-E 3 -> gpt-image-1 -> gpt-image-1.5 (late 2025) -> gpt-image-2. DALL-E 2/3 removed from the API 2026-05-12. New: near-pixel-perfect multilingual in-image text, up to 4K, better instruction following. Key gotchas captured in the doc: (1) NO "thinking mode" API parameter (it's ChatGPT-layer orchestration; use Responses API to plan); (2) gpt-image-2 does NOT support transparent backgrounds (regression vs gpt-image-1; use gpt-image-1.5 or white-bg-plus-cutout); (3) do not set `input_fidelity` (errors). Params: size presets + custom (multiples of 16, 655K to 8.29M px, aspect <3:1), quality low/medium/high, output_format png/jpeg/webp, n. Token-priced: ~$0.01 (low 1024) to ~$0.41 (high 4K) per image.
+
+**Lesson reinforced:** deep-research caught two whole product generations that the sonar-pro round missed. Worth the cost when currency matters. Both completion bodies cut off mid-section at ~1.5-2.6K tokens though, so each needed a focused sonar-pro follow-up for the prompt mechanics. Pattern for future deep-research: expect a strong synthesis + sources but budget a follow-up for the long-tail detail.
+
+**Stage 4 is now properly unblocked** with a current, 2.0-accurate format spec for both platforms. Open items live in Part D of the doc (pick resellers, confirm live param strings, transparent-asset path, which model tier Sportif starts on).
+
+---
+
 <!-- Add new sessions ABOVE this line. Format:
 ## Session NNN — YYYY-MM-DD — One-line summary
 ### What we did

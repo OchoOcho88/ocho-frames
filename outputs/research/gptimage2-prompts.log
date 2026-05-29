@@ -1,0 +1,3 @@
+[perplexity] sync model=sonar-pro max_tokens=5000
+[perplexity] query: For OpenAI's gpt-image-2 (the model behind 'ChatGPT Images 2.0', launched April 2026, snapshot gpt-image-2-2026-04-21, s...
+[perplexity] tokens: prompt=346 completion=5000 total=5346

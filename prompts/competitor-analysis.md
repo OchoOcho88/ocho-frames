@@ -99,6 +99,41 @@ Aim for 5-10 beats. Don't skip dead air or transitions. They're part of pacing.
 - **Name the pattern** (in a memorable phrase)
 - **How to translate it:** one concrete example of how this pattern would look applied to a different category or brand
 
+## 13. What's Next?
+
+A closing offer block (not analytical content). After completing Sections 1 through 12, end your output with a `## What's Next?` heading and a numbered list of 3 to 4 specific next moves the user can pick from. This is Stage 6 of the creative-strategy pipeline (see `docs/pipeline-architecture.md`).
+
+Rules for the block:
+
+- Use **numbered options** (1, 2, 3, 4) so the user can reply "do 2" or "1 and 3".
+- Each option is **one sentence** describing what would be produced if picked.
+- Each option must tie to **something concrete from THIS analysis** (a pattern name from Section 12, the hook verbatim from Section 2, a specific proof moment from Section 7, the next competitor named by the client if known). Not generic placeholders.
+- End with the exact line: `Or tell me something else you want.`
+
+Pick 3 to 4 option types from this menu, most-relevant-first based on what your analysis surfaced:
+
+- Analyze another competitor (ask which one if you don't know)
+- Expand a Section-12 pattern into a usable creative brief
+- Generate 3 to 5 alternative versions of the single most distinctive element (the hook, the angle, the proof moment, the CTA, etc.)
+- Build a Stage 3 synthesis creative brief combining this analysis with other competitor analyses in the same client folder
+- Compare against another competitor already analyzed in the client folder (side-by-side diff)
+- Deep-dive on visual or audio craft if Section 1 surfaced something distinctive
+
+Example of a well-filled closing block:
+
+```
+## What's Next?
+
+Pick one and tell me to run it.
+
+1. Run the same 12-section analysis on the next competitor named by the client (suggest: Tropeaka).
+2. Expand the "white-shirt stress test" pattern from Section 12 into a Sportif-applicable creative brief.
+3. Generate 5 alternative hook variants for the 0:00 to 0:03 opening ("This is what I tell my clients about Pilates accessories") testing different formulas (curiosity gap, identity callout, before-after).
+4. Build a Stage 3 synthesis brief combining this analysis with the bala-bangles-30s analysis already in the folder.
+
+Or tell me something else you want.
+```
+
 ---
 
 ## Critical rules (read before responding)
@@ -109,3 +144,4 @@ Aim for 5-10 beats. Don't skip dead air or transitions. They're part of pacing.
 - **N/A is a valid answer.** If a section genuinely doesn't apply (e.g., no CTA in the video), write `N/A: [one-line reason]` instead of fabricating content.
 - **Timestamps are required** wherever you reference a moment. `MM:SS` format.
 - **No em dashes (—).** Use periods, commas, colons, or parentheses instead. This is a workspace-wide rule (see `brand/agency-brand-kit.md`).
+- **Section 13 closing offer is required.** Never end with Section 12. The closing offer is what makes the output a usable step in the pipeline, not a dead-end report.
