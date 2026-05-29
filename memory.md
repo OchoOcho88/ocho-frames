@@ -579,6 +579,36 @@ Hugo asked to research Seedance 2.0 AND "GPT Image 2.0." Ran 2 sonar-deep-resear
 
 **Stage 4 is now properly unblocked** with a current, 2.0-accurate format spec for both platforms. Open items live in Part D of the doc (pick resellers, confirm live param strings, transparent-asset path, which model tier Sportif starts on).
 
+### Session 006 third addendum (same session): prompt-lab experiment, the self-improving loop, ran live
+
+Hugo asked whether a closed produce -> generate -> analyze -> learn loop was a good idea. It was. Built `experiments/` (with a README explaining the loop and rigor rules) and ran the first experiment, `experiments/2026-05-29-bahe-flowloops/`, using a found competitor product (BAHE FLOWLOOPS LUXE, 3 flat fabric resistance loops) as a design-led Sportif stand-in. Hugo has live access to Seedance 2.0 and gpt-image-2 and generated everything; Claude wrote prompts and analyzed results (video via the Gemini video-analyzer skill, images via Claude vision since the image-analyzer skill is not built yet).
+
+**Generated and analyzed:** image v1 (product flat-lay), image v2 (lifestyle in-use), image v3 (functional taut use), video v1 (text-only product clip), video v2 (reference-driven 15s logo reveal), and video-gpt (accidental: the v3 image prompt fed to Seedance text-to-video with no reference). All assets and per-asset analyses are in the experiment folder; the full record is in its iteration-log.md.
+
+**~12 field-validated findings, all promoted into docs/platform-prompt-formats.md:**
+- gpt-image-2 renders exact text reliably (confirmed 3x, including on busy lifestyle backgrounds).
+- gpt-image-2 holds hand/feet anatomy when you add explicit anatomy constraints.
+- gpt-image-2 treats "no clutter" as soft, needs hard constraints for pure product shots.
+- RECIPE: to show real product use, name the exercise position + "stretched taut, clearly in use, not draped." No aesthetic penalty (v3 proved it; v2 had read as decorative).
+- gpt-image-2 casting drifts across generations, specify it for consistency.
+- gpt-image-2 does NOT support transparent backgrounds (use gpt-image-1.5 or white-bg cutout).
+- Seedance renders SHORT invented wordmarks clean (the earlier "invented text garbles" fear was wrong; "FLOW" came out clean with no reference). Garble risk is longer/complex text.
+- Seedance reproduces referenced text cleanly, and a finished hero reference OVERRIDES detailed shot direction (animate-the-poster vs cinematic-sequence tradeoff).
+- Image-style prompts port to Seedance and still yield motion without beat direction.
+- Single continuous shot avoids the mid-clip glitch (v2's multi-beat clip glitched at 5-7s; video-gpt single shot was smooth).
+- Seedance human biomechanics are WEAK, specific equipment use looks awkward. Use @video1 motion reference, keep actions simple, or film real demos.
+- Seedance audio is unreliable: it auto-generates regardless of the prompt, moderation BLOCKS specified music but PASSES auto-generated, and the prompt cannot force silence (UI toggle only). Plan music in post.
+- Meta: the Gemini video-analyzer OVER-RATES motion (missed the glitch, praised the awkward exercise as "good form"). Judge motion and text with human eyes.
+
+**Production workflow this points to (for Sportif):** gpt-image-2 for hero/lifestyle/product stills including text, Seedance for ambient motion and animate-the-hero clips, real footage or @video1 references for believable human exercise, music added in post. gpt-image-2 -> Seedance handoff (make the branded still, reference it in) preserves the wordmark.
+
+**Process note caught and fixed:** mid-commit, found that gpt-image-v2.md and gpt-image-v3.md were never actually written (only pasted in chat) though analyses referenced them. Created both before committing so the record is accurate.
+
+**Git:** committed as 4f8bbba and fast-forwarded onto `main`, pushed to origin/ocho-frames. 57 files, ~5,114 insertions. This commit also swept up the previously-uncommitted Session 005 deliverables (marketing-fundamentals, post-lucy-research-plan, swot-summary, Perplexity helper + skill). Session branch deleted. `.env` verified ignored, never staged; tree scanned for stray keys (clean). Decision: branch-per-session is fine for big/experimental work, but fast-forward to main promptly so the two-session memory.md sync stays current. Default to main for routine work.
+
+### For the Cowork advisor (sync)
+Everything above is on `main` and pushed, so a fresh pull is current. The big new artifacts to know about: `docs/platform-prompt-formats.md` (the 2.0 Stage 4 spec, now carrying all the live-tested findings) and `experiments/` (the self-improving prompt loop, with the BAHE FLOWLOOPS run as a worked example). Deep-research now works via async in `scripts/perplexity_search.py`, so the post-Lucy plan runs as written. Still waiting on Lucy (~2026-06-03).
+
 ---
 
 <!-- Add new sessions ABOVE this line. Format:
