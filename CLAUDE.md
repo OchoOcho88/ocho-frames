@@ -33,7 +33,7 @@ Which one am I? If shell paths look like `/sessions/<name>/mnt/hyperframes/`, th
 **The handoff protocol (both environments, no exceptions):**
 
 1. **Session start:** read the CURRENT STATE block, then `git log --oneline -5` to see what the other environment did last. If the working tree is dirty with changes you did not make, a session somewhere did not close out; commit or flag before working.
-2. **Session end (the close-out ritual):** update the CURRENT STATE block (including the handoff line), add a session entry to the top of `memory.md` tagged with the environment, e.g. `Session 014 (2026-07-08, Claude Code): ...`, then `git add -A && git commit`. The commit is what makes the work visible to the other side.
+2. **Session end (the close-out ritual):** update the CURRENT STATE block (including the handoff line), add a session entry to the top of `memory.md` tagged with the environment, e.g. `Session 014 (2026-07-08, Claude Code): ...`, run `python3 scripts/archive_memory.py` (a no-op unless memory.md has crossed 90KB, in which case it moves the oldest sessions to `memory-archive.md`), then `git add -A && git commit`. The commit is what makes the work visible to the other side.
 3. **Session numbers are continuous across both environments.** Check the top of memory.md for the last number before starting a new entry.
 4. **Do not run both environments on the same files at the same time.** If both are open, one is the builder and the other is the sounding board; the sounding board reads but does not write.
 5. **Environment-specific learnings** go in "Tools and gotchas" below, labelled with which environment they apply to.

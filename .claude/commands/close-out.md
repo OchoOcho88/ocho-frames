@@ -5,5 +5,6 @@ Run the workspace close-out ritual (see "Two environments, one workspace" in CLA
 3. Add a session entry at the TOP of `memory.md`, numbered continuously from the last entry, tagged `(Claude Code)`. Match the existing format: what we did, what we learned, decisions, open questions.
 4. Sweep every file touched this session for em dashes and en dashes and remove them.
 5. If any internal source doc changed, check its client cut for drift (see the two-doc drift rule) and re-export the PDF if needed.
-6. `git add -A && git commit` with a descriptive "Session NNN:" message.
-7. Confirm to Hugo the session is closed and what the next session should pick up.
+6. Run `python3 scripts/archive_memory.py` (no-op under 90KB; otherwise it moves the oldest session entries to memory-archive.md).
+7. `git add -A && git commit` with a descriptive "Session NNN:" message.
+8. Confirm to Hugo the session is closed and what the next session should pick up.
