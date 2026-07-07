@@ -1,6 +1,8 @@
 # Sportif Launch Plan (client cut)
 
 > Short, client-facing operations plan. Built into the PDF by build-launch-plan.py.
+> Source of truth: digital-ecosystem-action-plan.md + action-plan-checklist.md | Last synced: 2026-07-01
+> DRIFT RULE: if the internal plans change, update this file, bump the synced date, re-run the generator.
 > Pairs with the Brand Value Plan (the why). This is the how and the what.
 > Voice rule: no em dashes, no en dashes.
 

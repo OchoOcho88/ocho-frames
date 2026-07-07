@@ -1,7 +1,8 @@
 # Sportif Brand Value Plan (client cut)
 
 > Short, client-facing version. Built into the PDF by build-brand-value-plan.py.
-> The detailed internal version lives in brand-value-plan.md.
+> Source of truth: brand-value-plan.md | Last synced: 2026-07-01
+> DRIFT RULE: if brand-value-plan.md changes, update this file, bump the synced date, re-run the generator.
 > Voice rule: no em dashes, no en dashes.
 
 > Brand value is why someone chooses Sportif over a cheaper, almost identical band. The product can be copied. The brand cannot, and the brand is above all Lucy.

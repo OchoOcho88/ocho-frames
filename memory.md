@@ -4,6 +4,53 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ---
 
+## CURRENT STATE (update this block every session, keep it to ~12 lines)
+
+*Last updated: 2026-07-07 (Session 013)*
+
+- **Client: Sportif.** Strategy LOCKED: Lucy Wayne is the differentiator, parallel wholesale + DTC, one hub (sportifcollection.com.au + @sportifcollection + email). Launch September 2026; 500 band units due early July (may have already landed, confirm with Lucy).
+- **Current Lucy-facing docs: exactly two PDFs**, `Sportif-Brand-Value-Plan.pdf` (strategy) + `Sportif-Launch-Plan.pdf` (operations). Everything else archived in `clients/sportif/_archive/superseded-pdfs-2026-07/`.
+- **CRITICAL PATH: nowhere to sell the band.** Blocked on Lucy: open Shopify, lock prices + ~$70 pouch threshold, decide fabric, agree who answers customers. Bundled ask email drafted (`clients/sportif/email-to-lucy-blockers.md`), waiting for Hugo to send.
+- **Next build steps once unblocked:** Shopify coming-soon page (research done), store build, Klaviyo flows, ambassador/instructor seeding shortlist (main growth engine, not started).
+- **Also open:** trademark clearance (with lawyer), materials question (gates sustainability copy), Stage 3/4 pipeline templates and adapters (prompts + gpt-image-2/Seedance), Stage 4 launch imagery.
+- **Housekeeping done 2026-07-07:** git caught up (Sessions 007 to 012 committed), CLAUDE.md gotchas fixed (pplx_async pattern), drift headers added to client cuts, voice guidelines at `clients/sportif/voice-guidelines.md`.
+
+---
+
+## Session 013 (2026-07-07): Workspace review and cleanup, git caught up, Lucy blocker email drafted
+
+Hugo asked for a full project review (improvements, holes, integration opportunities), then approved working through every fix.
+
+### What we did
+- **Full workspace review.** Strongest parts: the two-doc client-cut methodology, devil's advocate passes, memory log, reusable generators. Biggest holes: the critical-path revenue blocker (band due July, no store), 5 weeks of uncommitted git work, superseded PDFs still live, stale CLAUDE.md, doc-drift risk, workspace clutter.
+- **Archived 9 superseded Lucy-facing PDFs** into `clients/sportif/_archive/superseded-pdfs-2026-07/`. Client root now holds exactly three: Brand-Value-Plan (strategy), Launch-Plan (operations), Brand-Kit (reference). Lucy's questionnaire moved to `intake/`, the product board PDF into `competitor-analyses/`.
+- **Git caught up.** Removed a stale `.git/index.lock` (needed the `allow_cowork_file_delete` tool first, plain rm fails on the mount). Updated `.gitignore` (product-images, logs/, .git-broken/, *.log). Committed Sessions 007 to 012 (62 files) plus this session's changes.
+- **Fixed CLAUDE.md.** Replaced the wrong nohup research workflow with the `pplx_async.py` pattern, and added the learned gotchas: weasyprint per-sandbox install, Lora/Poppins fonts, PNG montage for PDF previews, outputs dir is throwaway, file deletion tool, the two-PDF client set, and the two-doc drift rule.
+- **Added a CURRENT STATE block** to the top of memory.md (12-line snapshot a cold session reads first). Convention: update it every session.
+- **Added drift guardrails.** Source-of-truth + last-synced headers in `brand-value-plan-client.md` and `launch-plan-client.md` (verified the generators only render the last blockquote group, so headers stay out of the PDFs).
+- **Drafted the bundled Lucy blocker email** (`email-to-lucy-blockers.md`, supersedes `email-to-lucy-next-steps.md`) and created a Gmail draft to lucy@lucywayne.com.au. Four asks: open Shopify + staff access, lock prices + $70 threshold, pick fabric, decide who answers customers. Hugo must attach the two PDFs manually (draft tool cannot attach) and send.
+- **Created `clients/sportif/voice-guidelines.md`**, a per-piece checklist distilled from brand.md (voice in one line, say/never-say, imagery rules, the no-dash rule).
+- **Set up a scheduled task** `sportif-blocker-check` (Mondays 9am): reads CURRENT STATE, reports what is blocked on Lucy and for how long, what Hugo can do without her, one recommended action.
+
+### Decisions
+- Archive, not delete, the superseded PDFs (reversible).
+- Competitor product-images (54MB) stay out of git; they live locally only.
+- Old June 18 email superseded: it referenced five now-archived attachments.
+
+### Integration opportunities flagged (need Hugo to authorize connectors in settings)
+- **Klaviyo MCP:** build the welcome flow, coming-soon capture, back-in-stock waitlist directly once Shopify is open.
+- **Canva:** re-auth for coming-soon page and social templates.
+- **Airtable:** ambassador/instructor seeding tracker when outreach starts.
+
+### Open questions / next
+- [ ] Hugo: attach the two PDFs to the Gmail draft and SEND the Lucy blocker email. Highest-leverage action in the workspace.
+- [ ] Confirm whether the 500 bands have landed; if yes, get the unboxing filmed.
+- [ ] Build the ambassador/instructor seeding shortlist (not started, main growth engine).
+- [ ] Write the Shopify coming-soon step-by-step (research done, waiting on the account).
+- [ ] Carried: trademark clearance, materials, Stage 3/4 pipeline templates and adapters, Stage 4 launch imagery, memory.md archive split if it keeps growing.
+
+---
+
 ## Weekly Review — 2026-07-05 (week of 2026-06-29)
 
 One session this week (012), all on Sportif. After the previous week locked strategy, this week was about turning a pile of overlapping documents into a clean, client-ready package: the Brand Value Plan was rebuilt from the ground up and the four confusing Lucy-facing PDFs were consolidated into two.
