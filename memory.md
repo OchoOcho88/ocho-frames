@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-07 | Last session: 013 (Cowork) | Working tree: committed clean | Git is ~10 commits ahead of GitHub, Hugo to `git push` from the Mac*
+*Last updated: 2026-07-07 | Last session: 014 (Claude Code) | Working tree: committed clean | Git synced with GitHub (Session 014 pushed the backlog)*
 
 - **Client: Sportif.** Strategy LOCKED: Lucy Wayne is the differentiator, parallel wholesale + DTC, one hub (sportifcollection.com.au + @sportifcollection + email). Launch September 2026; 500 band units due early July (may have already landed, confirm with Lucy).
 - **Current Lucy-facing docs: exactly two PDFs**, `Sportif-Brand-Value-Plan.pdf` (strategy) + `Sportif-Launch-Plan.pdf` (operations). Everything else archived in `clients/sportif/_archive/superseded-pdfs-2026-07/`.
@@ -17,6 +17,28 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Also open:** trademark clearance (with lawyer), materials question (gates sustainability copy), Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins (switch to real font on next edit).
 
 ---
+
+## Session 014 (2026-07-07, Claude Code): GitHub sync (pushed the Session 013 backlog)
+
+Short startup-and-sync session on the Mac, right after Cowork closed out Session 013 the same day.
+
+### What we did
+- Ran the session-start sync protocol: read the CURRENT STATE block and the Session 013 entry plus its follow-up, confirmed the Session 013 close-out commits in the log, and verified a clean working tree.
+- **Pushed the local backlog to GitHub** (`535032c..49aa5de`, 10 commits). Cowork had committed Sessions 007 to 013 locally but could not push from the sandbox; that is why the tree was ahead. Local and origin/main are now in sync.
+- Reviewed current state with Hugo and confirmed both Lucy-dependent items are still pending.
+
+### What we learned
+- The push backlog is the expected shape of the two-environment split: Cowork commits but does not push from the sandbox, so Claude Code on the Mac is where the sync to GitHub happens. Worth doing at the start of every Claude Code session.
+
+### Decisions
+- No content work this session. Both live jobs (render Lucy's hero pick at quality high, start the Shopify coming-soon page) are blocked until Lucy responds, so we synced and closed out rather than starting unblocked busywork.
+
+### Open questions / next
+- [ ] Lucy has NOT picked a hero concept yet (v5 unboxed / v6 set / v7 flat) and has NOT replied to the blocker email. Both are the gates.
+- [ ] When Lucy picks: render the chosen 4:5 hero at quality high in Claude Code (text-free, then overlay the wordmark with `scripts/overlay_wordmark.py`).
+- [ ] When Lucy replies to the blocker email: start the Shopify coming-soon page step-by-step (research done).
+- [ ] Unblocked and available anytime: build the ambassador/instructor seeding shortlist (main growth engine, not started).
+- [ ] Carried: trademark clearance, materials question, Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins.
 
 ## Session 013 (2026-07-07): Workspace review and cleanup, git caught up, Lucy blocker email drafted
 
