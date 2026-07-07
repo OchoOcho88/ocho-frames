@@ -1,0 +1,65 @@
+[
+  {
+    "label": "pass1-segment",
+    "id": "159469a5-3206-472e-a321-f447f0599fcf",
+    "outfile": "clients/sportif/research/au-segment-profile.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-move-active",
+    "id": "a98d257f-408f-479e-97db-43ead4fda4e2",
+    "outfile": "clients/sportif/competitor-analyses/move-active-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-your-reformer",
+    "id": "34d770ba-e946-4dad-84ac-1e7d34eb01f9",
+    "outfile": "clients/sportif/competitor-analyses/your-reformer-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-avara-athletics",
+    "id": "0a886de7-affb-4b83-8295-ea61d7b8451c",
+    "outfile": "clients/sportif/competitor-analyses/avara-athletics-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-kikiva",
+    "id": "6753c35a-4308-4963-aa05-c48bb3fbed55",
+    "outfile": "clients/sportif/competitor-analyses/kikiva-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-anine-bing",
+    "id": "4e163563-b8a3-451f-b7bd-4c227accee1b",
+    "outfile": "clients/sportif/competitor-analyses/anine-bing-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-leelo-active",
+    "id": "bf3d739a-73e5-41e9-9cd9-7e9929959839",
+    "outfile": "clients/sportif/competitor-analyses/leelo-active-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-pe-nation",
+    "id": "2a70cd05-a073-4634-9aa1-fdd7c1e64a2d",
+    "outfile": "clients/sportif/competitor-analyses/pe-nation-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  },
+  {
+    "label": "comp-aje",
+    "id": "5b1f9f9d-fac3-4f03-a0c3-d28823f9f3b4",
+    "outfile": "clients/sportif/competitor-analyses/aje-perplexity-profile-2026-06-16.md",
+    "model": "sonar-deep-research",
+    "status": "COMPLETED"
+  }
+]

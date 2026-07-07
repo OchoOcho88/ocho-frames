@@ -1,0 +1,32 @@
+Hi Lucy! Here is a simple step by step to set up Lauren's email address (lauren@lucywayne.com.au).
+
+It is easiest on a laptop or computer, not your phone. Take it slow, it is only about 5 minutes. If you get stuck on any step, just take a screenshot and send it to me and I will finish it for you. No stress.
+
+*PART 1: Log in*
+
+1. Open your web browser (Safari or Chrome).
+2. Go to this address: admin.google.com
+3. Sign in with your own email (lucy@lucywayne.com.au) and your normal password, the same login you use for your website email.
+4. If Google texts you a code, type it in.
+
+*PART 2: Add Lauren*
+
+5. You should land on a page called "Admin". At the very top there is a search bar. Click it and type: add user
+6. Click the option that says "Add a user" (or "Add new user").
+7. In the First name box type: Lauren
+8. In the Last name box type her surname.
+9. Check the email box shows: lauren@lucywayne.com.au  (if it shows something else, change the part before the @ to: lauren)
+10. Click the blue button that says "ADD NEW USER".
+
+*PART 3: Give Lauren her login*
+
+11. A box will pop up showing Lauren's new email and a temporary password.
+12. Click "Copy" (or take a screenshot of it) and send those details to Lauren.
+13. That is it, you are done!
+
+Lauren then goes to gmail.com, signs in with lauren@lucywayne.com.au and that temporary password, and Google will ask her to create her own password.
+
+*A couple of notes:*
+
+- Adding the new mailbox adds a small monthly cost (around $8 to $12) to your Google plan. That is normal for an extra email address, you can just continue.
+- If a button looks a little different to what I wrote, or it says you do not have permission, do not worry. Screenshot it, send it to me, and I will take it from there.

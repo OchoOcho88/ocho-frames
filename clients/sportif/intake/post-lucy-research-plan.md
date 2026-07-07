@@ -35,18 +35,18 @@ When Lucy responds, run **5 Perplexity research passes** (estimated cost: **$3 t
 
 When Lucy's answers arrive, execute in this order. Tick boxes as we go.
 
-- [ ] **Step 1.** Process Lucy's raw responses. If voice memos, transcribe via Whisper (recipe at `recipes/transcribe-voice-memos.md`, to be built). If written, copy answers into `clients/sportif/intake/lucy-responses.md` as the source-of-truth.
-- [ ] **Step 2.** Quick read-through: identify Lucy's stated cultural lane and tone direction. Flag any answer that surprises us vs. the SWOT assumptions.
-- [ ] **Step 3.** Run **Pass #1** (Australian segment profile). Anchor: Lucy's Q5 customer description. See "Research Pass #1" below.
-- [ ] **Step 4.** Run **Pass #2** (per-competitor deep dives). One Perplexity query per competitor Lucy names in Q4. See "Research Pass #2" below.
-- [ ] **Step 5.** Run **Pass #3** (brand reference reverse-engineering). For each brand Lucy names in Q8 (what feels right) and Q9 (what feels wrong). See "Research Pass #3" below.
-- [ ] **Step 6.** Run **Pass #4** (cultural lane validation). Lock the positioning lane (Pilates / longevity / design-led / inclusive-fitness / other). See "Research Pass #4" below.
-- [ ] **Step 7.** Lock Sportif's channel mix based on Lucy's Q6 (where customer hangs out) and Q12 (timeline/rollout).
-- [ ] **Step 8.** Run **Pass #5** (budget benchmarking with channel mix locked). Refine the Part 8 budget bands with Sportif-specific numbers. See "Research Pass #5" below.
-- [ ] **Step 9.** Populate `clients/sportif/brand.md` from Lucy's answers + all research outputs. This is the canonical brand kit.
-- [ ] **Step 10.** Draft Stage 3 synthesis creative brief at `clients/sportif/campaigns/launch-2026-09/synthesis-brief.md`.
-- [ ] **Step 11.** Update Sportif's launch budget bands in `docs/marketing-fundamentals.md` Part 8 with the real numbers.
-- [ ] **Step 12.** Send Lucy a summary email: here's where we are, here's the proposed positioning, here's the next call agenda.
+- [x] **Step 1.** Process Lucy's raw responses. Written answers transcribed verbatim into `clients/sportif/intake/lucy-responses.md` as the source-of-truth (2026-06-16).
+- [x] **Step 2.** Quick read-through. Cultural lane (pilates plus design-led femininity) and tone (Anine Bing restraint plus Kikiva warmth) identified. Flags captured in `lucy-responses.md` (Facebook not named; aspirational refs are fashion not fitness; wholesale-first changes the asset list).
+- [x] **Step 3.** Pass #1 done. `research/au-segment-profile.md`.
+- [x] **Step 4.** Pass #2 done for ALL 8 competitors. `competitor-analyses/<brand>-perplexity-profile-2026-06-16.md`.
+- [x] **Step 5.** Pass #3 done. `research/brand-references.md` (Anine Bing, Kikiva, White Fox).
+- [x] **Step 6.** Pass #4 done. `research/cultural-lane-validation.md`. Lane locked: colour-led, accessory-first, ritual-anchored (not "another pastel band set").
+- [x] **Step 7.** Channel mix locked: Instagram Reels and TikTok paid, email owned. Facebook not named by Lucy.
+- [x] **Step 8.** Pass #5 done. `research/budget-benchmarks.md`. Bands summarized in `brand.md`.
+- [x] **Step 9.** `clients/sportif/brand.md` populated (Customer, Strategic positioning, Competitors differentiation, Voice, Budget).
+- [x] **Step 10.** Stage 3 synthesis brief drafted at `clients/sportif/campaigns/launch-2026-09/synthesis-brief.md`.
+- [ ] **Step 11.** Update Sportif's launch budget bands in `docs/marketing-fundamentals.md` Part 8 with the real numbers. (Optional, not done.)
+- [ ] **Step 12.** Send Lucy a summary email: here's where we are, here's the proposed positioning, here's the next call agenda. (Not done; needs Hugo.)
 
 ---
 

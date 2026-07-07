@@ -5,6 +5,15 @@
 *.key
 *.pem
 
+# Broken/old git dir and session logs
+.git-broken/
+logs/
+conntest.log
+*.log
+
+# Competitor research screenshots — big binaries, kept locally only
+clients/*/competitor-analyses/product-images/
+
 # Node
 node_modules/
 .npm/
