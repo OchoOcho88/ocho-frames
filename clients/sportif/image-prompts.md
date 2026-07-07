@@ -2,7 +2,8 @@
 
 > Every keeper image in `generated/` has its prompt here. Engine: gpt-image-2 unless noted.
 > Format follows docs/platform-prompt-formats.md Part B. Voice rules apply: no health claims, no leather, warm neutrals.
-> Shared API settings: size 1536x1024, output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
+> Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
+> SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
 ## coming-soon-hero-v4-unboxed (2026-07-07)
 
