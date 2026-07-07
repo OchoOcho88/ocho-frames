@@ -5,6 +5,13 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## ig-hero-v8-flat-notext + wordmark overlay (2026-07-07) THE PRODUCTION PATTERN
+
+Same prompt as v7 below but with the text instructions REMOVED and these constraint changes: "a clean calm area of plain wall at the top for a headline to be added later, no text or logos anywhere."
+Then the real wordmark is stamped in true Glacial Indifference Bold:
+`python3 scripts/overlay_wordmark.py generated/images/ig-hero-v8-flat-notext.png generated/images/ig-hero-v8-flat-wordmark.png`
+This is the default for anything publishable: generate text-free, overlay real type. In-image AI text is only for quick concept comps.
+
 ## coming-soon-hero-v4-unboxed (2026-07-07)
 
 A high-end product photo of a flat wide elastic fabric resistance band (booty band), a continuous loop of soft knitted stretch fabric in blush peach, half emerging from a caramel cotton drawstring pouch tipped gently on its side on a pale linen surface, as if just unboxed.
