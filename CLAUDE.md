@@ -44,6 +44,7 @@ Which one am I? If shell paths look like `/sessions/<name>/mnt/hyperframes/`, th
 - **Voice rule: no em dashes and no en dashes** anywhere in written output or files. Use commas, periods, or parentheses instead.
 - **Secrets:** API keys go in `.env` only (gitignored). Never put a real key in `.env.example`, never commit secrets.
 - **Work with Hugo:** ask for project context before assuming, and flag trade-offs rather than defaulting to one approach. Background on how he works is in the `hugo-working-style` skill.
+- **Generated media** goes in `clients/<client>/generated/images/` or `generated/videos/`, and every keeper's prompt is saved to the client's `image-prompts.md` (the prompt is the source of truth, binaries are gitignored). Iterate at quality low in Cowork (45s cap), render finals in Claude Code.
 
 ## Tools and gotchas
 
