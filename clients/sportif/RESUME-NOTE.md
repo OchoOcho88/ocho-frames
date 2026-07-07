@@ -1,24 +1,24 @@
 # Resume note: paste this to start the next Sportif session
 
-> Voice rule for this workspace: no em dashes, no en dashes.
+> Voice rule for this workspace: no em dashes, no en dashes. Updated 2026-07-07 (Session 013).
 
 ---
 
-Resuming the Sportif workspace. Before doing anything, read these for continuity (per `CLAUDE.md`):
-1. `memory.md`, the top entries, especially Session 011 and its follow-ups (the close-out lists everything we built).
-2. `clients/sportif/brand.md`.
-3. `clients/sportif/brand-value-plan.md`.
+Resuming the Sportif workspace. Before doing anything, follow the session-start protocol in `CLAUDE.md` ("Two environments, one workspace"):
 
-Quick state so you are caught up:
-- Strategy is locked. The differentiator is Lucy Wayne herself (the product is a standard factory item: China manufacturer, ~35-day turnaround, predefined colourways, no custom pattern).
-- Go-to-market is parallel wholesale plus DTC. One hub: the Shopify store at `sportifcollection.com.au` plus the email list. Lucy's personal accounts (`@lucywayne___`, `lucywayne.com.au`, verified) are a light bridge, not a second site.
-- All three brand handles are secured and on-brand: Instagram and TikTok `@sportifcollection`, plus the domain.
-- We built the full digital plan, ran a devil's advocate on it (key finding: Lucy has about 900 followers, so we are building an audience, not borrowing one), and produced a set of plain-English Lucy-facing PDFs. An email for Hugo to send Lucy is ready (`email-to-lucy-next-steps.md`).
-- We are waiting on Lucy to start the build: open Shopify and send the setup info, lock prices and the ~$70 gift-pouch threshold, and decide the fabric.
+1. Read the CURRENT STATE block at the top of `memory.md`, then the Session 013 entry.
+2. Run `git log --oneline -5` to see what the other environment did last. If the tree is dirty with changes you did not make, flag it before working.
+3. Before writing any content, read `clients/sportif/brand.md` and `clients/sportif/voice-guidelines.md`.
 
-What I want to do this session:
-- I have analysed `Sportif-Brand-Value-Plan.pdf`. I have some thoughts and changes. I will share them, then let's update `brand-value-plan.md` and re-export the PDF together.
+Quick state:
+- Strategy locked, two Lucy-facing PDFs current (Brand Value Plan + Launch Plan), everything else archived.
+- The Lucy blocker email is in Hugo's Gmail drafts (Shopify, prices, fabric, who answers customers). May be sent by now; ask Hugo if she replied.
+- Image pipeline is live: gpt-image-2 (OpenAI key in .env), prompts and rules in `clients/sportif/image-prompts.md`, output to `clients/sportif/generated/images/`. Production pattern: generate text-free, overlay real Glacial Indifference with `scripts/overlay_wordmark.py` (fonts at `brand/fonts/glacial-indifference/`).
+- Lucy is picking between three 4:5 Instagram hero concepts (v5 unboxed, v6 set, v7 flat).
 
-Still open after that (do not start unless I ask):
-- Write the Shopify coming-soon page step-by-step (you have already researched the 2026 best practices, captured in `digital-ecosystem-action-plan.md`).
-- The items waiting on Lucy, and the customer-comms setup (Sportif inbox, Lauren, Klaviyo automations) given the 7-day no-reply flag on her personal site.
+Likely jobs this session (ask Hugo which):
+1. Render Lucy's hero pick at quality high (Claude Code only; Cowork's 45s cap only fits quality low), using the logged prompt, text-free, then overlay the wordmark.
+2. If in Claude Code: `git push` (local was ~11 commits ahead of GitHub at close-out).
+3. If Lucy replied to the blocker email: start the Shopify coming-soon page step-by-step.
+
+End the session with the close-out ritual (in Claude Code: `/close-out`).
