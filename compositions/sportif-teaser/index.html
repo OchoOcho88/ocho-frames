@@ -26,7 +26,7 @@
         width: 1080px;
         height: 1920px;
         overflow: hidden;
-        background: #f6eee5;
+        background: #F0CDB3;
         font-family: "Glacial Indifference", sans-serif;
       }
       .scene {
@@ -83,9 +83,15 @@
         inset: 0;
         overflow: hidden;
       }
+      /* Over-cover the frame so no Ken Burns transform state can expose an
+         edge (the scenes composite over one another and a bare edge would
+         reveal the page background). The zoom/pan tweens run on top of this. */
       .photo-wrap img {
-        width: 100%;
-        height: 100%;
+        position: absolute;
+        top: -6%;
+        left: -6%;
+        width: 112%;
+        height: 112%;
         object-fit: cover;
       }
       .scene-copy {
