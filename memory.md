@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-07 | Last session: 014 (Claude Code) | Working tree: committed clean | Git synced with GitHub (Session 014 pushed the backlog)*
+*Last updated: 2026-07-08 | Last session: 015 (Cowork) | Working tree: committed clean | Local ahead of GitHub by the Session 015 commit (push from Claude Code)*
 
 - **Client: Sportif.** Strategy LOCKED: Lucy Wayne is the differentiator, parallel wholesale + DTC, one hub (sportifcollection.com.au + @sportifcollection + email). Launch September 2026; 500 band units due early July (may have already landed, confirm with Lucy).
 - **Current Lucy-facing docs: exactly two PDFs**, `Sportif-Brand-Value-Plan.pdf` (strategy) + `Sportif-Launch-Plan.pdf` (operations). Everything else archived in `clients/sportif/_archive/superseded-pdfs-2026-07/`.
@@ -15,8 +15,33 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Waiting on Lucy:** her pick of the three 4:5 Instagram hero concepts (v5 unboxed / v6 set / v7 flat, Hugo texting her); then a high-quality final render in Claude Code.
 - **Next build steps once unblocked:** Shopify coming-soon page (research done), store build, Klaviyo flows (account to be created after Shopify), ambassador/instructor seeding shortlist (main growth engine, not started).
 - **Also open:** trademark clearance (with lawyer), materials question (gates sustainability copy), Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins (switch to real font on next edit).
+- **Grid banner READY (Session 015):** 3-tile SPORTIF wordmark banner in three colourways at `clients/sportif/generated/images/grid-banner/`, peach/white is the on-brand pick. Posting recipe PROVEN on a mock account: 1080x1440 tiles, tap Original on the crop screen (default 1:1 crop breaks it), post right tile first, or reorder afterwards (IG added grid drag-reorder June 2026).
 
 ---
+
+## Session 015 (2026-07-08, Cowork): SPORTIF 3-tile Instagram grid banner, posting recipe proven on a mock account
+
+Lucy asked Hugo for a bottom-row grid banner like the old LE SPORT COLLECTIF mockup (the LSC mockup is a layout reference only, LSC remains dead as a name). Hugo also wanted to learn the Photoshop build himself.
+
+### What we did
+- **Built the 3-tile SPORTIF grid banner** with a parametrised Pillow script at `clients/sportif/scripts-local/build_grid_banner.py`. One 3240x1440 canvas, real Glacial Indifference Regular, letter-spaced (0.28 em tracking) with the short underline, split into three 1080x1440 tiles (3:4, the current grid ratio). Filenames carry post order (tile 1 = rightmost, posted first).
+- **Three colourways generated** in `clients/sportif/generated/images/grid-banner/`: cream bg + blush wordmark (default), white bg + blush (`-white`), blush bg + white (`-peach`). The peach one matches the existing @sportifcollection identity (wordmark on blush peach), recommended first pick for Lucy.
+- **Gave Hugo a point-form Photoshop 2026 walkthrough** (canvas, guide layout, tracking ~280 in the Character panel, slice and export, posting order) so he can rebuild it by hand.
+- **Tested live on Hugo's mock IG account and debugged a real failure:** first post came out as "SP POR IF" with letters eaten at tile edges.
+
+### What we learned
+- **Instagram's photo picker defaults to a 1:1 crop.** That square then gets side-cropped by the 3:4 grid thumbnail, which eats any letter near a tile edge. The fix is tapping **Original** on the crop screen (or the expand arrows on mobile); with 1080x1440 (3:4) source tiles the post ratio then equals the grid ratio and nothing is cropped. Verified working, the mock grid reads SPORTIF cleanly.
+- **Instagram added manual grid reordering (June 2026):** long-press a post, Reorder grid, drag. Posting order for banners no longer needs to be perfect, it can be fixed after the fact. (Web-verified: Fast Company, Social Media Today, 9to5Mac.)
+- Pillow has no native letter tracking; draw glyph by glyph with a per-glyph advance (bbox width + tracking) as done in the script.
+
+### Decisions
+- Banner tiles are 1080x1440 (3:4) as the standard for grid-spanning art, not 1080x1350 (4:5), because the grid thumbnail is 3:4.
+- Peach background variant is the lead option to show Lucy (matches the confirmed wordmark-on-blush identity).
+
+### Open questions / next
+- [ ] Show Lucy the three colourways, get her pick before anything goes on the real @sportifcollection grid.
+- [ ] Decide what sits above the banner row on the real grid (the banner reads best as the bottom row with content rows on top, which means posting it FIRST on a fresh account).
+- [ ] Carried: Lucy hero-concept pick (v5/v6/v7), blocker email send, Shopify, ambassador shortlist, trademark, materials, PDF generators still on Poppins.
 
 ## Session 014 (2026-07-07, Claude Code): GitHub sync (pushed the Session 013 backlog)
 
