@@ -5,6 +5,17 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## tagline-row action backgrounds (2026-07-08) SENT TO LUCY, pending her pick
+
+Three text-free 1088x1440 (3:4 grid tile) backgrounds for the tagline row above the grid banner. Prompts live in `clients/sportif/scripts-local/gen_action_bg.py` (training / fashion / ritual); taglines overlaid in real Glacial Indifference via `overlay_action_tiles.py`. Currently rendered quality low; finals need quality high in Claude Code.
+
+Two new reusable prompt rules learned this session:
+
+1. **Exercise poses must be described joint by joint** or the model fakes the anatomy. For the glute bridge: "she lies on her back, the back of her head, shoulders, upper back and arms resting flat on the mat, arms relaxed alongside her body with palms down, knees bent, feet flat on the mat hip-width apart, hips raised so her torso forms one straight diagonal line from shoulders to knees."
+2. **A band lying loose in a scene needs the full form spec** or it melts into ribbons and pastry shapes: "a wide flat continuous closed loop of knitted elastic fabric, like an oversized fabric headband, shown as a clean open circle lying flat, not folded, not twisted, not a coiled tube, not a ribbon."
+
+Also produced (same taglines, non-AI): flat terracotta, terracotta gradient + soft text shadow (`build_tagline_tiles.py` / `_v2.py`), and linen/plaster texture backgrounds (`gen_tagline_bg.py`). Grid wordmark banner in three colourways via `build_grid_banner.py` (cream / white / peach variants).
+
 ## ig-hero-v8-flat-notext + wordmark overlay (2026-07-07) THE PRODUCTION PATTERN
 
 Same prompt as v7 below but with the text instructions REMOVED and these constraint changes: "a clean calm area of plain wall at the top for a headline to be added later, no text or logos anywhere."

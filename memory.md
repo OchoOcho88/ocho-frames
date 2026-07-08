@@ -16,6 +16,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Next build steps once unblocked:** Shopify coming-soon page (research done), store build, Klaviyo flows (account to be created after Shopify), ambassador/instructor seeding shortlist (main growth engine, not started).
 - **Also open:** trademark clearance (with lawyer), materials question (gates sustainability copy), Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins (switch to real font on next edit).
 - **Grid banner READY (Session 015):** 3-tile SPORTIF wordmark banner in three colourways at `clients/sportif/generated/images/grid-banner/`, peach/white is the on-brand pick. Posting recipe PROVEN on a mock account: 1080x1440 tiles, tap Original on the crop screen (default 1:1 crop breaks it), post right tile first, or reorder afterwards (IG added grid drag-reorder June 2026).
+- **INSTA LAUNCH IS THIS FRIDAY (2026-07-10).** Tagline row drafts (4 directions, action row is the lead) sent to Lucy for feedback. CLAUDE CODE TONIGHT: re-render the 3 action backgrounds at quality high, rebuild tiles, then render `compositions/sportif-teaser/` (lint-clean, needs Chrome: npm run check, then render) after swapping its images for the high-res versions.
 
 ---
 
@@ -38,9 +39,22 @@ Lucy asked Hugo for a bottom-row grid banner like the old LE SPORT COLLECTIF moc
 - Banner tiles are 1080x1440 (3:4) as the standard for grid-spanning art, not 1080x1350 (4:5), because the grid thumbnail is 3:4.
 - Peach background variant is the lead option to show Lucy (matches the confirmed wordmark-on-blush identity).
 
+### Follow-up (same day, continued): tagline row (4 directions), action imagery, teaser Reel composition
+
+Hugo revealed the timeline: **the Sportif Instagram launches THIS FRIDAY (2026-07-10).**
+
+- **Tagline row built** (row above the banner): "Everyday training, elevated." / "Too fashionable not to WEAR!" (Lucy's line, centre) / "For your morning ritual." All from the approved say-list. Four directions produced in `generated/images/grid-banner/`: flat terracotta, terracotta gradient + text shadow (v2), AI linen texture, AI plaster texture, and the lead: **action imagery** (pilates bridge with band under tension, fashion still life with pouch and gold jewellery, morning ritual vignette), taglines overlaid in reserved negative space.
+- **Two prompt-engineering fixes worth reusing** (also logged for image-prompts.md): (1) exercise poses come out anatomically wrong unless described joint by joint (head/shoulders/arms flat, knees bent, hips lifted); (2) the band form needs "wide flat continuous closed loop, like an oversized fabric headband, not folded, not twisted, not a coiled tube" or it melts into ribbons/pastry shapes.
+- **All versions sent to Lucy for feedback.** Hugo has creative control; awaiting her reaction.
+- **Teaser Reel composition built in HyperFrames** at `compositions/sportif-teaser/` (first real HyperFrames project in the workspace). 13s, 1080x1920: wordmark letter-by-letter reveal on blush, three action-image scenes with taglines and Ken Burns, cream end card "Launching September 2026" + @sportifcollection. Glacial Indifference converted to woff2 in `fonts/` (fonttools). design.md captures the brand for video. Lint passes 0/0.
+- **Cowork limit learned:** hyperframes validate/inspect/preview/render need headless Chrome, unavailable on the ARM sandbox. Division of labour: author + lint in Cowork, validate + render in Claude Code.
+
 ### Open questions / next
+- [ ] Lucy feedback on the four tagline-row directions (and the three banner colourways).
+- [ ] CLAUDE CODE (tonight, before Friday): re-render the 3 action backgrounds at quality high (prompts in `gen_action_bg.py`), rebuild tiles via `overlay_action_tiles.py`, swap the images in `compositions/sportif-teaser/images/`, then `npm run check` and render the Reel.
+- [ ] Optional teaser voiceover (TTS via hyperframes-media) - Hugo has not decided.
+- [ ] Decide Friday grid posting plan: banner row first, tagline row second, teaser Reel as first Reel.
 - [ ] Show Lucy the three colourways, get her pick before anything goes on the real @sportifcollection grid.
-- [ ] Decide what sits above the banner row on the real grid (the banner reads best as the bottom row with content rows on top, which means posting it FIRST on a fresh account).
 - [ ] Carried: Lucy hero-concept pick (v5/v6/v7), blocker email send, Shopify, ambassador shortlist, trademark, materials, PDF generators still on Poppins.
 
 ## Session 014 (2026-07-07, Claude Code): GitHub sync (pushed the Session 013 backlog)
