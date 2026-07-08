@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-08 | Last session: 015 (Cowork) | Working tree: committed clean | Local ahead of GitHub by the Session 015 commit (push from Claude Code)*
+*Last updated: 2026-07-08 | Last session: 015 (Cowork, CLOSED) | Working tree: committed clean | Local ahead of GitHub by two Session 015 commits (push from Claude Code) | Next: Session 016 (Claude Code) runs the Friday launch handoff jobs listed in Session 015's open items*
 
 - **Client: Sportif.** Strategy LOCKED: Lucy Wayne is the differentiator, parallel wholesale + DTC, one hub (sportifcollection.com.au + @sportifcollection + email). Launch September 2026; 500 band units due early July (may have already landed, confirm with Lucy).
 - **Current Lucy-facing docs: exactly two PDFs**, `Sportif-Brand-Value-Plan.pdf` (strategy) + `Sportif-Launch-Plan.pdf` (operations). Everything else archived in `clients/sportif/_archive/superseded-pdfs-2026-07/`.
