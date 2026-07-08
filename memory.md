@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-08 | Last session: 015 (Cowork, CLOSED) | Working tree: committed clean | Local ahead of GitHub by two Session 015 commits (push from Claude Code) | Next: Session 016 (Claude Code) runs the Friday launch handoff jobs listed in Session 015's open items*
+*Last updated: 2026-07-08 | Last session: 016 (Claude Code, CLOSED) | Working tree: committed clean | Git synced with GitHub | Next: get Lucy's feedback, then optionally re-render backgrounds at TRUE high on a native terminal (see Session 016)*
 
 - **Client: Sportif.** Strategy LOCKED: Lucy Wayne is the differentiator, parallel wholesale + DTC, one hub (sportifcollection.com.au + @sportifcollection + email). Launch September 2026; 500 band units due early July (may have already landed, confirm with Lucy).
 - **Current Lucy-facing docs: exactly two PDFs**, `Sportif-Brand-Value-Plan.pdf` (strategy) + `Sportif-Launch-Plan.pdf` (operations). Everything else archived in `clients/sportif/_archive/superseded-pdfs-2026-07/`.
@@ -16,9 +16,41 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Next build steps once unblocked:** Shopify coming-soon page (research done), store build, Klaviyo flows (account to be created after Shopify), ambassador/instructor seeding shortlist (main growth engine, not started).
 - **Also open:** trademark clearance (with lawyer), materials question (gates sustainability copy), Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins (switch to real font on next edit).
 - **Grid banner READY (Session 015):** 3-tile SPORTIF wordmark banner in three colourways at `clients/sportif/generated/images/grid-banner/`, peach/white is the on-brand pick. Posting recipe PROVEN on a mock account: 1080x1440 tiles, tap Original on the crop screen (default 1:1 crop breaks it), post right tile first, or reorder afterwards (IG added grid drag-reorder June 2026).
-- **INSTA LAUNCH IS THIS FRIDAY (2026-07-10).** Tagline row drafts (4 directions, action row is the lead) sent to Lucy for feedback. CLAUDE CODE TONIGHT: re-render the 3 action backgrounds at quality high, rebuild tiles, then render `compositions/sportif-teaser/` (lint-clean, needs Chrome: npm run check, then render) after swapping its images for the high-res versions.
+- **INSTA LAUNCH IS THIS FRIDAY (2026-07-10). TEASER REEL IS RENDERED AND LAUNCH-READY.** `compositions/sportif-teaser/renders/sportif-teaser_2026-07-08_12-56-55.mp4` (1080x1920, 13s, check clean 0/0/0). Backgrounds and tagline tiles rebuilt at MEDIUM quality (not high: see Session 016, the Claude Code network drops image renders over ~60s and true-high exceeds that). To upgrade to true high: run `python3 clients/sportif/scripts-local/gen_action_bg.py <variant> high` in a NATIVE Mac terminal (no 60s cap), then re-run overlay_action_tiles.py, re-copy into the composition, re-render.
+- **Still waiting on Lucy:** feedback on the four tagline-row directions and three banner colourways, plus the hero-concept pick and the blocker email reply.
 
 ---
+
+## Session 016 (2026-07-08, Claude Code): Friday launch handoff, teaser Reel rendered (backgrounds at medium, true-high blocked by a 60s network cap)
+
+Ran the Friday launch handoff jobs from Session 015. The teaser Reel is rendered and launch-ready. The one deviation: the action backgrounds are medium quality, not high, because of a network limit in the Claude Code environment (details below), with a clean upgrade path documented.
+
+### What we did
+- **Pushed the three Session 015 commits to GitHub** (`7ec00fb..7a650d1`). Local and origin/main in sync.
+- **Made both scripts-local scripts path-portable.** `gen_action_bg.py` and `overlay_action_tiles.py` hardcoded the Cowork sandbox paths, so they could not run on the Mac. Both now derive the workspace root from their own file location (`Path(__file__).resolve().parents[3]`), so they work in BOTH environments. Added a `quality` argument to `gen_action_bg.py` (default low, pass high) plus a streaming path for slow renders.
+- **Re-rendered the three action backgrounds** (training glute bridge, fashion still life, ritual morning scene) at medium quality, keeping the `bg-action-<variant>-low.png` filenames (per the handoff instruction) so downstream references did not move. Visually verified all three: correct flat band form (no coil/pastry), correct bridge anatomy, warm palette, clean upper-third negative space.
+- **Rebuilt the tagline tiles** with `overlay_action_tiles.py` (sportif-tagline-1/2/3-action.png + preview). Verified the taglines overlay legibly.
+- **Copied the three backgrounds into `compositions/sportif-teaser/images/`** (byte-verified identical to source).
+- **Ran `npm run check` on the composition.** Lint 0/0, validate no console errors. Inspect flagged 6 `container_overflow` warnings on the three scene images (the intentional Ken Burns zoom/pan overflow, which `.photo-wrap` already clips with `overflow:hidden`). Fixed by adding `data-layout-allow-overflow` to the three scene `<img>` tags. Re-check fully clean: 0 layout issues.
+- **Rendered the Reel:** `compositions/sportif-teaser/renders/sportif-teaser_2026-07-08_12-56-55.mp4`, 1080x1920, 13.0s, h264, 7.3 MB. Confirmed a sampled frame looks correct and on-brand.
+
+### What we learned
+- **The Claude Code environment drops HTTPS responses after ~60s of idle (no bytes).** High-quality gpt-image-2 at 1088x1440 takes longer than that, so the synchronous request dies with `RemoteDisconnected` at exactly 60s. This is the same class of limit as the Perplexity deep-research issue. Disabling the Bash sandbox did NOT help (the cap is outside that toggle).
+- **Streaming does not rescue it.** Instrumenting the SSE stream showed gpt-image-2 sends ONE early partial (~16s) then computes silently and batches the rest at the end, so there is a >60s gap before the completed event and the connection is killed. `partial_images:3` did not add mid-render keepalives.
+- **The proper workaround (background submit + poll) is blocked by org verification.** The Responses API background mode needs a verified org for the driver model (`gpt-4.1-mini` returned HTTP 403 "organization must be verified"). So it is unavailable until Hugo verifies the org.
+- **Medium quality (~50s) completes under the 60s cap** and is a clear step up from the low drafts. For background imagery behind taglines with Ken Burns motion, the quality difference is minor.
+- **HyperFrames `inspect` (Chrome, Claude-Code-only) catches Ken Burns overflow.** Declare intentional zoom/pan overflow with `data-layout-allow-overflow` on the animated element; the clip container keeps it visually contained.
+
+### Decisions
+- **Rendered medium, not high, this session.** The Friday deadline plus a launch-ready Reel outweighed blocking on true-high. Flagged to Hugo with the upgrade path. Kept the `-low` filenames per the handoff instruction.
+- **Two upgrade paths to TRUE high**, whenever wanted: (1) run `gen_action_bg.py <variant> high` in a NATIVE Mac terminal (Terminal.app, outside Claude Code) where there is no 60s cap, the script is now portable and has a streaming high path, then re-run overlay + copy + composition render; or (2) verify the OpenAI org and use background mode.
+- Path-portable scripts are the standard now (root from `__file__`), so scripts-local tools run in both environments.
+
+### Open questions / next
+- [ ] Optional: re-render the 3 backgrounds at TRUE high via a native terminal (or after org verification), then rebuild tiles, re-copy, re-render the Reel. Not required for Friday.
+- [ ] Lucy feedback still pending: four tagline-row directions, three banner colourways, hero-concept pick (v5/v6/v7), blocker email reply.
+- [ ] Friday posting plan: banner row, tagline row, teaser Reel as the first Reel.
+- [ ] Carried: blocker email send, Shopify coming-soon, ambassador shortlist, trademark, materials, Stage 3/4 templates, PDF generators still on Poppins, optional teaser voiceover.
 
 ## Session 015 (2026-07-08, Cowork): SPORTIF 3-tile Instagram grid banner, posting recipe proven on a mock account
 

@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Generate text-free action/lifestyle images for the tagline tiles (gpt-image-2).
 
-Usage: python3 gen_action_bg.py <variant>   variant = training | fashion | ritual
-Quality low (Cowork iteration); winner re-renders high in Claude Code.
+Usage: python3 gen_action_bg.py <variant> [quality]
+  variant = training | fashion | ritual
+  quality = low (default, Cowork iteration) | high (finals in Claude Code)
+Filenames stay -low regardless of quality so downstream references do not move.
 Each prompt reserves soft negative space in the upper third for the tagline.
 """
 
@@ -10,8 +12,9 @@ import base64
 import json
 import sys
 import urllib.request
+from pathlib import Path
 
-ROOT = "/sessions/cool-inspiring-shannon/mnt/hyperframes"
+ROOT = str(Path(__file__).resolve().parents[3])
 OUT = f"{ROOT}/clients/sportif/generated/images/grid-banner"
 
 COMMON = (
@@ -68,24 +71,68 @@ def key():
 
 def main():
     variant = sys.argv[1]
-    body = json.dumps({
+    quality = sys.argv[2] if len(sys.argv) > 2 else "low"
+    # High quality can take longer than the ~60s synchronous gateway timeout,
+    # which drops the connection (RemoteDisconnected). Stream with partial
+    # images so data keeps flowing and the connection never idles out.
+    stream = quality == "high"
+    payload = {
         "model": "gpt-image-2",
         "prompt": PROMPTS[variant],
         "size": "1088x1440",
-        "quality": "low",
+        "quality": quality,
         "n": 1,
-    }).encode()
+    }
+    if stream:
+        payload["stream"] = True
+        # Max partials: keepalive bytes arrive ~every 25s, under the ~60s
+        # idle timeout that otherwise drops the connection (RemoteDisconnected).
+        payload["partial_images"] = 3
     req = urllib.request.Request(
         "https://api.openai.com/v1/images/generations",
-        data=body,
+        data=json.dumps(payload).encode(),
         headers={"Authorization": f"Bearer {key()}",
                  "Content-Type": "application/json"},
     )
-    with urllib.request.urlopen(req, timeout=40) as r:
-        data = json.load(r)
-    with open(f"{OUT}/bg-action-{variant}-low.png", "wb") as f:
-        f.write(base64.b64decode(data["data"][0]["b64_json"]))
-    print("saved", variant)
+
+    outpath = f"{OUT}/bg-action-{variant}-low.png"
+
+    if not stream:
+        with urllib.request.urlopen(req, timeout=300) as r:
+            data = json.load(r)
+        with open(outpath, "wb") as f:
+            f.write(base64.b64decode(data["data"][0]["b64_json"]))
+        print("saved", variant, quality)
+        return
+
+    # Stream the SSE response. Write every b64 frame as it arrives (partials
+    # are progressive full-size renders; the final completed event is best) so
+    # a late idle-timeout disconnect still leaves the best frame on disk.
+    last_type = None
+    got = False
+    try:
+        with urllib.request.urlopen(req, timeout=600) as r:
+            for raw in r:
+                line = raw.decode("utf-8").strip()
+                if not line.startswith("data:"):
+                    continue
+                chunk = line[len("data:"):].strip()
+                if not chunk or chunk == "[DONE]":
+                    continue
+                evt = json.loads(chunk)
+                if evt.get("b64_json"):
+                    with open(outpath, "wb") as f:
+                        f.write(base64.b64decode(evt["b64_json"]))
+                    got = True
+                    last_type = evt.get("type")
+                    print("  frame:", last_type)
+    except Exception as e:
+        if not got:
+            raise
+        print("  stream dropped, keeping last frame:", type(e).__name__)
+    if not got:
+        raise SystemExit(f"no image in stream for {variant}")
+    print("saved", variant, quality, "(final event:", last_type, ")")
 
 
 if __name__ == "__main__":

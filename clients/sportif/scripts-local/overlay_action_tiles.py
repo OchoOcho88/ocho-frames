@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
 """Overlay taglines onto the action backgrounds (text in the upper third)."""
 
+from pathlib import Path
+
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-FONT = "/sessions/cool-inspiring-shannon/mnt/hyperframes/brand/fonts/glacial-indifference/GlacialIndifference-Regular.otf"
-OUT = "/sessions/cool-inspiring-shannon/mnt/hyperframes/clients/sportif/generated/images/grid-banner"
+ROOT = Path(__file__).resolve().parents[3]
+FONT = str(ROOT / "brand/fonts/glacial-indifference/GlacialIndifference-Regular.otf")
+OUT = str(ROOT / "clients/sportif/generated/images/grid-banner")
 
 TILE_W, TILE_H = 1080, 1440
 CREAM = (250, 245, 238)
