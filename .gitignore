@@ -88,3 +88,7 @@ clients/*/assets/*
 # And keep markdown notes if anyone drops them in assets/
 !clients/*/assets/*.md
 
+
+# HyperFrames studio thumbnail cache
+.thumbnails/
+**/.thumbnails/

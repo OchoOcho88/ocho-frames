@@ -116,9 +116,9 @@
         text-shadow: 0 3px 18px rgba(45, 24, 20, 0.55);
       }
 
-      /* Scene 5: end card on cream */
+      /* Scene 5: end card on blush peach (matches scene 1 identity) */
       #s5 {
-        background: #f6eee5;
+        background: #F0CDB3;
       }
       .s5-content {
         display: flex;
@@ -132,7 +132,7 @@
         text-align: center;
       }
       .s5-wordmark {
-        color: #833827;
+        color: #FFFBF8;
         font-size: 108px;
         letter-spacing: 0.28em;
         text-indent: 0.28em;
@@ -140,17 +140,24 @@
       .s5-underline {
         width: 170px;
         height: 6px;
-        background: #833827;
+        background: #FFFBF8;
         transform-origin: center;
       }
       .s5-launch {
-        color: #4a433c;
+        color: #4A433C;
         font-size: 52px;
         letter-spacing: 0.12em;
         text-indent: 0.12em;
       }
       .s5-handle {
-        color: #c6926e;
+        color: #833827;
+        font-size: 40px;
+        letter-spacing: 0.08em;
+        text-indent: 0.08em;
+      }
+      .s5-cta {
+        display: none;
+        color: #4A433C;
         font-size: 40px;
         letter-spacing: 0.08em;
         text-indent: 0.08em;
@@ -162,9 +169,10 @@
       id="root"
       data-composition-id="main"
       data-start="0"
-      data-duration="13"
+      data-duration="15"
       data-width="1080"
       data-height="1920"
+      data-composition-variables='{"cta": false}'
     >
       <!-- Scene 1: brand reveal -->
       <div id="s1" class="clip scene" data-start="0" data-duration="3.4" data-track-index="1">
@@ -207,12 +215,13 @@
       </div>
 
       <!-- Scene 5: end card -->
-      <div id="s5" class="clip scene" data-start="10.8" data-duration="2.2" data-track-index="1">
+      <div id="s5" class="clip scene" data-start="10.8" data-duration="4.2" data-track-index="1">
         <div class="s5-content">
           <div class="s5-wordmark" id="s5-wordmark">SPORTIF</div>
           <div class="s5-underline" id="s5-underline"></div>
           <div class="s5-launch" id="s5-launch">Launching September 2026</div>
           <div class="s5-handle" id="s5-handle">@sportifcollection</div>
+          <div class="s5-cta" id="s5-cta">Follow for the launch</div>
         </div>
       </div>
     </div>
@@ -257,15 +266,25 @@
       tl.from("#s4-l2", { y: 45, opacity: 0, duration: 0.55, ease: "power2.out" }, 8.8);
       tl.from("#s4-mark", { opacity: 0, duration: 0.6, ease: "sine.out" }, 9.1);
 
-      /* crossfade into scene 5 (end card) */
-      tl.from("#s5", { opacity: 0, duration: 0.5, ease: "power1.inOut" }, 10.8);
-      tl.from("#s5-wordmark", { y: 50, opacity: 0, duration: 0.6, ease: "power3.out" }, 11.1);
-      tl.from("#s5-underline", { scaleX: 0, duration: 0.5, ease: "power2.inOut" }, 11.4);
-      tl.from("#s5-launch", { y: 30, opacity: 0, duration: 0.55, ease: "power2.out" }, 11.6);
-      tl.from("#s5-handle", { opacity: 0, duration: 0.5, ease: "sine.out" }, 11.9);
+      /* crossfade into scene 5 (end card), assemble, hold, gentle fade */
+      const hfVars = (window.__hyperframes && typeof window.__hyperframes.getVariables === "function")
+        ? window.__hyperframes.getVariables()
+        : {};
+      const cta = hfVars.cta === true;
 
-      /* final scene only: allowed fade out */
-      tl.to("#s5 .s5-content", { opacity: 0, duration: 0.45, ease: "power1.in" }, 12.5);
+      tl.from("#s5", { opacity: 0, duration: 0.35, ease: "power1.inOut" }, 10.8);
+      tl.from("#s5-wordmark", { y: 46, opacity: 0, duration: 0.5, ease: "power3.out" }, 10.85);
+      tl.from("#s5-underline", { scaleX: 0, duration: 0.4, ease: "power2.inOut" }, 11.05);
+      tl.from("#s5-launch", { y: 28, opacity: 0, duration: 0.42, ease: "power2.out" }, 11.15);
+      tl.from("#s5-handle", { opacity: 0, duration: 0.4, ease: "sine.out" }, 11.25);
+      if (cta) {
+        const ctaEl = document.getElementById("s5-cta");
+        if (ctaEl) ctaEl.style.display = "block";
+        tl.from("#s5-cta", { y: 22, opacity: 0, duration: 0.42, ease: "power2.out" }, 11.4);
+      }
+
+      /* the fully assembled card holds readable for ~3s, then fades at the end */
+      tl.to("#s5 .s5-content", { opacity: 0, duration: 0.2, ease: "power1.in" }, 14.8);
 
       window.__timelines["main"] = tl;
     </script>
