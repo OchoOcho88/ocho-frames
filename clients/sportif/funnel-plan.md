@@ -74,9 +74,29 @@ The playbook's $30 to 50 per day minimum test spend sits inside the existing Lea
 - No disqualifying quiz funnel at launch; that is a services pattern, overkill for a $30 to 70 AOV product. Revisit if a bundle-builder ever makes sense.
 - No ChatGPT-surface ads; too early, budget too small.
 
-## 7. Next actions
+## 7. Content x funnel mapping (added 2026-07-11, Session 018)
 
-- [ ] Fold the Funnel 1 spec into the Shopify coming-soon build (already on the critical path, blocked on Lucy opening Shopify).
+The content strategy (`campaigns/launch-2026-09/synthesis-brief.md`, the three angles) and this funnel plan must push each other forward: content creates demand, the funnel captures it, and the captured list tells us which content to make more of. The rule that binds them: **every piece of content is a funnel stage and carries exactly one next action.**
+
+| Funnel stage | Content job | Formats (from the synthesis brief) | The ONE next action | Money metric |
+|---|---|---|---|---|
+| Top: stop the scroll | Get seen, get saved, get followed | Angles A (object), B (ritual), C (Lucy) as Reels; hook lands in the first 1 to 2 seconds | Follow, or tap through to the waitlist | Thumb-stop rate, saves, follows, profile visits |
+| Middle: build trust | Answer her real questions, prove the world is real | FAQ lane (one Reel per question), Angle C story arc, instructor seeding reposts | Join the waitlist | Email signups per post, cost per waitlist lead |
+| Bottom: convert | Make the offer concrete | Unboxing, pouch-over-$70 moment, honest 500-unit line, testimonial cuts (outcome + objection) | Early access / shop | Link clicks, add-to-cart, sales |
+| After: retain and multiply | Turn buyers into content | Post-purchase pouch-photo ask, community session (see section 4), ambassador reshares | Tag @sportifcollection | UGC volume, repeat rate |
+
+Five fixes this bakes into the content strategy:
+
+1. **Stand up the capture page BEFORE more content.** The waitlist funnel (section 2, Funnel 1) does not need the full Shopify store; a one-page email capture (Klaviyo landing page or similar) can go live now. Until it exists, every post sends attention to a dead end. This partially un-blocks the critical path independent of Lucy's Shopify decision.
+2. **One CTA per post, phrased as a green-light question** ("Want first access to the first 500?"), always pointing at the waitlist. No bare "link in bio" and no CTA-free posts once the page is live.
+3. **Add the FAQ lane as the fourth content format** alongside Angles A, B, C. One real question per Reel (which colour, band or strap first, what do I use it for, why $X). This is Funnel 3 made into a content calendar.
+4. **Angle C gets the story arc template:** where she was, the lowlight, how she overcame it, the result, in about a minute, before any product mention. One arc beat per Reel is fine; the sequence matters across the grid.
+5. **Add the money metrics to the per-angle scorecard:** signups per post and cost per waitlist lead sit next to saves and watch-through. An angle that wins saves but captures nothing is a pretty dead end.
+
+## 8. Next actions
+
+- [ ] **Tuesday meeting (2026-07-14) with Lucy:** why the Friday launch slipped and the new posting date; the standalone waitlist capture page (does not need Shopify, can go live this week); the Lucy-session adaptation (A/B/C, section 4); re-confirm the Shopify blockers.
+- [ ] Stand up the standalone waitlist capture page (Klaviyo landing page or similar) so content stops dead-ending; fold it into the Shopify coming-soon page later when the store exists.
 - [ ] Draft the three headline candidates properly against voice-guidelines.md and test them as Reel hooks organically first (free headline testing).
 - [ ] Put the Lucy-session adaptation decision (A/B/C) on the next Lucy agenda.
 - [ ] Write the welcome flow (3 emails) so it is ready the day the waitlist page goes live.

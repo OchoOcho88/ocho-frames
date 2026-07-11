@@ -6,10 +6,12 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-11 | Last session: 017 (Cowork, CLOSED) | Working tree: committed clean | Git: local ahead of GitHub (push from Claude Code) | Next: confirm Friday IG launch outcome with Hugo, fold Funnel 1 spec into the Shopify coming-soon build*
+*Last updated: 2026-07-11 | Last session: 018 (Cowork, CLOSED) | Working tree: committed clean | Git: local ahead of GitHub (push from Claude Code) | Next: TUESDAY 2026-07-14 LUCY MEETING (agenda in funnel-plan.md next actions), stand up the standalone waitlist capture page*
 
-- **NEW (Session 017): funnel layer.** `docs/funnel-playbook.md` (reusable funnel foundations from the Australian Marketing Summit 2026, Ethan Donati, cross-checked against 2026 benchmarks) + `clients/sportif/funnel-plan.md` (3 funnels: waitlist NOW, launch September, educational trust ongoing; email/SMS spine; the Lucy-session idea flagged for scaling, decision A/B/C pending). Raw notes at `docs/summit-notes-2026-07-10-raw.md`.
-- **UNKNOWN: did the Friday (2026-07-10) IG launch happen?** Teaser Reel and grid assets were ready; confirm with Hugo what got posted.
+- **The Friday (2026-07-10) IG launch DID NOT HAPPEN** (Hugo confirmed, Session 018). Reason not yet logged; Hugo meets Lucy Tuesday 2026-07-14 to discuss. Teaser Reel and grid assets remain ready.
+- **Funnel layer (Sessions 017 to 018).** `docs/funnel-playbook.md` (reusable foundations from the Australian Marketing Summit 2026, Ethan Donati) + `clients/sportif/funnel-plan.md` (3 funnels + content x funnel mapping in section 7: every post carries one CTA to the waitlist, FAQ lane is the 4th content format, signups per post is a scorecard metric). Synthesis brief cross-linked.
+- **Key unlock: the waitlist capture page does NOT need Shopify.** A standalone Klaviyo-style landing page can go live now, un-deadending all content and partially bypassing the Shopify blocker. Top of the Tuesday agenda.
+- **Pending decisions: Lucy-session incentive adaptation (A: monthly group session, recommended / B: capped 1:1 / C: video series), funnel-plan.md section 4.**
 
 - **Client: Sportif.** Strategy LOCKED: Lucy Wayne is the differentiator, parallel wholesale + DTC, one hub (sportifcollection.com.au + @sportifcollection + email). Launch September 2026; 500 band units due early July (may have already landed, confirm with Lucy).
 - **Current Lucy-facing docs: exactly two PDFs**, `Sportif-Brand-Value-Plan.pdf` (strategy) + `Sportif-Launch-Plan.pdf` (operations). Everything else archived in `clients/sportif/_archive/superseded-pdfs-2026-07/`.
@@ -23,6 +25,28 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Still waiting on Lucy:** feedback on the four tagline-row directions and three banner colourways, plus the hero-concept pick and the blocker email reply.
 
 ---
+
+## Session 018 (2026-07-11, Cowork): Content strategy x funnel method alignment audit, Tuesday agenda prep
+
+Same day as Session 017. Hugo confirmed the Friday IG launch did not happen and he meets Lucy Tuesday (2026-07-14). He asked whether the content creation strategy (synthesis brief, three angles) matches the funnel method, and to bake the funnel structure into content creation.
+
+### What we did
+- **Audited `campaigns/launch-2026-09/synthesis-brief.md` against `docs/funnel-playbook.md`.** Verdict: about 70 percent aligned in spirit (Angle C = the story funnel, pouch + 500 units = the offer, seeding = social proof, email from day one) but the funnel spine was missing from the content layer.
+- **Five gaps found:** (1) content has no capture destination (no waitlist page exists, Shopify blocked), (2) no one-CTA-per-post discipline, (3) no FAQ content lane, (4) metrics track saves/follows but not signups per post or cost per lead, (5) no explicit 1-to-2-second hook rule.
+- **Baked the fix into `clients/sportif/funnel-plan.md` section 7:** a content x funnel mapping table (four stages, each with content job, format, ONE next action, money metric) plus the five fixes. Cross-linked from the synthesis brief (new "Funnel integration" section). Next actions now carry the Tuesday agenda.
+
+### What we learned / key insight
+- **The waitlist capture page does not need Shopify.** A standalone landing page (Klaviyo or similar) can go live this week, which un-deadends every post and partially bypasses the Lucy/Shopify blocker. This reframes the critical path.
+
+### Decisions
+- Content and funnel are now formally bound: every post is a funnel stage with exactly one next action; an angle that wins saves but captures no emails is treated as failing.
+- FAQ lane added as the fourth content format alongside Angles A/B/C.
+
+### Open questions / next
+- [ ] Tuesday 2026-07-14 Lucy meeting: launch slip reason + new date, standalone waitlist page approval, Lucy-session adaptation A/B/C, Shopify blockers.
+- [ ] Build the standalone waitlist capture page once approved.
+- [ ] Write the 3-email welcome flow (carried from 017).
+- [ ] Carried: Lucy feedback backlog, ambassador shortlist, trademark, materials, PDF generators on Poppins.
 
 ## Session 017 (2026-07-11, Cowork): Funnel playbook + Sportif funnel plan from the Australian Marketing Summit notes
 

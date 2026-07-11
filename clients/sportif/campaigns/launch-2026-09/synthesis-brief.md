@@ -105,6 +105,10 @@ One direction, three honest tests. Each is a distinct hypothesis about what make
 
 ---
 
+## Funnel integration (added 2026-07-11)
+
+This brief is the creative layer; the capture layer lives in `../../funnel-plan.md` (section 7, content x funnel mapping). The binding rules: every post carries one next action pointing at the waitlist funnel, the FAQ lane joins Angles A/B/C as a fourth format, hooks land in the first 1 to 2 seconds, and signups per post plus cost per waitlist lead sit alongside the creative metrics below. Content that wins saves but captures no emails is a pretty dead end.
+
 ## Success metrics (tied to Lucy's stated goals)
 
 - Sell 500+ bands (her target). Track sell-through against the first run.
