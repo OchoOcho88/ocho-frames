@@ -6,7 +6,10 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-08 | Last session: 016 (Claude Code, CLOSED) | Working tree: committed clean | Git synced with GitHub | Next: get Lucy's feedback, then optionally re-render backgrounds at TRUE high on a native terminal (see Session 016)*
+*Last updated: 2026-07-11 | Last session: 017 (Cowork, CLOSED) | Working tree: committed clean | Git: local ahead of GitHub (push from Claude Code) | Next: confirm Friday IG launch outcome with Hugo, fold Funnel 1 spec into the Shopify coming-soon build*
+
+- **NEW (Session 017): funnel layer.** `docs/funnel-playbook.md` (reusable funnel foundations from the Australian Marketing Summit 2026, Ethan Donati, cross-checked against 2026 benchmarks) + `clients/sportif/funnel-plan.md` (3 funnels: waitlist NOW, launch September, educational trust ongoing; email/SMS spine; the Lucy-session idea flagged for scaling, decision A/B/C pending). Raw notes at `docs/summit-notes-2026-07-10-raw.md`.
+- **UNKNOWN: did the Friday (2026-07-10) IG launch happen?** Teaser Reel and grid assets were ready; confirm with Hugo what got posted.
 
 - **Client: Sportif.** Strategy LOCKED: Lucy Wayne is the differentiator, parallel wholesale + DTC, one hub (sportifcollection.com.au + @sportifcollection + email). Launch September 2026; 500 band units due early July (may have already landed, confirm with Lucy).
 - **Current Lucy-facing docs: exactly two PDFs**, `Sportif-Brand-Value-Plan.pdf` (strategy) + `Sportif-Launch-Plan.pdf` (operations). Everything else archived in `clients/sportif/_archive/superseded-pdfs-2026-07/`.
@@ -20,6 +23,27 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Still waiting on Lucy:** feedback on the four tagline-row directions and three banner colourways, plus the hero-concept pick and the blocker email reply.
 
 ---
+
+## Session 017 (2026-07-11, Cowork): Funnel playbook + Sportif funnel plan from the Australian Marketing Summit notes
+
+Hugo attended the Australian Marketing Summit 2026 (2026-07-10, presented by Ethan Donati and Jane Lu) and brought back scrambled notes on funnel building. We turned them into a permanent funnel layer for the workspace.
+
+### What we did
+- **Organised the raw notes** into `docs/summit-notes-2026-07-10-raw.md` (verbatim, provenance) and a clean reusable playbook at `docs/funnel-playbook.md`: what a funnel is (one page, one choice, ads to funnels never websites), the 4 page elements, the "How to [outcome] without [objection]" headline formula, offer requirements (incentive, honest scarcity, special offer, outcome+objection testimonials), the 11-step ad-to-scale journey, neuromarketing techniques (emotional buying, affinity buying, green-light questions), channel roles, and a new-funnel checklist.
+- **Cross-checked against 2026 research** (WebSearch): landing page conversion by source (paid social 1 to 3 percent, dedicated pages 2.5 to 4), founder presence lifts conversion 15 to 28 percent, welcome flows ~$2.65 RPR and abandoned cart ~$3.65 RPR with email at 1hr + SMS at 24hr, Meta instant forms 30 to 50 percent cheaper per lead but lower intent than landing pages, $30 to 50/day minimum test spend. Donati's book confirmed as "The Neuroscience Behind 7 Figure Funnels".
+- **Wrote the Sportif application** at `clients/sportif/funnel-plan.md`: the health-claim headline formula translated to aesthetic/lifestyle outcomes (guardrail-safe candidates drafted); 3 funnels (waitlist funnel = the Shopify coming-soon page upgraded, launch funnel with the pouch gift as the built-in incentive and 500 units / 35-day restock as honest scarcity, educational FAQ funnel = one Reel per question); Klaviyo flow spine (welcome, launch, abandoned cart, post-purchase); budget aligned to the Lean band.
+
+### Decisions
+- Two-layer placement (Hugo's pick): reusable playbook in docs/, application in clients/sportif/. Internal only, no Lucy PDF yet.
+- Explicitly rejected from the summit material: outcome claims, hype urgency, quiz funnels at launch, ChatGPT ads.
+- The "band sale = half hour with Lucy" idea flagged as unscalable at 500 units (250 hours); three adaptations proposed (A: monthly group session, recommended; B: capped top-tier 1:1; C: evergreen ritual video series). Decision pending.
+
+### Open questions / next
+- [ ] Did the Friday 2026-07-10 IG launch happen? Confirm with Hugo what got posted.
+- [ ] Fold Funnel 1 (waitlist) spec into the Shopify coming-soon build when unblocked.
+- [ ] Lucy-session adaptation decision (A/B/C) on the next Lucy agenda.
+- [ ] Write the 3-email welcome flow so it is ready when the waitlist page ships.
+- [ ] Carried: Lucy feedback (taglines, colourways, hero pick, blocker email), Shopify, ambassador shortlist, trademark, materials, PDF generators still on Poppins, optional true-high background re-render.
 
 ## Session 016 (2026-07-08, Claude Code): Friday launch handoff, teaser Reel rendered (backgrounds at medium, true-high blocked by a 60s network cap)
 
@@ -294,185 +318,6 @@ Four sessions this week (008, 009, 010, 011), all on Sportif. This was the week 
 1. **Start the build workstreams now that strategy is locked, Shopify first.** The band ships early July and there is currently nowhere to sell it. Confirm the one-store decision with Lucy, then stand up the store and Instagram Shopping. This is the critical-path revenue blocker.
 2. **Build the ambassador / instructor seeding shortlist before the July delivery.** It's now the primary growth engine (per the devil's advocate revision) and needs lead time to seed before product lands.
 3. **Close the materials question with Lucy (recycled / organic / hemp).** It's the last gate on whether any sustainability story can be told, and it's currently blocking copy.
-
----
-
-## Session 011 (2026-06-18): First in-person meeting with Lucy, three open calls settled, docs folded
-
-### What we did
-- Hugo met Lucy face to face. Folded her answers into the three source-of-truth docs: `clients/sportif/brand.md`, `campaigns/launch-2026-09/synthesis-brief.md`, and `brand-value-plan.md`. Verified the reference to "440 Bronte" (it is the 440 Run Club @the_440, the Bronte Beach community run club) by web search before writing it in.
-- Asked Hugo four clarifying questions before editing (go-to-market, hero product, the blank community note, and the 440 reference) rather than assuming.
-
-### What changed versus what we assumed
-- **Name LOCKED: Sportif.** Le Sport Collectif / LSC were placeholders, not the brand. Closes the naming question open since Session 007. (Trademark registration still in progress with Lucy's lawyer; the name choice is settled, the legal clearance is not.)
-- **Go-to-market is now PARALLEL wholesale plus DTC, not "wholesale-first."** Hugo told Lucy to run both: she places product into gyms she already has relationships with (warm wholesale) while we build the DTC engine (Shopify, content, email) at the same time. This rewrites the "wholesale-led, light DTC" framing from Session 010.
-- **The pouch is a GIFT BAG, not a product to sell.** Lucy's words. So the giftable set (band, strap, pouch) is the unit and the unboxing is content, not a revenue line. Softened all "sell the pouch as a hero product" language across brand.md and the brief. A separately sold pouch stays open as a possible later extension.
-- **Pattern is gated EARLIER than we thought.** Materials (recycled, organic, hemp) are still being chosen, so neither the pattern bet nor any sustainability claim can be confirmed until a material is locked. Step 0 gate reinforced; make no material claim in copy yet.
-- **Hero product SETTLED: the band leads.** It is her first product and what is arriving (500 units, early July), and her first content is self-filming the unboxing. We mitigate the band's commoditisation by presenting it inside a giftable set in the custom palette with the founder story, never bare band-versus-band on price.
-- **Community mechanic SETTLED: ambassador and instructor seeding,** built the way the 440 Run Club built its Bronte beach-culture community (emulate the model, do not necessarily partner with them). (Meeting note #5 came through blank in the paste; Hugo confirmed it via the follow-up question.)
-
-### New workstreams the meeting created (captured in brand.md "Build and setup workstreams")
-- Google Workspace email for Lucy (she needs help setting it up).
-- Shopify store build, plus the one-store-vs-two (AU and US) decision. Recommendation logged: start with ONE store using Shopify Markets, split later only if forced.
-- Instagram Shopping setup (tagged, shoppable products).
-- Two landing pages: a Lucy Wayne personal page funnelling to a Sportif brand page.
-- A content posting calendar (soft launch now), unboxing and content ideas for Lucy to self-film, and a content funnel from Instagram and TikTok into email and store.
-- PR: get Lucy onto podcasts. She also has a small existing contact list to seed the email waitlist.
-
-### Decisions
-- Settled two of the three devil's-advocate calls (hero product = band-in-set, go-to-market = parallel). Left the pattern call OPEN on purpose because it depends on the unchosen material and the supplier.
-- Kept the creative direction and three test angles intact; they still hold under the new decisions.
-
-### Open questions / next
-- [ ] **Materials:** which of recycled / organic / hemp Lucy can use. Unblocks both the sustainability story and the pattern bet.
-- [x] ~~**Pattern (Step 0):** once material is locked, confirm with the supplier that a woven texture or print is makeable, durable, affordable.~~ RESOLVED later this same session (Follow-up correction): the China manufacturer offers predefined colourways only with no custom pattern, so the Step 0 pattern gate is closed as DEFERRED and the differentiator moved to Lucy herself.
-- [ ] **Trademark clearance** (hold logo- and label-dependent finals until clear).
-- [ ] **One Shopify store or two** (recommend one with Shopify Markets, confirm with Lucy).
-- [ ] Execute the build workstreams: Google Workspace email, Shopify, Instagram Shopping, the two landing pages, the content calendar, unboxing content ideas, podcast outreach.
-- [ ] Build the ambassador / instructor seeding shortlist ready for the July band delivery.
-- [ ] Carried: tight Lucy-facing competitor snapshot, Session 008 Steps 11 and 12, Lucy's Leelo quality-check notes when her order arrives. (Pattern mockups dropped, see correction below.)
-
-### Follow-up correction (2026-06-18, later same session): the product is not the differentiator, Lucy is
-
-After the first doc pass, Hugo clarified three things that change the positioning, now folded into all three docs:
-
-- **Pouch is a gift-with-purchase, not a "gift bag".** Customers who spend over a threshold (about $70) get the pouch free. It is an incentive / add-on that lifts average order value and makes the order feel like a gift, not packaging on every order and not a product to sell.
-- **Pattern is DEFERRED and colour is constrained.** The manufacturer is in China, roughly a 35-day turnaround from order placement, and offers predefined colourways only. So no custom pattern any time soon, and the colours are a selection from a standard range, not bespoke. Neither is a defensible differentiator.
-- **The differentiator is now Lucy Wayne herself** (her personal brand, experience, styling eye, and the experience plus community around the product), because the product is a standard factory item. Repointed brand.md, synthesis-brief.md (creative direction is now "By Lucy. For your morning ritual."; Angle C "Made by Lucy" is the lead angle; the "validate the pattern" Step 0 gate is closed as deferred), and brand-value-plan.md (Lever 2 elevated to THE primary lever; Lever 1 recognition now rests on Lucy plus consistent warm-neutral styling, not a pattern).
-- **New task: set up the EA's email.** Lucy wants her EA Lauren on a lucywayne.com.au mailbox via Google Workspace (workspace.google.com). Domain is www.LucyWayne.com.au. Resolved: Workspace already exists, domain at GoDaddy, so it is an add-a-user job. Produced a non-tech WhatsApp guide for Lucy (`clients/sportif/lauren-email-guide-for-lucy.txt`).
-
-### Follow-up (2026-06-18, continued): email-list kit, digital ecosystem plan, and a devil's advocate revision
-
-- **Email list / subscriber kit.** Lucy's GoDaddy signup captured emails but had nothing to give subscribers. Built `campaigns/launch-2026-09/email-list-starter-kit.md` (signup copy, a welcome email from Lucy, a mini list plan) and a designed lead-magnet PDF `campaigns/launch-2026-09/lucys-morning-edit.pdf` (Lucy's Morning Edit, lifestyle framed, no health claims). Clarified the pouch is a gift-with-purchase over a ~$70 spend threshold (an incentive), not packaging-for-all.
-- **Digital ecosystem action plan.** Researched 2026 best practices (IG product tags in Reels and the death of link-in-bio, TikTok Shop AU launching 2026, Facebook = ads/tracking engine not organic posting, Klaviyo welcome-flow timing). Built `clients/sportif/digital-ecosystem-action-plan.md` (working checklist) and `clients/sportif/Sportif-Digital-Plan-for-Lucy.pdf` (2-page approval doc with an ecosystem map). Folded our own research files (au-segment-profile, brand-references, budget-benchmarks) in for AUD budget bands, content archetypes, and posting times.
-- **Devil's advocate review (ran the skill).** Saved at `clients/sportif/digital-plan-devils-advocate.md`. The big surfaced fact: **@lucywayne__ has about 900 followers**, so we are building an audience, not funneling one. Seven challenges, all held up, all folded into the plan and the PDF:
-  1. Lucy is a single point of failure (capacity is moderate/structured) → batch-film, Hugo writes shot lists, keep a 2 to 3 week buffer, ambassador/product/customer content carries half the feed.
-  2. Personal audience is ~900 → reframe from "borrow her audience" to "build one"; she is the trust/face, not the reach.
-  3. Too many properties → **collapse to one hub (@sportifcollection), no separate Lucy Wayne website** (walks back a meeting idea, flag to Lucy).
-  4. "Paid later" starves reach → **ambassador/instructor seeding is the main growth engine** plus a **small paid layer brought forward** for follows and email; retire the vanity 10k goal for an honest one.
-  5. 500 units + 35-day reorder → **founding drop + back-in-stock/pre-order waitlist + early batch-2 reorder** (cash call for Lucy).
-  6. Over-betting on TikTok → **Instagram + email is the spine, TikTok light** (repurposed), TikTok Shop is upside (Claude's call, Hugo deferred).
-  7. Wholesale was barely in the plan → **elevated to a real front-loaded workstream** (line sheet, lookbook, gym list, pricing, outreach Lucy runs); likely the faster near-term revenue (Claude's call, Hugo deferred).
-
-### Follow-up (2026-06-18, continued): account reconnaissance, the responsiveness flag, and simple Lucy-facing docs
-
-Hugo browsed Lucy's real accounts and shared screenshots. Findings folded into `brand.md` and the digital plan:
-
-- **Brand handles all secured and on-brand** (SPORTIF wordmark on blush peach): domain `sportifcollection.com.au`, **Instagram `@sportifcollection`** (0 posts, 10 followers, "Australian owned luxury activewear & fitness accessories brand. Launching 2026!", and Lucy's personal account follows it), and **TikTok `@sportifcollection`** (empty, bio "Affordable luxury fitness equipment and active wear"). The earlier "secure the handle" action is DONE; remaining job is to align the bios and start posting.
-- **Lucy's personal presence (a warm asset, used as a light bridge, NOT rebuilt):** `@lucywayne___` (826 followers, **verified**, "Personal Stylist & Certified Trainer"), the GoDaddy site `lucywayne.com.au`, a **Stan Store**, a personal **TikTok `@lucywayne_`** (32 followers, bio credits "Founder/Designer: @sportifcollection"), and two Calendly links. Verified and on-topic helps; tiny follower counts confirm we are building an audience, not borrowing one.
-- **Responsiveness / operations risk (important).** An inquiry through her personal website went **unanswered for 7 days**, and her bio links are fragmented. Implication: Sportif must not depend on Lucy answering fast, and must not route customers through her personal channels. Added an "Operational note: who answers customers" section to the digital plan (one monitored Sportif inbox, Lauren owns replies, Klaviyo automates confirmations). Raise with Lucy: who replies to customers, and how fast.
-- **Architecture confirmed:** one brand hub (`sportifcollection.com.au` + `@sportifcollection` + email), her personal accounts a light bridge. NOT building a separate Lucy Wayne website. Added a "Secure and align the accounts" checklist to Phase 0.
-- **New simple deliverables built:** a Lucy-facing "how it all works" one-pager (`Sportif-The-Plan-Simply.pdf`), a 15-step "What we do, and why" roadmap (`Sportif-Roadmap.pdf`), and a Shopify-setup info checklist to send Lucy (`shopify-setup-info-from-lucy.md`).
-
-### Close-out (end of 2026-06-18 session)
-
-**Where we are:** strategy is locked and folded into the source docs (`brand.md`, `synthesis-brief.md`, `brand-value-plan.md`). The digital plan is built, devil's-advocate-revised, and explained to Lucy in plain-English visuals. All three brand handles are secured and on-brand (Instagram + TikTok `@sportifcollection`, domain `sportifcollection.com.au`). Waiting on Lucy to start the build.
-
-**Lucy-facing deliverables produced (all on-brand PDFs unless noted, warm palette, Shopify green on the hub):**
-- `Sportif-The-Plan-Simply.pdf` (one-page "how it works" loop)
-- `Sportif-Socials-to-Shop.pdf` (3-page flowchart, real handles, green Shopify hub)
-- `Sportif-Digital-Plan-for-Lucy.pdf` (2-page map + phases; map shows handles plus Lucy's accounts and website)
-- `Sportif-Roadmap.pdf` (15-step "what we do and why")
-- `Sportif-Action-Plan.pdf` (prioritised checklist + the why)
-- `Sportif-Setup-Info-for-Lucy.pdf` (the "what I need from you" form)
-- `lucys-morning-edit.pdf` (lead-magnet gift) + `email-list-starter-kit.md` (signup copy, welcome email, list plan)
-- `email-to-lucy-next-steps.md` (copy-paste email for Hugo to send Lucy with the attachments)
-- `lauren-email-guide-for-lucy.txt` (WhatsApp guide for the EA mailbox)
-
-**Internal working docs:** `digital-ecosystem-action-plan.md` (executable checklist + operational note on customer comms), `digital-plan-devils-advocate.md`, `action-plan-checklist.md`, `shopify-setup-info-from-lucy.md`.
-
-**Open / next (resume note at `clients/sportif/RESUME-NOTE.md`):**
-- [ ] **Hugo is reviewing `Sportif-Brand-Value-Plan.pdf`** and will bring thoughts to a fresh session. That is the NEXT focus: update `brand-value-plan.md` (and re-export the PDF) per his notes.
-- [ ] Still to write: the **Shopify coming-soon page step-by-step** (2026 best practices already researched and captured; waiting until Lucy opens the account).
-- [ ] Waiting on Lucy: open Shopify and send the setup info, lock prices + the ~$70 pouch threshold, decide the fabric, OK a little early paid, commit to the batch-2 reorder timing.
-- [ ] Operational: agree who answers customers (the 7-day no-reply flag); set up the Sportif inbox + Lauren + Klaviyo automations.
-- [ ] Housekeeping: the auto weekly-review (dated 2026-06-21) at the very top of `memory.md` reintroduced em/en dashes; sweep when convenient.
-
----
-
-## Session 010 (2026-06-17): Client deliverables for Lucy's first meeting, plain-English Q&A, and the Brand Value Plan
-
-### What we did
-- Built and sent Lucy (ahead of the first face-to-face) a set of on-brand PDFs: the market-and-insight PDF (`Sportif-Brand-and-Market-Insight.pdf`), the Brand Kit (`Sportif-Brand-Kit.pdf`), the Plan-to-September (`Sportif-Plan-to-September.pdf`), and the competitor product board as a PDF. All in the warm palette, written in a soft, additive voice (we are adding insight, not telling her what to do), since Lucy never asked for a market analysis (Hugo is the designer).
-- Made a phone-friendly meeting guide for Hugo (`Sportif-Meeting-Guide.pdf`): his 7 questions only (vegan ankle strap, cotton pouch purpose, recycled/organic/hemp, email + client list, community, integrate @lucywayne__, name lock + trademark), plus Email and Community idea bullets and a "What is Klaviyo?" note box. Removed all of Claude's own extra questions per Hugo's request so they don't confuse him.
-- Answered plain-English questions in chat: what Klaviyo is, the advantages of a Shopify website, and an assessment of Lucy's wholesale-first approach (verdict: smart fit for her, but run it wholesale-LED with a light DTC/email layer, because long-term brand equity is built direct).
-- **Built the Brand Value Plan** (Hugo: "build long-term brand value is key, need a clear plan"). Six levers, each matched to Sportif: (1) instantly recognisable look + the pattern, (2) Lucy as the face, (3) stand for something + named sustainability, (4) community that feels ownership (colour/print vote), (5) own the customer via email/Shopify not just wholesale shelves, (6) consistency + quality + hold prices. Saved as `clients/sportif/brand-value-plan.md` (source of truth) and `clients/sportif/Sportif-Brand-Value-Plan.pdf` (on-brand, 4pp, verified by PNG render).
-
-### What we learned / decided
-- The throughline tying the wholesale answer to brand value: wholesale gets reach and credibility, but the email list and DTC store are the owned assets where value compounds. So the plan is wholesale-led for revenue, light DTC + email for equity.
-- The pattern (Step 0 validation) is reframed not just as a product feature but as the most recognisable, least copyable BRAND asset, which is why it is worth validating.
-
-### Open questions / next (carried, plus new)
-- [ ] Fold Lucy's meeting answers (when they come back) into the brand docs: settle the three open calls (pattern feasibility, hero product, wholesale-vs-consumer), and lock the name once trademark clears.
-- [ ] Carried from 009: validate the pattern bet (mockups + side-by-side panel + supplier confirmation), confirm custom colours are distinct from Kikiva/Your Reformer, build the tight Lucy-facing competitor snapshot, Session 008 Steps 11 and 12, and Lucy's Leelo quality-check notes when her order arrives.
-
----
-
-## Session 009 (2026-06-16, same day, continued): Hands-on competitor product audit, big strategic correction, positioning sharpened to colour + pattern
-
-### What we did
-- Rewrote the research-derived sections of `brand.md` in plain language (Hugo flagged jargon; target is "a mum can read it").
-- Built a visual **competitor product board** at `clients/sportif/competitor-analyses/competitor-product-board.html`: a single self-contained HTML file (warm-neutral themed, grouped by brand, with a plain-English "What this means for Sportif" note per brand). Data came from each brand's public Shopify `/products.json` (live prices) plus, crucially, Hugo's own hands-on screenshots of every named brand.
-- Hugo photographed all 8 named brands (Avara, Move Active, Leelo, Kikiva, P.E Nation, Anine Bing, AJE, Your Reformer). I identified, renamed and embedded each shot (base64, downscaled via PIL) so the board always shows the photos. Folders under `competitor-analyses/product-images/<brand>/`. Board ended at ~100 products, ~5 MB.
-- Started a **demand-signals tracker** (`competitor-analyses/demand-signals.md`): sold-out items and market finds.
-- Wrote a Lucy-facing **positioning note** (`positioning-note-for-lucy.md`), a fuller **research-findings-and-options** synthesis (`research-findings-and-options.md`), and **patterned-band image prompts** (`patterned-bands-image-prompts.md`).
-- Consolidation pass: updated `campaigns/launch-2026-09/synthesis-brief.md` and `brand.md` so the strategy reflects what we learned (colour + pattern + accessory-first + pouch).
-
-### What we learned (the big strategic correction)
-- **Sportif's exact launch products already exist at established rivals, in colour.** Booty bands: Move Active ($19.60 to $28) and Your Reformer ($29, multiple colour sets). Ankle straps: Avara ($39, neutral) and Kikiva ($29.99, pink and baby blue). This corrected the original desk-research belief that the colourful band/strap space was empty. Each correction came from Hugo actually browsing, not the data.
-- **The real, unclaimed gap is PATTERN (Hugo's spot).** Every competitor's band, strap and weighted band is a flat solid colour. Patterns only appear on their grip socks. Nobody patterns a band. This plus a distinctive custom palette, accessory-first focus, a premium pouch and the founder story is the defensible wedge. "We are the colourful one" is not enough on its own.
-- **The pouch is a sellable hero, not packaging.** Anine Bing's branded pouch ($249) and a card holder ($249) are sold out; ODE sells a woven pouch at $70. Branded pouches sell.
-- **Towels are in demand** (Move Active mat and terry towels sold out). Caps + a small-to-large bag range are the standard low-risk accessory extension (Anine Bing, AJE, Move Active). NikeSKIMS sells a pilates grip sock at $50 (big players validating premium pilates accessories).
-- **Price anchors:** booty bands ~$29, ankle straps $30 to $39, grip socks $9 to $39, towels $26 to $79, pouches $70 to $249.
-- **Tooling and environment:** the public Shopify `/products.json` gives live prices and image URLs (use a small `?limit=` so web_fetch returns inline; big responses get saved to a temp file). Linked competitor images do NOT render reliably in a local HTML file, so embed images (we cannot download remote binaries, but Hugo's local screenshots embed fine via base64). macOS screenshot filenames contain a narrow no-break space, so rename by glob order, not by typing the name. Deletions are blocked in the mounted folder (overwrite instead). The Read tool cannot see brand-new files at the workspace path, so copy images into outputs to view them.
-
-### Decisions
-- Positioning sharpened and locked in the docs: the wedge is **distinctive custom palette + a pattern/texture on the band and strap (which nobody does) + accessory-first + pouch-as-hero + premium feel + founder story**, not "colour" alone.
-- The full product board is now an internal research tool (too big to send Lucy as-is); a tight Lucy-facing snapshot is still to be built.
-- Pattern is the new product bet to validate with Lucy and her supplier.
-
-### Open questions / next
-- [ ] Validate the pattern bet: generate the patterned-band concept mockups (`patterned-bands-image-prompts.md`), build a side-by-side panel vs competitors' flat-colour bands, and confirm with Lucy and her supplier that pattern or woven texture on the band is manufacturable.
-- [ ] Confirm Lucy's custom colours are genuinely distinct from Kikiva's and Your Reformer's, and discuss whether the band, the strap, the pouch or a giftable set should be the hero.
-- [ ] Build the tight Lucy-facing competitor snapshot (vs the big internal board).
-- [ ] Still pending from Session 008: Step 11 (fold Sportif budget numbers into `docs/marketing-fundamentals.md` Part 8) and Step 12 (send Lucy the "where we are" email).
-- [ ] Lucy's quality check: she ordered a Leelo item (Sculpt Wide Leg Pants + Mystery Grip Socks) to assess quality in person; add notes when it arrives.
-
----
-
-## Session 008 (2026-06-16): Sportif research run executed end to end (all 5 passes, brand.md synthesized, Stage 3 brief drafted)
-
-### What we did
-- Resumed the post-Lucy research run. Re-tested connectivity: egress is open (Perplexity reachable), so the Session 007 blocker is cleared.
-- Transcribed Lucy's questionnaire PDF into `clients/sportif/intake/lucy-responses.md` (verbatim Q1 to Q12 plus flags vs the SWOT).
-- Ran ALL 5 research passes:
-  - Pass 1 segment profile and Pass 2 all 8 competitor deep dives via sonar-deep-research.
-  - Pass 3 brand references (sonar-pro), Pass 4 cultural-lane validation (sonar-reasoning-pro), Pass 5 budget benchmarks (sonar-pro).
-- Synthesized into `clients/sportif/brand.md`: new Customer section, a Strategic positioning (cultural lane) lock, a competitor differentiation and whitespace read, a fuller Voice section, and launch budget bands.
-- Drafted the Stage 3 synthesis brief at `clients/sportif/campaigns/launch-2026-09/synthesis-brief.md`: one creative direction ("Your colour. Your ritual.") with three angles to test.
-- Swept all new files for em and en dashes (the research outputs carried them; the 3 canonical deliverables were already clean).
-- Updated `RESEARCH-RUN-STATUS.md` to COMPLETE and ticked steps 1 to 10 in `post-lucy-research-plan.md`.
-
-### What we learned
-- **Big environment finding: in Cowork, background shell processes do NOT survive across separate tool calls.** The sandbox reaps them when a call returns, and each call caps at ~45s. So the CLAUDE.md workflow "launch sonar-deep-research with nohup and poll across calls" does NOT work here (it works on Hugo's Mac via Claude Code, a different environment). Verified with a controlled survival test.
-- **Fix built: `scripts/pplx_async.py`.** Submits async deep-research jobs to Perplexity (which run server-side), persists request ids to a registry file on disk (disk survives across calls), and polls them in later short calls, writing each answer when COMPLETED. This is the reusable pattern for deep-research in Cowork. Registry/manifest for this run live in `clients/sportif/research/`.
-- **Perplexity rate-limits async submissions (HTTP 429).** Submitting 9 jobs at once only let ~4 through; the rest needed staggered resubmits (sleeps of 12 to 18s). 3 of the 8 competitor jobs also FAILED server-side on the first attempt and were resubmitted cleanly. Build staggering and resubmit-on-fail into any future batch.
-- **The cultural-lane verdict has a sharp caveat.** The macro pilates/morning-movement category is growing in AU through 2026, but the "pretty pastel pilates girl" aesthetic is visually saturated. The win is NOT another pastel band set; it is colour-as-signature plus accessory-as-hero plus a named ritual. No accessories-first design-led AU brand owns bands and straps yet (the Lululemon-owns-yoga-tights gap).
-- **Every competitor profile flagged the same structural hole:** accessories are an afterthought (generic, white-labelled, merch). That is exactly Sportif's wedge. Founder-led and community content is table-stakes (Kikiva, PE Nation, AJE, Anine Bing all do it), so Lucy's visibility is necessary but not the differentiator.
-- **Two competitor files were low-confidence** (Leelo Active, Avara Athletics; Your Reformer and Kikiva partly). Prices quoted there are inferred and should be validated by direct site checks before use.
-
-### Decisions
-- Ran all 8 competitors at deep-research depth (Hugo had waved off cost in Session 007). Kept full sonar-deep-research fidelity by switching execution to the submit/poll helper rather than downgrading to sonar-pro.
-- Locked Sportif's positioning lane in `brand.md`: feminine, colour-led, affordable-luxury, accessory-first, ritual-anchored.
-- Channel plan recommendation (for the Lucy call): Instagram Reels first as the proving ground, add TikTok once an angle wins, email from day one. Lean-to-mid budget envelope, not scale, given the 500-unit first run and wholesale-first model.
-
-### Open questions / next
-- [ ] Send Lucy the "where we are" summary email (Step 12): proposed positioning, channel-sequencing recommendation, budget envelope, next-call agenda. Not drafted yet.
-- [ ] Optional Step 11: fold the Sportif AUD budget numbers into `docs/marketing-fundamentals.md` Part 8.
-- [ ] Stage 4: pick the first production need from the winning angle and write the gpt-image-2 prompt(s). Use next week's pilates-instructor shoot as the real-motion source for the ritual angle.
-- [ ] Validate the low-confidence competitor prices (Leelo, Avara, Kikiva, Your Reformer) by direct site check before quoting externally.
-- [ ] Carry-over from Lucy's side: naming and trademark lock, platform-sequencing call, script-accent font, activewear-range timing.
-- [ ] Consider documenting the `pplx_async.py` pattern in the workspace gotchas so future Cowork sessions use it by default.
 
 ---
 
