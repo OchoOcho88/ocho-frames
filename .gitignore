@@ -92,3 +92,4 @@ clients/*/assets/*
 # HyperFrames studio thumbnail cache
 .thumbnails/
 **/.thumbnails/
+_to_delete/
