@@ -87,7 +87,7 @@ Hugo supplied a reference editorial image (`assets/Cosmos pictures/cosmos_sporti
 
 ### What we did
 - **First production use of the gpt-image-2 `images/edits` endpoint** (everything before was text-to-image generation). Validated at quality low, final at quality high, 1024x1280. No mask needed; a "two changes only" prompt held the pose, film grain and backdrop.
-- **Proven overlay pattern applied:** text-free edit first, then SPORTIF stamped in real Glacial Indifference Bold, cream #F4F2EA sampled from the original FORM letters, centred at 49 percent height. Main at 76 percent width (FORM's footprint) plus a 62 percent narrow variant.
+- **Proven overlay pattern applied:** text-free edit first, then the real Sportif logo lockup stamped via the NEW `scripts/overlay_logo.py` (Glacial Indifference REGULAR, tracking -0.059 em, short underline rule, geometry measured from `assets/05-logo-sportif-white-on-peach.png`), cream #F4F2EA sampled from the original FORM letters, block centred at 49 percent height. Main at 76 percent width (FORM's footprint) plus a 62 percent narrow variant. First pass wrongly stamped a hand-styled Bold wide-tracked wordmark with no rule; Hugo caught it and the logo was corrected in the same session. Rule going forward: stamp the lockup with `overlay_logo.py`, keep `overlay_wordmark.py` for plain headline text only.
 - **Keepers saved** to `clients/sportif/generated/images/`: `cosmos-babyblue-notext.png` (reusable base), `cosmos-babyblue-wordmark.png`, `cosmos-babyblue-wordmark-narrow.png`. Full prompt and settings logged in `image-prompts.md`.
 
 ### What we learned
