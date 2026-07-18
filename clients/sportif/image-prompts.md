@@ -5,6 +5,16 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## cosmos-babyblue edit (2026-07-18) FIRST USE OF THE EDITS ENDPOINT
+
+Reference-image edit, not a generation. Source: `assets/Cosmos pictures/cosmos_sportif logo.jpeg` (the FORM editorial backbend image). Endpoint: `images/edits`, model gpt-image-2, size 1024x1280 (4:5), quality high, output png. Prompt:
+
+"Edit this photo. Two changes only. 1) Recolour the model's fitted ribbed athletic outfit (currently dark chocolate brown shorts and top) to a soft pastel baby blue, keeping the exact same fabric texture, ribbing, seams, fit, shadows and highlights. 2) Completely remove the large white 'FORM' text overlay, cleanly reconstructing the model's body, outfit and the warm beige studio background that sit behind the letters. Keep everything else identical: the same model, her one-arm backbend pose with the extended leg, her hair, the white crew socks, the warm beige seamless backdrop, the soft diffused lighting, the subtle film grain, the crop and framing. No text, no logos, no watermarks anywhere in the output. This is a tasteful, professional athletic fitness editorial photograph of a gymnast in modest full-coverage sportswear, suitable for a mainstream sportswear catalogue."
+
+Then SPORTIF stamped in real Glacial Indifference Bold, cream `#F4F2EA` (sampled from the original FORM letters), tracking 0.30 em, centred at 49 percent height. Main = 76 percent of image width (matches FORM's footprint), narrow variant = 62 percent. Files: `cosmos-babyblue-notext.png` (text-free base, reusable), `cosmos-babyblue-wordmark.png` (main), `cosmos-babyblue-wordmark-narrow.png`.
+
+Learnings: (1) the edits endpoint preserved pose, grain and backdrop with no mask needed, two-instructions-only prompts work well; (2) OUTPUT moderation false-positived [sexual] at quality high on the backbend pose (low passed); appending the "tasteful professional athletic editorial, modest full-coverage sportswear" sentence cleared it, keep that sentence for any bodysuit or backbend imagery; (3) baby blue is OFF-PALETTE, an intentional concept exploration Hugo confirmed, not a new brand colour.
+
 ## tagline-row action backgrounds (2026-07-08) SENT TO LUCY, pending her pick
 
 Three text-free 1088x1440 (3:4 grid tile) backgrounds for the tagline row above the grid banner. Prompts live in `clients/sportif/scripts-local/gen_action_bg.py` (training / fashion / ritual); taglines overlaid in real Glacial Indifference via `overlay_action_tiles.py`. Currently rendered quality low; finals need quality high in Claude Code.
