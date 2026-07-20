@@ -5,6 +5,10 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## cosmos-peach series (2026-07-20) LUCY-APPROVED, 15 finals
+
+Batch edit of the whole renamed `assets/Cosmos pictures` folder (15 of 16 jpegs; `bw-arms-detail` hard-blocked by moderation 3x). Per-image prompts live verbatim in `scripts-local/gen_cosmos_peach.py` (JOBS dict). Shared recipe: images/edits, gpt-image-2, per-image instruction + palette block + KEEP block (same person/pose/lighting, recompose 4:5, no text) + the moderation-safety sentence. Proofs 1024x1280 low, finals 1088x1360 high. Narrow lockup (62 percent width, y 0.49) via `scripts/overlay_logo.py`, cream #F4F2EA, except peach #F0CDB3 on the two palest images (lookbook-grid-9up, bw-forward-fold). Group shots use a palette MIX (peach/caramel/cream/terracotta, one per model). Outputs in `generated/images/cosmos-peach/` with text-free bases in `notext/`.
+
 ## cosmos-babyblue edit (2026-07-18) FIRST USE OF THE EDITS ENDPOINT
 
 Reference-image edit, not a generation. Source: `assets/Cosmos pictures/cosmos_form-backbend-editorial.jpeg` (the FORM editorial backbend image; renamed 2026-07-20 from `cosmos_sportif logo.jpeg` in the folder-wide descriptive rename). Endpoint: `images/edits`, model gpt-image-2, size 1024x1280 (4:5), quality high, output png. Prompt:

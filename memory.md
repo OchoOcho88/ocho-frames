@@ -6,8 +6,9 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-18 | Last session: 019 (Cowork cloud, CLOSED) | Working tree: committed clean | Git: local ahead of GitHub (push from Claude Code) | Next: log the 2026-07-14 Lucy meeting outcomes (meeting was 4 days ago, nothing captured yet), then the standalone waitlist capture page*
+*Last updated: 2026-07-20 | Last session: 020 (Cowork cloud, CLOSED) | Working tree: committed clean | Git: local ahead of GitHub (push from Claude Code) | Next: log the 2026-07-14 Lucy meeting outcomes (still uncaptured), then the standalone waitlist capture page*
 
+- **NEW (Session 020): cosmos-peach series — 15 Lucy-approved finals** (IG 4:5 1088x1360, peach palette, narrow lockup) at `clients/sportif/generated/images/cosmos-peach/` (+ `notext/` bases). Prompts preserved in `clients/sportif/scripts-local/gen_cosmos_peach.py`.
 - **The Friday (2026-07-10) IG launch DID NOT HAPPEN** (Hugo confirmed, Session 018). Reason not yet logged; Hugo meets Lucy Tuesday 2026-07-14 to discuss. Teaser Reel and grid assets remain ready.
 - **Funnel layer (Sessions 017 to 018).** `docs/funnel-playbook.md` (reusable foundations from the Australian Marketing Summit 2026, Ethan Donati) + `clients/sportif/funnel-plan.md` (3 funnels + content x funnel mapping in section 7: every post carries one CTA to the waitlist, FAQ lane is the 4th content format, signups per post is a scorecard metric). Synthesis brief cross-linked.
 - **Key unlock: the waitlist capture page does NOT need Shopify.** A standalone Klaviyo-style landing page can go live now, un-deadending all content and partially bypassing the Shopify blocker. Top of the Tuesday agenda.
@@ -113,6 +114,25 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
 
 ---
+
+## Session 020 (2026-07-20, Cowork cloud): Cosmos folder renamed, full 15-image peach series shipped, Lucy approved
+
+Continuation of the Session 019 chat. Hugo picked the Cosmos references for posture/colour/look and asked for the peach theme to run through all of them with the narrow Sportif lockup, Instagram 4:5.
+
+### What we did
+- **Renamed all 17 files in `assets/Cosmos pictures`** to descriptive names (mapping in commit 86b5b2e); image-prompts.md source path updated.
+- **Built a 4-worker batch pipeline over the gpt-image-2 edits endpoint:** a handwritten prompt per image, peach palette outfits (palette MIX across group shots so they read as a collection drop), backgrounds warmed to brand neutrals, everything recomposed to 4:5. Low-quality proofs (~$0.01 each) -> Hugo reviewed a contact sheet -> 1088x1360 quality-high finals -> narrow (62 percent) Sportif lockup stamped (cream; peach on the two palest images).
+- **Lucy saw the proofs and loves all 15** (via Hugo). Finals + text-free bases saved to `clients/sportif/generated/images/cosmos-peach/` and `cosmos-peach/notext/`; originals in assets untouched. Prompts preserved verbatim in `clients/sportif/scripts-local/gen_cosmos_peach.py`, summary in image-prompts.md.
+
+### What we learned
+- **`cosmos_bw-arms-detail` is hard-blocked by output moderation** (3 of 3 attempts, tight body crop); the safety-framing sentence that rescues full-figure poses does not rescue tight crops. Skip it or recompose wider first.
+- Staged uploads keep their staging-time filenames; after renaming on the Mac, re-stage or map old to new before batch runs.
+- One transient proxy error on a high render; a simple retry fixed it.
+- **Mid-session the device trust went stale:** device_stage_files began returning 403 untrusted_device while device_bash and earlier commits kept working. Fix: Hugo re-signs in via the desktop app banner. Text edits can be done through device_bash directly as a fallback.
+
+### Open questions
+- `cosmos_yoga-duo.mp4` untouched; a peach video edit would need the Seedance path.
+- Tuesday 2026-07-14 Lucy meeting outcomes STILL not logged (carried again).
 
 ## Session 019 (2026-07-18, Cowork cloud): Cosmos reference edit, first gpt-image-2 edits-endpoint production piece
 
