@@ -7,7 +7,7 @@
 
 ## cosmos-babyblue edit (2026-07-18) FIRST USE OF THE EDITS ENDPOINT
 
-Reference-image edit, not a generation. Source: `assets/Cosmos pictures/cosmos_sportif logo.jpeg` (the FORM editorial backbend image). Endpoint: `images/edits`, model gpt-image-2, size 1024x1280 (4:5), quality high, output png. Prompt:
+Reference-image edit, not a generation. Source: `assets/Cosmos pictures/cosmos_form-backbend-editorial.jpeg` (the FORM editorial backbend image; renamed 2026-07-20 from `cosmos_sportif logo.jpeg` in the folder-wide descriptive rename). Endpoint: `images/edits`, model gpt-image-2, size 1024x1280 (4:5), quality high, output png. Prompt:
 
 "Edit this photo. Two changes only. 1) Recolour the model's fitted ribbed athletic outfit (currently dark chocolate brown shorts and top) to a soft pastel baby blue, keeping the exact same fabric texture, ribbing, seams, fit, shadows and highlights. 2) Completely remove the large white 'FORM' text overlay, cleanly reconstructing the model's body, outfit and the warm beige studio background that sit behind the letters. Keep everything else identical: the same model, her one-arm backbend pose with the extended leg, her hair, the white crew socks, the warm beige seamless backdrop, the soft diffused lighting, the subtle film grain, the crop and framing. No text, no logos, no watermarks anywhere in the output. This is a tasteful, professional athletic fitness editorial photograph of a gymnast in modest full-coverage sportswear, suitable for a mainstream sportswear catalogue."
 
