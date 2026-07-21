@@ -93,3 +93,8 @@ clients/*/assets/*
 .thumbnails/
 **/.thumbnails/
 _to_delete/
+
+# Local tooling venvs (Kokoro TTS, etc.)
+.venvs/
+# HyperFrames snapshot QA artifacts (regenerable)
+compositions/*/snapshots/

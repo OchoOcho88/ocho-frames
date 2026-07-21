@@ -6,8 +6,9 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-21 | Last session: 021 (Claude Code, in progress) | Working tree: committed clean | Git: in sync with GitHub | Next: standalone waitlist capture page (does not need Lucy or trademark), then ambassador/instructor seeding shortlist*
+*Last updated: 2026-07-21 | Last session: 021 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: standalone waitlist capture page (does not need Lucy or trademark), then ambassador/instructor seeding shortlist*
 
+- **NEW (Session 021): peach lookbook reel shipped + HyperFrames upgraded 0.6.37 to 0.7.64.** 15s 9:16 brand-mood teaser (serves both IG Reels + TikTok) at `compositions/sportif-peach-reel/`, keeper is `renders/sportif-peach-reel_v2_high.mp4` (silent, add music in-app). Card-on-peach treatment of 3 cosmos-peach bases, proven taglines, date-free "Coming soon" end card. Build notes in the composition's `design.md`.
 - **NEW (Session 021): Tuesday 2026-07-14 Lucy meeting outcomes LOGGED.** Launch is on HOLD pending trademark talks with Lucy's lawyer (no new date, indefinite). Waitlist page was never put to Lucy (Hugo did not show or ask). Incentive decision (A/B/C) still undecided, Lucy to get back. No Shopify movement, also gated on the trademark talks. **The 500 band units HAVE landed** (unboxing now filmable).**
 - **TRADEMARK is now the critical-path gate**, not Shopify. Launch, Shopify, and the whole go-to-market are held until Lucy's lawyer clears the trademark. Nothing forces this from our side; use the wait to build what does NOT depend on it (waitlist page, email flow, ambassador shortlist, unboxing footage).
 - **cosmos-peach series (Session 020): 15 Lucy-approved finals** (IG 4:5 1088x1360, peach palette, narrow lockup) at `clients/sportif/generated/images/cosmos-peach/` (+ `notext/` bases). Prompts preserved in `clients/sportif/scripts-local/gen_cosmos_peach.py`.
@@ -131,6 +132,18 @@ Opened with the sync ritual. Cleaned up Session 020's Cowork-cloud leftovers on 
 **What this changes.** For weeks the framing was "Shopify is the critical path, blocked on Lucy." The real gate is now clearly **trademark clearance**, which sits upstream of Shopify, the launch, and the whole go-to-market, and is entirely on Lucy's lawyer's clock. Nothing we do accelerates it. The correct response is to stop treating the launch as imminent and instead bank everything that does NOT depend on trademark: build the standalone waitlist page (build now, wire up later), draft the 3-email welcome flow, start the ambassador/instructor seeding shortlist (carried five+ weeks, needs nothing from anyone), and film the unboxing now that bands are here.
 
 **Open questions:** trademark timeline (unknowable, Lucy's lawyer); incentive A/B/C (pending Lucy); whether to still bother showing Lucy the waitlist page before building it (recommend: build it regardless, it's the only unblocked go-to-market surface).
+
+**Second half of the session: Hugo asked for a HyperFrames video from the peach images.** Built `compositions/sportif-peach-reel/` (15s, 1080x1920, one file for IG Reels + TikTok) reusing the sportif-teaser engine. Decisions (Hugo picked): card-on-peach framing (each 4:5 shot whole on the blush ground, no crop, premium lookbook feel), proven Lucy-voice taglines, date-free "Coming soon" end card (launch on hold, so no date). Three cosmos-peach text-free bases: studio-yellow-frame / portrait-sage-tank / beach-run-shoreline. Keeper: `renders/sportif-peach-reel_v2_high.mp4` (silent, add a soft music bed in-app on upload). It is a brand-MOOD piece, not product (no band/strap, not real Lucy) — fine for the pre-launch hold; a product-forward cut waits on real Lucy + product footage (bands have landed, unboxing filmable).
+
+**HyperFrames upgraded 0.6.37 to 0.7.64 (new features explored):**
+- The stricter one-shot `check` gate caught a latent bug our old lint missed: full-frame scene overlays that start visible before their fade (`gsap_fullscreen_overlay_starts_visible`). Fixed with explicit `opacity:0` + `.to()` reveals. Real robustness win, applies to the teaser too if we ever touch it.
+- `snapshot` = built-in frame verification; auto-builds a contact sheet AND runs Gemini vision over each frame (descriptions.md) to flag blank/black frames. Replaces manual ffmpeg frame-pulling. Snapshots are regenerable QA, now gitignored.
+- Rendered at `-q high` (7.9MB vs 4.6MB standard).
+- `tts` (Kokoro-82M, local, free, offline) PROVEN but NOT used: Hugo found the voice "very AI." Needed a Python 3.11 venv (system python 3.9 too old for kokoro-onnx); venv at `.venvs/tts` (gitignored), point `HYPERFRAMES_PYTHON` at it. Full recipe in the composition's design.md. For a natural read, use a real voice or HeyGen cloud voices, not Kokoro.
+- `cloud` (HeyGen server-side render, kills the local render-cap problem) NOT adopted: needs a HeyGen account (`auth login`, billed). Hugo declined — local high-quality is good enough for 1080p social. Revisit only if we need 4K or hit local caps.
+- Other new-but-unused commands worth remembering: `beats` (sync cuts to music), `compare` (variant comparison sheet), `grade-compare` (colour grades), `remove-background` (transparent product cutouts, useful once real product footage exists), `keyframes` (onion-shot diagnostics).
+
+**Decision: keep video renders local for now** (Hugo, Session 021). No cloud rendering. The silent v2 is the deliverable; music and any VO get added in-app or in a later pass.
 
 ---
 
@@ -256,110 +269,6 @@ Reworked the teaser end card (scene 5) live via `npm run dev` (studio at localho
 - [ ] Friday posting plan: banner row, tagline row, teaser Reel as the first Reel.
 - [ ] Carried: blocker email send, Shopify coming-soon, ambassador shortlist, trademark, materials, Stage 3/4 templates, PDF generators still on Poppins, optional teaser voiceover.
 
-## Session 015 (2026-07-08, Cowork): SPORTIF 3-tile Instagram grid banner, posting recipe proven on a mock account
-
-Lucy asked Hugo for a bottom-row grid banner like the old LE SPORT COLLECTIF mockup (the LSC mockup is a layout reference only, LSC remains dead as a name). Hugo also wanted to learn the Photoshop build himself.
-
-### What we did
-- **Built the 3-tile SPORTIF grid banner** with a parametrised Pillow script at `clients/sportif/scripts-local/build_grid_banner.py`. One 3240x1440 canvas, real Glacial Indifference Regular, letter-spaced (0.28 em tracking) with the short underline, split into three 1080x1440 tiles (3:4, the current grid ratio). Filenames carry post order (tile 1 = rightmost, posted first).
-- **Three colourways generated** in `clients/sportif/generated/images/grid-banner/`: cream bg + blush wordmark (default), white bg + blush (`-white`), blush bg + white (`-peach`). The peach one matches the existing @sportifcollection identity (wordmark on blush peach), recommended first pick for Lucy.
-- **Gave Hugo a point-form Photoshop 2026 walkthrough** (canvas, guide layout, tracking ~280 in the Character panel, slice and export, posting order) so he can rebuild it by hand.
-- **Tested live on Hugo's mock IG account and debugged a real failure:** first post came out as "SP POR IF" with letters eaten at tile edges.
-
-### What we learned
-- **Instagram's photo picker defaults to a 1:1 crop.** That square then gets side-cropped by the 3:4 grid thumbnail, which eats any letter near a tile edge. The fix is tapping **Original** on the crop screen (or the expand arrows on mobile); with 1080x1440 (3:4) source tiles the post ratio then equals the grid ratio and nothing is cropped. Verified working, the mock grid reads SPORTIF cleanly.
-- **Instagram added manual grid reordering (June 2026):** long-press a post, Reorder grid, drag. Posting order for banners no longer needs to be perfect, it can be fixed after the fact. (Web-verified: Fast Company, Social Media Today, 9to5Mac.)
-- Pillow has no native letter tracking; draw glyph by glyph with a per-glyph advance (bbox width + tracking) as done in the script.
-
-### Decisions
-- Banner tiles are 1080x1440 (3:4) as the standard for grid-spanning art, not 1080x1350 (4:5), because the grid thumbnail is 3:4.
-- Peach background variant is the lead option to show Lucy (matches the confirmed wordmark-on-blush identity).
-
-### Follow-up (same day, continued): tagline row (4 directions), action imagery, teaser Reel composition
-
-Hugo revealed the timeline: **the Sportif Instagram launches THIS FRIDAY (2026-07-10).**
-
-- **Tagline row built** (row above the banner): "Everyday training, elevated." / "Too fashionable not to WEAR!" (Lucy's line, centre) / "For your morning ritual." All from the approved say-list. Four directions produced in `generated/images/grid-banner/`: flat terracotta, terracotta gradient + text shadow (v2), AI linen texture, AI plaster texture, and the lead: **action imagery** (pilates bridge with band under tension, fashion still life with pouch and gold jewellery, morning ritual vignette), taglines overlaid in reserved negative space.
-- **Two prompt-engineering fixes worth reusing** (also logged for image-prompts.md): (1) exercise poses come out anatomically wrong unless described joint by joint (head/shoulders/arms flat, knees bent, hips lifted); (2) the band form needs "wide flat continuous closed loop, like an oversized fabric headband, not folded, not twisted, not a coiled tube" or it melts into ribbons/pastry shapes.
-- **All versions sent to Lucy for feedback.** Hugo has creative control; awaiting her reaction.
-- **Teaser Reel composition built in HyperFrames** at `compositions/sportif-teaser/` (first real HyperFrames project in the workspace). 13s, 1080x1920: wordmark letter-by-letter reveal on blush, three action-image scenes with taglines and Ken Burns, cream end card "Launching September 2026" + @sportifcollection. Glacial Indifference converted to woff2 in `fonts/` (fonttools). design.md captures the brand for video. Lint passes 0/0.
-- **Cowork limit learned:** hyperframes validate/inspect/preview/render need headless Chrome, unavailable on the ARM sandbox. Division of labour: author + lint in Cowork, validate + render in Claude Code.
-
-### Open questions / next
-- [ ] Lucy feedback on the four tagline-row directions (and the three banner colourways).
-- [ ] CLAUDE CODE (tonight, before Friday): re-render the 3 action backgrounds at quality high (prompts in `gen_action_bg.py`), rebuild tiles via `overlay_action_tiles.py`, swap the images in `compositions/sportif-teaser/images/`, then `npm run check` and render the Reel.
-- [ ] Optional teaser voiceover (TTS via hyperframes-media) - Hugo has not decided.
-- [ ] Decide Friday grid posting plan: banner row first, tagline row second, teaser Reel as first Reel.
-- [ ] Show Lucy the three colourways, get her pick before anything goes on the real @sportifcollection grid.
-- [ ] Carried: Lucy hero-concept pick (v5/v6/v7), blocker email send, Shopify, ambassador shortlist, trademark, materials, PDF generators still on Poppins.
-
-## Session 014 (2026-07-07, Claude Code): GitHub sync (pushed the Session 013 backlog)
-
-Short startup-and-sync session on the Mac, right after Cowork closed out Session 013 the same day.
-
-### What we did
-- Ran the session-start sync protocol: read the CURRENT STATE block and the Session 013 entry plus its follow-up, confirmed the Session 013 close-out commits in the log, and verified a clean working tree.
-- **Pushed the local backlog to GitHub** (`535032c..49aa5de`, 10 commits). Cowork had committed Sessions 007 to 013 locally but could not push from the sandbox; that is why the tree was ahead. Local and origin/main are now in sync.
-- Reviewed current state with Hugo and confirmed both Lucy-dependent items are still pending.
-
-### What we learned
-- The push backlog is the expected shape of the two-environment split: Cowork commits but does not push from the sandbox, so Claude Code on the Mac is where the sync to GitHub happens. Worth doing at the start of every Claude Code session.
-
-### Decisions
-- No content work this session. Both live jobs (render Lucy's hero pick at quality high, start the Shopify coming-soon page) are blocked until Lucy responds, so we synced and closed out rather than starting unblocked busywork.
-
-### Open questions / next
-- [ ] Lucy has NOT picked a hero concept yet (v5 unboxed / v6 set / v7 flat) and has NOT replied to the blocker email. Both are the gates.
-- [ ] When Lucy picks: render the chosen 4:5 hero at quality high in Claude Code (text-free, then overlay the wordmark with `scripts/overlay_wordmark.py`).
-- [ ] When Lucy replies to the blocker email: start the Shopify coming-soon page step-by-step (research done).
-- [ ] Unblocked and available anytime: build the ambassador/instructor seeding shortlist (main growth engine, not started).
-- [ ] Carried: trademark clearance, materials question, Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins.
-
-## Session 013 (2026-07-07): Workspace review and cleanup, git caught up, Lucy blocker email drafted
-
-Hugo asked for a full project review (improvements, holes, integration opportunities), then approved working through every fix.
-
-### What we did
-- **Full workspace review.** Strongest parts: the two-doc client-cut methodology, devil's advocate passes, memory log, reusable generators. Biggest holes: the critical-path revenue blocker (band due July, no store), 5 weeks of uncommitted git work, superseded PDFs still live, stale CLAUDE.md, doc-drift risk, workspace clutter.
-- **Archived 9 superseded Lucy-facing PDFs** into `clients/sportif/_archive/superseded-pdfs-2026-07/`. Client root now holds exactly three: Brand-Value-Plan (strategy), Launch-Plan (operations), Brand-Kit (reference). Lucy's questionnaire moved to `intake/`, the product board PDF into `competitor-analyses/`.
-- **Git caught up.** Removed a stale `.git/index.lock` (needed the `allow_cowork_file_delete` tool first, plain rm fails on the mount). Updated `.gitignore` (product-images, logs/, .git-broken/, *.log). Committed Sessions 007 to 012 (62 files) plus this session's changes.
-- **Fixed CLAUDE.md.** Replaced the wrong nohup research workflow with the `pplx_async.py` pattern, and added the learned gotchas: weasyprint per-sandbox install, Lora/Poppins fonts, PNG montage for PDF previews, outputs dir is throwaway, file deletion tool, the two-PDF client set, and the two-doc drift rule.
-- **Added a CURRENT STATE block** to the top of memory.md (12-line snapshot a cold session reads first). Convention: update it every session.
-- **Added drift guardrails.** Source-of-truth + last-synced headers in `brand-value-plan-client.md` and `launch-plan-client.md` (verified the generators only render the last blockquote group, so headers stay out of the PDFs).
-- **Drafted the bundled Lucy blocker email** (`email-to-lucy-blockers.md`, supersedes `email-to-lucy-next-steps.md`) and created a Gmail draft to lucy@lucywayne.com.au. Four asks: open Shopify + staff access, lock prices + $70 threshold, pick fabric, decide who answers customers. Hugo must attach the two PDFs manually (draft tool cannot attach) and send.
-- **Created `clients/sportif/voice-guidelines.md`**, a per-piece checklist distilled from brand.md (voice in one line, say/never-say, imagery rules, the no-dash rule).
-- **Set up a scheduled task** `sportif-blocker-check` (Mondays 9am): reads CURRENT STATE, reports what is blocked on Lucy and for how long, what Hugo can do without her, one recommended action.
-
-### Decisions
-- Archive, not delete, the superseded PDFs (reversible).
-- Competitor product-images (54MB) stay out of git; they live locally only.
-- Old June 18 email superseded: it referenced five now-archived attachments.
-
-### Integration opportunities flagged (need Hugo to authorize connectors in settings)
-- **Klaviyo MCP:** build the welcome flow, coming-soon capture, back-in-stock waitlist directly once Shopify is open.
-- **Canva:** re-auth for coming-soon page and social templates.
-- **Airtable:** ambassador/instructor seeding tracker when outreach starts.
-
-### Open questions / next
-- [ ] Hugo: attach the two PDFs to the Gmail draft and SEND the Lucy blocker email. Highest-leverage action in the workspace.
-- [ ] Confirm whether the 500 bands have landed; if yes, get the unboxing filmed.
-- [ ] Build the ambassador/instructor seeding shortlist (not started, main growth engine).
-- [ ] Write the Shopify coming-soon step-by-step (research done, waiting on the account).
-- [ ] Carried: trademark clearance, materials, Stage 3/4 pipeline templates and adapters, Stage 4 launch imagery, memory.md archive split if it keeps growing.
-
-### Follow-up (same day, continued): sync protocol, memory split, image pipeline live
-
-- **Two-environment sync protocol written into CLAUDE.md** (Claude Code + Cowork on the same folder): read CURRENT STATE + git log at session start, close-out ritual at session end, continuous session numbers, builder/sounding-board rule when both are open. Added `.claude/commands/close-out.md` so Claude Code closes out with one command. Trigger phrases for mid-chat capture: "log this for Claude Code" / "close out the session".
-- **Memory architecture finished.** Built `scripts/archive_memory.py` (moves oldest session entries to `memory-archive.md` when memory.md crosses 90KB, keeps newest 6 sessions + all weekly reviews; no-op below threshold; runs at every close-out). First split done: 141KB to 69KB, Sessions 001 to 007 archived.
-- **OpenAI API key wired into .env** (was pasted on a commented line, fixed) and gpt-image-2 confirmed working after Hugo loaded credit. **The 45s Cowork shell cap only fits quality low; medium/high time out. Division of labour: iterate low in Cowork, render finals in Claude Code.**
-- **First Sportif images generated** (coming-soon hero concepts): v1 to v4 at 3:2, then recomposed v5 to v7 at 4:5 portrait for Instagram (1088x1360). Sizing rule logged: 4:5 feed, 9:16 stories, 3:2 web. Hugo is texting Lucy the three 4:5 options to pick a direction. Known model quirks logged in image-prompts.md: band drifts to basket-coil (name the form explicitly), labels drift to leather (forbid it), casting/props drift across runs.
-- **Generated-media structure created:** `clients/<client>/generated/images|videos/` (binaries gitignored), prompts logged in the client's `image-prompts.md` (the prompt is the source of truth). Template added to `clients/_template/`. Convention in CLAUDE.md.
-- **Glacial Indifference (real Sportif font, 3 weights, OFL) now at `brand/fonts/glacial-indifference/`** and loads by path in BOTH environments. **Production pattern established: generate images text-free, overlay the real wordmark with `scripts/overlay_wordmark.py`** (defaults to Sportif). AI-rendered text is for internal comps only. The two PDF generators still use Poppins; switch on next edit.
-- **Connector reality check:** Klaviyo account does not exist yet (create after Shopify opens, then authorize the connector), Canva not needed (gpt-image-2 + generators cover it), Airtable deferred until ambassador outreach starts.
-- New open items: [ ] Lucy's hero pick, then high-quality final in Claude Code. [ ] Hugo to `git push` from the Mac (local is ~10 commits ahead of GitHub). [ ] Consider adding `git push` to the close-out ritual once he confirms credentials work.
-
----
-
 ## Weekly Review, 2026-07-05 (week of 2026-06-29)
 
 One session this week (012), all on Sportif. After the previous week locked strategy, this week was about turning a pile of overlapping documents into a clean, client-ready package: the Brand Value Plan was rebuilt from the ground up and the four confusing Lucy-facing PDFs were consolidated into two.
@@ -395,45 +304,6 @@ All pulled from Session 012 (the only session this week). None have a later sess
 1. **Get Hugo's sign-off to archive or delete the three superseded PDFs** and lock the two-document set (strategy + operations) as the single Lucy-facing package, so there is one clean pair ready to send.
 2. **Write the Shopify coming-soon page step-by-step now.** The research is done and the band ships early July with still nowhere to sell it, so this is the standing critical-path revenue blocker; having the guide ready means Lucy can act the moment she opens the account.
 3. **Bundle everything blocked on Lucy into one short ask** (prices + pouch threshold, fabric, opening Shopify, who answers customers), so the build workstreams can finally start.
-
----
-
-## Session 012 (2026-07-01): Brand Value Plan redesign, new cover, full PDF rebuild, dev notes stripped
-
-Hugo resumed to work the Brand Value Plan. He had reviewed the exported PDF and meant to bring content changes, but had lost his notes, so we started from the cover, which he flagged as too generic (default font, flat peach, templatey).
-
-### What we did
-- **Redesigned the cover.** Built three concepts in HTML rendered with weasyprint (editorial photo-top, magazine split, framed type-only). Hugo chose **B, the magazine split**: the FLOW band photo full-height on the right, a Lora serif "Brand Value Plan" title on the left, letter-spaced Poppins SPORTIF wordmark, brand palette, footer. First render exposed that the FLOW reference image has old experiment text ("FLOW / move with ease") baked in, so we crop the top ~268px off before use.
-- **Rebuilt the whole PDF, not just the cover.** The old `Sportif-Brand-Value-Plan.pdf` (dated 2026-06-17) predated the 06-18 strategy update, so its body was stale (still "validate the pattern", three calls open). Regenerated the entire document from the current `brand-value-plan.md` in a new editorial card style (numbered lever cards, italic idea line, DO NOW callout boxes, closing sections).
-- **Added a customer-facing cleaning pass.** The generator strips internal dev notes and dates for Lucy's copy (the "2026-06-18" dates, "Session 011", "Hugo confirmed", the Lever 1 "Note:" hedge sentence) while the source `brand-value-plan.md` keeps its provenance intact. Trade-off flagged to Hugo: clean at export time, do not gut the source of truth. Verified via pdftotext that no internal markers survive.
-- **Saved and de-cluttered.** Final `Sportif-Brand-Value-Plan.pdf` written into `clients/sportif/`, overwriting the stale one (same filename, so only one version). Saved a reusable, location-independent generator `clients/sportif/build-brand-value-plan.py` (paths derived from `__file__`), so a future re-export is one command: `python3 build-brand-value-plan.py`.
-
-### What we learned / gotchas
-- **Sandbox rebooted mid-session and switched VM session id**, which wiped the pip-installed weasyprint and all working files in the outputs dir, and changed the host outputs path. Re-pinned the host outputs path with a probe file. Lesson: keep deliverables in the mounted `hyperframes` folder (stable host path), treat the outputs dir as throwaway, and expect to reinstall weasyprint per fresh sandbox.
-- **Fonts:** only Lora (serif) and Poppins (geometric sans) are installed in the sandbox. No Glacial Indifference, so Poppins letter-spaced stands in for the wordmark and Lora carries the titles. Good enough and looks intentional.
-- **Deleting files in the mount** now works via the `allow_cowork_file_delete` tool (used it to remove a stray `_wtest`), rather than being impossible.
-- **present_files with a PDF did not show a preview for Hugo**; a combined PNG montage of the pages is the reliable way to let him see multi-page output in chat.
-
-### Restructure after Hugo's screenshot review (same session)
-- Hugo reviewed the refreshed PDF and asked for a real client cut: make "the idea in one line" actually one line, tighten every lever hard, use bullet points, move **Lucy to lever 1**, fix ambiguous titles, and stop showing the internal "DO NOW" boxes to Lucy.
-- Two decisions he made: (1) reframe the action boxes as **"What we'll implement"** and keep them in the PDF (forward-looking, client-appropriate), and (2) **keep two docs**: `brand-value-plan.md` stays the detailed internal source, and a new condensed `brand-value-plan-client.md` drives the PDF.
-- Built `clients/sportif/brand-value-plan-client.md` (Lucy #1, tight bullets, clearer titles, one-line intro, "What we'll implement" bullets) and repointed the generator at it. Dropped "Three calls this plan depends on" from the client cut (internal, resolved). Softened jargon: removed "devil's advocate review", "from the brief", "White Fox register", and "ACCC exposure". Result: **5 pages, down from 7**, saved over the client PDF.
-- Generator note: `build-brand-value-plan.py` now reads the client md, renders bullet lists and a relabelled implement box. Two markdown files can drift, so if the internal plan changes, remember to reflect it in the client cut too.
-- Hugo then asked to tie the plan to the Shopify build. Added a section, **"The Sportif store, where it all comes together"**, that connects the levers to the concrete store (one hub at sportifcollection.com.au, product pages carrying Lucy's story, Klaviyo email capture including the pre-launch coming-soon page, one store with Shopify Markets for AU/US, founding drop plus back-in-stock waitlist). Grounded in `shopify-setup-info-from-lucy.md` and `digital-ecosystem-action-plan.md`, not invented. Generator updated so sections (not just levers) can carry an italic lead line. Still 5 pages.
-
-### Consolidated four overlapping plans into two (same session)
-- Hugo flagged that four Lucy-facing PDFs (Brand Value Plan, Action Plan, Digital Plan for Lucy, Socials-to-Shop) overlapped and were confusing. Nothing sent to Lucy yet. Analysed them: three real topics spread across four files (WHY = Brand Value Plan; HOW IT CONNECTS = Digital Plan + Socials-to-Shop, duplicates; WHAT NEXT = Action Plan + repeated in the Digital phases and BVP "where to start").
-- His two decisions: **two docs, strategy and operations, split apart**, both **Lucy-facing and polished** (owner tags and working notes stay out).
-- Result, four client PDFs become two:
-  - **Sportif-Brand-Value-Plan.pdf (strategy):** slimmed to idea + six levers + "What winning looks like." Removed the store section and the 90-day list (moved to the Launch Plan). Source: `brand-value-plan-client.md`.
-  - **Sportif-Launch-Plan.pdf (operations):** "How it all connects" (a new single SVG hub-and-funnel diagram replacing the Digital Plan and Socials-to-Shop), "The Shopify store," "The plan, phase by phase" (Now / Build / Lead-up / Launch / After, absorbing the Action Plan), and "What we need from you." Source: `launch-plan-client.md`, generator `build-launch-plan.py`.
-- The detailed internal working docs stay as the source of truth and were not gutted: `brand-value-plan.md`, `digital-ecosystem-action-plan.md` (owners, budget, content ideas, sources), `action-plan-checklist.md`.
-- **Superseded client PDFs to remove/archive** (pending Hugo's ok): `Sportif-Action-Plan.pdf`, `Sportif-Digital-Plan-for-Lucy.pdf`, `Sportif-Socials-to-Shop.pdf`. File deletion is enabled for the hyperframes folder.
-
-### Open questions / next
-- Decide whether to archive or delete the three superseded client PDFs above.
-- Hugo may send further tweaks to either client cut; apply to `brand-value-plan-client.md` or `launch-plan-client.md` and re-run the matching generator.
-- Still open from before this session: write the Shopify coming-soon page step-by-step (already researched), the items waiting on Lucy (prices, fabric, opening Shopify), and the customer-comms setup.
 
 ---
 
