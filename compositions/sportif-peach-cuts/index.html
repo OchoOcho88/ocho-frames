@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Regular.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Bold.woff2") format("woff2"); font-weight: 700; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #F0CDB3; font-family: "Glacial Indifference", sans-serif; }
+      #stage { position: absolute; inset: 0; overflow: hidden; background: #F0CDB3; }
+      /* stacked full-bleed cuts, all hidden until the timeline reveals them */
+      .cut { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transform-origin: center; will-change: transform, opacity; }
+
+      /* intro wordmark + end card overlays */
+      .overlay { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #F0CDB3; z-index: 50; }
+      #endcard { opacity: 0; }
+      .wm { color: #FFFBF8; font-size: 132px; letter-spacing: 0.26em; text-indent: 0.26em; }
+      .rule { width: 200px; height: 7px; background: #FFFBF8; margin-top: 34px; transform-origin: center; }
+      .soon { margin-top: 40px; color: #4A433C; font-size: 50px; letter-spacing: 0.12em; text-indent: 0.12em; }
+      .handle { margin-top: 20px; color: #833827; font-size: 38px; letter-spacing: 0.08em; text-indent: 0.08em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="15.00" data-width="1080" data-height="1920">
+      <div id="stage" class="clip" data-start="0" data-duration="15.00" data-track-index="1">
+        <img id="img00" class="cut" src="images/img00.png" alt="" data-layout-allow-overflow />
+        <img id="img01" class="cut" src="images/img01.png" alt="" data-layout-allow-overflow />
+        <img id="img02" class="cut" src="images/img02.png" alt="" data-layout-allow-overflow />
+        <img id="img03" class="cut" src="images/img03.png" alt="" data-layout-allow-overflow />
+        <img id="img04" class="cut" src="images/img04.png" alt="" data-layout-allow-overflow />
+        <img id="img05" class="cut" src="images/img05.png" alt="" data-layout-allow-overflow />
+        <img id="img06" class="cut" src="images/img06.png" alt="" data-layout-allow-overflow />
+        <img id="img07" class="cut" src="images/img07.png" alt="" data-layout-allow-overflow />
+        <img id="img08" class="cut" src="images/img08.png" alt="" data-layout-allow-overflow />
+        <img id="img09" class="cut" src="images/img09.png" alt="" data-layout-allow-overflow />
+        <img id="img10" class="cut" src="images/img10.png" alt="" data-layout-allow-overflow />
+        <img id="img11" class="cut" src="images/img11.png" alt="" data-layout-allow-overflow />
+        <img id="img12" class="cut" src="images/img12.png" alt="" data-layout-allow-overflow />
+        <img id="img13" class="cut" src="images/img13.png" alt="" data-layout-allow-overflow />
+      </div>
+
+      <!-- intro wordmark (fades out as the cuts begin) -->
+      <div id="intro" class="overlay clip" data-start="0" data-duration="1.00" data-track-index="2">
+        <div class="wm">SPORTIF</div>
+        <div class="rule"></div>
+      </div>
+
+      <!-- end card (no launch date) -->
+      <div id="endcard" class="overlay clip" data-start="11.00" data-duration="4.00" data-track-index="3">
+        <div class="wm">SPORTIF</div>
+        <div class="rule" id="ec-rule"></div>
+        <div class="soon">Coming soon</div>
+        <div class="handle">@sportifcollection</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /* intro: quick reveal, hold, snap away right on the first beat */
+      tl.from("#intro .wm", { opacity: 0, y: 30, duration: 0.4, ease: "power3.out" }, 0.05);
+      tl.from("#intro .rule", { scaleX: 0, duration: 0.35, ease: "power2.inOut" }, 0.25);
+      tl.to("#intro", { opacity: 0, duration: 0.18, ease: "power1.in" }, 0.820);
+
+      /* beat-cut montage */
+      tl.set("#img00", { opacity: 1 }, 1.000);
+      tl.fromTo("#img00", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 1.000);
+      tl.set("#img00", { opacity: 0 }, 1.500);
+      tl.set("#img01", { opacity: 1 }, 1.500);
+      tl.fromTo("#img01", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 1.500);
+      tl.set("#img01", { opacity: 0 }, 2.000);
+      tl.set("#img02", { opacity: 1 }, 2.000);
+      tl.fromTo("#img02", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 2.000);
+      tl.set("#img02", { opacity: 0 }, 2.500);
+      tl.set("#img03", { opacity: 1 }, 2.500);
+      tl.fromTo("#img03", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 2.500);
+      tl.set("#img03", { opacity: 0 }, 3.000);
+      tl.set("#img04", { opacity: 1 }, 3.000);
+      tl.fromTo("#img04", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 3.000);
+      tl.set("#img04", { opacity: 0 }, 3.500);
+      tl.set("#img05", { opacity: 1 }, 3.500);
+      tl.fromTo("#img05", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 3.500);
+      tl.set("#img05", { opacity: 0 }, 4.000);
+      tl.set("#img06", { opacity: 1 }, 4.000);
+      tl.fromTo("#img06", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 4.000);
+      tl.set("#img06", { opacity: 0 }, 4.500);
+      tl.set("#img07", { opacity: 1 }, 4.500);
+      tl.fromTo("#img07", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 4.500);
+      tl.set("#img07", { opacity: 0 }, 5.000);
+      tl.set("#img08", { opacity: 1 }, 5.000);
+      tl.fromTo("#img08", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 5.000);
+      tl.set("#img08", { opacity: 0 }, 5.500);
+      tl.set("#img09", { opacity: 1 }, 5.500);
+      tl.fromTo("#img09", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 5.500);
+      tl.set("#img09", { opacity: 0 }, 6.000);
+      tl.set("#img10", { opacity: 1 }, 6.000);
+      tl.fromTo("#img10", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 6.000);
+      tl.set("#img10", { opacity: 0 }, 6.500);
+      tl.set("#img11", { opacity: 1 }, 6.500);
+      tl.fromTo("#img11", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 6.500);
+      tl.set("#img11", { opacity: 0 }, 7.000);
+      tl.set("#img12", { opacity: 1 }, 7.000);
+      tl.fromTo("#img12", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 7.000);
+      tl.set("#img12", { opacity: 0 }, 7.500);
+      tl.set("#img13", { opacity: 1 }, 7.500);
+      tl.fromTo("#img13", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 7.500);
+      tl.set("#img13", { opacity: 0 }, 8.000);
+      tl.set("#img00", { opacity: 1 }, 8.000);
+      tl.fromTo("#img00", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 8.000);
+      tl.set("#img00", { opacity: 0 }, 8.250);
+      tl.set("#img03", { opacity: 1 }, 8.250);
+      tl.fromTo("#img03", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 8.250);
+      tl.set("#img03", { opacity: 0 }, 8.500);
+      tl.set("#img01", { opacity: 1 }, 8.500);
+      tl.fromTo("#img01", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 8.500);
+      tl.set("#img01", { opacity: 0 }, 8.750);
+      tl.set("#img09", { opacity: 1 }, 8.750);
+      tl.fromTo("#img09", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 8.750);
+      tl.set("#img09", { opacity: 0 }, 9.000);
+      tl.set("#img02", { opacity: 1 }, 9.000);
+      tl.fromTo("#img02", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 9.000);
+      tl.set("#img02", { opacity: 0 }, 9.250);
+      tl.set("#img06", { opacity: 1 }, 9.250);
+      tl.fromTo("#img06", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 9.250);
+      tl.set("#img06", { opacity: 0 }, 9.500);
+      tl.set("#img04", { opacity: 1 }, 9.500);
+      tl.fromTo("#img04", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 9.500);
+      tl.set("#img04", { opacity: 0 }, 9.750);
+      tl.set("#img07", { opacity: 1 }, 9.750);
+      tl.fromTo("#img07", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 9.750);
+      tl.set("#img07", { opacity: 0 }, 10.000);
+      tl.set("#img00", { opacity: 1 }, 10.000);
+      tl.fromTo("#img00", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 10.000);
+      tl.set("#img00", { opacity: 0 }, 10.250);
+      tl.set("#img03", { opacity: 1 }, 10.250);
+      tl.fromTo("#img03", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 10.250);
+      tl.set("#img03", { opacity: 0 }, 10.500);
+      tl.set("#img01", { opacity: 1 }, 10.500);
+      tl.fromTo("#img01", { scale: 1.06 }, { scale: 1.0, duration: 0.225, ease: "power2.out" }, 10.500);
+      tl.set("#img01", { opacity: 0 }, 10.750);
+      tl.set("#img09", { opacity: 1 }, 10.750);
+      tl.fromTo("#img09", { scale: 1.06 }, { scale: 1.0, duration: 0.450, ease: "power2.out" }, 10.750);
+      tl.set("#img09", { opacity: 0 }, 11.000);
+
+      /* end card assembles and holds */
+      tl.to("#endcard", { opacity: 1, duration: 0.2, ease: "power1.out" }, 11.000);
+      tl.from("#endcard .wm", { opacity: 0, y: 34, duration: 0.45, ease: "power3.out" }, 11.050);
+      tl.from("#ec-rule", { scaleX: 0, duration: 0.35, ease: "power2.inOut" }, 11.200);
+      tl.from("#endcard .soon", { opacity: 0, y: 22, duration: 0.4, ease: "power2.out" }, 11.300);
+      tl.from("#endcard .handle", { opacity: 0, duration: 0.35, ease: "sine.out" }, 11.420);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

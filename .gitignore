@@ -98,3 +98,6 @@ _to_delete/
 .venvs/
 # HyperFrames snapshot QA artifacts (regenerable)
 compositions/*/snapshots/
+# HyperFrames local audio (reproducible via generators / muxed in post)
+compositions/*/audio/
+compositions/*/snapshots-*/
