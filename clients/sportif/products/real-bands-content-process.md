@@ -76,3 +76,29 @@ comp's `scratch_music.py` (run with the `.venvs/tts` python: it has numpy+soundf
 Scope per-scene selectors (`#intro .wm`, not `.wm`) when a class repeats across scenes, or
 one scene's tween will grab and hide another scene's element (this hid the end-card wordmark
 in the beat-cut montage until fixed).
+
+## Step 6 — Product IN USE (pilates), Stage 5
+
+Goal: show the band used in pilates (band around the thighs), on-brand.
+
+- **Client gym shots are NOT the base.** Lucy's real client shots were a black-and-chrome
+  weights gym, all-black outfit, skin-forward posing, the exact masculine/glam register Sportif
+  positions AGAINST (White Fox anti-reference in brand.md). Restaging them even tripped
+  gpt-image-2's `[sexual]` output moderation. Lesson: they're authentic but off-brand; the
+  brand-aligned route is to GENERATE fresh pilates scenes. (Real band-in-use content should be a
+  future proper shoot kept pilates/warm/elevated, not black-gym-glam.)
+- **Generate on-brand pilates in-use scenes**: `scripts-local/gen_band_inuse.py`. Modest,
+  elevated, peach-world poses (glute bridge, squat, lateral walk, standing/kneeling abduction),
+  band around thighs. Keep poses MODEST/tasteful or output moderation blocks `[sexual]`. Pick
+  poses that flatter and read as "in use"; drop awkward ones (a side glute bridge read flat;
+  kneeling-abduction cut the band into the knee; a curtsy lunge looked off). Fix stray details
+  with a scoped edit (e.g. grip socks -> barefoot).
+- **Stamp the real SPORTIF label** with the two-image trick: `stamp_band_label.py <pose> <tier>
+  low`. Passing the in-use photo AND the real label crop together makes gpt reproduce the
+  correct text with natural perspective/lighting. Match tier to band colour. Low quality reads
+  natural (SPORTIF legible, tiny sub-text soft) and Hugo preferred it. Compositing the real
+  label (`composite_band_label.py`) is pixel-perfect but looks PASTED-ON, rejected. Medium/high
+  hit the ~60s network cap even in the VS Code terminal (shares the sandbox); a real
+  Terminal.app might escape it (unconfirmed).
+- Reel: `compositions/sportif-band-inuse/` (card-on-peach, pop motion, CTA pill). Two scratch
+  music beds kept for Lucy to choose pacing: calm ~100 BPM and upbeat ~118 BPM (fuller bass).

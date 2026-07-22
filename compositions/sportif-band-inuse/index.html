@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Regular.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Bold.woff2") format("woff2"); font-weight: 700; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #EAD9C8; font-family: "Glacial Indifference", sans-serif; }
+      .scene { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #EAD9C8;
+               display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 56px; padding: 80px; }
+      #s1 { z-index: 1; } #s2 { z-index: 2; } #s3 { z-index: 3; } #s4 { z-index: 4; } #s5 { z-index: 5; }
+      #s2, #s3, #s4, #s5 { opacity: 0; }
+
+      .card { position: relative; overflow: hidden; border-radius: 10px; background: #EAD9C8; box-shadow: 0 24px 56px rgba(74,42,26,0.26);
+              width: 812px; height: 1218px; }   /* 2:3, matches the in-use stills */
+      .card img { position: absolute; top: -3%; left: -3%; width: 106%; height: 106%; object-fit: cover; }
+      .cap-line { color: #4A433C; font-size: 72px; line-height: 1.24; letter-spacing: 0.01em; }
+      .cap-line.accent { color: #833827; }
+
+      .wm { color: #FFFBF8; font-size: 132px; letter-spacing: 0.26em; text-indent: 0.26em; }
+      .rule { width: 200px; height: 7px; background: #FFFBF8; margin-top: 34px; transform-origin: center; }
+      .soon { margin-top: 40px; color: #4A433C; font-size: 50px; letter-spacing: 0.12em; text-indent: 0.12em; }
+      .handle { margin-top: 18px; color: #833827; font-size: 38px; letter-spacing: 0.08em; text-indent: 0.08em; }
+      .cta { margin-top: 44px; padding: 24px 56px; border-radius: 60px; background: #833827; color: #FDF6EF;
+             font-size: 40px; letter-spacing: 0.08em; text-indent: 0.08em; transform-origin: center; }
+      #s1, #s5 { gap: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="14.4" data-width="1080" data-height="1920">
+      <div id="s1" class="scene clip" data-start="0" data-duration="2.6" data-track-index="1">
+        <div class="wm">SPORTIF</div><div class="rule" id="s1-rule"></div>
+      </div>
+
+      <div id="s2" class="scene clip" data-start="2.2" data-duration="3.0" data-track-index="2">
+        <div class="card"><img id="s2-img" src="images/p1.png" alt="" data-layout-allow-overflow /></div>
+        <div class="cap-line">For your practice.</div>
+      </div>
+
+      <div id="s3" class="scene clip" data-start="5.2" data-duration="3.0" data-track-index="1">
+        <div class="card"><img id="s3-img" src="images/p2.png" alt="" data-layout-allow-overflow /></div>
+        <div class="cap-line accent">Find your resistance.</div>
+      </div>
+
+      <div id="s4" class="scene clip" data-start="8.2" data-duration="3.0" data-track-index="2">
+        <div class="card"><img id="s4-img" src="images/p3.png" alt="" data-layout-allow-overflow /></div>
+        <div class="cap-line">Made to move with you.</div>
+      </div>
+
+      <div id="s5" class="scene clip" data-start="11.2" data-duration="3.2" data-track-index="1">
+        <div class="wm">SPORTIF</div><div class="rule" id="s5-rule"></div>
+        <div class="soon">Coming soon</div><div class="handle">@sportifcollection</div>
+        <div class="cta" id="s5-cta">Join our community</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      tl.from("#s1 .wm", { opacity: 0, y: 30, duration: 0.5, ease: "power3.out" }, 0.1);
+      tl.from("#s1-rule", { scaleX: 0, duration: 0.4, ease: "power2.inOut" }, 0.4);
+
+      function scene(id, at, img) {
+        tl.to("#" + id, { opacity: 1, duration: 0.5, ease: "power1.inOut" }, at);
+        tl.from("#" + id + " .card", { opacity: 0, scale: 0.9, y: 30, duration: 0.72, ease: "back.out(1.5)" }, at + 0.1);
+        tl.from("#" + img, { scale: 1.08, duration: 3.0, ease: "none" }, at);
+        tl.from("#" + id + " .cap-line", { opacity: 0, y: 22, scale: 0.92, duration: 0.5, ease: "back.out(1.8)" }, at + 0.5);
+      }
+      scene("s2", 2.2, "s2-img");
+      scene("s3", 5.2, "s3-img");
+      scene("s4", 8.2, "s4-img");
+
+      tl.to("#s5", { opacity: 1, duration: 0.35, ease: "power1.inOut" }, 11.2);
+      tl.from("#s5 .wm", { opacity: 0, y: 34, duration: 0.5, ease: "power3.out" }, 11.3);
+      tl.from("#s5-rule", { scaleX: 0, duration: 0.4, ease: "power2.inOut" }, 11.5);
+      tl.from("#s5 .soon", { opacity: 0, y: 22, duration: 0.42, ease: "power2.out" }, 11.6);
+      tl.from("#s5 .handle", { opacity: 0, duration: 0.4, ease: "sine.out" }, 11.75);
+      tl.from("#s5-cta", { opacity: 0, scale: 0.7, y: 14, duration: 0.5, ease: "back.out(2.6)" }, 11.95);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
