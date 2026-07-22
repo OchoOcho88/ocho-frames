@@ -70,10 +70,15 @@ JOBS = {
  # --- Band-in-use editorial ---
  'bu1': (
    "An elevated fitness editorial photograph: a woman mid-pilates in a warm minimalist reformer "
-   "studio, performing a standing hip-abduction with a flat wide knitted-fabric booty band around "
-   "her upper thighs. Cream plaster walls, arched backlit mirrors, terracotta accents, soft "
-   "natural light. She wears modest full-coverage caramel activewear. Clean composition, band "
-   "clearly visible and in use. " + BAND + " " + PALETTE + " " + GUARD),
+   "studio, standing tall and doing a SMALL controlled lateral leg lift (a gentle standing "
+   "hip-abduction, working foot only slightly off the floor, NOT a high kick), a flat wide "
+   "knitted-fabric booty band stretched around her upper thighs. She wears a clearly-defined "
+   "MATCHING TWO-PIECE ACTIVEWEAR SET: a fitted ribbed long-sleeve crop top and separate "
+   "high-waisted bike shorts in warm blush-caramel, the fabric a distinctly different tone from her "
+   "skin so the outfit reads obviously as sportswear (not nude, not a bodysuit, not a leotard, not "
+   "loungewear). The band sits around her upper thighs OVER the shorts. Cream plaster walls, arched "
+   "backlit mirrors, terracotta accents, soft natural light. Clean composition, band clearly "
+   "visible and in use. " + BAND + " " + PALETTE + " " + GUARD),
  'bu2': (
    "An elevated fitness editorial photograph: a woman in a warm minimalist studio holding a deep "
    "squat, a flat wide knitted-fabric booty band stretched around her upper thighs, hips back, "
