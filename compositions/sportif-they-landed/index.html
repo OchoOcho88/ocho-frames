@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Regular.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Bold.woff2") format("woff2"); font-weight: 700; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #EEC7AF; font-family: "Glacial Indifference", sans-serif; }
+      .scene { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #EEC7AF;
+               display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 58px; padding: 90px; }
+      #s1 { z-index: 1; } #s2 { z-index: 2; } #s3 { z-index: 3; } #s4 { z-index: 4; } #s5 { z-index: 5; }
+      #s2, #s3, #s4, #s5 { opacity: 0; }
+
+      /* announcement scene */
+      #s1 { gap: 34px; }
+      .kicker { color: #833827; font-size: 40px; letter-spacing: 0.44em; text-indent: 0.44em; }
+      .headline { color: #4A433C; font-size: 130px; line-height: 1.04; letter-spacing: 0.01em; }
+      .headline span { display: inline-block; transform-origin: center bottom; }
+      .subhint { color: #4A433C; font-size: 40px; letter-spacing: 0.06em; opacity: 0.72; margin-top: 6px; }
+
+      .card { position: relative; overflow: hidden; border-radius: 10px; background: #EEC7AF; box-shadow: 0 24px 56px rgba(74,42,26,0.26); }
+      .card.p45 { width: 860px; height: 1075px; }
+      .card.land { width: 980px; height: 654px; }
+      .card img { position: absolute; top: -3%; left: -3%; width: 106%; height: 106%; object-fit: cover; }
+      .card.land img { top: 0; left: 0; width: 100%; height: 100%; }
+      .cap-line { color: #4A433C; font-size: 72px; line-height: 1.24; letter-spacing: 0.01em; }
+      .cap-line.accent { color: #833827; }
+
+      .wm { color: #FFFBF8; font-size: 132px; letter-spacing: 0.26em; text-indent: 0.26em; }
+      .rule { width: 200px; height: 7px; background: #FFFBF8; margin-top: 34px; transform-origin: center; }
+      .soon { margin-top: 40px; color: #4A433C; font-size: 50px; letter-spacing: 0.12em; text-indent: 0.12em; }
+      .handle { margin-top: 18px; color: #833827; font-size: 38px; letter-spacing: 0.08em; text-indent: 0.08em; }
+      .cta { margin-top: 44px; padding: 24px 56px; border-radius: 60px; background: #833827; color: #FDF6EF;
+             font-size: 40px; letter-spacing: 0.08em; text-indent: 0.08em; transform-origin: center; }
+      #s5 { gap: 0; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="14.2" data-width="1080" data-height="1920">
+      <!-- 1: announcement -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="3.4" data-track-index="1">
+        <div class="kicker" id="s1-kick">FIRST DROP</div>
+        <div class="headline"><span id="s1-h1">They've</span><br /><span id="s1-h2">landed.</span></div>
+        <div class="subhint" id="s1-sub">the bands are here</div>
+      </div>
+
+      <!-- 2: product reveal (flatlay) -->
+      <div id="s2" class="scene clip" data-start="3.0" data-duration="3.0" data-track-index="2">
+        <div class="card land"><img id="s2-img" src="images/flatlay.png" alt="" data-layout-allow-overflow /></div>
+        <div class="cap-line">Three strengths.</div>
+      </div>
+
+      <!-- 3: detail (band card) -->
+      <div id="s3" class="scene clip" data-start="6.0" data-duration="2.7" data-track-index="1">
+        <div class="card p45"><img id="s3-img" src="images/band.png" alt="" data-layout-allow-overflow /></div>
+        <div class="cap-line accent">Find your resistance.</div>
+      </div>
+
+      <!-- 4: lifestyle tie-in -->
+      <div id="s4" class="scene clip" data-start="8.7" data-duration="2.9" data-track-index="2">
+        <div class="card p45"><img id="s4-img" src="images/life.png" alt="" data-layout-allow-overflow /></div>
+        <div class="cap-line">For your morning ritual.</div>
+      </div>
+
+      <!-- 5: end card -->
+      <div id="s5" class="scene clip" data-start="11.6" data-duration="2.6" data-track-index="1">
+        <div class="wm">SPORTIF</div><div class="rule" id="s5-rule"></div>
+        <div class="soon">Coming soon</div><div class="handle">@sportifcollection</div>
+        <div class="cta" id="s5-cta">Join our community</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /* announcement builds: kicker fades, headline words POP in, "landed." wiggles */
+      tl.from("#s1-kick", { opacity: 0, y: 14, scale: 0.9, duration: 0.45, ease: "power2.out" }, 0.15);
+      tl.from("#s1-h1", { opacity: 0, scale: 0.45, y: 24, duration: 0.55, ease: "back.out(2.2)" }, 0.5);
+      tl.from("#s1-h2", { opacity: 0, scale: 0.45, y: 24, duration: 0.6, ease: "back.out(2.6)" }, 0.78);
+      /* playful wiggle settle on "landed." right after it pops */
+      tl.to("#s1-h2", { rotation: 4, duration: 0.09, ease: "power1.inOut" }, 1.34)
+        .to("#s1-h2", { rotation: -3, duration: 0.09, ease: "power1.inOut" }, ">")
+        .to("#s1-h2", { rotation: 1.6, duration: 0.09, ease: "power1.inOut" }, ">")
+        .to("#s1-h2", { rotation: 0, duration: 0.14, ease: "power2.out" }, ">");
+      tl.from("#s1-sub", { opacity: 0, y: 8, duration: 0.5, ease: "sine.out" }, 1.7);
+
+      function scene(id, at, img) {
+        tl.to("#" + id, { opacity: 1, duration: 0.5, ease: "power1.inOut" }, at);
+        /* product card POPS in with a bounce (carries the headline's energy) */
+        tl.from("#" + id + " .card", { opacity: 0, scale: 0.82, y: 30, duration: 0.72, ease: "back.out(1.7)" }, at + 0.1);
+        tl.from("#" + img, { scale: 1.08, duration: 3.0, ease: "none" }, at);
+        tl.from("#" + id + " .cap-line", { opacity: 0, y: 22, scale: 0.9, duration: 0.5, ease: "back.out(2)" }, at + 0.55);
+      }
+      scene("s2", 3.0, "s2-img");
+      scene("s3", 6.0, "s3-img");
+      scene("s4", 8.7, "s4-img");
+
+      tl.to("#s5", { opacity: 1, duration: 0.35, ease: "power1.inOut" }, 11.6);
+      tl.from("#s5 .wm", { opacity: 0, y: 34, duration: 0.5, ease: "power3.out" }, 11.7);
+      tl.from("#s5-rule", { scaleX: 0, duration: 0.4, ease: "power2.inOut" }, 11.9);
+      tl.from("#s5 .soon", { opacity: 0, y: 22, duration: 0.42, ease: "power2.out" }, 12.0);
+      tl.from("#s5 .handle", { opacity: 0, duration: 0.4, ease: "sine.out" }, 12.15);
+      /* CTA pill pops in last */
+      tl.from("#s5-cta", { opacity: 0, scale: 0.7, y: 14, duration: 0.5, ease: "back.out(2.6)" }, 12.4);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
