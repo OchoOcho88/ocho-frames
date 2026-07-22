@@ -20,7 +20,12 @@ BAND = flat wide knitted-fabric loop.
   visibly tensioned).
 Casting came back naturally diverse (fits Sportif's inclusive positioning). Note the bands are
 AI-imagined here (not the real SPORTIF label) — stamp the real label for product-accurate use.
-Next: rerun winners at high quality (native Terminal) + add photoreal directives to cut the AI look.
+**Photoreal `_r` variants (kept):** the plain low proofs looked "a bit AI" (waxy, over-smooth). Adding a
+REALISM block (`... real` 3rd arg) — 35mm Kodak Portra 400, 50mm lens, natural light, visible skin
+texture/pores/flyaways, film grain, candid documentary realism, explicitly forbid glossy/plastic/CGI —
+markedly cut the AI look across all three directions (skin, plaster, natural light all read real). The
+`_r_low.png` set is the preferred base. Finals: run `gen_fresh_explore.py high all real` from a native
+macOS Terminal (high blows past the ~60s harness cap).
 
 ## reference-reskin: pilates-studio ad to Sportif waitlist poster (2026-07-22)
 

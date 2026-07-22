@@ -18,7 +18,17 @@ OUT = f'{REPO}/clients/sportif/generated/images/fresh-explore'
 os.makedirs(OUT, exist_ok=True)
 
 QUALITY = sys.argv[1] if len(sys.argv) > 1 else 'low'
-ONLY = sys.argv[2].split(',') if len(sys.argv) > 2 else None
+ONLY = sys.argv[2].split(',') if len(sys.argv) > 2 and sys.argv[2] not in ('all', '') else None
+# 3rd arg 'real' appends the photoreal block and writes {name}_r_{quality}.png
+REAL = len(sys.argv) > 3 and sys.argv[3] == 'real'
+
+REALISM = ("Shot on 35mm film, Kodak Portra 400, 50mm f/2 lens, natural available window light. "
+           "Authentic unretouched editorial photography: real visible skin texture with pores and "
+           "fine detail, faint freckles, a few loose flyaway hairs, natural asymmetry and small "
+           "imperfections, subtle film grain, gentle shallow depth of field, soft natural colour and "
+           "slightly imperfect focus. Candid and a touch unposed, documentary realism, as if shot by "
+           "a real fashion photographer. Absolutely avoid any glossy, plastic, waxy, over-smoothed, "
+           "airbrushed, symmetrical, CGI or 3D-render look.")
 
 PALETTE = ("Colour palette: warm neutrals only — blush peach, caramel tan, terracotta clay, "
            "linen cream, warm charcoal. Soft natural warm light, gentle shadows, film-like grain, "
@@ -74,6 +84,8 @@ JOBS = {
 
 def run(item):
     name, prompt = item
+    if REAL:
+        prompt = prompt + ' ' + REALISM
     try:
         r = requests.post('https://api.openai.com/v1/images/generations',
             headers={'Authorization': f'Bearer {key}', 'Content-Type': 'application/json'},
@@ -83,7 +95,7 @@ def run(item):
         j = r.json()
         if 'data' not in j:
             return f'FAIL {name}: {str(j)[:300]}'
-        out = f'{OUT}/{name}_{QUALITY}.png'
+        out = f'{OUT}/{name}{"_r" if REAL else ""}_{QUALITY}.png'
         open(out, 'wb').write(base64.b64decode(j['data'][0]['b64_json']))
         return f'ok {name} -> {out}'
     except Exception as e:
