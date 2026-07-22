@@ -5,6 +5,21 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## reference-reskin: pilates-studio ad to Sportif waitlist poster (2026-07-22)
+
+Reskin of a reference layout Lucy sent (a pilates-studio "WE'RE OPEN" ad). Technique = **no-text AI plate + our own PIL type layer** (we always own the type). Two scripts are the source of truth; finals gitignored.
+
+**Plate (gpt-image-2 images/edits, `scripts-local/reskin_pilates_ref.py`).** Source `clients/sportif/products/reference-layouts/pilates-open-ref.png`, size 1024x1536, quality low. Prompt strips ALL text + the big watermark, adds a blush booty band, removes the black ankle weights, keeps layout/poses/warm palette. Two variants: `asis` (keep the raised-leg glute bridge) and `bridge` (convert to a standard two-foot glute bridge so the band loops both thighs). Shared prompt verbatim in the script's `COMMON` string. bridge is the pick.
+
+**Type layer (PIL, `scripts-local/layout_reskin.py`, system python).** Copy set "Find your resistance", all Glacial Indifference, navy #13253D / cream #F4EEE5 (sampled from the reference):
+- kicker: `meet` (Regular 34) over `SPORTIF` (Regular 60, real lockup tracking -0.059) = the logotype
+- headline: `FIND YOUR` / `RESISTANCE` (Bold, fit to 84% width, cream, soft drop-shadow for contrast over the photo)
+- watermark: faint oversized `SPORTIF` (~12% alpha, lower area)
+- CTA: solid terracotta #833827 `JOIN THE WAITLIST` pill, cream text, soft lift shadow (bottom-anchored)
+- footer: SPORTIF lockup + `@sportifcollection`
+- bridge only: a framed single-band product card in the left void (blush MEDIUM card, rounded + shadow + cream border) — ties product to lifestyle inside one still.
+Finals: `generated/images/reference-reskin/reskin-bridge.png` (lead), `reskin-asis.png` (alt). No dates (trademark hold). Every copy/colour/size is a one-line edit.
+
 ## cosmos-peach series (2026-07-20) LUCY-APPROVED, 15 finals
 
 Batch edit of the whole renamed `assets/Cosmos pictures` folder (15 of 16 jpegs; `bw-arms-detail` hard-blocked by moderation 3x). Per-image prompts live verbatim in `scripts-local/gen_cosmos_peach.py` (JOBS dict). Shared recipe: images/edits, gpt-image-2, per-image instruction + palette block + KEEP block (same person/pose/lighting, recompose 4:5, no text) + the moderation-safety sentence. Proofs 1024x1280 low, finals 1088x1360 high. Narrow lockup (62 percent width, y 0.49) via `scripts/overlay_logo.py`, cream #F4F2EA, except peach #F0CDB3 on the two palest images (lookbook-grid-9up, bw-forward-fold). Group shots use a palette MIX (peach/caramel/cream/terracotta, one per model). Outputs in `generated/images/cosmos-peach/` with text-free bases in `notext/`.

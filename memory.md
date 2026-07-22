@@ -6,8 +6,9 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-22 | Last session: 023 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: standalone waitlist capture page (does not need Lucy or trademark), then ambassador/instructor seeding shortlist*
+*Last updated: 2026-07-22 | Last session: 024 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: standalone waitlist capture page (does not need Lucy or trademark), then ambassador/instructor seeding shortlist*
 
+- **NEW (Session 024): reference-layout reskin technique + 2 finals.** Lucy sent a pilates-studio ad to copy the layout of; established the reusable move = **AI generates a no-text plate, we own the type in PIL**. `reskin_pilates_ref.py` strips text + adds our band; `layout_reskin.py` lays all copy (Glacial Indifference, real SPORTIF logotype, terracotta JOIN THE WAITLIST pill, @sportifcollection, a framed single-band product card in the negative space). Two finals at `clients/sportif/generated/images/reference-reskin/`: `reskin-bridge.png` (lead) + `reskin-asis.png` (alt). Soft waitlist teasers, no dates. Source imagery at `clients/sportif/products/reference-layouts/`. See [[real-band-content-pipeline]].
 - **NEW (Session 023): real-band product content suite, 7 compositions total.** From 3 casual real-band snapshots: restaged flatlay + 3 hero cards (gpt-image-2 edits), a **range reel**, two **lifestyle+product blends** (rhythmic beat-cut + calm story), a **"they've landed" drop teaser** (bouncy pop headline, Join-our-community CTA), and a **band-in-use pilates reel** (Stage 5: band around the thighs with the real SPORTIF label stamped in). Full reusable process at `clients/sportif/products/real-bands-content-process.md`. The bands' colourways ARE the peach palette (HEAVY terracotta / MEDIUM blush / LIGHT sand). The **blend is the strongest format** (desire + product together).
 - **Label-stamp technique:** to put the real SPORTIF patch on an AI-generated band, pass gpt-image-2 BOTH the scene and the real label crop (`scripts-local/stamp_band_label.py`). Low quality reads natural (Hugo preferred it over a crisp-but-pasted composite). Med/high hit the ~60s cap even in the VS Code terminal.
 - **Client gym shots = off-brand** (black weights gym, glam register Sportif is against; even tripped AI moderation). Use fresh generated pilates scenes instead. Real band-in-use = future proper shoot, kept pilates/warm.
@@ -119,6 +120,24 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 1. **Make the Tuesday Lucy meeting count.** The agenda is already staged in funnel-plan.md: get the launch slip reason and a new launch date, approval for the standalone waitlist page, the incentive decision (A/B/C), and movement on the Shopify blockers. This one meeting unblocks nearly everything else.
 2. **Stand up the standalone waitlist capture page immediately after approval.** It is the first workstream that does not wait on Shopify, it un-deadends every piece of content already built, and the Funnel 1 spec is written. Pair it with the 3-email welcome flow so capture and nurture ship together.
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
+
+---
+
+## Session 024 (2026-07-22, Claude Code): reference-layout reskin (Lucy's pilates-studio ad to a Sportif waitlist poster)
+
+Lucy sent a reference: a pilates-studio "WE'RE OPEN / First class is free" launch ad (tan colour block + oversized PILATES watermark + two models, one glute-bridge with black ankle weights, one on a reformer). She asked us to reskin it as Sportif: keep the layout, put OUR band on the model, change the wording, add the logo. Saved to `clients/sportif/products/reference-layouts/pilates-open-ref.png`.
+
+**Established the "reference reskin" technique = AI plate + our own type layer** (Hugo: "NO YOU LAYOUT TEXT, THATS OUR WORKFLOW"):
+1. **No-text plate via gpt-image-2 edits** (`scripts-local/reskin_pilates_ref.py`): edit the reference to a CLEAN plate — strip ALL text and the watermark, add a blush booty band, remove the black ankle weights — keeping layout/poses/palette. Generated TWO pose variants to compare: `asis` (keep her raised leg; AI looped the band on the single raised thigh = ambiguous) and `bridge` (convert to a standard two-foot glute bridge; band loops both thighs = clear "in use"). Bridge won.
+2. **Our type layer in PIL** (`scripts-local/layout_reskin.py`, system python): all copy in Glacial Indifference, matched navy #13253D / cream #F4EEE5 sampled from the reference. Copy set "Find your resistance": kicker `meet` (small) over `SPORTIF` (bigger, real logotype = Regular + -0.059 lockup tracking), headline `FIND YOUR / RESISTANCE` (cream, soft drop-shadow so it stays crisp where it crosses the photo), faint oversized `SPORTIF` watermark, a solid terracotta `JOIN THE WAITLIST` CTA pill (with lift shadow), the SPORTIF lockup, and `@sportifcollection`.
+
+**Design iterations Hugo drove (each a one-line tweak in the layout script):** first CTA was a wobbly hand-drawn arc — rejected as bad design, replaced with a proper opaque terracotta pill; filled the left cream void with a framed single-band product card (the blush MEDIUM card, `place_band_card`, rounded + shadow + cream border) so product ties to the lifestyle shot (the blend insight, now inside one still); split "meet sportif" onto two lines; switched the kicker to the real logotype font; opened the meet/SPORTIF gap and made SPORTIF bigger; raised the headline ~15% to clear the doorway.
+
+Two finals kept in `clients/sportif/generated/images/reference-reskin/`: `reskin-bridge.png` (the lead piece, with the band card) and `reskin-asis.png` (dramatic raised-leg alt, no room for the card). Both are soft waitlist teasers with NO dates (respecting the trademark hold). Scripts are the source of truth (finals gitignored). Copy/colour/logo font all editable in one line.
+
+**Key learnings:** (a) the reskin technique generalises — hand any reference layout, get a no-text AI plate, own the type in PIL; (b) generate BOTH plate variants when a pose is ambiguous and let the product-clarity decide; (c) a solid opaque CTA pill sits cleanly over any busy area where a thin script line looks amateur; (d) dropping a matching single-band product card into negative space delivers the lifestyle+product blend inside a single still. See [[real-band-content-pipeline]].
+
+**Still open (unchanged):** standalone waitlist capture page (needs neither Lucy nor trademark, still the top unbuilt item); Lucy's music-bed pick; high-res finals past the ~60s cap; trademark gate.
 
 ---
 
