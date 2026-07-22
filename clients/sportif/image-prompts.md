@@ -5,6 +5,23 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## fresh-explore: first gpt-image-2 GENERATIONS (from scratch, not edits) (2026-07-22)
+
+Exploratory Sportif key visuals generated from detailed prompts (our first use of the
+`images/generations` endpoint, vs edits). Script + full prompts: `scripts-local/gen_fresh_explore.py`
+(the source of truth). Six proofs kept at `generated/images/fresh-explore/` (force-committed as
+keepers since low proofs do not regenerate identically). All 1024x1536, quality low, no text
+(we overlay type). Shared blocks: warm-neutral PALETTE, modest/elevated GUARD (no glam, no leather),
+BAND = flat wide knitted-fabric loop.
+- **bw1 / bw2** brand-world lifestyle (blush set by a sunlit window / caramel ritual on a jute rug).
+- **ch1 / ch2** campaign hero (blush activewear on a terracotta wall with a long shadow / mid-shot
+  holding the flat knitted band, sculptural light).
+- **bu1 / bu2** band-in-use editorial (standing abduction in a reformer studio / squat with the band
+  visibly tensioned).
+Casting came back naturally diverse (fits Sportif's inclusive positioning). Note the bands are
+AI-imagined here (not the real SPORTIF label) — stamp the real label for product-accurate use.
+Next: rerun winners at high quality (native Terminal) + add photoreal directives to cut the AI look.
+
 ## reference-reskin: pilates-studio ad to Sportif waitlist poster (2026-07-22)
 
 Reskin of a reference layout Lucy sent (a pilates-studio "WE'RE OPEN" ad). Technique = **no-text AI plate + our own PIL type layer** (we always own the type). Two scripts are the source of truth; finals gitignored.
