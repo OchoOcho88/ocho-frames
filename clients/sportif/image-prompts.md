@@ -20,6 +20,19 @@ BAND = flat wide knitted-fabric loop.
   visibly tensioned).
 Casting came back naturally diverse (fits Sportif's inclusive positioning). Note the bands are
 AI-imagined here (not the real SPORTIF label) — stamp the real label for product-accurate use.
+**Real SPORTIF band swap (`realband_in_hand.py`):** the bands in the generations are AI-imagined
+(blank label). To make them the actual product, a two-image gpt-image-2 edit passes the campaign
+photo + the real MEDIUM label crop (`band-inuse/label-medium.png`) so gpt stamps the real SPORTIF /
+underline / MEDIUM onto the band (works whether held in hand or worn around the thighs), keeping
+pose/light identical. Outputs `*_realband_low.png` for ch2_low, ch2_r_low, bu1_r_low, bu2_r_low.
+Label text sharpens at high quality (native Terminal). **Full pipeline proven: generate photoreal ->
+stamp real band -> skin with type = a finished ad.**
+
+**Campaign ad skin (`campaign_skin.py`):** lays type over a full-bleed campaign photo (vs the
+tan-block reskin). `ch2_r_low_realband_low_AD.png` = kicker `meet sportif` + navy `FIND YOUR /
+RESISTANCE` right-aligned on the open wall (soft light halo for separation) + terracotta JOIN THE
+WAITLIST pill + `@sportifcollection`. Navy headline (not cream) because the wall is light beige.
+
 **Photoreal `_r` variants (kept):** the plain low proofs looked "a bit AI" (waxy, over-smooth). Adding a
 REALISM block (`... real` 3rd arg) — 35mm Kodak Portra 400, 50mm lens, natural light, visible skin
 texture/pores/flyaways, film grain, candid documentary realism, explicitly forbid glossy/plastic/CGI —
