@@ -1,0 +1,2 @@
+{ "name": "sportif-blend-calm", "private": true, "type": "module",
+  "scripts": { "check": "npx --yes hyperframes@0.7.64 check", "render": "npx --yes hyperframes@0.7.64 render", "snapshot": "npx --yes hyperframes@0.7.64 snapshot" } }

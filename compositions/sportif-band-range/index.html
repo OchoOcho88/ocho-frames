@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Regular.woff2") format("woff2"); font-weight: 400; }
+      @font-face { font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Bold.woff2") format("woff2"); font-weight: 700; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #EEC7AF; font-family: "Glacial Indifference", sans-serif; }
+      .scene { position: absolute; inset: 0; width: 100%; height: 100%; overflow: hidden; background: #EEC7AF;
+               display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+      #s1 { z-index: 1; } #s2 { z-index: 2; } #s3 { z-index: 3; } #s4 { z-index: 4; } #s5 { z-index: 5; } #s6 { z-index: 6; }
+      #s2, #s3, #s4, #s5, #s6 { opacity: 0; }
+
+      /* product images blend into the matching peach ground (their own bg is the same peach) */
+      .prod { display: block; object-fit: contain; }
+      .flat { width: 1010px; }                 /* landscape flatlay */
+      .card { width: 940px; }                  /* 4:5 band cards */
+
+      .cap { margin-top: 44px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+      .cap-line { color: #4A433C; font-size: 74px; line-height: 1.2; letter-spacing: 0.01em; }
+      .tier { color: #833827; font-size: 44px; letter-spacing: 0.42em; text-indent: 0.42em; }
+      .kicker { color: #4A433C; font-size: 36px; letter-spacing: 0.18em; text-indent: 0.18em; opacity: 0.8; }
+
+      /* wordmark intro + end card */
+      .wm { color: #FFFBF8; font-size: 132px; letter-spacing: 0.26em; text-indent: 0.26em; }
+      .rule { width: 200px; height: 7px; background: #FFFBF8; margin-top: 34px; transform-origin: center; }
+      .soon { margin-top: 40px; color: #4A433C; font-size: 50px; letter-spacing: 0.12em; text-indent: 0.12em; }
+      .handle { margin-top: 20px; color: #833827; font-size: 38px; letter-spacing: 0.08em; text-indent: 0.08em; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="14.6" data-width="1080" data-height="1920">
+      <!-- 1: wordmark -->
+      <div id="s1" class="scene clip" data-start="0" data-duration="2.6" data-track-index="1">
+        <div class="wm">SPORTIF</div>
+        <div class="rule" id="s1-rule"></div>
+      </div>
+
+      <!-- 2: flatlay hero -->
+      <div id="s2" class="scene clip" data-start="2.2" data-duration="3.2" data-track-index="2">
+        <img class="prod flat" id="s2-img" src="images/flatlay.png" alt="" data-layout-allow-overflow />
+        <div class="cap"><div class="cap-line">Three strengths.</div></div>
+      </div>
+
+      <!-- 3: light -->
+      <div id="s3" class="scene clip" data-start="5.2" data-duration="2.6" data-track-index="1">
+        <img class="prod card" id="s3-img" src="images/light.png" alt="" data-layout-allow-overflow />
+        <div class="cap"><div class="tier">LIGHT</div><div class="kicker">ease in</div></div>
+      </div>
+
+      <!-- 4: medium -->
+      <div id="s4" class="scene clip" data-start="7.6" data-duration="2.6" data-track-index="2">
+        <img class="prod card" id="s4-img" src="images/medium.png" alt="" data-layout-allow-overflow />
+        <div class="cap"><div class="tier">MEDIUM</div><div class="kicker">everyday</div></div>
+      </div>
+
+      <!-- 5: heavy -->
+      <div id="s5" class="scene clip" data-start="10.0" data-duration="2.6" data-track-index="1">
+        <img class="prod card" id="s5-img" src="images/heavy.png" alt="" data-layout-allow-overflow />
+        <div class="cap"><div class="tier">HEAVY</div><div class="kicker">stronger</div></div>
+      </div>
+
+      <!-- 6: end card -->
+      <div id="s6" class="scene clip" data-start="12.4" data-duration="2.2" data-track-index="2">
+        <div class="wm">SPORTIF</div>
+        <div class="rule" id="s6-rule"></div>
+        <div class="soon">Coming soon</div>
+        <div class="handle">@sportifcollection</div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      /* intro */
+      tl.from("#s1 .wm", { opacity: 0, y: 30, duration: 0.5, ease: "power3.out" }, 0.1);
+      tl.from("#s1-rule", { scaleX: 0, duration: 0.4, ease: "power2.inOut" }, 0.4);
+
+      function productScene(id, at) {
+        tl.to("#" + id, { opacity: 1, duration: 0.5, ease: "power1.inOut" }, at);
+        tl.from("#" + id + " .prod", { opacity: 0, scale: 0.96, y: 24, duration: 0.7, ease: "power3.out" }, at + 0.1);
+        tl.from("#" + id + " .cap", { opacity: 0, y: 24, duration: 0.55, ease: "power2.out" }, at + 0.45);
+      }
+      productScene("s2", 2.2);
+      productScene("s3", 5.2);
+      productScene("s4", 7.6);
+      productScene("s5", 10.0);
+
+      /* end card */
+      tl.to("#s6", { opacity: 1, duration: 0.35, ease: "power1.inOut" }, 12.4);
+      tl.from("#s6 .wm", { opacity: 0, y: 34, duration: 0.5, ease: "power3.out" }, 12.5);
+      tl.from("#s6-rule", { scaleX: 0, duration: 0.4, ease: "power2.inOut" }, 12.7);
+      tl.from("#s6 .soon", { opacity: 0, y: 22, duration: 0.42, ease: "power2.out" }, 12.8);
+      tl.from("#s6 .handle", { opacity: 0, duration: 0.4, ease: "sine.out" }, 12.95);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
