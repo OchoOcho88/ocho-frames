@@ -102,3 +102,7 @@ compositions/*/snapshots/
 compositions/*/audio/
 compositions/*/snapshots-*/
 compositions/*/snap-*/
+
+# Canva export staging (drag-to-Canva copies; originals reproducible from scripts)
+clients/sportif/canva-exports/*
+!clients/sportif/canva-exports/README.md
