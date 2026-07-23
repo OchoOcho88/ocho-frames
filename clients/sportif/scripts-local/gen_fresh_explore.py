@@ -39,6 +39,12 @@ GUARD = ("Modest, tasteful, elevated athletic fitness editorial photograph; full
          "activewear; confident and calm, never glamorous or skin-forward. Real natural skin "
          "texture, believable proportions. No text, no words, no logos, no watermarks anywhere. "
          "No leather. Vertical 2:3 portrait.")
+WARDROBE = ("Wardrobe: structured matte ribbed activewear (a supportive crop or tank plus "
+            "high-waisted shorts or leggings) in a colour that clearly CONTRASTS her skin tone "
+            "so it obviously reads as clothing, choose one of: soft clay-terracotta, dusty rose, "
+            "warm oatmeal-cream, or muted sage-clay. NEVER a nude, flesh, beige-skin or tan tone "
+            "that blends into her body. Fully opaque premium sportswear with visible ribbing, "
+            "seams and a defined waistband, modest coverage, not underwear and not a bodysuit.")
 BAND = ("The resistance booty band is a FLAT WIDE loop of soft knitted stretch fabric (not rubber, "
         "not a thin elastic), blush-to-sand colour, with a small woven fabric label.")
 
@@ -47,26 +53,25 @@ SIZE = '1024x1536'
 JOBS = {
  # --- Brand-world lifestyle ---
  'bw1': (
-   "A candid editorial lifestyle photograph of a young woman in a matching warm-neutral ribbed "
-   "activewear set (blush-peach crop top and high-waist biker shorts), standing relaxed and "
-   "confident by a tall window in a sunlit minimalist Australian apartment. Sheer linen curtains "
+   "A candid editorial lifestyle photograph of a young woman in a matching ribbed activewear set, "
+   "standing relaxed and confident by a tall window in a sunlit minimalist Australian apartment. Sheer linen curtains "
    "diffuse the morning light; a potted olive branch and pale plaster walls in the background. "
    "Generous empty space in the upper third for a headline. " + PALETTE + " " + GUARD),
  'bw2': (
    "A warm candid lifestyle moment: a woman sitting cross-legged on a woven jute rug in a "
    "sun-dappled cream-toned room, a rolled exercise mat and a ceramic cup of tea beside her, "
-   "tying her hair up, wearing a caramel ribbed activewear set. Soft long morning shadows across "
+   "tying her hair up, wearing a ribbed activewear set. Soft long morning shadows across "
    "the floor, unhurried and serene, negative space above. " + PALETTE + " " + GUARD),
  # --- Campaign hero ---
  'ch1': (
-   "A bold minimalist fashion-campaign key visual: a single woman in blush-peach activewear "
+   "A bold minimalist fashion-campaign key visual: a single woman in ribbed activewear "
    "standing against a large flat terracotta-clay plaster wall, dramatic warm directional "
    "sunlight raking across the wall and casting a long soft shadow beside her. Vast empty wall "
    "space in the upper two thirds for a headline. Strong, elevated, quietly powerful. "
    + PALETTE + " " + GUARD),
  'ch2': (
    "A striking campaign mid-shot with sculptural warm light and shadow play: a woman in "
-   "sand-toned activewear turning gently, a flat knitted fabric booty band held in one hand, an "
+   "ribbed activewear turning gently, a flat knitted fabric booty band held in one hand, an "
    "architectural warm-cream backdrop with a hard sunbeam and deep soft shadow. Editorial, "
    "confident, cinematic. Negative space to one side for type. " + BAND + " " + PALETTE + " " + GUARD),
  # --- Band-in-use editorial ---
@@ -76,21 +81,22 @@ JOBS = {
    "hip-abduction, working foot only slightly off the floor, NOT a high kick), a flat wide "
    "knitted-fabric booty band stretched around her upper thighs. She wears a clearly-defined "
    "MATCHING TWO-PIECE ACTIVEWEAR SET: a fitted ribbed long-sleeve crop top and separate "
-   "high-waisted bike shorts in warm blush-caramel, the fabric a distinctly different tone from her "
-   "skin so the outfit reads obviously as sportswear (not nude, not a bodysuit, not a leotard, not "
-   "loungewear). The band sits around her upper thighs OVER the shorts. Cream plaster walls, arched "
+   "high-waisted bike shorts (see wardrobe note for colour), the fabric a distinctly different tone "
+   "from her skin so the outfit reads obviously as sportswear (not nude, not a bodysuit, not a "
+   "leotard, not loungewear). The band sits around her upper thighs OVER the shorts. Cream plaster walls, arched "
    "backlit mirrors, terracotta accents, soft natural light. Clean composition, band clearly "
    "visible and in use. " + BAND + " " + PALETTE + " " + GUARD),
  'bu2': (
    "An elevated fitness editorial photograph: a woman in a warm minimalist studio holding a deep "
    "squat, a flat wide knitted-fabric booty band stretched around her upper thighs, hips back, "
    "calm focused expression. Warm cream and terracotta surroundings, soft window light, modest "
-   "full-coverage blush activewear. The fabric band is the clear focal product. "
+   "full-coverage activewear. The fabric band is the clear focal product. "
    + BAND + " " + PALETTE + " " + GUARD),
 }
 
 def run(item):
     name, prompt = item
+    prompt = prompt + ' ' + WARDROBE
     if REAL:
         prompt = prompt + ' ' + REALISM
     try:
