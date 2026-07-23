@@ -21,6 +21,8 @@ QUALITY = sys.argv[1] if len(sys.argv) > 1 else 'low'
 ONLY = sys.argv[2].split(',') if len(sys.argv) > 2 and sys.argv[2] not in ('all', '') else None
 # 3rd arg 'real' appends the photoreal block and writes {name}_r_{quality}.png
 REAL = len(sys.argv) > 3 and sys.argv[3] == 'real'
+# optional version tag (env VER=v2) so a fresh batch doesn't overwrite kept files
+VER = os.environ.get('VER', '')
 
 REALISM = ("Shot on 35mm film, Kodak Portra 400, 50mm f/2 lens, natural available window light. "
            "Authentic unretouched editorial photography: real visible skin texture with pores and "
@@ -100,7 +102,7 @@ def run(item):
         j = r.json()
         if 'data' not in j:
             return f'FAIL {name}: {str(j)[:300]}'
-        out = f'{OUT}/{name}{"_r" if REAL else ""}_{QUALITY}.png'
+        out = f'{OUT}/{name}{"_r" if REAL else ""}{"_" + VER if VER else ""}_{QUALITY}.png'
         open(out, 'wb').write(base64.b64decode(j['data'][0]['b64_json']))
         return f'ok {name} -> {out}'
     except Exception as e:
