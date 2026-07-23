@@ -23,6 +23,8 @@ ONLY = sys.argv[2].split(',') if len(sys.argv) > 2 and sys.argv[2] not in ('all'
 REAL = len(sys.argv) > 3 and sys.argv[3] == 'real'
 # optional version tag (env VER=v2) so a fresh batch doesn't overwrite kept files
 VER = os.environ.get('VER', '')
+# env PATTERNS=1 -> explore colour + pattern instead of the warm-neutral wardrobe
+PATTERNS = os.environ.get('PATTERNS') == '1'
 
 REALISM = ("Shot on 35mm film, Kodak Portra 400, 50mm f/2 lens, natural available window light. "
            "Authentic unretouched editorial photography: real visible skin texture with pores and "
@@ -50,6 +52,22 @@ WARDROBE = ("Wardrobe: premium performance activewear (a supportive crop or tank
             "opaque, modest coverage, not underwear and not a bodysuit.")
 BAND = ("The resistance booty band is a FLAT WIDE loop of soft knitted stretch fabric (not rubber, "
         "not a thin elastic), blush-to-sand colour, with a small woven fabric label.")
+
+# --- colour + pattern exploration (env PATTERNS=1) ---
+WARDROBE_ALT = ("Wardrobe: premium performance activewear (a supportive crop or tank plus high-waisted "
+                "shorts or leggings) in SMOOTH matte four-way-stretch nylon/elastane sportswear fabric "
+                "(the sleek compressive Lululemon/Alo finish, flatlock seams, defined waistband; NOT "
+                "ribbed, NOT a knit or waffle texture). Colour clearly contrasts her skin, fully "
+                "opaque, modest, not underwear or a bodysuit. Use the specific colour/pattern below.")
+COLORWAYS = {
+ 'bw1': "soft sage-green set, tonal.",
+ 'bw2': "warm mocha-brown set with a cream contrast waistband and trim (colour-blocked).",
+ 'ch1': "deep plum / mulberry set, bold and saturated.",
+ 'ch2': "dusty slate-blue set.",
+ 'bu1': "burnt-orange / rust set.",
+ 'bu2': "set in a tasteful subtle all-over print (soft abstract brushstroke pattern in muted earth "
+        "tones, cream and clay), premium and understated.",
+}
 
 SIZE = '1024x1536'
 
@@ -99,7 +117,10 @@ JOBS = {
 
 def run(item):
     name, prompt = item
-    prompt = prompt + ' ' + WARDROBE
+    if PATTERNS:
+        prompt = prompt + ' ' + WARDROBE_ALT + ' Colour/pattern for this shot: ' + COLORWAYS.get(name, 'a rich contrasting colour.')
+    else:
+        prompt = prompt + ' ' + WARDROBE
     if REAL:
         prompt = prompt + ' ' + REALISM
     try:
