@@ -17,7 +17,7 @@ BOLD = str(FDIR / 'GlacialIndifference-Bold.otf')
 REG  = str(FDIR / 'GlacialIndifference-Regular.otf')
 FE = ROOT / 'clients/sportif/generated/images/fresh-explore'
 
-NAVY = (24, 34, 50); CREAMW = (253, 246, 239); TERRA = (131, 56, 39)
+NAVY = (74, 67, 60); CREAMW = (253, 246, 239); TERRA = (131, 56, 39)  # NAVY now warm charcoal #4A433C
 
 def fit(draw, text, path, target_w):
     lo, hi = 10, 400
