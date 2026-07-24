@@ -6,6 +6,111 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-07-24 -->
+
+## Session 019 (2026-07-18, Cowork cloud): Cosmos reference edit, first gpt-image-2 edits-endpoint production piece
+
+Hugo supplied a reference editorial image (`assets/Cosmos pictures/cosmos_sportif logo.jpeg`, backbend pose, chocolate brown outfit, big cream FORM wordmark) and asked for two changes: outfit recoloured baby blue, and FORM replaced with the SPORTIF wordmark in the real brand font.
+
+### What we did
+- **First production use of the gpt-image-2 `images/edits` endpoint** (everything before was text-to-image generation). Validated at quality low, final at quality high, 1024x1280. No mask needed; a "two changes only" prompt held the pose, film grain and backdrop.
+- **Proven overlay pattern applied:** text-free edit first, then the real Sportif logo lockup stamped via the NEW `scripts/overlay_logo.py` (Glacial Indifference REGULAR, tracking -0.059 em, short underline rule, geometry measured from `assets/05-logo-sportif-white-on-peach.png`), cream #F4F2EA sampled from the original FORM letters, block centred at 49 percent height. Main at 76 percent width (FORM's footprint) plus a 62 percent narrow variant. First pass wrongly stamped a hand-styled Bold wide-tracked wordmark with no rule; Hugo caught it and the logo was corrected in the same session. Rule going forward: stamp the lockup with `overlay_logo.py`, keep `overlay_wordmark.py` for plain headline text only.
+- **Keepers saved** to `clients/sportif/generated/images/`: `cosmos-babyblue-notext.png` (reusable base), `cosmos-babyblue-wordmark.png`, `cosmos-babyblue-wordmark-narrow.png`. Full prompt and settings logged in `image-prompts.md`.
+
+### What we learned
+- **Output-stage moderation false-positived [sexual] at quality high** on the backbend pose (low passed the same prompt). Appending "tasteful, professional athletic fitness editorial photograph... modest full-coverage sportswear" cleared it. Keep that sentence for any bodysuit or backbend imagery.
+- **This Cowork session ran in the CLOUD sandbox** (Anthropic container + device bridge to the Mac), a third environment flavour: shell calls are NOT capped at 45s (the ~70s high-quality render ran fine in one call), but files only reach the Mac via an explicit commit step, and the mounted folder reads live via the bridge. Recognise it by `/mnt/user-data/uploads/` paths plus `device_*` tools.
+
+### Decisions
+- Baby blue is OFF the Sportif palette; Hugo confirmed it is an intentional concept exploration, not a new brand colour.
+
+### Open questions
+- The Tuesday 2026-07-14 Lucy meeting outcomes (launch slip reason, new date, waitlist page approval, incentive pick) are still not logged anywhere. Capture them next session; most of the open backlog hangs off them.
+
+## Session 018 (2026-07-11, Cowork): Content strategy x funnel method alignment audit, Tuesday agenda prep
+
+Same day as Session 017. Hugo confirmed the Friday IG launch did not happen and he meets Lucy Tuesday (2026-07-14). He asked whether the content creation strategy (synthesis brief, three angles) matches the funnel method, and to bake the funnel structure into content creation.
+
+### What we did
+- **Audited `campaigns/launch-2026-09/synthesis-brief.md` against `docs/funnel-playbook.md`.** Verdict: about 70 percent aligned in spirit (Angle C = the story funnel, pouch + 500 units = the offer, seeding = social proof, email from day one) but the funnel spine was missing from the content layer.
+- **Five gaps found:** (1) content has no capture destination (no waitlist page exists, Shopify blocked), (2) no one-CTA-per-post discipline, (3) no FAQ content lane, (4) metrics track saves/follows but not signups per post or cost per lead, (5) no explicit 1-to-2-second hook rule.
+- **Baked the fix into `clients/sportif/funnel-plan.md` section 7:** a content x funnel mapping table (four stages, each with content job, format, ONE next action, money metric) plus the five fixes. Cross-linked from the synthesis brief (new "Funnel integration" section). Next actions now carry the Tuesday agenda.
+
+### What we learned / key insight
+- **The waitlist capture page does not need Shopify.** A standalone landing page (Klaviyo or similar) can go live this week, which un-deadends every post and partially bypasses the Lucy/Shopify blocker. This reframes the critical path.
+
+### Decisions
+- Content and funnel are now formally bound: every post is a funnel stage with exactly one next action; an angle that wins saves but captures no emails is treated as failing.
+- FAQ lane added as the fourth content format alongside Angles A/B/C.
+
+### Open questions / next
+- [ ] Tuesday 2026-07-14 Lucy meeting: launch slip reason + new date, standalone waitlist page approval, Lucy-session adaptation A/B/C, Shopify blockers.
+- [ ] Build the standalone waitlist capture page once approved.
+- [ ] Write the 3-email welcome flow (carried from 017).
+- [ ] Carried: Lucy feedback backlog, ambassador shortlist, trademark, materials, PDF generators on Poppins.
+
+## Session 017 (2026-07-11, Cowork): Funnel playbook + Sportif funnel plan from the Australian Marketing Summit notes
+
+Hugo attended the Australian Marketing Summit 2026 (2026-07-10, presented by Ethan Donati and Jane Lu) and brought back scrambled notes on funnel building. We turned them into a permanent funnel layer for the workspace.
+
+### What we did
+- **Organised the raw notes** into `docs/summit-notes-2026-07-10-raw.md` (verbatim, provenance) and a clean reusable playbook at `docs/funnel-playbook.md`: what a funnel is (one page, one choice, ads to funnels never websites), the 4 page elements, the "How to [outcome] without [objection]" headline formula, offer requirements (incentive, honest scarcity, special offer, outcome+objection testimonials), the 11-step ad-to-scale journey, neuromarketing techniques (emotional buying, affinity buying, green-light questions), channel roles, and a new-funnel checklist.
+- **Cross-checked against 2026 research** (WebSearch): landing page conversion by source (paid social 1 to 3 percent, dedicated pages 2.5 to 4), founder presence lifts conversion 15 to 28 percent, welcome flows ~$2.65 RPR and abandoned cart ~$3.65 RPR with email at 1hr + SMS at 24hr, Meta instant forms 30 to 50 percent cheaper per lead but lower intent than landing pages, $30 to 50/day minimum test spend. Donati's book confirmed as "The Neuroscience Behind 7 Figure Funnels".
+- **Wrote the Sportif application** at `clients/sportif/funnel-plan.md`: the health-claim headline formula translated to aesthetic/lifestyle outcomes (guardrail-safe candidates drafted); 3 funnels (waitlist funnel = the Shopify coming-soon page upgraded, launch funnel with the pouch gift as the built-in incentive and 500 units / 35-day restock as honest scarcity, educational FAQ funnel = one Reel per question); Klaviyo flow spine (welcome, launch, abandoned cart, post-purchase); budget aligned to the Lean band.
+
+### Decisions
+- Two-layer placement (Hugo's pick): reusable playbook in docs/, application in clients/sportif/. Internal only, no Lucy PDF yet.
+- Explicitly rejected from the summit material: outcome claims, hype urgency, quiz funnels at launch, ChatGPT ads.
+- The "band sale = half hour with Lucy" idea flagged as unscalable at 500 units (250 hours); three adaptations proposed (A: monthly group session, recommended; B: capped top-tier 1:1; C: evergreen ritual video series). Decision pending.
+
+### Open questions / next
+- [x] ~~Did the Friday 2026-07-10 IG launch happen? Confirm with Hugo what got posted.~~ RESOLVED Session 018: launch did not happen; reason to be captured at the Tuesday 2026-07-14 Lucy meeting.
+- [ ] Fold Funnel 1 (waitlist) spec into the Shopify coming-soon build when unblocked.
+- [ ] Lucy-session adaptation decision (A/B/C) on the next Lucy agenda.
+- [ ] Write the 3-email welcome flow so it is ready when the waitlist page ships.
+- [ ] Carried: Lucy feedback (taglines, colourways, hero pick, blocker email), Shopify, ambassador shortlist, trademark, materials, PDF generators still on Poppins, optional true-high background re-render.
+
+## Session 016 (2026-07-08, Claude Code): Friday launch handoff, teaser Reel rendered (backgrounds at medium, true-high blocked by a 60s network cap)
+
+Ran the Friday launch handoff jobs from Session 015. The teaser Reel is rendered and launch-ready. The one deviation: the action backgrounds are medium quality, not high, because of a network limit in the Claude Code environment (details below), with a clean upgrade path documented.
+
+### What we did
+- **Pushed the three Session 015 commits to GitHub** (`7ec00fb..7a650d1`). Local and origin/main in sync.
+- **Made both scripts-local scripts path-portable.** `gen_action_bg.py` and `overlay_action_tiles.py` hardcoded the Cowork sandbox paths, so they could not run on the Mac. Both now derive the workspace root from their own file location (`Path(__file__).resolve().parents[3]`), so they work in BOTH environments. Added a `quality` argument to `gen_action_bg.py` (default low, pass high) plus a streaming path for slow renders.
+- **Re-rendered the three action backgrounds** (training glute bridge, fashion still life, ritual morning scene) at medium quality, keeping the `bg-action-<variant>-low.png` filenames (per the handoff instruction) so downstream references did not move. Visually verified all three: correct flat band form (no coil/pastry), correct bridge anatomy, warm palette, clean upper-third negative space.
+- **Rebuilt the tagline tiles** with `overlay_action_tiles.py` (sportif-tagline-1/2/3-action.png + preview). Verified the taglines overlay legibly.
+- **Copied the three backgrounds into `compositions/sportif-teaser/images/`** (byte-verified identical to source).
+- **Ran `npm run check` on the composition.** Lint 0/0, validate no console errors. Inspect flagged 6 `container_overflow` warnings on the three scene images (the intentional Ken Burns zoom/pan overflow, which `.photo-wrap` already clips with `overflow:hidden`). Fixed by adding `data-layout-allow-overflow` to the three scene `<img>` tags. Re-check fully clean: 0 layout issues.
+- **Rendered the Reel:** `compositions/sportif-teaser/renders/sportif-teaser_2026-07-08_12-56-55.mp4`, 1080x1920, 13.0s, h264, 7.3 MB. Confirmed a sampled frame looks correct and on-brand.
+
+### What we learned
+- **The Claude Code environment drops HTTPS responses after ~60s of idle (no bytes).** High-quality gpt-image-2 at 1088x1440 takes longer than that, so the synchronous request dies with `RemoteDisconnected` at exactly 60s. This is the same class of limit as the Perplexity deep-research issue. Disabling the Bash sandbox did NOT help (the cap is outside that toggle).
+- **Streaming does not rescue it.** Instrumenting the SSE stream showed gpt-image-2 sends ONE early partial (~16s) then computes silently and batches the rest at the end, so there is a >60s gap before the completed event and the connection is killed. `partial_images:3` did not add mid-render keepalives.
+- **The proper workaround (background submit + poll) is blocked by org verification.** The Responses API background mode needs a verified org for the driver model (`gpt-4.1-mini` returned HTTP 403 "organization must be verified"). So it is unavailable until Hugo verifies the org.
+- **Medium quality (~50s) completes under the 60s cap** and is a clear step up from the low drafts. For background imagery behind taglines with Ken Burns motion, the quality difference is minor.
+- **HyperFrames `inspect` (Chrome, Claude-Code-only) catches Ken Burns overflow.** Declare intentional zoom/pan overflow with `data-layout-allow-overflow` on the animated element; the clip container keeps it visually contained.
+
+### Decisions
+- **Rendered medium, not high, this session.** The Friday deadline plus a launch-ready Reel outweighed blocking on true-high. Flagged to Hugo with the upgrade path. Kept the `-low` filenames per the handoff instruction.
+- **Two upgrade paths to TRUE high**, whenever wanted: (1) run `gen_action_bg.py <variant> high` in a NATIVE Mac terminal (Terminal.app, outside Claude Code) where there is no 60s cap, the script is now portable and has a streaming high path, then re-run overlay + copy + composition render; or (2) verify the OpenAI org and use background mode.
+- Path-portable scripts are the standard now (root from `__file__`), so scripts-local tools run in both environments.
+
+### Follow-up (same day, continued): end-card revision, brand colours, CTA variant
+
+Reworked the teaser end card (scene 5) live via `npm run dev` (studio at localhost:3002).
+- **Holds longer.** Composition duration 13 to 15s, s5 duration 2.2 to 4.2s. Re-timed the entrance tweens to assemble by ~11.7s so the fully readable card holds about 3s before a gentle fade at 14.8s.
+- **Brand colours (matches scene 1 identity).** End card background is now blush peach #F0CDB3, SPORTIF wordmark and underline warm white #FFFBF8, "Launching September 2026" warm charcoal #4A433C, handle terracotta #833827 for contrast. `hyperframes validate` passes (it checks runtime/console, not WCAG; manually confirmed the terracotta handle is about 5.5:1 on peach, and the warm-white wordmark intentionally matches scene 1).
+- **CTA variant via a composition variable.** Declared `data-composition-variables='{"cta": false}'` on root, read with `window.__hyperframes.getVariables()`. When `cta` is true, a "Follow for the launch" line (warm charcoal, calm, its own entrance tween) appears under the handle. Hidden by default so the standard cut is unchanged.
+- **Rendered both** (check clean 0/0/0 first): standard `renders/sportif-teaser_2026-07-08_13-24-41.mp4` and `npx hyperframes render --variables '{"cta":true}' --output renders/sportif-teaser-cta.mp4`. Both 15.0s, verified by frame grab. No dashes, no hype in the on-screen copy.
+- Learned: HyperFrames composition variables are declared on root via `data-composition-variables` (JSON defaults), read in-composition via `window.__hyperframes.getVariables()`, and overridden at render with `--variables` (or `--variables-file`), with `--strict-variables` to enforce types.
+- **Fixed a bottom-edge glitch.** Hugo spotted a thin cream line along the bottom during scene 3 (about 6 to 7s), roughly 86px, most visible where the linen background is pale. Diagnosed by frame-sampling: the source images have no cream edge, so it was a coverage gap. During a scene the Ken Burns zoom/pan can expose the frame edge, and behind that scene the page background (was cream) showed through. Fix: over-cover the scene images (`position:absolute; top/left -6%; width/height 112%`) so no transform state can reach an edge, and set the page background to the on-brand peach #F0CDB3 as a safety net. Re-rendered both variants; frame-sampling confirms 0px band across scenes 3 and 4. Lesson for HyperFrames Ken Burns: always over-cover the image past the frame, and make the page/root background a safe on-brand colour, never leave a bright default showing.
+
+### Open questions / next
+- [ ] Optional: re-render the 3 backgrounds at TRUE high via a native terminal (or after org verification), then rebuild tiles, re-copy, re-render the Reel. Not required for Friday.
+- [ ] Lucy feedback still pending: four tagline-row directions, three banner colourways, hero-concept pick (v5/v6/v7), blocker email reply.
+- [ ] Friday posting plan: banner row, tagline row, teaser Reel as the first Reel.
+- [ ] Carried: blocker email send, Shopify coming-soon, ambassador shortlist, trademark, materials, Stage 3/4 templates, PDF generators still on Poppins, optional teaser voiceover.
+
 <!-- archived batch, moved 2026-07-21 -->
 
 ## Session 015 (2026-07-08, Cowork): SPORTIF 3-tile Instagram grid banner, posting recipe proven on a mock account

@@ -56,6 +56,11 @@ def cta(img, cx, cy, text):
     for c, w in zip(text, ws): d.text((x, ty), c, font=f, fill=CREAMW); x += w + tk
 
 name = sys.argv[1] if len(sys.argv) > 1 else 'bw2_r_v5_low'
+# optional: argv[2]="LINE1|LINE2" headline, argv[3]=subline, argv[4]=hex text colour
+HEAD = sys.argv[2].split('|') if len(sys.argv) > 2 else ['STRENGTH', 'IN STILLNESS']
+SUB = sys.argv[3] if len(sys.argv) > 3 else 'movement, made calm'
+def _hex(h): h = h.lstrip('#'); return tuple(int(h[i:i+2], 16) for i in (0, 2, 4))
+INK = _hex(sys.argv[4]) if len(sys.argv) > 4 else NAVY
 src = Image.open(FE / f'{name}.png').convert('RGB')
 # crop 2:3 -> 4:5, top-aligned to keep the upper wall, then scale to IG feed 1080x1350
 W0, H0 = src.size
@@ -69,21 +74,22 @@ LX = 74                             # left margin for type
 halo = Image.new('RGBA', (W, H), (0, 0, 0, 0)); hd = ImageDraw.Draw(halo)
 
 # brand logotype top-left
-logo(d, LX, 70, 34, NAVY)
+logo(d, LX, 70, 34, INK)
 
-# headline: STRENGTH / IN STILLNESS (left-aligned navy)
-hs = fit(d, 'IN STILLNESS', BOLD, W * 0.62); hf = ImageFont.truetype(BOLD, hs)
+# headline (left-aligned), sized to the longest line
+longest = max(HEAD, key=len)
+hs = fit(d, longest, BOLD, W * 0.62); hf = ImageFont.truetype(BOLD, hs)
 lh = sum(hf.getmetrics()) * 0.95; y0 = 168
-for i, ln in enumerate(['STRENGTH', 'IN STILLNESS']):
+for i, ln in enumerate(HEAD):
     tracked(hd, y0 + i * lh, ln, hf, (255, 250, 244, 140), 0, left=LX)
 img.alpha_composite(halo.filter(ImageFilter.GaussianBlur(10)))
 d = ImageDraw.Draw(img)
-for i, ln in enumerate(['STRENGTH', 'IN STILLNESS']):
-    tracked(d, y0 + i * lh, ln, hf, NAVY, 0, left=LX)
+for i, ln in enumerate(HEAD):
+    tracked(d, y0 + i * lh, ln, hf, INK, 0, left=LX)
 
 # small supporting line under the headline
 sf = ImageFont.truetype(REG, 30)
-tracked(d, y0 + 2 * lh + 14, 'movement, made calm', sf, NAVY, 1, left=LX + 4)
+tracked(d, y0 + len(HEAD) * lh + 14, SUB, sf, INK, 1, left=LX + 4)
 
 # CTA pill + handle, bottom
 cta(img, W / 2, H - 150, 'JOIN THE WAITLIST')
