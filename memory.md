@@ -6,7 +6,9 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-24 | Last session: 026 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: Canva Pro (~next week) -> brand kit + share Sportif folder with Lucy; standalone waitlist capture page still top unbuilt item*
+*Last updated: 2026-07-25 | Last session: 027 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: send Lucy the Content Creation Strategy PDF, then Phase 2 (her expert niche + one avatar + 4 quadrants); Canva Pro (~next week) -> brand kit + folder share*
+
+- **NEW (Session 027): Lucy expert-brand content strategy (Phase 1).** Applying the Devin Jatho expert-brand / 4-quadrant model to Lucy (authority-first, founder-led). Analysed her 3 editorials; her edge is the STYLE + STRENGTH fusion for REAL women. Deliverable: `clients/sportif/lucy-profile-for-review.pdf` ("Content Creation Strategy", a warm Ocho Productions letter) + internal `lucy-content-library.md` (taglines/quotes/mantras). Built via `build-lucy-profile.py` (headless Chrome). Sportif name is LOCKED (Le Sport Collectif was old). Next = Lucy reacts, then Phase 2 quadrants [[real-band-content-pipeline]].
 
 - **NEW (Session 026): memory system v2 (scaling hardening).** `scripts/memory_tools.py` = check / index / search / decisions / open / reconcile / install-hooks. Decisions + open loops are now extractable registries (`DECISIONS.md`, `OPEN-QUESTIONS.md`, filter by client). Session entries carry `Client:` + `Tags:` lines. Close-out ritual updated in CLAUDE.md; pre-push warn hook installed. Full v2 spec in `docs/memory-system.md`. Query open items: `python3 scripts/memory_tools.py open --client Sportif`.
 
@@ -123,6 +125,27 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 1. **Make the Tuesday Lucy meeting count.** The agenda is already staged in funnel-plan.md: get the launch slip reason and a new launch date, approval for the standalone waitlist page, the incentive decision (A/B/C), and movement on the Shopify blockers. This one meeting unblocks nearly everything else.
 2. **Stand up the standalone waitlist capture page immediately after approval.** It is the first workstream that does not wait on Shopify, it un-deadends every piece of content already built, and the Funnel 1 spec is written. Pair it with the 3-email welcome flow so capture and nurture ship together.
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
+
+---
+
+## Session 027 (2026-07-25, Claude Code): Lucy expert-brand content strategy (Phase 1) + disk cleanup
+
+Client: Sportif
+Tags: content-strategy, lucy, expert-brand, devin-jatho
+
+Hugo's idea: apply the Devin Jatho expert-brand / 4-quadrant model (transcript in `devin-jatho/`) to Lucy Wayne, so content builds her authority and converts to SALES not just followers. Devin's system: build an EXPERT brand (trust of expertise) not a personal brand; 3 switches = (1) expert niche defined by the problem your offer solves + one avatar, (2) four non-overlapping content quadrants, (3) give your best away free (positive reinforcement). We adapt it as founder-led authority marketing for a product brand.
+
+**Direction locked (Hugo's calls):** authority-first (monetise later, perfect for the trademark hold), hybrid on-camera (Lucy's real presence + our produced content), editorials via links.
+
+**Phase 1 done:**
+- Fetched + analysed Lucy's 3 published interviews (voyagela, boldjourney, magnateview). She is a fashion-designer-turned-celebrity-stylist (Katy Perry, The Great Gatsby) AND certified PT + reformer Pilates devotee. Her unfair advantage = the STYLE + STRENGTH fusion, aimed at REAL women (size 14+, inclusive), the antidote to the White Fox world (reinforces existing brand.md positioning).
+- **Le Sport Collectif was the OLD brand name; Sportif is LOCKED IN** (so the trademark issue is not the name). Confirmed by Hugo.
+- Built `clients/sportif/lucy-content-library.md` (internal draw-from: taglines, her real quotes, DRAFT mantras clearly separated so we never misattribute) and `clients/sportif/lucy-profile.md` -> rendered to `lucy-profile-for-review.pdf` via `build-lucy-profile.py` (headless Chrome, since weasyprint is not on the Mac; Glacial fonts base64-embedded, warm palette).
+- The PDF is titled **"Content Creation Strategy"** and written as a WARM STUDIO LETTER from Ocho Productions to Lucy (Hugo: the first draft read too AI/clinical). Carries the principle "every piece has a job, pointed at a sale" and the give-value-then-ask (jab) idea, and a "What happens next" list of 6 candidate topic directions for her to react to.
+
+**Disk cleanup:** Hugo's Mac boot volume was full (121MB free of 460GB), which broke a file write. Cleared safe regenerable caches at his OK (Adobe media cache ~79GB, BorisFX ~10GB, Chrome ~2.2GB, VSCode ~1.5GB) -> freed ~93GB. Left NordVPN (23GB) and Claude app data (16GB) untouched (his data).
+
+**Open:** Q-006 = Phase 2 (lock Lucy's expert niche, one avatar, and FOUR quadrants) pending Lucy's reaction to the PDF. See [[real-band-content-pipeline]].
 
 ---
 
