@@ -2,6 +2,8 @@
 
 This is the content plan for Sportif. It explains, in simple terms, how we build Lucy Wayne into the trusted voice of the brand, and how that trust turns into sales. It moves through three parts: what we are trying to do, a working portrait of Lucy (drawn from her published interviews) that we use as the raw material, and a library of taglines and lines to draw from. Nothing here is fixed. It is a first draft for Lucy to read and react to.
 
+> **Our principle:** every piece of content has a job, to prove Lucy's expertise in a way that makes choosing Sportif the obvious next step. Content with purpose, not content for the sake of it.
+
 ## What we are trying to do
 
 Sportif is your brand, and you are its greatest asset. People do not just buy a product, they buy from a person they trust. So the plan is simple. We build you as the trusted expert in your world (style and strength for real women), and Sportif becomes the natural choice your audience reaches for.
