@@ -62,7 +62,18 @@ New lines we drafted for you (your yes or no):
 
 ## What happens next
 
-If this feels like you, we take the next step together. We lock in the small handful of topics you will become known for, and we start making the content. If anything here does not sound like you, just tell us. That is exactly what a first draft is for.
+If this feels like you, here is how we move. First, we agree on a small handful of topics you will become known for. Four is the sweet spot. These are the subjects you show up on again and again, so that over time you are not just another account, you are the person people trust on this. Each topic has to earn its place by doing a job, teaching something real that quietly makes Sportif the obvious choice.
+
+To get you thinking, here are some directions that come straight out of who you are. You do not have to choose now. Just notice which ones feel most like you, and tell us what is missing:
+
+- **Strength for real bodies.** Simple, doable strength and Pilates style movement (bands included) that any woman can follow, with none of the gym intimidation.
+- **Style that fits real life.** Dressing to feel confident in the body you have right now, for everyday and for the big moments, and for every size.
+- **Confidence, inside and out.** The mindset side. Showing up, self belief, and feeling good in both your body and your clothes.
+- **Habits that hold it together.** Your systems. Prep the night before, stay consistent, the calm discipline behind looking and feeling good.
+- **Wellness, kept simple.** Food, movement, mindfulness, and gratitude. The sustainable version, not the extreme one.
+- **Community and showing up.** The people, the classes, the early morning runs, and why doing it together makes it stick.
+
+Once we know which feel right, we lock in your four and we start making content. If a topic here does not sound like you, or we have missed an obvious one, that is exactly what we want to hear.
 
 Speak soon,
 
