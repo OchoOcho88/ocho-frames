@@ -8,6 +8,7 @@ Aging is measured from the `opened Sxxx` tag vs the latest session number.
 **Resolved row:** `- [x] [Q-NNN] YYYY-MM-DD | Client | ... RESOLVED Sxxx: outcome`
 (Keep resolved rows for the record; flip `[ ]` to `[x]` and append the outcome.)
 
+- [ ] [Q-006] 2026-07-24 | Sportif | Lucy expert-brand strategy (Devin Jatho 4-quadrant model, authority-first): Phase 1 profile done + sent to Lucy for feedback; Phase 2 (expert niche, one avatar, 4 quadrants) pending her reaction. (opened S026)
 - [ ] [Q-005] 2026-07-23 | Sportif | Get Canva Pro (~2026-07-30), then set up the Sportif brand kit and share the Sportif folder with Lucy. (opened S025)
 - [ ] [Q-004] 2026-07-22 | Sportif | Lucy to pick music-bed pacing (calm ~100 BPM vs upbeat ~118 BPM). (opened S023)
 - [ ] [Q-003] 2026-07-21 | Sportif | Incentive decision A/B/C (monthly group session / capped 1:1 / video series) — Lucy to get back. (opened S021)
