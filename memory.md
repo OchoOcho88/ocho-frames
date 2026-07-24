@@ -6,7 +6,9 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-23 | Last session: 025 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: Canva Pro (~next week) -> brand kit + share Sportif folder with Lucy; standalone waitlist capture page still top unbuilt item*
+*Last updated: 2026-07-24 | Last session: 026 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: Canva Pro (~next week) -> brand kit + share Sportif folder with Lucy; standalone waitlist capture page still top unbuilt item*
+
+- **NEW (Session 026): memory system v2 (scaling hardening).** `scripts/memory_tools.py` = check / index / search / decisions / open / reconcile / install-hooks. Decisions + open loops are now extractable registries (`DECISIONS.md`, `OPEN-QUESTIONS.md`, filter by client). Session entries carry `Client:` + `Tags:` lines. Close-out ritual updated in CLAUDE.md; pre-push warn hook installed. Full v2 spec in `docs/memory-system.md`. Query open items: `python3 scripts/memory_tools.py open --client Sportif`.
 
 - **NEW (Session 025): fresh gpt-image-2 GENERATION pipeline + Canva workflow (two avenues).** `gen_fresh_explore.py` makes from-scratch Sportif key visuals (brand-world/campaign/band-in-use). Three DURABLE prompt lessons: name the actual garments; garment colour must CONTRAST skin (not flesh-tone); garment material = SMOOTH four-way-stretch (not ribbed). `PATTERNS=1` explores colourways. `realband_in_hand.py` stamps the real label onto generated bands; `campaign_skin.py` / `ad_lifestyle.py` skin shots into finished IG 4:5 ads (warm-charcoal or cream type, NOT navy on warm bg). **Canva: two avenues** = our pipeline (studio, exact/flat) + Canva (workbench, editable/shareable), chained pipeline->Canva->Lucy. Sportif folder set up (IG Ads + Source Photos), local mirror `clients/sportif/canva-exports/`. Can generate editable Canva designs + use our uploaded photos via asset_ids (short briefs only; complex ones fail). **Brand kit + folder-sharing are Pro-gated (Hugo ~next week); Free only does per-design comment links.** See [[real-band-content-pipeline]].
 - **NEW (Session 024): reference-layout reskin technique + 2 finals.** Lucy sent a pilates-studio ad to copy the layout of; established the reusable move = **AI generates a no-text plate, we own the type in PIL**. `reskin_pilates_ref.py` strips text + adds our band; `layout_reskin.py` lays all copy (Glacial Indifference, real SPORTIF logotype, terracotta JOIN THE WAITLIST pill, @sportifcollection, a framed single-band product card in the negative space). Two finals at `clients/sportif/generated/images/reference-reskin/`: `reskin-bridge.png` (lead) + `reskin-asis.png` (alt). Soft waitlist teasers, no dates. Source imagery at `clients/sportif/products/reference-layouts/`. See [[real-band-content-pipeline]].
@@ -121,6 +123,23 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 1. **Make the Tuesday Lucy meeting count.** The agenda is already staged in funnel-plan.md: get the launch slip reason and a new launch date, approval for the standalone waitlist page, the incentive decision (A/B/C), and movement on the Shopify blockers. This one meeting unblocks nearly everything else.
 2. **Stand up the standalone waitlist capture page immediately after approval.** It is the first workstream that does not wait on Shopify, it un-deadends every piece of content already built, and the Funnel 1 spec is written. Pair it with the 3-email welcome flow so capture and nurture ship together.
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
+
+---
+
+## Session 026 (2026-07-24, Claude Code): memory system v2 — hardening for scale (multi-client)
+
+Client: Ochoproductions (workspace infrastructure)
+Tags: memory-system, tooling, scaling
+
+Hugo asked for an honest rating of our memory system, then to implement the fixes since the workspace will scale to more clients. Rated it ~8.5/10 for a solo/single-client setup, ~6/10 unmodified at team/multi-client scale; the real ceilings are RETRIEVAL (linear grep, decays with size) and COMPLIANCE (close-out is manual, a single point of failure — we already lost the Tuesday-meeting outcomes once). Built four fixes, all low-tech + stdlib, preserving the plain-markdown legibility.
+
+- **DECISION: adopted memory system v2.** New tool `scripts/memory_tools.py` with subcommands: `check` (verifies close-out: CURRENT STATE dated today + a session entry today + registries well-formed), `index` (regenerates `memory-index.md`, a TOC of every session hot+archived), `search` (grep across memory+registries+docs), `decisions`, `open` (both filter by `--client`; `open` flags questions aged >= N sessions), `reconcile` (flags dead file refs in CURRENT STATE, stale date, aged questions), `install-hooks` (git pre-push warn hook, `MEMORY_ENFORCE=1` to block).
+- **DECISION: decisions and open-questions are now first-class registries** (`DECISIONS.md`, `OPEN-QUESTIONS.md`) with a parseable one-line schema incl. a Client field — the two things we re-query most are extractable, not buried in prose, and filter by client.
+- **DECISION: multi-client convention.** Session entries now carry `Client:` and `Tags:` lines; registries carry a Client column. One unified chronological log (keeps cross-client learnings) but everything filterable per client. CURRENT STATE will split into per-client mini-blocks once >1 client is active.
+- Installed the pre-push hook (warn-only) and regenerated `memory-index.md`. `archive_memory.py` unchanged (still the size-triggered archiver).
+- Updated `CLAUDE.md` (close-out ritual now runs `memory_tools.py check` + `index` and updates the registries) and rewrote `docs/memory-system.md` to v2 (Hugo will share that once updated).
+
+LESSON: the compliance SPOF is the biggest real risk as we scale — the `check` hook is the mitigation, but it's warn-only by choice to avoid friction; flip `MEMORY_ENFORCE=1` if close-outs start slipping.
 
 ---
 
