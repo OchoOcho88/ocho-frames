@@ -1,56 +1,69 @@
 # Content Creation Strategy
 
-This is the content plan for Sportif. It explains, in simple terms, how we build Lucy Wayne into the trusted voice of the brand, and how that trust turns into sales. It moves through three parts: what we are trying to do, a working portrait of Lucy (drawn from her published interviews) that we use as the raw material, and a library of taglines and lines to draw from. Nothing here is fixed. It is a first draft for Lucy to read and react to.
+Hi Lucy,
 
-> **Our principle:** every piece of content has a job, to prove Lucy's expertise in a way that makes choosing Sportif the obvious next step. Content with purpose, not content for the sake of it.
+We spent a good while getting to know you properly. We read back through your interviews, pulled out the threads that make you who you are, and thought hard about one question. How do we turn all of it into content that actually sells, not just content that fills a feed. Here is where we landed. None of it is set in stone. Read it, tell us what feels like you and what does not, and we will shape it from there.
 
 ## What we are trying to do
 
-Sportif is your brand, and you are its greatest asset. People do not just buy a product, they buy from a person they trust. So the plan is simple. We build you as the trusted expert in your world (style and strength for real women), and Sportif becomes the natural choice your audience reaches for.
+Here is the simple version. Sportif is your brand, and you are its greatest asset. People do not really buy a product, they buy from someone they trust. So the plan is to put you at the centre and build you into the expert women listen to, the calm and credible voice in a noisy space. Once that trust is there, reaching for Sportif becomes the natural thing to do.
 
-In plain terms:
+The launch being on hold is not a delay, it is a head start. We use the time to build your name and an audience that already believes in you, so that when Sportif arrives, it lands in a warm room instead of a cold one.
 
-1. **You are the voice.** We position you as the go to expert in your field, the voice of reason women actually listen to. Not an influencer chasing likes, an expert they trust.
-2. **We build trust first.** While the launch is on hold, we use the time to grow your authority and an audience that already believes in you. When Sportif launches, it arrives to a warm room, not a cold one.
-3. **Content does the heavy lifting.** We create content across a few clear topics that you own, blending your real voice with pieces we produce for you. That keeps it consistent and high quality without taking over your week.
-4. **Trust becomes sales.** The goal is not just followers, it is customers. When people trust your expertise, choosing Sportif becomes the obvious next step.
+> **Our one rule:** every piece we make has a job. Prove your expertise, earn a little more trust, and make choosing Sportif the obvious next step. Value first, always. Do that well and the selling takes care of itself.
 
-In one line: we make you the expert, the expert builds the trust, and the trust drives the sales.
+Think of it like boxing. You throw jabs, real value, again and again, and you earn the one clean shot at the ask. Most brands swing for the sell far too early and miss. We would rather earn it.
 
-## Who is Lucy Wayne
+## How we see you
 
-A working portrait, drawn from Lucy's published interviews. This is the raw material we use to build the expert voice above. It simply captures, in one place, who Lucy is and what she can speak on with real authority.
+This part is about you, and we have not invented a word of it. It comes straight from your own interviews. Think of it as the picture we want to put in front of the world.
 
-### In one line
+You are rare. Most fitness founders can only talk fitness. Most stylists can only talk clothes. You genuinely own both, and you point all of it at real women, not a size 8 ideal. That mix of style and strength, in your warm and practical way, is a lane almost nobody else can stand in.
 
-A Sydney fashion designer turned celebrity stylist and certified fitness trainer who has spent more than fifteen years helping women feel confident, both in what they wear and in how their body feels and moves. Her life sits at one rare intersection: style and strength, together.
+Here is what you can speak on with real authority:
 
-### The credibility
+- Style that builds confidence, for real bodies and real life.
+- Inclusive styling, for women size 14 and up, and women in transformation.
+- Strength and movement, from reformer Pilates to everyday training.
+- Wellness that is calm and sustainable, food, mindfulness, and community.
 
-- **Fashion.** A degree in Design with a Fashion focus (Whitehouse Institute of Design), with textiles studied from school. More than fifteen years in the industry, including Wheels and Dollbaby and Country Road, where she found her love of styling. Founder of her own styling house.
-- **High profile.** Has styled Katy Perry and Nicole Sealey (Real Housewives of Cheshire), and worked on The Great Gatsby with Baz Luhrmann's wardrobe team.
-- **Fitness.** A certified group and personal trainer, and a devoted reformer Pilates practitioner of about ten years. A dancer from a young age, and someone who walks everywhere.
-- **Founder.** Launching Sportif, her fitness accessories brand, and signed with a Los Angeles PR agency to grow internationally.
+And people already know your name. You have styled Katy Perry, worked on The Great Gatsby with Baz Luhrmann's team, and built your reputation over more than fifteen years. That is credibility we get to build on, not manufacture.
 
-### What she can teach (her expertise pillars)
+Running through all of it are the things you actually believe:
 
-1. **Styling for confidence.** Executive and CEO wardrobes, bridal, formal, decluttering, and fit.
-2. **Inclusive styling.** She deliberately champions women size 14 and up, and women in transformation (post weight loss, post surgery). In her words, "I don't only style women that are a size 8."
-3. **Strength and movement.** Reformer Pilates, personal training, and everyday active living.
-4. **Holistic wellness.** Nutrition, mindfulness, gratitude, and community.
-5. **Design insight.** A real understanding of fabric, cut, and value.
+> "Confidence is not about perfection but about feeling good and showing up as oneself."
 
-### What she believes
+> "While confidence comes from within, the right outfit can illuminate it."
 
+You want every woman to feel seen, valued, and beautifully represented. That belief is the heart of the whole thing.
+
+## Some lines to get us started
+
+To make this real, here are a few lines we could use in content. Some are taglines. Some are your own words. And a few are new lines we wrote in your voice, which we have marked clearly, because we would never put words in your mouth without your yes first.
+
+Taglines we could run with:
+
+- Strength you can wear.
+- Where strength meets style.
+- Look good because you feel strong.
+- Real women, real strength, real style.
+- Find your resistance.
+
+In your own words:
+
+- "I don't only style women that are a size 8."
 - "Confidence is not about perfection but about feeling good and showing up as oneself."
-- "While confidence comes from within, the right outfit can illuminate it."
-- Every woman should feel "seen, valued, and beautifully represented."
-- Community matters. She credits her running and training communities, and lives by the line "Get up, Lace up, Turn Up."
 
-### Her voice and character
+New lines we drafted for you (your yes or no):
 
-Disciplined, warm, practical, and purpose driven. She thinks in habits and systems (prepare the night before, always be early, dress presentable because it shows you value yourself and your work, and carry a notebook at all times). She is resilient, having built two careers at once, and she has no intention of slowing down, "always seeking new ways to create, inspire, and lead."
+- Strong is not a size, it is a feeling.
+- Confidence is a habit, and so is showing up.
+- Every woman deserves to feel at home in her body and her wardrobe.
 
-### Why she is different
+## What happens next
 
-Most fitness founders can only speak to fitness. Most stylists can only speak to clothes. Lucy credibly owns both, and she points that authority at real women, not just a size 8 ideal. That fusion of style and strength, delivered with an inclusive and genuine voice, is a lane almost nobody else owns.
+If this feels like you, we take the next step together. We lock in the small handful of topics you will become known for, and we start making the content. If anything here does not sound like you, just tell us. That is exactly what a first draft is for.
+
+Speak soon,
+
+The team behind Sportif

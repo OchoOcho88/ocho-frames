@@ -79,9 +79,8 @@ def md_to_html(md):
 
 
 profile_html = md_to_html(open(PROFILE).read())
-# drop the library's own leading H1 so the section band reads cleanly
-lib_src = open(LIBRARY).read()
-library_html = md_to_html(lib_src)
+# The PDF renders the letter only (lucy-profile.md). The full tagline/quote kit lives
+# in lucy-content-library.md as our internal draw-from file; the letter carries a curated set.
 
 CSS = """
 * { -webkit-print-color-adjust: exact; print-color-adjust: exact; box-sizing: border-box; }
@@ -126,13 +125,12 @@ CSS = (CSS.replace('__REG__', font_b64('GlacialIndifference-Regular.otf'))
 DOC = f"""<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
 <div class="cover">
   <div class="wordmark">SPORTIF<span class="rule"></span></div>
-  <div class="kicker">Founder-led content, working draft</div>
+  <div class="kicker">A content plan, prepared for Lucy Wayne</div>
   <h1>Content Creation Strategy</h1>
-  <div class="subtitle">How we build Lucy Wayne into the trusted voice of Sportif, and turn that trust into sales. A working draft for Lucy to read and react to.</div>
+  <div class="subtitle">How we build you into the trusted voice of Sportif, and turn that trust into sales.</div>
 </div>
 {profile_html.split('</h1>',1)[-1] if '</h1>' in profile_html else profile_html}
-<div class="libwrap">{library_html}</div>
-<div class="note">Working draft prepared for Lucy Wayne. Taglines and the marked draft lines are for approval before use.</div>
+<div class="note">A first draft, prepared for Lucy Wayne. The lines marked as drafts are just that, and are only for you to approve before we ever use them.</div>
 </body></html>"""
 
 with open(OUT_HTML, 'w', encoding='utf-8') as f:
