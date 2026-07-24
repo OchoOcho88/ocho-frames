@@ -99,7 +99,8 @@ h1 { font-weight:700; color:#833827; font-size:23pt; letter-spacing:.005em; marg
 .subtitle { color:#6b6258; font-size:10.4pt; max-width:150mm; margin:0 auto; }
 h2 { font-weight:700; color:#4A433C; font-size:14pt; margin:9mm 0 2.5mm; padding:2mm 0 2mm 4mm;
      border-left:4px solid #833827; background:#F5E7DA; letter-spacing:.01em; break-after:avoid; }
-h3 { font-weight:700; color:#833827; font-size:11.6pt; margin:5mm 0 1.5mm; }
+h3 { font-weight:700; color:#833827; font-size:12.4pt; margin:6mm 0 2mm; padding-left:3mm;
+     border-left:3px solid #E3C9B3; break-after:avoid; }
 p { margin:.5em 0; }
 strong { font-weight:700; color:#4A433C; }
 em { font-family:'GlacialI', serif; font-style:italic; }
@@ -125,9 +126,9 @@ CSS = (CSS.replace('__REG__', font_b64('GlacialIndifference-Regular.otf'))
 DOC = f"""<!doctype html><html><head><meta charset="utf-8"><style>{CSS}</style></head><body>
 <div class="cover">
   <div class="wordmark">SPORTIF<span class="rule"></span></div>
-  <div class="kicker">Founder profile, working draft</div>
-  <h1>Who is Lucy Wayne</h1>
-  <div class="subtitle">A portrait drawn from Lucy's published interviews, and a starting point for her content. Nothing here is fixed. It is meant for Lucy to read and react to.</div>
+  <div class="kicker">Founder-led content, working draft</div>
+  <h1>Content Creation Strategy</h1>
+  <div class="subtitle">How we build Lucy Wayne into the trusted voice of Sportif, and turn that trust into sales. A working draft for Lucy to read and react to.</div>
 </div>
 {profile_html.split('</h1>',1)[-1] if '</h1>' in profile_html else profile_html}
 <div class="libwrap">{library_html}</div>
