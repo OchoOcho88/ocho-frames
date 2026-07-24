@@ -2,6 +2,19 @@
 
 A working portrait, drawn from Lucy's published interviews. It is a starting point for her content strategy with Sportif, and a first draft for her to react to. Nothing here is fixed. The goal is simply to capture, in one place, who Lucy is and what she can speak on with real authority.
 
+## What we are trying to do
+
+Sportif is your brand, and you are its greatest asset. People do not just buy a product, they buy from a person they trust. So the plan is simple. We build you as the trusted expert in your world (style and strength for real women), and Sportif becomes the natural choice your audience reaches for.
+
+In plain terms:
+
+1. **You are the voice.** We position you as the go to expert in your field, the voice of reason women actually listen to. Not an influencer chasing likes, an expert they trust.
+2. **We build trust first.** While the launch is on hold, we use the time to grow your authority and an audience that already believes in you. When Sportif launches, it arrives to a warm room, not a cold one.
+3. **Content does the heavy lifting.** We create content across a few clear topics that you own, blending your real voice with pieces we produce for you. That keeps it consistent and high quality without taking over your week.
+4. **Trust becomes sales.** The goal is not just followers, it is customers. When people trust your expertise, choosing Sportif becomes the obvious next step.
+
+In one line: we make you the expert, the expert builds the trust, and the trust drives the sales. This profile is the raw material we use to make that happen.
+
 ## In one line
 
 A Sydney fashion designer turned celebrity stylist and certified fitness trainer who has spent more than fifteen years helping women feel confident, both in what they wear and in how their body feels and moves. Her life sits at one rare intersection: style and strength, together.
