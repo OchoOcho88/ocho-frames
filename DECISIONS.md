@@ -6,6 +6,10 @@ Query with `python3 scripts/memory_tools.py decisions [--client Sportif]`.
 **Row format:** `- [D-NNN] YYYY-MM-DD | Client | decision text (Sxxx)`
 (Client = client name, or `Ochoproductions` for workspace-wide. Sxxx = session it was made.)
 
+- [D-012] 2026-07-28 | Ochoproductions | Hard mattes (white-on-light, e.g. white ball/bra on a light wall) are cut in Photoshop by Hugo; automatic matting (rembg) is only for clean plain-background subjects. (S028)
+- [D-011] 2026-07-28 | Sportif | Light-touch social branding = the real logo lockup (SPORTIF Glacial Regular tracking -0.059 + underline rule) top-right, @sportifcollection centred beneath, over a soft corner scrim. (S028)
+- [D-010] 2026-07-28 | Ochoproductions | Canva MCP here only does search + generate + export; it cannot read/edit and cannot export Lucy's view-only shared designs. Workflow: Hugo downloads from Canva -> we process locally -> he re-uploads. (S028)
+- [D-009] 2026-07-28 | Ochoproductions | Per-request folder convention: clients/<client>/email-NN-<topic>/ with downloads/ + created/ + README (+ email-to-<person>.md). Keeps each client request self-contained. (S028)
 - [D-008] 2026-07-23 | Ochoproductions | Content runs on TWO avenues: our pipeline (studio, exact/flat) + Canva (workbench, editable/shareable), chained pipeline -> Canva -> client. (S025)
 - [D-007] 2026-07-23 | Sportif | Ad type colour: warm charcoal #4A433C or cream; never navy on a warm background. (S025)
 - [D-006] 2026-07-23 | Sportif | Fresh-generation prompt rules: name the actual garments; garment colour must CONTRAST skin; garment material = SMOOTH four-way-stretch (not ribbed). (S025)

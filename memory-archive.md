@@ -6,6 +6,57 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-07-28 -->
+
+## Session 021 (2026-07-21, Claude Code): housekeeping + logged the Tuesday 2026-07-14 Lucy meeting outcomes
+
+Opened with the sync ritual. Cleaned up Session 020's Cowork-cloud leftovers on the Mac (`.git/*.lock`, `_to_delete/`, stale `tmp_obj_*` objects), confirmed a clean working tree, and pushed 8 commits to GitHub (`43e89a7..fd8d0af`, now in sync). memory.md at 86KB, no archive needed.
+
+**Main event: the Tuesday 2026-07-14 Lucy meeting outcomes, finally captured** (Hugo relayed them). The picture is quieter than the funnel-plan agenda hoped for:
+
+1. **Launch: no launch, held indefinitely.** Lucy is holding off pending trademark talks with her lawyer. No new date, no timeline.
+2. **Waitlist capture page: never put to Lucy.** Hugo did not show or ask her about it. So the "does the standalone page get approved" question is still open, but note the page does NOT need Lucy's approval to build, only to point her domain at. We can build it now.
+3. **Incentive decision (A group session / B capped 1:1 / C video series): still undecided.** Lucy will get back to Hugo.
+4. **Shopify: no movement.** Also gated on the trademark talks with the lawyer.
+5. **The 500 band units HAVE landed.** Physical product is in hand. Unboxing footage is now filmable.
+
+**What this changes.** For weeks the framing was "Shopify is the critical path, blocked on Lucy." The real gate is now clearly **trademark clearance**, which sits upstream of Shopify, the launch, and the whole go-to-market, and is entirely on Lucy's lawyer's clock. Nothing we do accelerates it. The correct response is to stop treating the launch as imminent and instead bank everything that does NOT depend on trademark: build the standalone waitlist page (build now, wire up later), draft the 3-email welcome flow, start the ambassador/instructor seeding shortlist (carried five+ weeks, needs nothing from anyone), and film the unboxing now that bands are here.
+
+**Open questions:** trademark timeline (unknowable, Lucy's lawyer); incentive A/B/C (pending Lucy); whether to still bother showing Lucy the waitlist page before building it (recommend: build it regardless, it's the only unblocked go-to-market surface).
+
+**Second half of the session: Hugo asked for a HyperFrames video from the peach images.** Built `compositions/sportif-peach-reel/` (15s, 1080x1920, one file for IG Reels + TikTok) reusing the sportif-teaser engine. Decisions (Hugo picked): card-on-peach framing (each 4:5 shot whole on the blush ground, no crop, premium lookbook feel), proven Lucy-voice taglines, date-free "Coming soon" end card (launch on hold, so no date). Three cosmos-peach text-free bases: studio-yellow-frame / portrait-sage-tank / beach-run-shoreline. Keeper: `renders/sportif-peach-reel_v2_high.mp4` (silent, add a soft music bed in-app on upload). It is a brand-MOOD piece, not product (no band/strap, not real Lucy) — fine for the pre-launch hold; a product-forward cut waits on real Lucy + product footage (bands have landed, unboxing filmable).
+
+**HyperFrames upgraded 0.6.37 to 0.7.64 (new features explored):**
+- The stricter one-shot `check` gate caught a latent bug our old lint missed: full-frame scene overlays that start visible before their fade (`gsap_fullscreen_overlay_starts_visible`). Fixed with explicit `opacity:0` + `.to()` reveals. Real robustness win, applies to the teaser too if we ever touch it.
+- `snapshot` = built-in frame verification; auto-builds a contact sheet AND runs Gemini vision over each frame (descriptions.md) to flag blank/black frames. Replaces manual ffmpeg frame-pulling. Snapshots are regenerable QA, now gitignored.
+- Rendered at `-q high` (7.9MB vs 4.6MB standard).
+- `tts` (Kokoro-82M, local, free, offline) PROVEN but NOT used: Hugo found the voice "very AI." Needed a Python 3.11 venv (system python 3.9 too old for kokoro-onnx); venv at `.venvs/tts` (gitignored), point `HYPERFRAMES_PYTHON` at it. Full recipe in the composition's design.md. For a natural read, use a real voice or HeyGen cloud voices, not Kokoro.
+- `cloud` (HeyGen server-side render, kills the local render-cap problem) NOT adopted: needs a HeyGen account (`auth login`, billed). Hugo declined — local high-quality is good enough for 1080p social. Revisit only if we need 4K or hit local caps.
+- Other new-but-unused commands worth remembering: `beats` (sync cuts to music), `compare` (variant comparison sheet), `grade-compare` (colour grades), `remove-background` (transparent product cutouts, useful once real product footage exists), `keyframes` (onion-shot diagnostics).
+
+**Decision: keep video renders local for now** (Hugo, Session 021). No cloud rendering. The silent v2 is the deliverable; music and any VO get added in-app or in a later pass.
+
+---
+
+## Session 020 (2026-07-20, Cowork cloud): Cosmos folder renamed, full 15-image peach series shipped, Lucy approved
+
+Continuation of the Session 019 chat. Hugo picked the Cosmos references for posture/colour/look and asked for the peach theme to run through all of them with the narrow Sportif lockup, Instagram 4:5.
+
+### What we did
+- **Renamed all 17 files in `assets/Cosmos pictures`** to descriptive names (mapping in commit 86b5b2e); image-prompts.md source path updated.
+- **Built a 4-worker batch pipeline over the gpt-image-2 edits endpoint:** a handwritten prompt per image, peach palette outfits (palette MIX across group shots so they read as a collection drop), backgrounds warmed to brand neutrals, everything recomposed to 4:5. Low-quality proofs (~$0.01 each) -> Hugo reviewed a contact sheet -> 1088x1360 quality-high finals -> narrow (62 percent) Sportif lockup stamped (cream; peach on the two palest images).
+- **Lucy saw the proofs and loves all 15** (via Hugo). Finals + text-free bases saved to `clients/sportif/generated/images/cosmos-peach/` and `cosmos-peach/notext/`; originals in assets untouched. Prompts preserved verbatim in `clients/sportif/scripts-local/gen_cosmos_peach.py`, summary in image-prompts.md.
+
+### What we learned
+- **`cosmos_bw-arms-detail` is hard-blocked by output moderation** (3 of 3 attempts, tight body crop); the safety-framing sentence that rescues full-figure poses does not rescue tight crops. Skip it or recompose wider first.
+- Staged uploads keep their staging-time filenames; after renaming on the Mac, re-stage or map old to new before batch runs.
+- One transient proxy error on a high render; a simple retry fixed it.
+- **Mid-session the device trust went stale:** device_stage_files began returning 403 untrusted_device while device_bash and earlier commits kept working. Fix: Hugo re-signs in via the desktop app banner. Text edits can be done through device_bash directly as a fallback.
+
+### Open questions
+- `cosmos_yoga-duo.mp4` untouched; a peach video edit would need the Seedance path.
+- Tuesday 2026-07-14 Lucy meeting outcomes STILL not logged (carried again).
+
 <!-- archived batch, moved 2026-07-24 -->
 
 ## Session 019 (2026-07-18, Cowork cloud): Cosmos reference edit, first gpt-image-2 edits-endpoint production piece

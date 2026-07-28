@@ -193,6 +193,7 @@ def build(plate):
     img.convert('RGB').save(out)
     print(f'ok -> {out}')
 
-which = sys.argv[1] if len(sys.argv) > 1 else 'all'
-for p in (['asis', 'bridge'] if which == 'all' else [which]):
-    build(p)
+if __name__ == '__main__':
+    which = sys.argv[1] if len(sys.argv) > 1 else 'all'
+    for p in (['asis', 'bridge'] if which == 'all' else [which]):
+        build(p)

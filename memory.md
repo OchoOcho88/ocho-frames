@@ -6,7 +6,10 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-25 | Last session: 027 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: send Lucy the Content Creation Strategy PDF, then Phase 2 (her expert niche + one avatar + 4 quadrants); Canva Pro (~next week) -> brand kit + folder share*
+*Last updated: 2026-07-28 | Last session: 028 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: email 3 from Lucy (awaiting Hugo's screenshot); Lucy's reply on the email-02 socials; Hugo's Photoshop cutout of the ball hero for the layered poster; still pending: waitlist page, Canva Pro (~07-30) brand kit + folder share, Lucy expert-brand Phase 2*
+
+- **NEW (Session 028): Lucy's Canva-request workflow (emails 01 + 02), poster experiments, new matting/inpaint tooling.** **Email 01 finished:** pilates reskin ad, band shown as PRODUCT PLACEMENT (not worn) + logo, ankle straps off, original raised-leg pose kept (`reskin-clean.png` via `reskin_clean_plate.py` + `layout_reskin_clean.py`). **Email 02 (light-touch social batch):** 4 feed 4:5 + 4 stories 9:16 from her 4 cleaned photos, real logo lockup (SPORTIF Glacial Regular tracking -0.059 + underline rule) top-right with @sportifcollection CENTRED below, soft corner scrim (`build_email02_social.py`; self-contained folder `clients/sportif/email-02-social/` = downloads/ + created/ + README + email-to-lucy.md). **Lucy's 4 photos cleaned** to `reference-images/lucy-canva-picks/` (removed the PILATES watermark + "First class is free!" text via cv2 inpaint, cropped the Canva sky/hills bg, removed the black ankle weights via a gpt patch-composite that keeps the rest native-res). **Poster experiments** (borrowing the JANNAYON collage layout, warm palette not periwinkle): `poster-lucy-real` (flat grid), `poster-lucy-depth` (cut-out pilates hero pops forward over the headline, cv2 painted out a second person's stray arms), `poster-lucy-layered` (SPORTIF wordmark sandwiched between a faded legs-in-air background and the ball hero in front). **New Mac tooling installed:** rembg (isnet-general-use) + onnxruntime + opencv (cv2) + scipy + numpy = background matting, cv2.inpaint text/object removal, distance-transform defringe. See [[go-the-extra-mile]], [[real-band-content-pipeline]].
+- **Learnings (S028):** (a) The **Canva MCP here only exposes search-designs + generate + export**; the read/edit tools (get-design, pages, editing transactions) are NOT provisioned, and export-design returns "Not allowed to access" on Lucy's view-only shared designs, so the workflow is Hugo downloads from Canva manually -> I process locally -> he re-uploads. (b) **White-on-light mattes fail** (the white ball + white bra on a light wall smeared in rembg) -> cut those in Photoshop; plain-bg subjects (the pilates figure on flat beige) matte flawlessly. (c) **gpt-image-2 poster: my prompt vs Hugo's ChatGPT run were equal on craft; the differentiator was quality tier** (his full-quality ChatGPT beat my harness-capped low) -> for hero deliverables Hugo runs the final gen in ChatGPT, I do iteration + the exact-type production version (cv2.inpaint lifts baked type, we lay real Glacial). (d) **The real logo is a lockup** (wordmark + underline rule), never the bare/wide-spaced wordmark.
 
 - **NEW (Session 027): Lucy expert-brand content strategy (Phase 1).** Applying the Devin Jatho expert-brand / 4-quadrant model to Lucy (authority-first, founder-led). Analysed her 3 editorials; her edge is the STYLE + STRENGTH fusion for REAL women. Deliverable: `clients/sportif/lucy-profile-for-review.pdf` ("Content Creation Strategy", a warm Ocho Productions letter) + internal `lucy-content-library.md` (taglines/quotes/mantras). Built via `build-lucy-profile.py` (headless Chrome). Sportif name is LOCKED (Le Sport Collectif was old). Next = Lucy reacts, then Phase 2 quadrants [[real-band-content-pipeline]].
 
@@ -37,6 +40,52 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Grid banner READY (Session 015):** 3-tile SPORTIF wordmark banner in three colourways at `clients/sportif/generated/images/grid-banner/`, peach/white is the on-brand pick. Posting recipe PROVEN on a mock account: 1080x1440 tiles, tap Original on the crop screen (default 1:1 crop breaks it), post right tile first, or reorder afterwards (IG added grid drag-reorder June 2026).
 - **INSTA LAUNCH IS THIS FRIDAY (2026-07-10). TEASER REEL RENDERED AND LAUNCH-READY, now 15s with the identity end card, in TWO variants.** Standard: `compositions/sportif-teaser/renders/sportif-teaser_2026-07-08_13-48-53.mp4`. With a follow CTA: `compositions/sportif-teaser/renders/sportif-teaser-cta.mp4` (rendered via the `cta` composition variable). Both 1080x1920, 15s, check clean 0/0/0. End card is now blush peach with warm-white wordmark, warm-charcoal launch line, terracotta handle, and holds ~3s before the fade. Backgrounds are MEDIUM quality (true-high blocked by the ~60s Claude Code network cap): to upgrade, run `python3 clients/sportif/scripts-local/gen_action_bg.py <variant> high` in a NATIVE Mac terminal, then rebuild tiles, re-copy, re-render.
 - **Still waiting on Lucy:** feedback on the four tagline-row directions and three banner colourways, plus the hero-concept pick and the blocker email reply.
+
+---
+
+## Weekly Review — 2026-07-26 (week of 2026-07-20)
+
+Eight sessions this week (020–027), the busiest week the workspace has ever had — up from one last week. The logjam broke on day one: Session 021 finally captured the Tuesday 2026-07-14 Lucy meeting outcomes (last week's #1 focus), which reframed the whole strategy around the trademark hold. The rest of the week banked an enormous amount of trademark-independent production: a full real-band product content pipeline, a fresh generation pipeline, a Canva collaboration workflow, memory system v2, and the opening move of a Lucy expert-brand content strategy.
+
+### Highlights
+- **The Tuesday Lucy meeting outcomes were finally logged (Session 021), and they changed the map.** Launch is held indefinitely pending trademark talks with Lucy's lawyer — trademark, not Shopify, is now the critical-path gate. The 500 band units HAVE landed (unboxing now filmable). The correct posture is explicit: bank everything that doesn't depend on trademark.
+- **A complete real-band product content pipeline shipped (Sessions 023–024).** From 3 casual snapshots of the real bands: restaged flatlay, 3 hero cards, a range reel, two lifestyle+product blends, a "they've landed" teaser, a band-in-use pilates reel with the real SPORTIF label stamped in, plus the reusable **reference-reskin technique** (AI generates a no-text plate, we own the type in PIL) with two waitlist-poster finals. The bands' colourways ARE the peach palette — the whole direction validated by physical product.
+- **Fresh from-scratch generation + Canva workflow established (Session 025).** `gen_fresh_explore.py` makes Sportif key visuals from scratch with three durable prompt lessons (name the garments, contrast skin tone, smooth not ribbed), and the two-avenue model (our pipeline = studio, Canva = shareable workbench) is set up with a Sportif folder chain to Lucy — Pro-gated pieces (brand kit, folder share) land when Hugo gets Canva Pro ~2026-07-30.
+- **Two infrastructure/strategy moves: memory system v2 (Session 026) and the Lucy expert-brand strategy Phase 1 (Session 027).** v2 adds registries (`DECISIONS.md`, `OPEN-QUESTIONS.md`), per-client filtering, and a close-out `check` hook — directly mitigating the compliance failure that lost the Tuesday meeting notes for a week. Phase 1 applied the Devin Jatho 4-quadrant model to Lucy and produced the "Content Creation Strategy" PDF, ready to send.
+
+### Patterns I noticed
+- **The ~60s render/network cap shaped nearly every session again.** High-quality gpt-image-2 renders hit it in Sessions 023, 024, and 025 (even in the VS Code terminal); the standing answer is iterate low in-harness, finals from a native Mac terminal. This is now a permanent column in the workflow map, not a transient annoyance.
+- **"AI makes the plate, we own the type" hardened from a technique into the house style.** Overlay scripts, the reference reskin, the label stamp, the PIL type layer — every finished piece this week separated AI-generated imagery from brand-controlled typography. Hugo enforced it explicitly ("NO YOU LAYOUT TEXT, THATS OUR WORKFLOW").
+- **Hugo's eyeball QA keeps catching what tooling can't** — the card-crop neighbour bleed (023), the GSAP selector bug hiding the end-card wordmark (022), navy type fighting the warm palette (025), the too-clinical first PDF draft (027). Fourth straight week this pattern holds.
+- **The Lucy dependency changed shape: from hard blocker to feedback latency.** Nothing is structurally blocked on her anymore (trademark is on her lawyer), but a queue of small picks is accumulating: music-bed pacing, the Content Creation Strategy reaction, the incentive A/B/C decision. Meanwhile the waitlist capture page — which needs neither Lucy nor trademark — was named "still the top unbuilt item" in four separate sessions and is still unbuilt.
+
+### Skills / knowledge gained
+- **Durable gpt-image-2 prompt lessons:** name the actual garments; garment colour must CONTRAST skin (flesh-adjacent tones read as nude); material = smooth four-way-stretch, never ribbed (except the band itself); scope edit prompts to "keep the product EXACTLY identical"; a REALISM block (Portra 400, real skin texture, forbid glossy/CGI) cuts the AI look; low-quality label stamps read more natural than crisp composites.
+- **The reference-reskin technique generalises:** any reference layout → no-text AI plate → our type in PIL; generate both pose variants when ambiguous and let product-clarity decide; solid opaque CTA pills beat thin script over busy areas.
+- **Canva mechanics:** connector can't ingest local files (public URLs only); short simple briefs succeed where long hex-code briefs fail; `asset_ids` only reliably used ~1 in 4 candidates (use editor Replace instead); brand kit + folder sharing are Pro-gated; the API's `/d/` URLs are private and 404 standalone.
+- **Production fixes worth keeping:** colour-boundary crop detection for touching products (not equal thirds); feathered Gaussian alpha for peach-on-peach edges; scope GSAP selectors per section when class names repeat; system python has PIL-not-numpy, the .venvs/tts python has numpy-not-PIL.
+- **Memory tooling:** `memory_tools.py check/index/search/decisions/open/reconcile` exist and filter by client; the pre-push warn hook is installed; `MEMORY_ENFORCE=1` flips it to blocking.
+
+### Open questions still unresolved
+**Resolved this week:**
+- [x] ~~Log the Tuesday 2026-07-14 Lucy meeting outcomes~~ RESOLVED Session 021: launch held indefinitely on trademark, waitlist page never put to Lucy, incentive undecided, no Shopify movement, the 500 bands HAVE landed.
+
+**Still open (from this week's sessions):**
+- [ ] **Send Lucy the Content Creation Strategy PDF**, then Phase 2 of the expert-brand strategy: lock her expert niche, one avatar, and the four quadrants (Q-006, Session 027 — gated on her reaction).
+- [ ] **Standalone waitlist capture page** — named the top unbuilt item in Sessions 023, 024, and 025; needs neither Lucy nor trademark. Pair with the 3-email welcome flow.
+- [ ] **Canva Pro (~2026-07-30):** set up the Sportif brand kit + share the Sportif folder with Lucy (lucy@lucywayne.com.au) once Hugo upgrades (Session 025).
+- [ ] **Lucy's picks pending:** music-bed pacing (calm ~100 BPM vs upbeat ~118 BPM, Sessions 022–023) and the incentive decision A/B/C (Session 021).
+- [ ] **High-res finals past the ~60s cap** — print-quality product/in-use renders need a native Mac terminal run (Sessions 023–025).
+- [ ] **ElevenLabs TTS awaiting Hugo's API key** (`.env` slot + script ready, Session 022).
+- [ ] **Film the unboxing** — bands are in hand since Session 021 confirmed landing; footage not yet shot.
+- [ ] **Trademark clearance** — the critical-path gate, on Lucy's lawyer's clock, nothing accelerates it (Session 021).
+- [ ] `cosmos_yoga-duo.mp4` peach video edit would need the Seedance path (Session 020).
+- [ ] Carried from prior weeks, still open: ambassador/instructor seeding shortlist (sixth week carried, needs nothing from anyone), Shopify store (gated on trademark), materials question, Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins.
+
+### Suggested focus for next week
+1. **Send Lucy the Content Creation Strategy PDF and bundle her pending picks into the same ask** (PDF reaction + music-bed pacing + incentive A/B/C). One message clears the whole feedback queue and un-gates Phase 2 of the expert-brand strategy.
+2. **Build the standalone waitlist capture page + 3-email welcome flow.** Four sessions in a row called it the top unbuilt item; it needs neither Lucy nor the trademark, and every piece of content built this week dead-ends without it.
+3. **When Canva Pro lands (~07-30), set up the brand kit and share the Sportif folder with Lucy** — and use the waiting days to finally start the ambassador/instructor seeding shortlist (six weeks carried) and film the unboxing.
 
 ---
 
@@ -125,6 +174,33 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 1. **Make the Tuesday Lucy meeting count.** The agenda is already staged in funnel-plan.md: get the launch slip reason and a new launch date, approval for the standalone waitlist page, the incentive decision (A/B/C), and movement on the Shopify blockers. This one meeting unblocks nearly everything else.
 2. **Stand up the standalone waitlist capture page immediately after approval.** It is the first workstream that does not wait on Shopify, it un-deadends every piece of content already built, and the Funnel 1 spec is written. Pair it with the 3-email welcome flow so capture and nurture ship together.
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
+
+---
+
+## Session 028 (2026-07-28, Claude Code): Lucy's Canva requests (emails 01 + 02) + poster experiments + matting/inpaint tooling
+
+Client: Sportif
+Tags: lucy, canva, social, posters, cutouts, rembg, cv2, logo-lockup
+
+Multi-day session working Lucy's Canva design requests, one self-contained folder per request.
+
+**Email 01 (finished the pilates reskin ad):** Lucy asked to add the band + logo and remove the ankle straps on the hip-raise model. Clarified with Hugo: band shown as a PRODUCT PLACEMENT (not worn) + the SPORTIF logo, original raised-leg pose kept (not the glute-bridge variant). `reskin_clean_plate.py` retouches the worn band off the plate; `layout_reskin_clean.py` lays the type + band card. Final `reskin-clean.png`.
+
+**Lucy's 4 photos cleaned** into `reference-images/lucy-canva-picks/` (NON-AI where possible): downloaded the "Use these Pictures only for Social Media" Canva pages, cropped the sky/hills Canva bg off the reformer-duo, cleaned the pilates ref (removed the PILATES watermark by flattening the background beige + the "First class is free!" navy text via cv2.inpaint). Black ankle weights removed with a gpt patch-composite (pad to 2:3 to avoid distortion, then feather ONLY the two ankle patches back onto the native-res original) — cv2 inpaint smudged the ankles, gpt was needed.
+
+**Email 02 (light-touch social batch):** folder `clients/sportif/email-02-social/` (downloads/ + created/ + README + email-to-lucy.md). 4 feed (4:5) + 4 stories (9:16) from the 4 cleaned photos, `build_email02_social.py`. Branding = the REAL logo lockup (SPORTIF Glacial Regular tracking -0.059 + underline rule) top-right, @sportifcollection centred beneath, over a soft top-right corner scrim. Hugo QA caught two logo bugs: the underline was missing (I'd used bare wide-spaced text) and the handle was right-aligned (skewed) not centred under the wordmark — both fixed.
+
+**Poster experiments** (Hugo loved a JANNAYON collage poster; borrow the LAYOUT, keep our warm palette not periwinkle, own the type):
+- gpt-image-2 poster (`gen_poster_jannayon.py`) then a pixel-perfect pass: cv2.inpaint lifts gpt's baked-in headline/wordmark off Hugo's high-res ChatGPT render, we lay real Glacial (`poster_final_type.py`).
+- `poster_lucy_real.py` flat grid from Lucy's real photos (parametrised: headline + output name as args; made an "IT'S PARTY TIME" demo for Hugo's brother-in-law).
+- `poster_lucy_depth.py` cut-out pilates hero pops forward over the headline with a soft cast shadow; cv2 painted out a second person's stray forearms before matting.
+- `poster_lucy_layered.py` SPORTIF wordmark sandwiched between a faded legs-in-air background and the ball hero in front. BLOCKED on a clean ball cutout (Q-008).
+
+**New Mac tooling installed:** rembg (isnet-general-use) + onnxruntime + opencv (cv2) + scipy + numpy = matting, cv2.inpaint (text/object removal), distance-transform defringe (also used for `band_cutouts.py`: transparent light/medium/heavy + joined-set band PNGs for Hugo's Photoshop).
+
+**Learnings:** (a) Canva MCP here = search + generate + export only; can't read/edit, export fails "Not allowed to access" on view-only shared designs -> manual download flow (D-010). (b) White-on-light mattes fail in rembg (white ball + bra on a light wall smeared); Hugo cuts those in Photoshop, plain-bg subjects matte perfectly (D-012). (c) gpt poster: prompt craft was equal, quality tier is the differentiator (Hugo's full-quality ChatGPT > my harness-capped low) -> he runs hero finals in ChatGPT, I iterate + do exact-type production. (d) Saved the [[go-the-extra-mile]] feedback memory (fix obvious imperfections before showing, do not ask).
+
+**Open:** Q-007 (Lucy's reply on the email-02 socials), Q-008 (Hugo's PS cutout of the ball hero), Q-009 (email 03 pending screenshot). See [[real-band-content-pipeline]], [[go-the-extra-mile]].
 
 ---
 
@@ -245,55 +321,6 @@ Continuation of the Session 021 chat into the next day. Hugo asked for a "quick 
 **Close-out:** committed both compositions' source (renders/audio/snapshots gitignored), the ElevenLabs setup, and this log. See [[hyperframes-0-7-tooling]].
 
 ---
-
-## Session 021 (2026-07-21, Claude Code): housekeeping + logged the Tuesday 2026-07-14 Lucy meeting outcomes
-
-Opened with the sync ritual. Cleaned up Session 020's Cowork-cloud leftovers on the Mac (`.git/*.lock`, `_to_delete/`, stale `tmp_obj_*` objects), confirmed a clean working tree, and pushed 8 commits to GitHub (`43e89a7..fd8d0af`, now in sync). memory.md at 86KB, no archive needed.
-
-**Main event: the Tuesday 2026-07-14 Lucy meeting outcomes, finally captured** (Hugo relayed them). The picture is quieter than the funnel-plan agenda hoped for:
-
-1. **Launch: no launch, held indefinitely.** Lucy is holding off pending trademark talks with her lawyer. No new date, no timeline.
-2. **Waitlist capture page: never put to Lucy.** Hugo did not show or ask her about it. So the "does the standalone page get approved" question is still open, but note the page does NOT need Lucy's approval to build, only to point her domain at. We can build it now.
-3. **Incentive decision (A group session / B capped 1:1 / C video series): still undecided.** Lucy will get back to Hugo.
-4. **Shopify: no movement.** Also gated on the trademark talks with the lawyer.
-5. **The 500 band units HAVE landed.** Physical product is in hand. Unboxing footage is now filmable.
-
-**What this changes.** For weeks the framing was "Shopify is the critical path, blocked on Lucy." The real gate is now clearly **trademark clearance**, which sits upstream of Shopify, the launch, and the whole go-to-market, and is entirely on Lucy's lawyer's clock. Nothing we do accelerates it. The correct response is to stop treating the launch as imminent and instead bank everything that does NOT depend on trademark: build the standalone waitlist page (build now, wire up later), draft the 3-email welcome flow, start the ambassador/instructor seeding shortlist (carried five+ weeks, needs nothing from anyone), and film the unboxing now that bands are here.
-
-**Open questions:** trademark timeline (unknowable, Lucy's lawyer); incentive A/B/C (pending Lucy); whether to still bother showing Lucy the waitlist page before building it (recommend: build it regardless, it's the only unblocked go-to-market surface).
-
-**Second half of the session: Hugo asked for a HyperFrames video from the peach images.** Built `compositions/sportif-peach-reel/` (15s, 1080x1920, one file for IG Reels + TikTok) reusing the sportif-teaser engine. Decisions (Hugo picked): card-on-peach framing (each 4:5 shot whole on the blush ground, no crop, premium lookbook feel), proven Lucy-voice taglines, date-free "Coming soon" end card (launch on hold, so no date). Three cosmos-peach text-free bases: studio-yellow-frame / portrait-sage-tank / beach-run-shoreline. Keeper: `renders/sportif-peach-reel_v2_high.mp4` (silent, add a soft music bed in-app on upload). It is a brand-MOOD piece, not product (no band/strap, not real Lucy) — fine for the pre-launch hold; a product-forward cut waits on real Lucy + product footage (bands have landed, unboxing filmable).
-
-**HyperFrames upgraded 0.6.37 to 0.7.64 (new features explored):**
-- The stricter one-shot `check` gate caught a latent bug our old lint missed: full-frame scene overlays that start visible before their fade (`gsap_fullscreen_overlay_starts_visible`). Fixed with explicit `opacity:0` + `.to()` reveals. Real robustness win, applies to the teaser too if we ever touch it.
-- `snapshot` = built-in frame verification; auto-builds a contact sheet AND runs Gemini vision over each frame (descriptions.md) to flag blank/black frames. Replaces manual ffmpeg frame-pulling. Snapshots are regenerable QA, now gitignored.
-- Rendered at `-q high` (7.9MB vs 4.6MB standard).
-- `tts` (Kokoro-82M, local, free, offline) PROVEN but NOT used: Hugo found the voice "very AI." Needed a Python 3.11 venv (system python 3.9 too old for kokoro-onnx); venv at `.venvs/tts` (gitignored), point `HYPERFRAMES_PYTHON` at it. Full recipe in the composition's design.md. For a natural read, use a real voice or HeyGen cloud voices, not Kokoro.
-- `cloud` (HeyGen server-side render, kills the local render-cap problem) NOT adopted: needs a HeyGen account (`auth login`, billed). Hugo declined — local high-quality is good enough for 1080p social. Revisit only if we need 4K or hit local caps.
-- Other new-but-unused commands worth remembering: `beats` (sync cuts to music), `compare` (variant comparison sheet), `grade-compare` (colour grades), `remove-background` (transparent product cutouts, useful once real product footage exists), `keyframes` (onion-shot diagnostics).
-
-**Decision: keep video renders local for now** (Hugo, Session 021). No cloud rendering. The silent v2 is the deliverable; music and any VO get added in-app or in a later pass.
-
----
-
-## Session 020 (2026-07-20, Cowork cloud): Cosmos folder renamed, full 15-image peach series shipped, Lucy approved
-
-Continuation of the Session 019 chat. Hugo picked the Cosmos references for posture/colour/look and asked for the peach theme to run through all of them with the narrow Sportif lockup, Instagram 4:5.
-
-### What we did
-- **Renamed all 17 files in `assets/Cosmos pictures`** to descriptive names (mapping in commit 86b5b2e); image-prompts.md source path updated.
-- **Built a 4-worker batch pipeline over the gpt-image-2 edits endpoint:** a handwritten prompt per image, peach palette outfits (palette MIX across group shots so they read as a collection drop), backgrounds warmed to brand neutrals, everything recomposed to 4:5. Low-quality proofs (~$0.01 each) -> Hugo reviewed a contact sheet -> 1088x1360 quality-high finals -> narrow (62 percent) Sportif lockup stamped (cream; peach on the two palest images).
-- **Lucy saw the proofs and loves all 15** (via Hugo). Finals + text-free bases saved to `clients/sportif/generated/images/cosmos-peach/` and `cosmos-peach/notext/`; originals in assets untouched. Prompts preserved verbatim in `clients/sportif/scripts-local/gen_cosmos_peach.py`, summary in image-prompts.md.
-
-### What we learned
-- **`cosmos_bw-arms-detail` is hard-blocked by output moderation** (3 of 3 attempts, tight body crop); the safety-framing sentence that rescues full-figure poses does not rescue tight crops. Skip it or recompose wider first.
-- Staged uploads keep their staging-time filenames; after renaming on the Mac, re-stage or map old to new before batch runs.
-- One transient proxy error on a high render; a simple retry fixed it.
-- **Mid-session the device trust went stale:** device_stage_files began returning 403 untrusted_device while device_bash and earlier commits kept working. Fix: Hugo re-signs in via the desktop app banner. Text edits can be done through device_bash directly as a fallback.
-
-### Open questions
-- `cosmos_yoga-duo.mp4` untouched; a peach video edit would need the Seedance path.
-- Tuesday 2026-07-14 Lucy meeting outcomes STILL not logged (carried again).
 
 ## Weekly Review, 2026-07-05 (week of 2026-06-29)
 
