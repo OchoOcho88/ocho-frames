@@ -6,7 +6,9 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-28 | Last session: 028 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: email 3 from Lucy (awaiting Hugo's screenshot); Lucy's reply on the email-02 socials; Hugo's Photoshop cutout of the ball hero for the layered poster; still pending: waitlist page, Canva Pro (~07-30) brand kit + folder share, Lucy expert-brand Phase 2*
+*Last updated: 2026-07-28 | Last session: 029 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: run the high-quality band-swap/branded renders in Terminal + finalise the email-03 attachments to Lucy; Lucy's replies (email-02 socials, email-03 bands, expert-brand PDF); Hugo's Photoshop cutout for the layered poster; waitlist page; Canva Pro (~07-30)*
+
+- **NEW (Session 029): Email 03 (Lucy's "3 bands like this" request) + the band-swap labelling method.** Lucy shared 6 competitor STYLE refs (YR / Pilates Reformers Australia / moveactive), rendered from a PDF via PyMuPDF (poppler is not on the Mac). Folder `clients/sportif/email-03-band-photo/` (downloads/created/README/email-to-lucy). Built (all ownable, no competitor imagery): a 3-band product HERO from our cutouts (`band_hero_ref1.py`; also fixed the cutouts' leftover peach FLOOR strip via `trim_base` in `band_cutouts.py`); a range-concept FLATLAY with imaginary socks/pouch/towel (`gen_flatlay_concept.py`); a DRAPED-arm shot (`gen_draped_arm.py`); reused our in-use library. **Copyright call:** competitor reference photos are STYLE-ONLY, never edited into Sportif assets (their copyright + model release); real-model content needs a real shoot, or AI models we own (Lucy agreed, told via email). **Label breakthrough:** gpt garbles small brand text at low quality, so (a) reaffirmed the house rule (we own the type: PIL-composited labels `label_flatlay_pil.py`/`label_draped_pil.py`) and (b) found the WINNING method = a TWO-IMAGE gpt swap (`band_swap_test.py`, pass the scene + our finished hero bands) that drops our real caramel SPORTIF label in naturally, plus stitched SPORTIF on the soft goods (`add_stitched_branding.py`). Best deliverables in `created/band-swap-test/` (flatlay-branded-fixed, draped swapped); small garbles cleared by a high Terminal render or a PIL patch (`fix_towel_label.py`, `fix_light_word.py`). See [[go-the-extra-mile]], [[real-band-content-pipeline]].
 
 - **NEW (Session 028): Lucy's Canva-request workflow (emails 01 + 02), poster experiments, new matting/inpaint tooling.** **Email 01 finished:** pilates reskin ad, band shown as PRODUCT PLACEMENT (not worn) + logo, ankle straps off, original raised-leg pose kept (`reskin-clean.png` via `reskin_clean_plate.py` + `layout_reskin_clean.py`). **Email 02 (light-touch social batch):** 4 feed 4:5 + 4 stories 9:16 from her 4 cleaned photos, real logo lockup (SPORTIF Glacial Regular tracking -0.059 + underline rule) top-right with @sportifcollection CENTRED below, soft corner scrim (`build_email02_social.py`; self-contained folder `clients/sportif/email-02-social/` = downloads/ + created/ + README + email-to-lucy.md). **Lucy's 4 photos cleaned** to `reference-images/lucy-canva-picks/` (removed the PILATES watermark + "First class is free!" text via cv2 inpaint, cropped the Canva sky/hills bg, removed the black ankle weights via a gpt patch-composite that keeps the rest native-res). **Poster experiments** (borrowing the JANNAYON collage layout, warm palette not periwinkle): `poster-lucy-real` (flat grid), `poster-lucy-depth` (cut-out pilates hero pops forward over the headline, cv2 painted out a second person's stray arms), `poster-lucy-layered` (SPORTIF wordmark sandwiched between a faded legs-in-air background and the ball hero in front). **New Mac tooling installed:** rembg (isnet-general-use) + onnxruntime + opencv (cv2) + scipy + numpy = background matting, cv2.inpaint text/object removal, distance-transform defringe. See [[go-the-extra-mile]], [[real-band-content-pipeline]].
 - **Learnings (S028):** (a) The **Canva MCP here only exposes search-designs + generate + export**; the read/edit tools (get-design, pages, editing transactions) are NOT provisioned, and export-design returns "Not allowed to access" on Lucy's view-only shared designs, so the workflow is Hugo downloads from Canva manually -> I process locally -> he re-uploads. (b) **White-on-light mattes fail** (the white ball + white bra on a light wall smeared in rembg) -> cut those in Photoshop; plain-bg subjects (the pilates figure on flat beige) matte flawlessly. (c) **gpt-image-2 poster: my prompt vs Hugo's ChatGPT run were equal on craft; the differentiator was quality tier** (his full-quality ChatGPT beat my harness-capped low) -> for hero deliverables Hugo runs the final gen in ChatGPT, I do iteration + the exact-type production version (cv2.inpaint lifts baked type, we lay real Glacial). (d) **The real logo is a lockup** (wordmark + underline rule), never the bare/wide-spaced wordmark.
@@ -177,6 +179,31 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 
 ---
 
+## Session 029 (2026-07-28, Claude Code): Email 03 (Lucy's 3-band photo request) + the band-swap labelling method
+
+Client: Sportif
+Tags: lucy, email-03, bands, product-photo, band-swap, labels, copyright, gpt-image-2
+
+Lucy's email 03: "create a picture of my 3 bands like this" with 6 competitor STYLE references (YR, Pilates Reformers Australia, moveactive), shared as a PDF. Rendered the PDF to images with PyMuPDF (installed; poppler/pdftoppm is not on the Mac). Folder `clients/sportif/email-03-band-photo/` (downloads/ + created/ + README + email-to-lucy.md), per the per-request convention. Clarified with Hugo: recreate each reference LOOK with OUR bands and assets, not edits of the competitor photos.
+
+**Built (all ownable, no competitor imagery):**
+- 3-band product HERO (`band_hero_ref1.py`): our 3 transparent band cutouts fanned/stacked on warm cream, SPORTIF labels visible. Fixed the cutouts at source too: `trim_base` in `band_cutouts.py` removes the leftover peach FLOOR strip rembg kept at the band bottoms (texture-based).
+- Range-concept FLATLAY (`gen_flatlay_concept.py`, from scratch): the 3 bands + IMAGINARY Sportif pieces (ribbed grip socks, cotton pouch, rolled towel). pg-6 could not be copied faithfully (competitor full-range flat-lay with props that are not Sportif products).
+- DRAPED-arm shot (`gen_draped_arm.py`, from scratch): photoreal model, bands draped over the forearm.
+- In-use shots reused from our existing band-inuse library.
+
+**Copyright (important):** the reference photos are competitor brands' OWN photos; we must not edit them (swap band, reuse model) into Sportif marketing (their copyright + the model's release is for their brand). Lucy also does not want AI models. Resolution (Hugo): use AI models we generate (fully owned) for now and TELL Lucy via email; the premium option is a real shoot (Lucy or a model with the actual bands), which we then style. Reference photos stay STYLE-ONLY.
+
+**Label breakthrough (the reusable bit):** gpt-image-2 garbles small brand text at low quality (SPOTE, MEAVY, a garbled towel label). Two lessons:
+- Reaffirmed the HOUSE RULE (AI makes the plate, WE own the type): PIL-composited clean SPORTIF labels (`label_flatlay_pil.py`, `label_draped_pil.py`) = guaranteed spelling, but a flat/pasted look.
+- WINNING method (Hugo's idea): a TWO-IMAGE gpt swap (`band_swap_test.py`) = pass the scene + our finished hero bands, and gpt drops our real caramel SPORTIF label onto the scene bands NATURALLY (beats the PIL composite). Plus `add_stitched_branding.py` adds tonal stitched SPORTIF to the soft goods (pouch/socks/towel) so the whole flat-lay reads as one branded set. Remaining small-text garbles are cleared by a HIGH Terminal render or a quick PIL patch (`fix_towel_label.py` fixed the garbled towel label; `fix_light_word.py` fixed one band size word).
+
+**Deliverables:** primary set in `created/` (hero, labelled draped, labelled flat-lay, 3 in-use); the stronger swap experiments in `created/band-swap-test/` (flatlay-branded-fixed, draped swapped). Email to Lucy drafted (`email-to-lucy.md`): what we did, the copyright heads-up, and the real-shoot option.
+
+**Open:** Q-010 = run the high-quality swap/branded renders in Terminal for crisp text, then finalise the attach set and send Lucy. See [[real-band-content-pipeline]], [[go-the-extra-mile]].
+
+---
+
 ## Session 028 (2026-07-28, Claude Code): Lucy's Canva requests (emails 01 + 02) + poster experiments + matting/inpaint tooling
 
 Client: Sportif
@@ -281,44 +308,6 @@ Two finals kept in `clients/sportif/generated/images/reference-reskin/`: `reskin
 **Key learnings:** (a) the reskin technique generalises — hand any reference layout, get a no-text AI plate, own the type in PIL; (b) generate BOTH plate variants when a pose is ambiguous and let the product-clarity decide; (c) a solid opaque CTA pill sits cleanly over any busy area where a thin script line looks amateur; (d) dropping a matching single-band product card into negative space delivers the lifestyle+product blend inside a single still. See [[real-band-content-pipeline]].
 
 **Still open (unchanged):** standalone waitlist capture page (needs neither Lucy nor trademark, still the top unbuilt item); Lucy's music-bed pick; high-res finals past the ~60s cap; trademark gate.
-
----
-
-## Session 023 (2026-07-22, Claude Code): real-band product content pipeline (restage, cards, range reel, 2 blends)
-
-Lucy sent Hugo 3 real photos of the bands she received (saved to `clients/sportif/products/real-bands/`). They were casual counter snapshots (clutter, harsh light, all three folded label-end) BUT the product is bang-on brand: the three colourways (HEAVY terracotta / MEDIUM dusty blush / LIGHT sand-cream) ARE the peach palette, and the rubber labels carry the real SPORTIF lockup + resistance tier. This validated the whole peach direction and meant real product could intercut with the AI lifestyle shots seamlessly.
-
-Built a staged product-content suite (Hugo directed "we do in stages"):
-1. **Restaged flatlay** via gpt-image-2 `images/edits` (`scripts-local/gen_band_product.py`): scoped "keep the product EXACTLY identical, only change surroundings" prompt strips clutter and drops the bands onto clean peach, holding the labels crisp **even at quality low**. High quality hits the ~60s Claude Code cap (RemoteDisconnected, background doesn't help) -> run from a native Terminal.
-2. **3 individual hero cards** (`scripts-local/make_band_cards.py`): cropped each band from the flatlay. Hugo caught a left-edge artifact -> the bands TOUCH, so equal-thirds cropping bled a neighbour sliver onto each card. Fixed by detecting true edges (texture variance for outer, colour/brightness boundary at x~592 for the H/M seam) and cropping inset off the seams.
-3. **Range reel** `compositions/sportif-band-range/` (calm Light/Medium/Heavy). Feathered the flatlay edge (Gaussian border alpha) so its peach melts into the peach frame (no rectangle) -- Hugo asked to fix that before viewing.
-4. **Two lifestyle+product blends** (Hugo's idea, wanted BOTH): `sportif-blend-cuts` (rhythmic beat-cut, lifestyle cover + product contain, 120 BPM) and `sportif-blend-calm` (editorial card-on-peach story with taglines). Both got mood-matched scratch music. Hugo: "they both look great as concept pieces."
-
-Full reusable pipeline + gotchas written up at `clients/sportif/products/real-bands-content-process.md`. See also [[real-band-content-pipeline]] and [[hyperframes-0-7-tooling]].
-
-Key process learnings (also in the pipeline doc): scope gpt-image-2 edit prompts to keep-product-identical; low quality is fine for social; touching products need colour-boundary crop detection not equal thirds; feather peach-on-peach edges with a blurred alpha mask; the lifestyle+product BLEND is the strongest format (desire + product, but juxtaposition not literal use -- literal-use is the unbuilt Stage 5 composite); system python has PIL-not-numpy, the .venvs/tts python has numpy-not-PIL.
-
-**Stage 4 (they've landed teaser) and Stage 5 (band-in-use pilates reel) both DONE this session.** Stage 4: `compositions/sportif-they-landed/` — announcement teaser, bouncy pop-in headline (+wiggle), popping product reveals, "Find your resistance." band line, "Join our community" CTA pill. Stage 5: `compositions/sportif-band-inuse/` — three pilates poses (standing abduction / squat / lateral walk, barefoot) with the real SPORTIF label stamped via the two-image gpt trick, CTA pill, two music beds (calm + upbeat) for Lucy to pick pacing.
-
-**Stage 5 detours worth remembering:** client gym shots were off-brand (black weights gym, glam register) and even tripped AI `[sexual]` moderation, so we GENERATED fresh modest pilates scenes instead; the real-label two-image stamp at LOW quality looked natural (Hugo preferred it over a pixel-perfect but pasted-looking composite); high-quality label re-render kept hitting the ~60s cap even in the VS Code terminal. Full pipeline + all scripts documented in `real-bands-content-process.md` and each comp's design.md. See [[real-band-content-pipeline]].
-
-**Still open:** print-quality high-res product/in-use finals (need a real macOS Terminal or cloud to beat the ~60s cap); Lucy's pick between the two music beds; and the ORIGINAL top item — the standalone waitlist capture page — still unbuilt (needs neither Lucy nor trademark).
-
----
-
-## Session 022 (2026-07-22, Claude Code): peach beat-cut montage + scratch music + ElevenLabs setup
-
-Continuation of the Session 021 chat into the next day. Hugo asked for a "quick cut" beat-synced montage from the peach images (different energy from the calm lookbook reel).
-
-**Built `compositions/sportif-peach-cuts/`** (15s, 1080x1920, one file for IG Reels + TikTok). Generated from `build_cuts.py`: a 120 BPM grid of hard cuts with a per-image zoom-punch. Structure: SPORTIF wordmark flash (0-1s), 14 cuts on the beat (1.0-7.5s), a double-time build through the punchiest shots (8-11s), date-free "Coming soon" end card holding ~3.5s to 15s. Full-bleed (punchier than the lookbook's cards) but center-crops the group shots at the edges (acceptable at cut speed). Keeper: `renders/sportif-peach-cuts_v3_high.mp4`.
-
-**Iteration notes (all Hugo feedback):** he liked the cut length + acceleration + zoom-out immediately. Two fixes: (1) extended the end-card hold from ~0.2s readable to ~3.5s (total 12s -> 15s) because the logo only flashed; (2) real bug found by the snapshot QA: the intro's shared `.wm`/`.rule` GSAP selectors also grabbed the end-card wordmark and left it hidden, so the end card showed only "Coming soon" without the SPORTIF lockup. Fixed by scoping the intro selectors to `#intro`. Lesson: scope GSAP selectors per section when class names repeat across scenes.
-
-**Music.** Hugo needed audio to judge the edit. Can't generate licensed music locally (that's HeyGen, which he declined). Synthesized a SCRATCH 120 BPM bed via `scratch_music.py` (numpy/soundfile in the .venvs/tts python: kick on the beat, offbeat hats double-timing through the build, A-minor pad + sub bass), muxed on as `_MUSICDEMO.mp4`. Hugo: "nailed it, the sound helps match the cuts." He is showing the MUSICDEMO to Lucy as a future-feel preview. IMPORTANT: scratch track is unlicensed, internal preview only, never publish it. Real posts get a licensed track (in-app on upload, or send a file and mux + `hyperframes beats` for exact sync).
-
-**ElevenLabs wired (Hugo asked "would elevenlabs be better?" — yes, far more natural than Kokoro).** Promoted the `.env.example` slot to active, added `ELEVENLABS_API_KEY=` to the gitignored `.env`, and wrote `scripts/elevenlabs_tts.py` (zero-dep urllib helper: text -> mp3, reads key from .env, `--list` voices, default warm-female "Sarah" voice). Ready the moment Hugo pastes a key. Best for future narrated content (founder story, product explainer), not beat-cut montages.
-
-**Close-out:** committed both compositions' source (renders/audio/snapshots gitignored), the ElevenLabs setup, and this log. See [[hyperframes-0-7-tooling]].
 
 ---
 

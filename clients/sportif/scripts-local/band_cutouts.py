@@ -62,12 +62,41 @@ def clean_edges(im, floor=28, opaque_at=250):
     return Image.fromarray(out, 'RGBA')
 
 
+def trim_base(im, look=0.42, tex_thresh=7.0, feather=7):
+    """Remove the smooth peach FLOOR strip rembg left at the bottom of the cutout.
+
+    Knit fabric has high horizontal micro-texture; the leftover background floor is smooth.
+    Scan up from the bottom (within the lower `look` fraction) and clear rows whose in-band
+    horizontal texture stays below `tex_thresh`, stopping at the first knit row. Feather the
+    new edge so it is not razor-straight.
+    """
+    arr = np.array(im)
+    a = arr[..., 3]
+    gray = arr[..., :3].mean(2)
+    H, W = gray.shape
+    gx = np.abs(np.diff(gray, axis=1))
+    opq = a[:, :-1] > 128
+    tex = np.array([gx[r][opq[r]].mean() if opq[r].any() else 0.0 for r in range(H)])
+    start = int(H * (1 - look))
+    cut_to, r = H, H - 1
+    while r >= start and tex[r] < tex_thresh:
+        cut_to, r = r, r - 1
+    if cut_to < H:
+        arr[cut_to:, :, 3] = 0
+        for i in range(feather):                       # fade the last few rows into the cut
+            row = cut_to - feather + i
+            if 0 <= row < H:
+                arr[row, :, 3] = (arr[row, :, 3].astype(int) * i // feather).astype(np.uint8)
+    return Image.fromarray(arr, 'RGBA')
+
+
 for src, dst in JOBS:
     im = Image.open(f'{SRCDIR}/{src}').convert('RGBA')
     cut = remove(im, session=session,
                  alpha_matting=True, alpha_matting_foreground_threshold=250,
                  alpha_matting_background_threshold=10, alpha_matting_erode_size=8)
     cut = clean_edges(cut)
+    cut = trim_base(cut)
     cut = trim_alpha(cut)
     cut.save(f'{OUT}/{dst}')
     print(f'ok {src} -> cutouts/{dst}  ({cut.width}x{cut.height})')

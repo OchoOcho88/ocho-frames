@@ -8,6 +8,46 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 <!-- archived batch, moved 2026-07-28 -->
 
+## Session 023 (2026-07-22, Claude Code): real-band product content pipeline (restage, cards, range reel, 2 blends)
+
+Lucy sent Hugo 3 real photos of the bands she received (saved to `clients/sportif/products/real-bands/`). They were casual counter snapshots (clutter, harsh light, all three folded label-end) BUT the product is bang-on brand: the three colourways (HEAVY terracotta / MEDIUM dusty blush / LIGHT sand-cream) ARE the peach palette, and the rubber labels carry the real SPORTIF lockup + resistance tier. This validated the whole peach direction and meant real product could intercut with the AI lifestyle shots seamlessly.
+
+Built a staged product-content suite (Hugo directed "we do in stages"):
+1. **Restaged flatlay** via gpt-image-2 `images/edits` (`scripts-local/gen_band_product.py`): scoped "keep the product EXACTLY identical, only change surroundings" prompt strips clutter and drops the bands onto clean peach, holding the labels crisp **even at quality low**. High quality hits the ~60s Claude Code cap (RemoteDisconnected, background doesn't help) -> run from a native Terminal.
+2. **3 individual hero cards** (`scripts-local/make_band_cards.py`): cropped each band from the flatlay. Hugo caught a left-edge artifact -> the bands TOUCH, so equal-thirds cropping bled a neighbour sliver onto each card. Fixed by detecting true edges (texture variance for outer, colour/brightness boundary at x~592 for the H/M seam) and cropping inset off the seams.
+3. **Range reel** `compositions/sportif-band-range/` (calm Light/Medium/Heavy). Feathered the flatlay edge (Gaussian border alpha) so its peach melts into the peach frame (no rectangle) -- Hugo asked to fix that before viewing.
+4. **Two lifestyle+product blends** (Hugo's idea, wanted BOTH): `sportif-blend-cuts` (rhythmic beat-cut, lifestyle cover + product contain, 120 BPM) and `sportif-blend-calm` (editorial card-on-peach story with taglines). Both got mood-matched scratch music. Hugo: "they both look great as concept pieces."
+
+Full reusable pipeline + gotchas written up at `clients/sportif/products/real-bands-content-process.md`. See also [[real-band-content-pipeline]] and [[hyperframes-0-7-tooling]].
+
+Key process learnings (also in the pipeline doc): scope gpt-image-2 edit prompts to keep-product-identical; low quality is fine for social; touching products need colour-boundary crop detection not equal thirds; feather peach-on-peach edges with a blurred alpha mask; the lifestyle+product BLEND is the strongest format (desire + product, but juxtaposition not literal use -- literal-use is the unbuilt Stage 5 composite); system python has PIL-not-numpy, the .venvs/tts python has numpy-not-PIL.
+
+**Stage 4 (they've landed teaser) and Stage 5 (band-in-use pilates reel) both DONE this session.** Stage 4: `compositions/sportif-they-landed/` — announcement teaser, bouncy pop-in headline (+wiggle), popping product reveals, "Find your resistance." band line, "Join our community" CTA pill. Stage 5: `compositions/sportif-band-inuse/` — three pilates poses (standing abduction / squat / lateral walk, barefoot) with the real SPORTIF label stamped via the two-image gpt trick, CTA pill, two music beds (calm + upbeat) for Lucy to pick pacing.
+
+**Stage 5 detours worth remembering:** client gym shots were off-brand (black weights gym, glam register) and even tripped AI `[sexual]` moderation, so we GENERATED fresh modest pilates scenes instead; the real-label two-image stamp at LOW quality looked natural (Hugo preferred it over a pixel-perfect but pasted-looking composite); high-quality label re-render kept hitting the ~60s cap even in the VS Code terminal. Full pipeline + all scripts documented in `real-bands-content-process.md` and each comp's design.md. See [[real-band-content-pipeline]].
+
+**Still open:** print-quality high-res product/in-use finals (need a real macOS Terminal or cloud to beat the ~60s cap); Lucy's pick between the two music beds; and the ORIGINAL top item — the standalone waitlist capture page — still unbuilt (needs neither Lucy nor trademark).
+
+---
+
+## Session 022 (2026-07-22, Claude Code): peach beat-cut montage + scratch music + ElevenLabs setup
+
+Continuation of the Session 021 chat into the next day. Hugo asked for a "quick cut" beat-synced montage from the peach images (different energy from the calm lookbook reel).
+
+**Built `compositions/sportif-peach-cuts/`** (15s, 1080x1920, one file for IG Reels + TikTok). Generated from `build_cuts.py`: a 120 BPM grid of hard cuts with a per-image zoom-punch. Structure: SPORTIF wordmark flash (0-1s), 14 cuts on the beat (1.0-7.5s), a double-time build through the punchiest shots (8-11s), date-free "Coming soon" end card holding ~3.5s to 15s. Full-bleed (punchier than the lookbook's cards) but center-crops the group shots at the edges (acceptable at cut speed). Keeper: `renders/sportif-peach-cuts_v3_high.mp4`.
+
+**Iteration notes (all Hugo feedback):** he liked the cut length + acceleration + zoom-out immediately. Two fixes: (1) extended the end-card hold from ~0.2s readable to ~3.5s (total 12s -> 15s) because the logo only flashed; (2) real bug found by the snapshot QA: the intro's shared `.wm`/`.rule` GSAP selectors also grabbed the end-card wordmark and left it hidden, so the end card showed only "Coming soon" without the SPORTIF lockup. Fixed by scoping the intro selectors to `#intro`. Lesson: scope GSAP selectors per section when class names repeat across scenes.
+
+**Music.** Hugo needed audio to judge the edit. Can't generate licensed music locally (that's HeyGen, which he declined). Synthesized a SCRATCH 120 BPM bed via `scratch_music.py` (numpy/soundfile in the .venvs/tts python: kick on the beat, offbeat hats double-timing through the build, A-minor pad + sub bass), muxed on as `_MUSICDEMO.mp4`. Hugo: "nailed it, the sound helps match the cuts." He is showing the MUSICDEMO to Lucy as a future-feel preview. IMPORTANT: scratch track is unlicensed, internal preview only, never publish it. Real posts get a licensed track (in-app on upload, or send a file and mux + `hyperframes beats` for exact sync).
+
+**ElevenLabs wired (Hugo asked "would elevenlabs be better?" — yes, far more natural than Kokoro).** Promoted the `.env.example` slot to active, added `ELEVENLABS_API_KEY=` to the gitignored `.env`, and wrote `scripts/elevenlabs_tts.py` (zero-dep urllib helper: text -> mp3, reads key from .env, `--list` voices, default warm-female "Sarah" voice). Ready the moment Hugo pastes a key. Best for future narrated content (founder story, product explainer), not beat-cut montages.
+
+**Close-out:** committed both compositions' source (renders/audio/snapshots gitignored), the ElevenLabs setup, and this log. See [[hyperframes-0-7-tooling]].
+
+---
+
+<!-- archived batch, moved 2026-07-28 -->
+
 ## Session 021 (2026-07-21, Claude Code): housekeeping + logged the Tuesday 2026-07-14 Lucy meeting outcomes
 
 Opened with the sync ritual. Cleaned up Session 020's Cowork-cloud leftovers on the Mac (`.git/*.lock`, `_to_delete/`, stale `tmp_obj_*` objects), confirmed a clean working tree, and pushed 8 commits to GitHub (`43e89a7..fd8d0af`, now in sync). memory.md at 86KB, no archive needed.
