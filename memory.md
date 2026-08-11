@@ -6,7 +6,10 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-07-28 | Last session: 029 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed to GitHub | Next: run the high-quality band-swap/branded renders in Terminal + finalise the email-03 attachments to Lucy; Lucy's replies (email-02 socials, email-03 bands, expert-brand PDF); Hugo's Photoshop cutout for the layered poster; waitlist page; Canva Pro (~07-30)*
+*Last updated: 2026-08-11 | Last session: 030 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally | Next: Lucy's reply on the collection grid (and whether she wants a cream or white colourway); run the high-quality band-swap/branded renders in Terminal + finalise the email-03 attachments to Lucy; Lucy's replies (email-02 socials, expert-brand PDF); Hugo's Photoshop cutout for the layered poster; waitlist page; Canva Pro*
+
+- **NEW (Session 030): SPORTIF collection grid tiles built and SENT to Lucy.** Lucy asked for the 3-tile Instagram grid banner again, this time with "collection" under the wordmark, and supplied a square reference lockup (peach `#F0CDB3` bg, white SPORTIF, rule, lowercase "collection") saved at `clients/sportif/Sportif_Collection/`. Built `clients/sportif/scripts-local/build_collection_grid.py` (adapted from `build_grid_banner.py`): 3240x1440 peach master, white Glacial Indifference SPORTIF tracked to 80% of canvas width, rule, then "collection", split into three 1080x1440 tiles named by POST ORDER. Output + POST-ORDER.md in `clients/sportif/Sportif_Collection/grid/`. Email drafted and SENT with attachments (`clients/sportif/email-to-lucy-collection-grid.md`). Colourway confirmed with Hugo as peach/white only (cream and white offered to Lucy as options). See [[real-band-content-pipeline]].
+- **Learning (S030): sub-lines in a multi-tile banner must be sized off the CENTRE TILE, not off the reference's cap-height ratio.** Matching the reference proportion (sub ascender = 0.48x SPORTIF cap height) made "collection" 1030px wide inside a 1080px tile, so it ran into the IG gutters. Fix: size the sub as a share of tile width (0.55) and the rule as 0.75x the sub width, which preserves the reference hierarchy and keeps clear space. Also confirmed by brute-force search that NO tracking/size combination avoids a tile seam cutting a letter of SPORTIF (7 letters across 3 tiles), so the clipped T crossbar is inherent to the format, not a bug.
 
 - **NEW (Session 029): Email 03 (Lucy's "3 bands like this" request) + the band-swap labelling method.** Lucy shared 6 competitor STYLE refs (YR / Pilates Reformers Australia / moveactive), rendered from a PDF via PyMuPDF (poppler is not on the Mac). Folder `clients/sportif/email-03-band-photo/` (downloads/created/README/email-to-lucy). Built (all ownable, no competitor imagery): a 3-band product HERO from our cutouts (`band_hero_ref1.py`; also fixed the cutouts' leftover peach FLOOR strip via `trim_base` in `band_cutouts.py`); a range-concept FLATLAY with imaginary socks/pouch/towel (`gen_flatlay_concept.py`); a DRAPED-arm shot (`gen_draped_arm.py`); reused our in-use library. **Copyright call:** competitor reference photos are STYLE-ONLY, never edited into Sportif assets (their copyright + model release); real-model content needs a real shoot, or AI models we own (Lucy agreed, told via email). **Label breakthrough:** gpt garbles small brand text at low quality, so (a) reaffirmed the house rule (we own the type: PIL-composited labels `label_flatlay_pil.py`/`label_draped_pil.py`) and (b) found the WINNING method = a TWO-IMAGE gpt swap (`band_swap_test.py`, pass the scene + our finished hero bands) that drops our real caramel SPORTIF label in naturally, plus stitched SPORTIF on the soft goods (`add_stitched_branding.py`). Best deliverables in `created/band-swap-test/` (flatlay-branded-fixed, draped swapped); small garbles cleared by a high Terminal render or a PIL patch (`fix_towel_label.py`, `fix_light_word.py`). See [[go-the-extra-mile]], [[real-band-content-pipeline]].
 
@@ -179,6 +182,23 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 
 ---
 
+## Session 030 (2026-08-11, Cowork): SPORTIF collection grid tiles (Lucy's reference lockup across 3 IG tiles)
+
+Client: Sportif
+Tags: lucy, instagram, grid-banner, collection, wordmark, glacial-indifference, pillow
+
+Lucy asked for the Instagram grid banner again, this time with "collection" underneath the wordmark, and gave a square reference lockup (peach background, white SPORTIF, short rule, lowercase "collection") which Hugo saved to `clients/sportif/Sportif_Collection/Sportif_Collection_wordmark.jpg`. Note the word is **collection**, not "collective" (Hugo typed collective, the artwork says collection, confirmed with him before building). "Le Sport Collectif" remains the retired old name.
+
+**Confirmed with Hugo before building:** wording = collection; tile shape = 3:4 portrait 1080x1440 (same as the first grid); colourway = peach `#F0CDB3` with white type only, matching the reference. Cream and white variants were offered to Lucy in the email rather than built up front.
+
+**Built:** `clients/sportif/scripts-local/build_collection_grid.py`, adapted from `build_grid_banner.py`. One 3240x1440 peach master, SPORTIF in Glacial Indifference Regular tracked at 0.28em to 80% of canvas width, a rule, then "collection" at 0.06em tracking, split into three 1080x1440 tiles whose file numbers ARE the posting order (rightmost posts first). Deliverables + `POST-ORDER.md` in `clients/sportif/Sportif_Collection/grid/`. Sampled the reference background as (241,205,179), effectively the brand blush, so used `#F0CDB3`.
+
+**The one real design problem, and the fix.** Reproducing the reference proportions literally (sub ascender = 0.48x the SPORTIF cap height, taken off the 500px reference: cap 41, sub ascender 20, rule 90 wide vs sub 120 wide) blew "collection" out to 1030px inside a 1080px tile, hard against both gutters. The cause is that SPORTIF is tracked enormously wide to span three tiles, so anything sized off ITS cap height inherits that stretch. Fix: size the sub as a share of the CENTRE TILE (0.55 of tile width) and the rule as 0.75x the sub width (the reference's own rule-to-sub ratio). Result reads like the reference and keeps roughly 245px of clear space either side. Lockup vertical balance checked by ink-bounds scan: top margin 307, bottom 340, i.e. a slight optical lift.
+
+**Also settled:** brute-forced tracking 0.24 to 0.34 and sizes 440 to 560 and found NO combination where a tile seam misses every letter. A 7-letter word across 3 tiles always has a seam land inside a glyph, so the clipped T crossbar is inherent to the format (the first grid had it too and Lucy accepted it). Worth saying out loud in future client emails rather than being asked about it.
+
+**Sent:** email drafted at `clients/sportif/email-to-lucy-collection-grid.md` and Hugo sent it with the attachments the same session.
+
 ## Session 029 (2026-07-28, Claude Code): Email 03 (Lucy's 3-band photo request) + the band-swap labelling method
 
 Client: Sportif
@@ -290,24 +310,6 @@ Big session, two new capabilities established.
 - **PLAN-GATED (both need Canva Pro, Hugo getting it ~next week, 2026-07-30ish):** (a) brand kit (fonts/colours/logo so generations come out on-brand), (b) FOLDER sharing (the "one permanent link, auto-updating, real-time with Lucy" setup). On FREE, only per-DESIGN link sharing works (Share -> Share link -> Anyone with link -> can comment -> Copy link). The `/d/` URLs from the API are private editor links and 404 standalone; the real share link is the one generated via Share->Copy.
 
 **Still open:** Hugo to get Canva Pro (~next week) -> then set up Sportif brand kit + share the Sportif folder with Lucy (lucy@lucywayne.com.au). Lucy still to pick music-bed pacing. Standalone waitlist capture page STILL the top unbuilt item (needs neither Lucy nor trademark). Trademark gate unchanged.
-
----
-
-## Session 024 (2026-07-22, Claude Code): reference-layout reskin (Lucy's pilates-studio ad to a Sportif waitlist poster)
-
-Lucy sent a reference: a pilates-studio "WE'RE OPEN / First class is free" launch ad (tan colour block + oversized PILATES watermark + two models, one glute-bridge with black ankle weights, one on a reformer). She asked us to reskin it as Sportif: keep the layout, put OUR band on the model, change the wording, add the logo. Saved to `clients/sportif/products/reference-layouts/pilates-open-ref.png`.
-
-**Established the "reference reskin" technique = AI plate + our own type layer** (Hugo: "NO YOU LAYOUT TEXT, THATS OUR WORKFLOW"):
-1. **No-text plate via gpt-image-2 edits** (`scripts-local/reskin_pilates_ref.py`): edit the reference to a CLEAN plate — strip ALL text and the watermark, add a blush booty band, remove the black ankle weights — keeping layout/poses/palette. Generated TWO pose variants to compare: `asis` (keep her raised leg; AI looped the band on the single raised thigh = ambiguous) and `bridge` (convert to a standard two-foot glute bridge; band loops both thighs = clear "in use"). Bridge won.
-2. **Our type layer in PIL** (`scripts-local/layout_reskin.py`, system python): all copy in Glacial Indifference, matched navy #13253D / cream #F4EEE5 sampled from the reference. Copy set "Find your resistance": kicker `meet` (small) over `SPORTIF` (bigger, real logotype = Regular + -0.059 lockup tracking), headline `FIND YOUR / RESISTANCE` (cream, soft drop-shadow so it stays crisp where it crosses the photo), faint oversized `SPORTIF` watermark, a solid terracotta `JOIN THE WAITLIST` CTA pill (with lift shadow), the SPORTIF lockup, and `@sportifcollection`.
-
-**Design iterations Hugo drove (each a one-line tweak in the layout script):** first CTA was a wobbly hand-drawn arc — rejected as bad design, replaced with a proper opaque terracotta pill; filled the left cream void with a framed single-band product card (the blush MEDIUM card, `place_band_card`, rounded + shadow + cream border) so product ties to the lifestyle shot (the blend insight, now inside one still); split "meet sportif" onto two lines; switched the kicker to the real logotype font; opened the meet/SPORTIF gap and made SPORTIF bigger; raised the headline ~15% to clear the doorway.
-
-Two finals kept in `clients/sportif/generated/images/reference-reskin/`: `reskin-bridge.png` (the lead piece, with the band card) and `reskin-asis.png` (dramatic raised-leg alt, no room for the card). Both are soft waitlist teasers with NO dates (respecting the trademark hold). Scripts are the source of truth (finals gitignored). Copy/colour/logo font all editable in one line.
-
-**Key learnings:** (a) the reskin technique generalises — hand any reference layout, get a no-text AI plate, own the type in PIL; (b) generate BOTH plate variants when a pose is ambiguous and let the product-clarity decide; (c) a solid opaque CTA pill sits cleanly over any busy area where a thin script line looks amateur; (d) dropping a matching single-band product card into negative space delivers the lifestyle+product blend inside a single still. See [[real-band-content-pipeline]].
-
-**Still open (unchanged):** standalone waitlist capture page (needs neither Lucy nor trademark, still the top unbuilt item); Lucy's music-bed pick; high-res finals past the ~60s cap; trademark gate.
 
 ---
 

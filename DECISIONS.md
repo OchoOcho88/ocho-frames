@@ -6,6 +6,8 @@ Query with `python3 scripts/memory_tools.py decisions [--client Sportif]`.
 **Row format:** `- [D-NNN] YYYY-MM-DD | Client | decision text (Sxxx)`
 (Client = client name, or `Ochoproductions` for workspace-wide. Sxxx = session it was made.)
 
+- [D-016] 2026-08-11 | Sportif | The sub-brand line is "SPORTIF collection" (the word is collection, not collective). "Le Sport Collectif" stays retired. (S030)
+- [D-015] 2026-08-11 | Ochoproductions | In a multi-tile grid banner, size sub-lines and rules off the CENTRE TILE width (sub = 0.55 tile width, rule = 0.75x sub), never off the tracked wordmark's cap height, or they run into the Instagram gutters. (S030)
 - [D-014] 2026-07-28 | Sportif | Competitor reference photos are STYLE-ONLY; never edit them (swap product, reuse model) into Sportif assets (their copyright + model release). Real-model content = a real shoot, or AI models we generate/own. (S029)
 - [D-013] 2026-07-28 | Sportif | To brand AI-generated bands, prefer the TWO-IMAGE gpt swap (pass the scene + our finished hero bands) so the real SPORTIF label drops in naturally; render high for crisp text, or PIL-patch small garbles. Beats a flat PIL label composite. (S029)
 - [D-012] 2026-07-28 | Ochoproductions | Hard mattes (white-on-light, e.g. white ball/bra on a light wall) are cut in Photoshop by Hugo; automatic matting (rembg) is only for clean plain-background subjects. (S028)

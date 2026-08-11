@@ -8,6 +8,7 @@ Aging is measured from the `opened Sxxx` tag vs the latest session number.
 **Resolved row:** `- [x] [Q-NNN] YYYY-MM-DD | Client | ... RESOLVED Sxxx: outcome`
 (Keep resolved rows for the record; flip `[ ]` to `[x]` and append the outcome.)
 
+- [ ] [Q-011] 2026-08-11 | Sportif | Collection grid tiles sent to Lucy: awaiting her sign-off, and whether she wants a cream or white colourway as well as the peach. (opened S030)
 - [ ] [Q-010] 2026-07-28 | Sportif | Email 03: run the high-quality band-swap + branded-flatlay renders in Terminal (band_swap_test.py high, add_stitched_branding.py high) for crisp text, PIL-patch any stragglers, then finalise the attach set and send Lucy the email. (opened S029)
 - [x] [Q-009] 2026-07-28 | Sportif | Email 03 from Lucy: same flow (ask questions, folder, build). RESOLVED S029: built email-03-band-photo set (hero, draped, flat-lay, in-use) + the band-swap labelling method; email to Lucy drafted. (opened S028)
 - [ ] [Q-008] 2026-07-28 | Sportif | Layered poster (poster-lucy-layered): awaiting Hugo's Photoshop cutout of the ball-overhead hero, saved as hero-ball-cut.png, to finalise (ball+bra too low-contrast to auto-matte). (opened S028)
