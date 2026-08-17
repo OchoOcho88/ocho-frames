@@ -6,6 +6,32 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-08-17 -->
+
+## Session 025 (2026-07-23, Claude Code): fresh gpt-image-2 GENERATION pipeline + finished ads + Canva workflow
+
+Big session, two new capabilities established.
+
+**1. Fresh from-scratch imagery (not edits).** First use of the gpt-image-2 `images/generations` endpoint (vs edits). `clients/sportif/scripts-local/gen_fresh_explore.py` generates Sportif key visuals from detailed prompts across 3 directions (brand-world lifestyle `bw*`, campaign hero `ch*`, band-in-use `bu*`), 1024x1536, quality low in-harness (high needs a native Terminal). Iterated v1->v5 as Hugo caught issues, each fix is a DURABLE PROMPT LESSON:
+- **v1->v2 photoreal:** plain low proofs looked "a bit AI" (waxy/over-smooth). A REALISM block (`real` 3rd arg: 35mm Portra 400, 50mm, real skin texture/pores/flyaways, film grain, forbid glossy/plastic/CGI) markedly cut the AI look.
+- **v3 skin-contrast colour:** flesh-adjacent activewear colours (blush/caramel/sand) read as NUDE/underwear on warm skin. Added a WARDROBE block forcing a skin-CONTRASTING colour (clay/rose/oatmeal) + defined waistband + "not nude/bodysuit"; stripped flesh colours from every prompt.
+- **v4 material:** everything rendered as RIBBED seamless knit, wrong for activewear. Real premium activewear is SMOOTH matte four-way-stretch (Lululemon/Alo). Reworked WARDROBE to smooth-fabric + explicit NOT-ribbed forbids; removed "ribbed" from all clothing (band stays knit, that IS the product). v4 = the clean warm-neutral base.
+- **v5 colour/pattern exploration** (`PATTERNS=1` env): per-shot COLORWAYS (sage, mocha+cream trim, plum, slate blue, rust, earth-tone print). Earth tones read most on-brand; plum/slate blue add accent range; contrast-trim is a keeper detail.
+- Also fixed a bad outfit render (nude long-sleeve unitard) by naming the actual garments (two-piece set) + skin-contrast tone.
+**Three lessons to carry into any future shoot brief:** name the actual garments; garment colour must contrast skin; garment material = smooth four-way-stretch (not ribbed). See [[real-band-content-pipeline]].
+
+**2. Real band into generated shots + finished ads.** `realband_in_hand.py` two-image-stamps the real SPORTIF MEDIUM label onto the AI-imagined band in a generation (works in-hand or around thighs). `campaign_skin.py` (full-bleed, right-aligned type) and `ad_lifestyle.py` (crops 2:3 -> IG 4:5 1080x1350, headline/subline/colour as args) skin shots into finished ads. Made 3 finished IG ads: FIND YOUR RESISTANCE (real band held), STRENGTH IN STILLNESS (mocha set, warm-charcoal type after Hugo rejected navy), MADE TO MOVE (plum). Navy type fights the warm palette; use warm charcoal #4A433C or cream on terracotta.
+
+**3. Canva workflow (two avenues).** THE MENTAL MODEL: **Avenue 1 = our pipeline (studio, exact brand control, flat/final); Avenue 2 = Canva (workbench, editable + shareable).** They chain: our pipeline -> Canva -> Lucy. Set up in Hugo's connected Canva: folder **Sportif** (id FAHQK6iSi6I) with **IG Ads** (FAHQK6gD-Do) + **Source Photos** (FAHQK2bvCGc). Local staging mirror at `clients/sportif/canva-exports/` (gitignored binaries, README tracked); finished assets get copied there for easy drag-in. Canva findings/GOTCHAS:
+- **Cannot auto-upload our local files** (connector only ingests PUBLIC URLs; must not publish private brand assets). Hugo drags PNGs in manually (seconds).
+- **CAN generate native editable designs** (`generate-design` -> candidates -> `create-design-from-candidate` -> `move-item-to-folder`). Long/complex briefs with hex codes FAILED ("design generation failed"); a SHORT simple brief succeeded. Made 5 editable "Find your resistance" designs.
+- **Can use OUR photo in a Canva design** by passing `asset_ids` of an image Hugo already uploaded, but Canva only reliably used it in 1 of 4 candidates (substituted stock in the rest). Reliable path: in the editor, click image -> Replace -> our uploaded asset.
+- **PLAN-GATED (both need Canva Pro, Hugo getting it ~next week, 2026-07-30ish):** (a) brand kit (fonts/colours/logo so generations come out on-brand), (b) FOLDER sharing (the "one permanent link, auto-updating, real-time with Lucy" setup). On FREE, only per-DESIGN link sharing works (Share -> Share link -> Anyone with link -> can comment -> Copy link). The `/d/` URLs from the API are private editor links and 404 standalone; the real share link is the one generated via Share->Copy.
+
+**Still open:** Hugo to get Canva Pro (~next week) -> then set up Sportif brand kit + share the Sportif folder with Lucy (lucy@lucywayne.com.au). Lucy still to pick music-bed pacing. Standalone waitlist capture page STILL the top unbuilt item (needs neither Lucy nor trademark). Trademark gate unchanged.
+
+---
+
 <!-- archived batch, moved 2026-08-11 -->
 
 ## Session 024 (2026-07-22, Claude Code): reference-layout reskin (Lucy's pilates-studio ad to a Sportif waitlist poster)

@@ -6,6 +6,10 @@ Query with `python3 scripts/memory_tools.py decisions [--client Sportif]`.
 **Row format:** `- [D-NNN] YYYY-MM-DD | Client | decision text (Sxxx)`
 (Client = client name, or `Ochoproductions` for workspace-wide. Sxxx = session it was made.)
 
+- [D-020] 2026-08-17 | Ochoproductions | Instagram story safe zone: keep all type out of the top 260px and bottom 340px of a 1080x1920 story (profile row + progress bars above, reply bar below). (S031)
+- [D-019] 2026-08-17 | Ochoproductions | Social lockup placement is PHOTO-LED, not a fixed corner. An automatic clearance search (`find_clear_y`) puts type on calm light ground; Hugo's marked boxes (`MANUAL_PLACEMENT`, x0/y0/x1/y1 in image pixels) override it and win. Sets are no longer required to be uniformly aligned. (S031)
+- [D-018] 2026-08-17 | Sportif | The @sportifcollection handle comes OFF on-platform Instagram assets (IG already prints the account name above every post and story). It stays available for anything travelling without the account name attached: stockist decks, Pinterest, print, press. (S031)
+- [D-017] 2026-08-17 | Sportif | The MASTER brand mark is now SPORTIF / rule / collection, per Lucy's artwork, for EVERYTHING from here (not just collection-launch pieces). Proportions derived: rule = 0.43x wordmark width, then 'collection' sized so rule = 0.75x its width. Back catalogue still on the old wordmark+rule and needs a pass. (S031)
 - [D-016] 2026-08-11 | Sportif | The sub-brand line is "SPORTIF collection" (the word is collection, not collective). "Le Sport Collectif" stays retired. (S030)
 - [D-015] 2026-08-11 | Ochoproductions | In a multi-tile grid banner, size sub-lines and rules off the CENTRE TILE width (sub = 0.55 tile width, rule = 0.75x sub), never off the tracked wordmark's cap height, or they run into the Instagram gutters. (S030)
 - [D-014] 2026-07-28 | Sportif | Competitor reference photos are STYLE-ONLY; never edit them (swap product, reuse model) into Sportif assets (their copyright + model release). Real-model content = a real shoot, or AI models we generate/own. (S029)

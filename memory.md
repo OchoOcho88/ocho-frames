@@ -6,7 +6,12 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-08-11 | Last session: 030 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally | Next: Lucy's reply on the collection grid (and whether she wants a cream or white colourway); run the high-quality band-swap/branded renders in Terminal + finalise the email-03 attachments to Lucy; Lucy's replies (email-02 socials, expert-brand PDF); Hugo's Photoshop cutout for the layered poster; waitlist page; Canva Pro*
+*Last updated: 2026-08-17 | Last session: 031 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally | Next: SEND the email-02 v2 batch to Lucy (drafted + attachments staged, not sent), then her pick of black/white/outline to lock the house standard; back-catalogue pass to the new SPORTIF/collection mark; Hugo's Photoshop reference for the burned-in wordmark; run the high-quality band-swap renders in Terminal + send email-03; Lucy's replies (collection grid, expert-brand PDF); waitlist page; Canva Pro*
+
+- **NEW (Session 031): Lucy approved the email-02 socials with revisions; the collection mark went MASTER; art-direction overrides added.** Lucy: "These look great!" + move feed-duo's logo LEFT and BLACK, the beam is covering the logo on the rest, Canva notes coming on the story pilates pic. Rebuilt via `clients/sportif/scripts-local/build_email02_social_v2.py` into `created/v2/{black,white,outline}/`, staged in `TO-SEND-2026-08-17/` (12 files, ~20MB), draft at `email-to-lucy-v2.md`, **NOT YET SENT**. Three things changed beyond her ask: the mark is now **SPORTIF / rule / collection** everywhere (D-017), the **@handle came off** on-platform assets (D-018, Instagram already prints the account name), and placement is now **photo-led** via a clearance search plus Hugo's marked boxes (D-019). Also fixed an IG story safe-zone bug from v1 (D-020) and sized the lockup up 25% after Hugo phone-tested it. See [[real-band-content-pipeline]].
+- **Learning (S031): the workspace CLAUDE.md is NOT auto-loaded in Cowork.** The em-dash voice rule (line 45) and the session-start protocol were both missed until the file was read explicitly, and a client-facing email went to draft full of em dashes. Read `hyperframes/CLAUDE.md` at the start of every session in this folder.
+- **Learning (S031): placement can be solved, not hand-tuned.** `find_clear_y` slides type until its footprint sits on calm, light ground (`prefer='top'` for a mark, `prefer='bottom'` for a footer), so resizing anything re-solves positions automatically. But it cannot judge composition: left to itself it hugged the top-left on every frame. `MANUAL_PLACEMENT` boxes (x0,y0,x1,y1, marked by Hugo on the actual PNG) override it and survive re-runs. The reported p2 score is pessimistic; judge by eye.
+- **Learning (S031): type can be burned INTO a flat background without a matting model.** Shift the background's own tone a few percent inside the letterforms, masked by a feathered luminance threshold, and the subject occludes the type. Only works on flat, evenly-lit plates (the pilates shot); busy studio backgrounds need a Photoshop cutout.
 
 - **NEW (Session 030): SPORTIF collection grid tiles built and SENT to Lucy.** Lucy asked for the 3-tile Instagram grid banner again, this time with "collection" under the wordmark, and supplied a square reference lockup (peach `#F0CDB3` bg, white SPORTIF, rule, lowercase "collection") saved at `clients/sportif/Sportif_Collection/`. Built `clients/sportif/scripts-local/build_collection_grid.py` (adapted from `build_grid_banner.py`): 3240x1440 peach master, white Glacial Indifference SPORTIF tracked to 80% of canvas width, rule, then "collection", split into three 1080x1440 tiles named by POST ORDER. Output + POST-ORDER.md in `clients/sportif/Sportif_Collection/grid/`. Email drafted and SENT with attachments (`clients/sportif/email-to-lucy-collection-grid.md`). Colourway confirmed with Hugo as peach/white only (cream and white offered to Lucy as options). See [[real-band-content-pipeline]].
 - **Learning (S030): sub-lines in a multi-tile banner must be sized off the CENTRE TILE, not off the reference's cap-height ratio.** Matching the reference proportion (sub ascender = 0.48x SPORTIF cap height) made "collection" 1030px wide inside a 1080px tile, so it ran into the IG gutters. Fix: size the sub as a share of tile width (0.55) and the rule as 0.75x the sub width, which preserves the reference hierarchy and keeps clear space. Also confirmed by brute-force search that NO tracking/size combination avoids a tile seam cutting a letter of SPORTIF (7 letters across 3 tiles), so the clipped T crossbar is inherent to the format, not a bug.
@@ -45,6 +50,53 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Grid banner READY (Session 015):** 3-tile SPORTIF wordmark banner in three colourways at `clients/sportif/generated/images/grid-banner/`, peach/white is the on-brand pick. Posting recipe PROVEN on a mock account: 1080x1440 tiles, tap Original on the crop screen (default 1:1 crop breaks it), post right tile first, or reorder afterwards (IG added grid drag-reorder June 2026).
 - **INSTA LAUNCH IS THIS FRIDAY (2026-07-10). TEASER REEL RENDERED AND LAUNCH-READY, now 15s with the identity end card, in TWO variants.** Standard: `compositions/sportif-teaser/renders/sportif-teaser_2026-07-08_13-48-53.mp4`. With a follow CTA: `compositions/sportif-teaser/renders/sportif-teaser-cta.mp4` (rendered via the `cta` composition variable). Both 1080x1920, 15s, check clean 0/0/0. End card is now blush peach with warm-white wordmark, warm-charcoal launch line, terracotta handle, and holds ~3s before the fade. Backgrounds are MEDIUM quality (true-high blocked by the ~60s Claude Code network cap): to upgrade, run `python3 clients/sportif/scripts-local/gen_action_bg.py <variant> high` in a NATIVE Mac terminal, then rebuild tiles, re-copy, re-render.
 - **Still waiting on Lucy:** feedback on the four tagline-row directions and three banner colourways, plus the hero-concept pick and the blocker email reply.
+
+---
+
+## Weekly Review — 2026-08-17 (week of 2026-08-10)
+
+One session this week (030, 2026-08-11, Cowork) — and, worth saying plainly, one session in the last twenty days: the log jumps from 2026-07-28 (Sessions 028/029) straight to 2026-08-11. The single session that did run was a clean, self-contained client deliverable that went out the door the same day, which is the right shape for a low-volume week, but the backlog underneath it has not moved.
+
+### Highlights
+- **The SPORTIF "collection" grid banner was built AND sent to Lucy in one session.** Lucy supplied a square reference lockup (peach `#F0CDB3`, white SPORTIF, rule, lowercase "collection"); `build_collection_grid.py` turned it into a 3240x1440 master split into three 1080x1440 tiles named by posting order, with `POST-ORDER.md` alongside. Build → email → sent, same day, no round trip lost.
+- **A real typographic problem was diagnosed rather than fudged.** Reproducing the reference's cap-height ratio blew "collection" out to 1030px inside a 1080px tile. The fix — size the sub-line off the CENTRE TILE (0.55 of tile width) and the rule off the sub (0.75x) — preserves the reference hierarchy while restoring ~245px of clear space either side. That's a reusable rule for any future multi-tile lockup.
+- **The clipped-letter question was settled by brute force, not opinion.** Tracking 0.24–0.34 × sizes 440–560 were searched exhaustively: with 7 letters across 3 tiles, no combination avoids a seam landing inside a glyph. The clipped T crossbar is inherent to the format, not a bug — and is now something to state proactively in client emails rather than defend after the fact.
+- **Ambiguity was resolved before building, not after.** "Collective" vs "collection" was checked against the artwork and confirmed with Hugo up front, as were tile shape and colourway (peach/white only, with cream and white offered to Lucy as options in the email rather than pre-built). Cheap clarification beat expensive rework.
+
+### Patterns I noticed
+- **The per-request folder convention is now fully habitual.** Sessions 028, 029 and 030 all produced a self-contained request folder (downloads + created + README + email-to-lucy). It has survived three sessions across two different environments without anyone re-deciding it.
+- **"We own the type" continues to hold as the house rule.** Session 030's deliverable is 100% PIL-composited Glacial Indifference on a flat peach master — no AI in the loop at all. When the brief is pure typography, the house rule collapses to "just build it ourselves," and that's the fastest path.
+- **Reference artwork is a proportion trap.** Twice now (S028's logo lockup, S030's sub-line) matching a reference's literal ratios produced a wrong result, because the reference was authored at a different canvas scale. The durable lesson: derive proportions from the OUTPUT frame, not the reference's absolute ratios.
+- **Cadence dropped hard and the carried backlog didn't.** From eight sessions in the week of 07-20 to one in nearly three weeks. Everything the last review flagged as "needs neither Lucy nor trademark" is untouched — which means the constraint this month is throughput, not blockers.
+
+### Skills / knowledge gained
+- **Multi-tile lockup sizing rule:** size sub-lines and rules as a share of the CENTRE TILE width, never off the primary wordmark's cap height — wide tracking on the primary word inherits into anything scaled from it.
+- **Seam math for grid banners:** with N letters spanning 3 tiles, seam-vs-glyph collision is combinatorially unavoidable for odd letter counts like 7; verified by exhaustive search across tracking and size, so stop looking for a setting that fixes it.
+- **Practical checks worth repeating:** sample the reference background rather than eyeballing the hex (it came out as (241,205,179), effectively the brand blush); verify lockup balance with an ink-bounds scan (307 top / 340 bottom = a deliberate optical lift).
+- **Client-comms habit:** name known format artefacts (the clipped crossbar) in the email that ships the asset, rather than waiting to be asked.
+
+### Open questions still unresolved
+**Resolved (by a later session):**
+- [x] ~~Q-009: email 03 pending Lucy's screenshot (Session 028)~~ RESOLVED Session 029 — the request arrived as a 6-reference PDF and was built out in full (`clients/sportif/email-03-band-photo/`).
+- Note: Session 030 has no `[ ]` items of its own to reconcile — its single open thread (Lucy's reply) is still outstanding, so nothing there could be marked resolved.
+
+**Still open:**
+- [ ] **Lucy's reply on the collection grid**, including whether she wants a cream or white colourway alongside the peach (Session 030).
+- [ ] **Q-010: run the high-quality band-swap / branded renders in Terminal**, then finalise the email-03 attachment set and send to Lucy (Session 029). Third week carried; the ~60s harness cap is the reason, a native Mac terminal is the fix.
+- [ ] **Lucy's other replies:** email-02 socials (Q-007) and the expert-brand "Content Creation Strategy" PDF (Q-006, which gates Phase 2 — her expert niche, one avatar, four quadrants).
+- [ ] **Q-008: Hugo's Photoshop cutout of the ball hero**, which blocks `poster_lucy_layered.py` (white-on-light mattes fail in rembg).
+- [ ] **Standalone waitlist capture page + 3-email welcome flow** — needs neither Lucy nor trademark, now named the top unbuilt item in six separate sessions.
+- [ ] **Canva Pro** (was expected ~2026-07-30, still not logged as done): Sportif brand kit + share the Sportif folder with Lucy.
+- [ ] **Lucy's picks still pending:** music-bed pacing (calm ~100 BPM vs upbeat ~118 BPM) and the incentive decision A/B/C.
+- [ ] **Film the unboxing** — bands in hand since Session 021, footage still not shot.
+- [ ] **Ambassador/instructor seeding shortlist** — ninth week carried, designated the main growth engine, requires nothing from anyone.
+- [ ] **Trademark clearance** — the critical-path gate, on Lucy's lawyer's clock.
+- [ ] Carried: ElevenLabs TTS awaiting Hugo's API key, `cosmos_yoga-duo.mp4` Seedance path, Shopify store (trademark-gated), materials question, Stage 3 synthesis template, PDF generators still on Poppins.
+
+### Suggested focus for next week
+1. **Send Lucy ONE consolidated message that clears the entire feedback queue** — collection-grid colourway, email-02 socials, the Content Creation Strategy PDF, music-bed pacing, and the incentive A/B/C. Five separate threads have been waiting on her in parallel; one message is far more likely to get answered than five, and it un-gates Phase 2 of the expert-brand strategy.
+2. **Do one native-Mac-terminal render session and close Q-010.** The high-quality band-swap/branded renders are the only thing standing between the email-03 work (already built) and it actually reaching Lucy. It is a single uninterrupted hour, not a project.
+3. **Build the standalone waitlist capture page.** Six sessions have now called it the top unbuilt item; it depends on neither Lucy nor the trademark, and every asset built since July — grids, reels, posters, product shots — dead-ends without it. If throughput is the constraint this month, spend it here.
 
 ---
 
@@ -182,6 +234,87 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 
 ---
 
+## Session 031 (2026-08-17, Cowork): Lucy's email-02 revisions, the collection mark goes master, art-direction overrides
+
+Client: Sportif
+Tags: lucy, email-02, social, logo-lockup, collection, instagram, placement, pillow, voice-rule
+
+Lucy replied to the email-02 socials (Q-007, open since S028): "These look great!" plus three
+notes. Change feed-duo's logo to the LEFT in BLACK, the ceiling beam is covering the logo on
+the rest, and she'll send Canva notes on the story pilates pic. Rebuilt the whole batch in
+`build_email02_social_v2.py` (v1 script untouched), output to `created/v2/{black,white,outline}/`,
+send-ready copies with client-readable filenames in `TO-SEND-2026-08-17/` (12 files, ~20MB).
+Email drafted at `email-to-lucy-v2.md`. NOT YET SENT.
+
+**The beam fix generalised into a placement engine.** Rather than hand-positioning, the script
+scans the left column and slides the lockup down until its footprint contains no dark pixels,
+so it cannot land on the beam on these photos or future ones. Later refactored into one
+function, `find_clear_y`, with `prefer='top'` for the mark and `prefer='bottom'` for the
+footer. Worth knowing: the p2 (2nd-percentile) score it reports is pessimistic, because the
+padded search box catches nearby dark objects even when the type itself sits clean. Judge by
+eye, not by the number.
+
+**Caught two things Lucy did not ask for.** (a) v1 put story lockups at y=150, underneath
+Instagram's own profile row and progress bars, so they would have been half covered once
+posted; stories now sit inside a 260px top / 340px bottom safe zone. (b) Hugo checked a post
+on his phone and the lettering read small, so the lockup went up 25%. Size is one constant,
+`SCALE`, which drives type, rule, gaps, shadow and stroke; the clearance search re-solves
+placements automatically against the bigger footprint, so positions are never hand-tuned.
+
+**The master mark changed (Hugo's call).** The lockup is now SPORTIF / rule / collection, per
+Lucy's artwork, and it applies to EVERYTHING from here, not just collection-launch pieces. See
+D-017. Proportions are derived rather than eyeballed: keep our canonical rule (0.43x wordmark
+width), then size 'collection' so the rule is 0.75x its width, which reproduces her reference
+without inheriting tracking distortion. Measured against her 500px original: rule/sub 0.741 vs
+0.750, sub/cap 0.458 vs 0.488. NOTE the back catalogue (posters, product shots, the three IG
+ads, band-swap set, both client PDFs) is still on the old wordmark+rule. Q-013.
+
+**The @handle came off.** First it collided with the new mark (the word "collection" sitting
+directly above "@sportifcollection" reads as a stutter), so it moved to a bottom footer. Then
+Hugo made the better argument: on Instagram the account name is already printed above every
+post and story, so stamping it into the image repeats what the viewer can already see. Now
+`DRAW_HANDLE = False`. The footer code is kept, not deleted, because the logic reverses the
+moment an image travels without the account name attached (stockist decks, Pinterest, print).
+D-018.
+
+**Art direction beat the algorithm, and that is now a documented workflow.** The clearance
+search finds ground the type can legibly SIT on; it cannot judge composition, and left to
+itself it hugged the top-left on every frame. Hugo opened the PNGs, dragged selection boxes
+where the mark should go, and screenshotted them. Those convert to `MANUAL_PLACEMENT` entries
+(x0,y0,x1,y1 in the image's own pixels) which override the search and survive re-runs. Set for
+story-ballreach, story-sidestretch, feed-pilates. story-sidestretch is deliberately on the
+RIGHT of frame, so the set is no longer uniformly left-aligned; the email now explains that
+placement follows each photo rather than a fixed rule. Full-frame screenshots convert cleanly,
+Preview-window ones need the ~88px toolbar offset backed out. D-019.
+
+**New treatment: the wordmark burned into the wall.** Hugo's idea, a separate pilates variant
+with SPORTIF collection set large and tone-on-tone BEHIND her, so her raised leg occludes the
+type. `build_pilates_bg_wordmark.py`, four strengths, deboss-medium is the pick. No matting
+model needed: that plate's background is a flat (230,224,217) with a clean empty gap in the
+histogram between wall (~222+) and skin (~130), so a feathered luminance threshold at 200 is a
+clean subject mask. The effect works because we shift the wall's OWN tone by a few percent
+inside the letterforms rather than pasting a colour on top. IMPORTANT LIMIT: this only works on
+a flat, evenly-lit background. The three studio shots have shelving, arches and mirrors behind,
+where a threshold cannot separate subject from background, so the same look there needs a
+Photoshop cutout. Hugo is making a PS version to show exactly what he meant. Q-014.
+
+**Voice rule breach, worth not repeating.** The first drafts of the Lucy email, the README and
+both scripts were full of em dashes, against the rule in CLAUDE.md line 45. Hugo caught it.
+Root cause: `hyperframes/CLAUDE.md` was not loaded into the Cowork session context, so the
+workspace conventions (including the session-start protocol) were not being applied until it
+was read explicitly. Fix going forward: read `hyperframes/CLAUDE.md` at the start of every
+session in this folder. Rewrote all four files clean rather than swapping characters. The same
+pass caught a factual error in the email, which claimed the logo moved "down the left-hand side
+on each one" after story-sidestretch had gone to the right.
+
+**Open:** Q-012 (send the email, then Lucy's pick of black/white/outline to lock the house
+standard), Q-013 (back-catalogue pass to the new mark), Q-014 (Hugo's Photoshop reference for
+the burned-in wordmark). Five images are still on automatic placement (feed-duo,
+feed-sidestretch, feed-ballreach, story-duo, story-pilates) and would benefit from boxes before
+sending. See [[real-band-content-pipeline]], [[go-the-extra-mile]].
+
+---
+
 ## Session 030 (2026-08-11, Cowork): SPORTIF collection grid tiles (Lucy's reference lockup across 3 IG tiles)
 
 Client: Sportif
@@ -286,30 +419,6 @@ Hugo asked for an honest rating of our memory system, then to implement the fixe
 - Updated `CLAUDE.md` (close-out ritual now runs `memory_tools.py check` + `index` and updates the registries) and rewrote `docs/memory-system.md` to v2 (Hugo will share that once updated).
 
 LESSON: the compliance SPOF is the biggest real risk as we scale — the `check` hook is the mitigation, but it's warn-only by choice to avoid friction; flip `MEMORY_ENFORCE=1` if close-outs start slipping.
-
----
-
-## Session 025 (2026-07-23, Claude Code): fresh gpt-image-2 GENERATION pipeline + finished ads + Canva workflow
-
-Big session, two new capabilities established.
-
-**1. Fresh from-scratch imagery (not edits).** First use of the gpt-image-2 `images/generations` endpoint (vs edits). `clients/sportif/scripts-local/gen_fresh_explore.py` generates Sportif key visuals from detailed prompts across 3 directions (brand-world lifestyle `bw*`, campaign hero `ch*`, band-in-use `bu*`), 1024x1536, quality low in-harness (high needs a native Terminal). Iterated v1->v5 as Hugo caught issues, each fix is a DURABLE PROMPT LESSON:
-- **v1->v2 photoreal:** plain low proofs looked "a bit AI" (waxy/over-smooth). A REALISM block (`real` 3rd arg: 35mm Portra 400, 50mm, real skin texture/pores/flyaways, film grain, forbid glossy/plastic/CGI) markedly cut the AI look.
-- **v3 skin-contrast colour:** flesh-adjacent activewear colours (blush/caramel/sand) read as NUDE/underwear on warm skin. Added a WARDROBE block forcing a skin-CONTRASTING colour (clay/rose/oatmeal) + defined waistband + "not nude/bodysuit"; stripped flesh colours from every prompt.
-- **v4 material:** everything rendered as RIBBED seamless knit, wrong for activewear. Real premium activewear is SMOOTH matte four-way-stretch (Lululemon/Alo). Reworked WARDROBE to smooth-fabric + explicit NOT-ribbed forbids; removed "ribbed" from all clothing (band stays knit, that IS the product). v4 = the clean warm-neutral base.
-- **v5 colour/pattern exploration** (`PATTERNS=1` env): per-shot COLORWAYS (sage, mocha+cream trim, plum, slate blue, rust, earth-tone print). Earth tones read most on-brand; plum/slate blue add accent range; contrast-trim is a keeper detail.
-- Also fixed a bad outfit render (nude long-sleeve unitard) by naming the actual garments (two-piece set) + skin-contrast tone.
-**Three lessons to carry into any future shoot brief:** name the actual garments; garment colour must contrast skin; garment material = smooth four-way-stretch (not ribbed). See [[real-band-content-pipeline]].
-
-**2. Real band into generated shots + finished ads.** `realband_in_hand.py` two-image-stamps the real SPORTIF MEDIUM label onto the AI-imagined band in a generation (works in-hand or around thighs). `campaign_skin.py` (full-bleed, right-aligned type) and `ad_lifestyle.py` (crops 2:3 -> IG 4:5 1080x1350, headline/subline/colour as args) skin shots into finished ads. Made 3 finished IG ads: FIND YOUR RESISTANCE (real band held), STRENGTH IN STILLNESS (mocha set, warm-charcoal type after Hugo rejected navy), MADE TO MOVE (plum). Navy type fights the warm palette; use warm charcoal #4A433C or cream on terracotta.
-
-**3. Canva workflow (two avenues).** THE MENTAL MODEL: **Avenue 1 = our pipeline (studio, exact brand control, flat/final); Avenue 2 = Canva (workbench, editable + shareable).** They chain: our pipeline -> Canva -> Lucy. Set up in Hugo's connected Canva: folder **Sportif** (id FAHQK6iSi6I) with **IG Ads** (FAHQK6gD-Do) + **Source Photos** (FAHQK2bvCGc). Local staging mirror at `clients/sportif/canva-exports/` (gitignored binaries, README tracked); finished assets get copied there for easy drag-in. Canva findings/GOTCHAS:
-- **Cannot auto-upload our local files** (connector only ingests PUBLIC URLs; must not publish private brand assets). Hugo drags PNGs in manually (seconds).
-- **CAN generate native editable designs** (`generate-design` -> candidates -> `create-design-from-candidate` -> `move-item-to-folder`). Long/complex briefs with hex codes FAILED ("design generation failed"); a SHORT simple brief succeeded. Made 5 editable "Find your resistance" designs.
-- **Can use OUR photo in a Canva design** by passing `asset_ids` of an image Hugo already uploaded, but Canva only reliably used it in 1 of 4 candidates (substituted stock in the rest). Reliable path: in the editor, click image -> Replace -> our uploaded asset.
-- **PLAN-GATED (both need Canva Pro, Hugo getting it ~next week, 2026-07-30ish):** (a) brand kit (fonts/colours/logo so generations come out on-brand), (b) FOLDER sharing (the "one permanent link, auto-updating, real-time with Lucy" setup). On FREE, only per-DESIGN link sharing works (Share -> Share link -> Anyone with link -> can comment -> Copy link). The `/d/` URLs from the API are private editor links and 404 standalone; the real share link is the one generated via Share->Copy.
-
-**Still open:** Hugo to get Canva Pro (~next week) -> then set up Sportif brand kit + share the Sportif folder with Lucy (lucy@lucywayne.com.au). Lucy still to pick music-bed pacing. Standalone waitlist capture page STILL the top unbuilt item (needs neither Lucy nor trademark). Trademark gate unchanged.
 
 ---
 
