@@ -6,8 +6,13 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-08-17 | Last session: 031 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally | Next: SEND the email-02 v2 batch to Lucy (drafted + attachments staged, not sent), then her pick of black/white/outline to lock the house standard; back-catalogue pass to the new SPORTIF/collection mark; Hugo's Photoshop reference for the burned-in wordmark; run the high-quality band-swap renders in Terminal + send email-03; Lucy's replies (collection grid, expert-brand PDF); waitlist page; Canva Pro*
+*Last updated: 2026-08-20 | Last session: 032 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally | Next: photograph the LIGHT and MEDIUM bands so a three-band lineup can be built; Hugo to react to the two poster directions; pick an image-to-3D tool and make a Shopify-ready GLB; SEND the email-02 v2 batch to Lucy (still not sent); back-catalogue pass to the SPORTIF/collection mark; run the high-quality band-swap renders in Terminal + send email-03; waitlist page; Canva Pro*
 
+- **NEW (Session 032): first posters built from the REAL product, and the band cutouts renamed.** Lucy sent the physical bands and Hugo shot them on an iPhone with the backgrounds removed. All six cutouts are the **HEAVY** band (front flat, front folded, back, two inside-grip faces, label close-up), renamed from `IMG_96xx Background Removed.png` to `sportif-band-heavy-<face>.png` in `clients/sportif/assets/Sportif_Bands/`. Two poster directions built by `clients/sportif/scripts-local/build_band_posters.py`, each in IG feed 4:5 and story 9:16, output to `clients/sportif/generated/images/band-posters/` with a README: an **editorial collage** (cream ground, peach plate, EVERYDAY TRAINING ELEVATED in Glacial Bold, band tilted in front breaking the plate, tilted cream card holding an inside-grip swatch) and a **coming-soon teaser** (peach ground, band as the one pop of colour, terracotta waitlist pill, no dates). Both use the SPORTIF / rule / collection master mark (D-017) and carry no handle (D-018). See [[real-band-content-pipeline]].
+- **Blocker surfaced (S032): the light and medium bands have not been photographed.** Everything shot so far is the heavy. That blocks the three-band lineup, the range card and the wholesale line sheet, which are the obvious next assets off the real product (Q-015).
+- **Learning (S032): drop shadows on the warm palette must be tinted warm brown, not grey.** A neutral shadow reads muddy and grey against blush peach. `shadow()` in the poster script uses (122, 78, 56) and pads the alpha before blurring so the blur is not clipped at the object's own edge.
+- **Learning (S032): a rotated cutout's bounding box is much wider than the object.** A 1080px tall band rotated 14 degrees returns a box roughly 536px wide when the band itself is 283px, so placing by box edge ate two letters of the headline. Place tall thin cutouts by the size you want them to occupy, then cap the position against the neighbouring element, rather than trusting the expanded box.
+- **Decision path for 3D (S032):** Hugo wants the band as a **Shopify AR / 3D viewer** asset. Shopify wants GLB, about 4MB total, textures as optimised JPG at or under 2048x2048, diffuse + normal + a combined occlusion/roughness/metalness map, real-world scale, origin centred at the product's base. Recommendation is Tripo AI (multi-image to 3D, PBR output, direct GLB export) with the honest caveat that a booty band is a simple loop of fabric and a hand-built Blender model textured from these photos would beat any AI mesh on accuracy (Q-016).
 - **NEW (Session 031): Lucy approved the email-02 socials with revisions; the collection mark went MASTER; art-direction overrides added.** Lucy: "These look great!" + move feed-duo's logo LEFT and BLACK, the beam is covering the logo on the rest, Canva notes coming on the story pilates pic. Rebuilt via `clients/sportif/scripts-local/build_email02_social_v2.py` into `created/v2/{black,white,outline}/`, staged in `TO-SEND-2026-08-17/` (12 files, ~20MB), draft at `email-to-lucy-v2.md`, **NOT YET SENT**. Three things changed beyond her ask: the mark is now **SPORTIF / rule / collection** everywhere (D-017), the **@handle came off** on-platform assets (D-018, Instagram already prints the account name), and placement is now **photo-led** via a clearance search plus Hugo's marked boxes (D-019). Also fixed an IG story safe-zone bug from v1 (D-020) and sized the lockup up 25% after Hugo phone-tested it. See [[real-band-content-pipeline]].
 - **Learning (S031): the workspace CLAUDE.md is NOT auto-loaded in Cowork.** The em-dash voice rule (line 45) and the session-start protocol were both missed until the file was read explicitly, and a client-facing email went to draft full of em dashes. Read `hyperframes/CLAUDE.md` at the start of every session in this folder.
 - **Learning (S031): placement can be solved, not hand-tuned.** `find_clear_y` slides type until its footprint sits on calm, light ground (`prefer='top'` for a mark, `prefer='bottom'` for a footer), so resizing anything re-solves positions automatically. But it cannot judge composition: left to itself it hugged the top-left on every frame. `MANUAL_PLACEMENT` boxes (x0,y0,x1,y1, marked by Hugo on the actual PNG) override it and survive re-runs. The reported p2 score is pessimistic; judge by eye.
@@ -234,6 +239,48 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 
 ---
 
+## Session 032 (2026-08-20, Cowork): first posters from the real bands, cutouts renamed, 3D path chosen
+
+Client: Sportif
+Tags: real-bands, cutouts, posters, collage, teaser, instagram, 3d, shopify-ar, naming
+
+Lucy has sent the physical bands (light, medium, heavy). Hugo photographed them on an iPhone and
+removed the backgrounds, and dropped six PNGs into `clients/sportif/assets/Sportif_Bands/`. Reading
+the labels showed every one of them is the **HEAVY** band: two front views (flat with the label near
+the top, folded with the label mid band), the plain back, two shots of the inside grip face with its
+twin dark stripes, and a close crop of the moulded SPORTIF / HEAVY patch. Hugo confirmed the reading.
+Renamed to `sportif-band-heavy-front-flat / front-folded / back-flat / inside-grip-a / inside-grip-b /
+label-detail`.
+
+**Two poster directions, Hugo's picks, feed 4:5 and story 9:16 each.** One script,
+`clients/sportif/scripts-local/build_band_posters.py`, no arguments, re-runs clean.
+
+*Editorial collage:* cream ground, inset peach plate under a thin caramel rule, the lockup on the
+cream above it, EVERYDAY TRAINING ELEVATED set left in Glacial Bold (straight off the brand say-list),
+the folded band tilted 10 degrees in front and breaking the plate at the bottom, and a tilted cream
+card holding a swatch of the inside grip face so the poster shows two textures of the product rather
+than one. Caramel footer lines, MADE TO BE SEEN left and BOOTY BAND, HEAVY right.
+
+*Coming-soon teaser:* peach ground, the band centred as the single pop of colour, white lockup above,
+COMING SOON tracked in warm charcoal, terracotta JOIN THE WAITLIST pill. No dates, consistent with the
+launch being on hold (D-001).
+
+**Craft notes worth keeping.** Warm brown shadows, not grey (see the learning above). The shadow
+helper pads the alpha before blurring, otherwise the blur clips at the object edge and reads as a box.
+The story layouts key their type up about 25 percent and push the peach plate closer to the safe edges,
+because sizes derived from the 1080px width look undersized on a 1920px canvas. Story content stays
+inside the 260px / 340px safe zones (D-020).
+
+**3D.** Hugo's goal is a Shopify AR / 3D viewer asset, not a turntable video. Researched what Shopify
+actually requires and what the current image-to-3D tools do. The honest position, given to Hugo: a
+booty band is a flat loop of woven fabric, which is a simple shape that AI meshers tend to lump and
+smooth, so a hand-built Blender model textured from these same photos would be more accurate than any
+generated mesh. If we go the AI route, Tripo AI is the pick (multi-image input, PBR output, direct GLB
+export, free tier of 200 credits a month). Left as an open decision (Q-016).
+
+Learned: the workspace CLAUDE.md was read at session start this time, per the S031 learning, and it
+caught the em-dash rule before any copy was written.
+
 ## Session 031 (2026-08-17, Cowork): Lucy's email-02 revisions, the collection mark goes master, art-direction overrides
 
 Client: Sportif
@@ -402,23 +449,6 @@ Hugo's idea: apply the Devin Jatho expert-brand / 4-quadrant model (transcript i
 **Disk cleanup:** Hugo's Mac boot volume was full (121MB free of 460GB), which broke a file write. Cleared safe regenerable caches at his OK (Adobe media cache ~79GB, BorisFX ~10GB, Chrome ~2.2GB, VSCode ~1.5GB) -> freed ~93GB. Left NordVPN (23GB) and Claude app data (16GB) untouched (his data).
 
 **Open:** Q-006 = Phase 2 (lock Lucy's expert niche, one avatar, and FOUR quadrants) pending Lucy's reaction to the PDF. See [[real-band-content-pipeline]].
-
----
-
-## Session 026 (2026-07-24, Claude Code): memory system v2 — hardening for scale (multi-client)
-
-Client: Ochoproductions (workspace infrastructure)
-Tags: memory-system, tooling, scaling
-
-Hugo asked for an honest rating of our memory system, then to implement the fixes since the workspace will scale to more clients. Rated it ~8.5/10 for a solo/single-client setup, ~6/10 unmodified at team/multi-client scale; the real ceilings are RETRIEVAL (linear grep, decays with size) and COMPLIANCE (close-out is manual, a single point of failure — we already lost the Tuesday-meeting outcomes once). Built four fixes, all low-tech + stdlib, preserving the plain-markdown legibility.
-
-- **DECISION: adopted memory system v2.** New tool `scripts/memory_tools.py` with subcommands: `check` (verifies close-out: CURRENT STATE dated today + a session entry today + registries well-formed), `index` (regenerates `memory-index.md`, a TOC of every session hot+archived), `search` (grep across memory+registries+docs), `decisions`, `open` (both filter by `--client`; `open` flags questions aged >= N sessions), `reconcile` (flags dead file refs in CURRENT STATE, stale date, aged questions), `install-hooks` (git pre-push warn hook, `MEMORY_ENFORCE=1` to block).
-- **DECISION: decisions and open-questions are now first-class registries** (`DECISIONS.md`, `OPEN-QUESTIONS.md`) with a parseable one-line schema incl. a Client field — the two things we re-query most are extractable, not buried in prose, and filter by client.
-- **DECISION: multi-client convention.** Session entries now carry `Client:` and `Tags:` lines; registries carry a Client column. One unified chronological log (keeps cross-client learnings) but everything filterable per client. CURRENT STATE will split into per-client mini-blocks once >1 client is active.
-- Installed the pre-push hook (warn-only) and regenerated `memory-index.md`. `archive_memory.py` unchanged (still the size-triggered archiver).
-- Updated `CLAUDE.md` (close-out ritual now runs `memory_tools.py check` + `index` and updates the registries) and rewrote `docs/memory-system.md` to v2 (Hugo will share that once updated).
-
-LESSON: the compliance SPOF is the biggest real risk as we scale — the `check` hook is the mitigation, but it's warn-only by choice to avoid friction; flip `MEMORY_ENFORCE=1` if close-outs start slipping.
 
 ---
 

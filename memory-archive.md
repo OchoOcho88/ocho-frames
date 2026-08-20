@@ -6,6 +6,25 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-08-20 -->
+
+## Session 026 (2026-07-24, Claude Code): memory system v2 — hardening for scale (multi-client)
+
+Client: Ochoproductions (workspace infrastructure)
+Tags: memory-system, tooling, scaling
+
+Hugo asked for an honest rating of our memory system, then to implement the fixes since the workspace will scale to more clients. Rated it ~8.5/10 for a solo/single-client setup, ~6/10 unmodified at team/multi-client scale; the real ceilings are RETRIEVAL (linear grep, decays with size) and COMPLIANCE (close-out is manual, a single point of failure — we already lost the Tuesday-meeting outcomes once). Built four fixes, all low-tech + stdlib, preserving the plain-markdown legibility.
+
+- **DECISION: adopted memory system v2.** New tool `scripts/memory_tools.py` with subcommands: `check` (verifies close-out: CURRENT STATE dated today + a session entry today + registries well-formed), `index` (regenerates `memory-index.md`, a TOC of every session hot+archived), `search` (grep across memory+registries+docs), `decisions`, `open` (both filter by `--client`; `open` flags questions aged >= N sessions), `reconcile` (flags dead file refs in CURRENT STATE, stale date, aged questions), `install-hooks` (git pre-push warn hook, `MEMORY_ENFORCE=1` to block).
+- **DECISION: decisions and open-questions are now first-class registries** (`DECISIONS.md`, `OPEN-QUESTIONS.md`) with a parseable one-line schema incl. a Client field — the two things we re-query most are extractable, not buried in prose, and filter by client.
+- **DECISION: multi-client convention.** Session entries now carry `Client:` and `Tags:` lines; registries carry a Client column. One unified chronological log (keeps cross-client learnings) but everything filterable per client. CURRENT STATE will split into per-client mini-blocks once >1 client is active.
+- Installed the pre-push hook (warn-only) and regenerated `memory-index.md`. `archive_memory.py` unchanged (still the size-triggered archiver).
+- Updated `CLAUDE.md` (close-out ritual now runs `memory_tools.py check` + `index` and updates the registries) and rewrote `docs/memory-system.md` to v2 (Hugo will share that once updated).
+
+LESSON: the compliance SPOF is the biggest real risk as we scale — the `check` hook is the mitigation, but it's warn-only by choice to avoid friction; flip `MEMORY_ENFORCE=1` if close-outs start slipping.
+
+---
+
 <!-- archived batch, moved 2026-08-17 -->
 
 ## Session 025 (2026-07-23, Claude Code): fresh gpt-image-2 GENERATION pipeline + finished ads + Canva workflow
