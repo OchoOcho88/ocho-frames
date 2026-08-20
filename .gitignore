@@ -14,6 +14,11 @@ conntest.log
 # Competitor research screenshots — big binaries, kept locally only
 clients/*/competitor-analyses/product-images/
 
+# Third party style references (Pinterest saves, magazine scans). Style only, see D-014.
+# The README index IS tracked, the imagery is not.
+assets/style-references/posters/*
+!assets/style-references/posters/README.md
+
 # Generated media binaries — reproducible from prompts (image-prompts.md is tracked)
 clients/*/generated/images/*
 clients/*/generated/videos/*
