@@ -6,6 +6,8 @@ Query with `python3 scripts/memory_tools.py decisions [--client Sportif]`.
 **Row format:** `- [D-NNN] YYYY-MM-DD | Client | decision text (Sxxx)`
 (Client = client name, or `Ochoproductions` for workspace-wide. Sxxx = session it was made.)
 
+- [D-024] 2026-08-20 | Sportif | Depth posters have TWO build routes and both are house-standard: Hugo cuts hard mattes and builds hero pieces in Photoshop (extends D-012), and the scripted PIL route handles anything needing several sizes at once. They share one type spec, at `clients/sportif/depth-poster-photoshop-guide.md` (Photoshop tracking values: wordmark -59, headline -20, small caps +160). (S032)
+- [D-023] 2026-08-20 | Ochoproductions | Depth between type and subject is built, never generated. Sharp subjects get a cutout; blurred subjects cannot be matted and use the S031 luminance burn-in instead. Either way the plate must be shot against a flat, evenly lit, plain background. (S032)
 - [D-022] 2026-08-20 | Ochoproductions | Drop shadows on the warm palette are tinted warm brown (122, 78, 56), never neutral grey, which goes muddy against blush peach. Pad the alpha before blurring so the blur is not clipped at the object's own edge. (S032)
 - [D-021] 2026-08-20 | Sportif | Real product cutouts are named `sportif-band-<weight>-<face>.png` (weight = light/medium/heavy, face = front-flat, front-folded, back-flat, inside-grip-a/b, label-detail). Camera roll names are never kept. (S032)
 - [D-020] 2026-08-17 | Ochoproductions | Instagram story safe zone: keep all type out of the top 260px and bottom 340px of a 1080x1920 story (profile row + progress bars above, reply bar below). (S031)

@@ -26,12 +26,16 @@ Added 2026-08-20 (S032). **Hugo's own words** are quoted. Unquoted notes are min
 
 ### The active set (Hugo picked these)
 
+Eight of eleven. 08 and 09 added on his second pass.
+
 | File | What it is | Hugo's read | Contributes |
 |---|---|---|---|
 | `poster-03-eat-sleep-pilates-repeat.jpg` | enormous terracotta type on off-white, body pushing through the letterforms | "the text layout and thickness, and how the individual is positioned in front of the text" | type scale, depth, colour |
 | `poster-05-activewear-campaign-highlight.jpg` | four panel campaign grid, thin annotation callouts, blue and rust | "the full grid structure and the composition of balance between photos and words" | grid, photo-to-type balance |
 | `poster-06-five-shades.jpg` | five vertical Pantone strips, one model per strip in that colourway | "how the swatches correlate to the colour people are wearing" | colourway system |
 | `poster-07-pilates-poster.jpg` | huge white PILATES on warm paper stock, pale pink legs cut across it | "that depth creation between text and subject" | depth, type scale |
+| `poster-08-pilates-power.jpg` | cobalt type on grey, legs between the two words | kept in by Hugo. The clearest example of the flip: first word in FRONT of the body, second word BEHIND it | depth |
+| `poster-09-sculpting.jpg` | PILATES repeated four times as background texture, foot and ball in front | kept in by Hugo. Repetition as pattern instead of a single headline | type as texture, depth |
 | `poster-10-blur-standing.jpg` | long exposure blur, pale pink activewear on near-white | "that blur effect on the subject. I could imagine some Sportif text either behind or in front" | blur, colour, depth |
 | `poster-11-blur-sitting.jpg` | seated figure, warm amber blur, double exposure feel | as above, and the warmest thing in the set, closest to our palette | blur, colour |
 
@@ -44,12 +48,10 @@ Kept because they may earn their place later. Hugo did not call these out.
 | `poster-01-5-glute-exercises.jpg` | purple and pink banded workout infographic | The exercise-guide FORMAT is good content. The styling and the claim language are both out (see below). |
 | `poster-02-7-day-resistance-band-workout-plan.jpg` | seven day banded plan, colour-coded rows | Same, at bigger scale. |
 | `poster-04-side-stance.jpg` | sage activewear against sky, cream wordmark over the body | Proof a bare wordmark over a photo can carry a poster. |
-| `poster-08-pilates-power.jpg` | cobalt type on grey, legs between the two words | The clearest technical example of the depth flip Hugo likes in 03 and 07: first word in FRONT of the body, second word BEHIND it. Worth keeping as the exemplar even though he did not name it. |
-| `poster-09-sculpting.jpg` | PILATES repeated four times as background texture | Repetition instead of a headline. Cheap to build. |
 
 ## The thread Hugo is actually pulling on
 
-Three of his six picks (03, 07, and what he wants to do with 10 and 11) are the same thing:
+Six of his eight picks (03, 07, 08, 09, and what he wants to do with 10 and 11) are the same thing:
 **depth between the type and the subject**. Not big type. Not type over a photo. Type and body
 occupying different distances from the camera.
 

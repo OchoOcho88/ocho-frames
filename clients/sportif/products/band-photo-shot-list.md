@@ -1,0 +1,76 @@
+# Band photo shot list (light and medium)
+
+> Written S032, for Hugo. The heavy band is already shot and cut out. This is how to shoot the
+> other two so all three match well enough to sit side by side in one image.
+> Unblocks Q-015, and with it the colourway strips (ref 06), the range card and the wholesale
+> line sheet.
+
+## The one rule
+
+**Shoot all three bands in one sitting, in the same spot, without touching the light.**
+
+Everything below serves that. If the light or the white balance shifts between bands, the three
+caramels come back slightly different, and the moment they sit next to each other in a strip
+poster it reads as a printing error rather than a colourway. Re-shooting the heavy alongside the
+other two is cheaper than trying to match colour afterwards, so **re-shoot all three**, even
+though heavy is already done. Keep the existing heavy set either way.
+
+## Setup
+
+- **Surface:** plain white or light grey. Not peach, not wood, not coloured. A coloured surface
+  bounces its colour up into the band and contaminates the cutout edge, which is the thing that
+  makes a composite look pasted.
+- **Light:** soft and even, slightly to one side so the weave still reads. One big soft source
+  beats two competing ones. No hard direct sun, no overhead spot that leaves a hot line down the
+  middle.
+- **Camera:** phone directly overhead, band running top to bottom of the frame, filling most of
+  the height. That is what the heavy set looks like, so matching it keeps the scale consistent.
+- **Lock exposure and white balance.** On iPhone, tap and hold on the band until AE/AF LOCK
+  appears. Do it once and leave it locked for all three bands. This is the single most important
+  step for colour matching.
+- **Do not crop in the phone.** Full frame, every shot. Cropping throws away pixels I may want.
+
+## The shots, per band
+
+Six per band, the same six that exist for heavy:
+
+1. **Front flat**, label near the top edge
+2. **Front folded**, one soft fold with the label sitting mid band
+3. **Back flat**, the plain reverse
+4. **Inside grip A**, the striped grip face
+5. **Inside grip B**, the grip face from a second angle
+6. **Label close up**, filling the frame
+
+Three bands times six shots is eighteen frames. Then:
+
+7. **One family shot** of all three together, laid parallel, same distance. Even though I would
+   normally build a lineup from the individual cutouts (more control over spacing), a real group
+   shot is the safety net that proves the three colours actually sit together.
+8. **One frame with a plain sheet of white printer paper** in shot beside a band. This is the
+   colour reference. If the three sets drift, that white gives me a neutral to correct against.
+   Costs you ten seconds and can save the whole set.
+
+## After the shoot
+
+- **Keep the originals as well as the cutouts.** Put the untouched camera files in
+  `assets/Sportif_Bands/originals/`. The background removal strips the EXIF, so the cutouts lose
+  the camera data, and if a matte comes out badly I need the original to redo it.
+- **Naming**, same convention as the heavy set (D-021):
+  `sportif-band-<weight>-<face>.png`, weight being `light`, `medium` or `heavy`, face being
+  `front-flat`, `front-folded`, `back-flat`, `inside-grip-a`, `inside-grip-b`, `label-detail`.
+- Drop them in `clients/sportif/assets/Sportif_Bands/` and tell me.
+
+## What it unlocks the moment they land
+
+- **Colourway strips** (ref 06, Hugo's pick): the strip colour matching the band colour, three up.
+- **The three band lineup**, which is the range card.
+- **The wholesale line sheet**, needed for the gym placements in the parallel wholesale track.
+- Every prompt in `band-poster-prompts.md` gains the option of showing the full set rather than one
+  band.
+
+## Worth checking while you have them in hand
+
+The heavy band's label reads SPORTIF over a rule over HEAVY. Confirm the light and medium labels
+follow the same lockup with their own weight word, and that the moulded label colour is identical
+across all three. If the factory varied it, that is worth knowing now rather than discovering it in
+a poster.

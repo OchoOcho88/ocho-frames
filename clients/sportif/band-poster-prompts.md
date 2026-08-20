@@ -2,7 +2,7 @@
 
 > Session 032. Settled with Hugo: **text-free plates** (we lay real Glacial Indifference afterwards,
 > house rule D-005) and the band must be **our exact product**, not a lookalike.
-> Style references: `assets/style-references/posters/`, active set is 03, 05, 06, 07, 10, 11.
+> Style references: `assets/style-references/posters/`, active set is 03, 05, 06, 07, 08, 09, 10, 11.
 > Product references: `clients/sportif/products/band-reference-plates/` (6 clean white plates, 2048px).
 > Prompt format follows `docs/platform-prompt-formats.md`. Voice rule applies: no em dashes.
 
@@ -10,10 +10,10 @@
 
 ## What Hugo is actually after
 
-Reading his notes back, three of his six picks are the same idea: **depth between the type and the
+Reading his notes back, six of his eight picks are the same idea: **depth between the type and the
 subject**. Ref 03 ("how the individual is positioned in front of the text"), ref 07 ("that depth
-creation between text and subject"), and what he wants to do with the blur pair ("some Sportif text
-either behind or in front").
+creation between text and subject"), refs 08 and 09 which he kept in on a second pass, and what he
+wants to do with the blur pair ("some Sportif text either behind or in front").
 
 That is a build problem, not a prompt problem. A generator returns one flat image, so there is no
 way to slide our real wordmark into the middle of it afterwards. So:
@@ -23,14 +23,23 @@ way to slide our real wordmark into the middle of it afterwards. So:
 There are two different ways to get depth, and which one applies depends on whether the subject has
 a hard edge.
 
-### Method 1, the cutout, for sharp subjects (refs 03, 07)
+### Method 1, the cutout, for sharp subjects (refs 03, 07, 08, 09)
 
 Matte the figure off the background, draw the type on the background layer, drop the figure back on
 top. Real occlusion, the letters genuinely pass behind her.
 
+Ref 08 adds the move worth stealing: **one word behind her, the next word in front**. That flip
+sells the depth more than the size of the type does. Ref 09 does the same thing with the headline
+repeated four times as a background texture instead of set once.
+
 This only works if the plate has a **flat, evenly lit, plain background**. S028 established that
 plain-background subjects matte flawlessly and busy studio backgrounds do not. That instruction is
 load bearing, not styling. Get a cluttered background back and the direction dies.
+
+**Hugo is cutting these out in Photoshop**, which is the better route for a hard matte anyway
+(D-012). Type spec and the full layer recipe are in `clients/sportif/depth-poster-photoshop-guide.md`.
+The scripted PIL route stays available for anything needing six sizes at once, and both share the
+same type spec so the outputs sit together.
 
 ### Method 2, the burn-in, for blurred subjects (refs 10, 11)
 
