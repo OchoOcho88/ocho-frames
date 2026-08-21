@@ -101,8 +101,28 @@ not off brand.md's palette table, or the strip will not match the band sitting o
 Plus two family shots. No front-flat and no label close-ups this round, but the front-folded frames
 carry the label and the family shot reads all three labels cleanly, so neither blocks anything.
 
-**Only real gap: the light band's two grip shots.** Four frames next time out and the set is
-complete: light grip A, light grip B, and a label close-up or two if convenient.
+### Shoot 5, same afternoon: the set is COMPLETE
+
+Hugo went straight back out. Eleven more frames, same setup, and all three bands now have all five
+faces:
+
+| Band | front flat | front folded | back flat | grip A | grip B |
+|---|---|---|---|---|---|
+| Light | yes | yes | yes | yes | yes |
+| Medium | yes | yes | yes | yes | yes |
+| Heavy | yes | yes | yes | yes | yes |
+
+Plus two family shots, **two tight parallel trios** and one angled trio (the tight trio is the real
+source for the colourway strips, better than the spaced family shot), and **three texture close-ups**,
+one per band, which Hugo shot on his own initiative.
+
+**The texture shots are the best colour samples in the whole project.** The band fills the frame, so
+the measurement has nothing else in it: light hue 32 / 33%, medium hue 20 / 44%, heavy hue 16 / 52%,
+which lines up with the family-shot values almost exactly.
+
+**Still not shot:** dedicated label close-ups, one per band. Not blocking, the front-flat frames put
+the label near the top edge and the tight trios read all three, but a tight crop would make a better
+AI reference plate than a crop off a wider frame. Four minutes whenever.
 
 ---
 
