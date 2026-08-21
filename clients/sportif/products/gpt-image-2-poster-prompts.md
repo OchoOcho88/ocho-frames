@@ -10,6 +10,49 @@
 
 ---
 
+## Tested here first, 2026-08-21. Read this before you run anything.
+
+Five low-quality runs through gpt-image-2 (about 20 seconds and a cent each). Output plates in
+`generated/images/band-posters/gpt-plates/`.
+
+**The first three all failed the same way, and it was the band every time.** It came back as a
+smooth suede or leather strap around ONE thigh, or slung across a hip. Composition, wall, mood and
+cuttability were all fine. The band was the only thing wrong, and it was wrong in all three.
+
+**What fixed it** was being blunt and physical about the object instead of describing it
+aesthetically. The block below is now in every prompt. Two changes carried it: naming what the band
+is NOT, and saying explicitly that both legs go inside one loop.
+
+```text
+CRITICAL, the resistance band. Reproduce the band from the reference images exactly.
+It is a WIDE FLAT LOOP of KNITTED FABRIC, about 8cm wide, with a clearly visible woven mesh
+texture, in deep caramel brown. It is NOT smooth, NOT leather, NOT suede, NOT rubber, NOT a
+plain strap. On its front face sits a small CREAM MOULDED RUBBER LABEL, a rounded rectangle
+with raised lettering. The band is a closed loop that goes around BOTH THIGHS TOGETHER, just
+above the knees, so both legs are inside the same loop. It is pulled tight and clearly under
+tension, the fabric slightly stretched, not hanging loose on one leg.
+```
+
+**Second fix: put her in CREAM, not caramel.** The v1 blur run dressed her in caramel and the band
+vanished into the outfit. Cream leggings and tank make the band the single dark accent, which is the
+whole point.
+
+**What is still wrong, and cannot be prompted away: the label comes back blank.** A cream rectangle
+with no lettering. This is the known limit (S029), and the known fix is to drop the real label in
+afterwards with the two-image swap, or patch it in PIL. Do not burn generations trying to fix it in
+the prompt.
+
+**I did not upload the Pinterest style references, and you probably should not either.** Two reasons.
+Feeding a third party photo into a generator sits closer to "editing it into our asset" than the
+style-only use D-014 permits. And practically, the written composition carried it fine on its own,
+while the image reference tends to drag the wrong things across (its palette, its clothing, its paper
+texture). The prompts below now name only our own product plates.
+
+**Verdict:** poster 1 and poster 3 are worth running at full quality. Poster 2 needs a re-run with
+the band block above before it is worth spending a high-quality generation on.
+
+---
+
 ## Before you start
 
 **Ask for portrait, 4:5.** In ChatGPT just say "make it a vertical 4:5 image" as the last line, or it
@@ -29,23 +72,23 @@ gpt-image-2 drifts past three or four references, so do not send more than the t
 
 # POSTER 1. Full figure, type sandwich
 
-**Upload:** `ref-heavy-front-folded.jpg`, `ref-heavy-texture.jpg`, `poster-03-eat-sleep-pilates-repeat.jpg`
+**Upload:** `ref-heavy-front-flat.jpg`, `ref-heavy-texture.jpg`
 **After:** cut her out, giant headline behind her, second word in front.
 
 ```text
-Image 1 and image 2 are the actual product. The resistance band in the photo must be exactly
-this band: deep caramel brown woven fabric with a fine visible knit, a flat wide loop, and a
-cream moulded rectangular label with raised white lettering. Do not redesign it, do not change
-its colour, do not invent a different band.
-Image 3 is a COMPOSITION reference only. Copy how the figure is framed and how flat the
-background is. Do not copy its subject, its colours, its clothing, its text or its layout.
+CRITICAL, the resistance band. Reproduce the band from the reference images exactly.
+It is a WIDE FLAT LOOP of KNITTED FABRIC, about 8cm wide, with a clearly visible woven mesh
+texture, in deep caramel brown. It is NOT smooth, NOT leather, NOT suede, NOT rubber, NOT a
+plain strap. On its front face sits a small CREAM MOULDED RUBBER LABEL, a rounded rectangle
+with raised lettering. The band is a closed loop that goes around BOTH THIGHS TOGETHER, just
+above the knees, so both legs are inside the same loop. It is pulled tight and clearly under
+tension, the fabric slightly stretched, not hanging loose on one leg.
 
 Make a full length editorial photograph of a woman in her early thirties standing against a
-flat blush peach wall, turned side on to the camera with her weight on one leg and her arms
-relaxed at her sides. She wears cream ribbed full length leggings and a matching relaxed tank.
-The caramel resistance band is looped around both thighs just above the knees, stretched taut
-and clearly under tension, not draped or loose, its cream moulded label facing the camera on
-the outside of her near thigh.
+flat blush peach wall, feet apart at hip width so BOTH legs are visible and both sit inside
+the band loop, turned three quarters to the camera, arms relaxed at her sides.
+She wears CREAM ribbed full length leggings and a matching cream relaxed tank, so the caramel
+band stands out strongly against them.
 Place her in the lower right of the frame with generous empty wall above her and to her left.
 Her head and shoulders sit well inside the frame, not cropped.
 Shot straight on at chest height on an 85mm lens, soft even frontal daylight, almost no shadow
@@ -69,23 +112,23 @@ leave the whole upper left empty" and regenerate.
 
 # POSTER 2. Legs only, type sandwich
 
-**Upload:** `ref-heavy-front-flat.jpg`, `ref-heavy-inside-grip.jpg`, `poster-07-pilates-poster.jpg`
+**Upload:** `ref-heavy-front-flat.jpg`, `ref-heavy-texture.jpg`
 **After:** same treatment, quieter. No face means no casting problems, so this is the reliable one.
+This is the one that most needs the band block, since v1 slung the band across a hip.
 
 ```text
-Image 1 and image 2 are the actual product. The resistance band must be exactly this band: deep
-caramel brown woven fabric with a fine visible knit, a flat wide loop, and a cream moulded
-rectangular label with raised white lettering. Image 2 shows its inside face with two dark
-stripes. Do not redesign it, do not change its colour, do not invent a different band.
-Image 3 is a COMPOSITION reference only. Copy the crop and the flatness of the background. Do
-not copy its subject, its colours, its clothing, its text or its layout.
+CRITICAL, the resistance band. Reproduce the band from the reference images exactly.
+It is a WIDE FLAT LOOP of KNITTED FABRIC, about 8cm wide, with a clearly visible woven mesh
+texture, in deep caramel brown. It is NOT smooth, NOT leather, NOT suede, NOT rubber, NOT a
+plain strap. On its front face sits a small CREAM MOULDED RUBBER LABEL, a rounded rectangle
+with raised lettering. The band is a closed loop that goes around BOTH THIGHS TOGETHER, just
+above the knees, so both legs are inside the same loop. It is pulled tight and clearly under
+tension, the fabric slightly stretched, not hanging loose on one leg.
 
 Make a cropped editorial photograph showing only the legs and lower torso of a woman lying on
 her side on a pale linen mat against a flat cream wall, knees bent and stacked, the top knee
-lifting away from the lower one.
-She wears cream ribbed full length leggings. The caramel resistance band is looped around both
-thighs just above the knees, stretched taut and clearly under tension, its cream moulded label
-facing the camera.
+lifting away from the lower one, BOTH thighs inside the band loop just above the knees.
+She wears CREAM ribbed full length leggings, so the caramel band is the only dark accent.
 The legs enter from the lower right and reach into the centre of the frame. The entire upper
 half of the frame is empty cream wall.
 Shot straight on at floor level on a 50mm lens, soft even daylight from the left, a warm
@@ -105,20 +148,23 @@ Vertical 4:5 image.
 
 # POSTER 3. Motion blur
 
-**Upload:** `ref-heavy-front-folded.jpg`, `poster-11-blur-sitting.jpg`
+**Upload:** `ref-heavy-front-flat.jpg`, `ref-heavy-texture.jpg`
 **After:** no cutting out. Blur has no hard edge, so the type gets burned into the wall behind her
 instead (the S031 luminance trick). That is why this one asks for a bright, even, low-contrast wall.
 
 ```text
-Image 1 is the actual product. The resistance band must be exactly this band: deep caramel
-brown woven fabric with a fine visible knit and a cream moulded label. Do not change its colour.
-Image 2 is a STYLE reference only, for the long exposure blur and the warm grade. Do not copy
-its subject, its clothing or its composition.
+CRITICAL, the resistance band. Reproduce the band from the reference images exactly.
+It is a WIDE FLAT LOOP of KNITTED FABRIC, about 8cm wide, with a clearly visible woven mesh
+texture, in deep caramel brown. It is NOT smooth, NOT leather, NOT suede, NOT rubber, NOT a
+plain strap. On its front face sits a small CREAM MOULDED RUBBER LABEL, a rounded rectangle
+with raised lettering. The band is a closed loop that goes around BOTH THIGHS TOGETHER, just
+above the knees, so both legs are inside the same loop. It is pulled tight and clearly under
+tension, the fabric slightly stretched, not hanging loose on one leg.
 
 Make a long exposure photograph of a woman mid movement against a plain, evenly lit near white
 wall, her body and limbs smeared into soft motion trails, only her torso holding any sharpness.
-She wears caramel ribbed full length leggings and a matching relaxed tank. The caramel
-resistance band is looped around her thighs and blurs with her.
+She wears CREAM ribbed full length leggings and a matching cream tank, so the deep caramel band
+reads as the single dark accent in the frame. The band is around both thighs and blurs with her.
 Warm amber light washing across the frame from the left, the wall behind her bright, even and
 almost featureless, a faint double exposure ghosting on her arms.
 Place her in the lower two thirds of the frame with clear empty wall above her.
