@@ -66,6 +66,44 @@ needed any more. That replaces step 8 below.
    slightly before locking. Nothing is blown, so this is recoverable, but getting it right in camera
    is better than lifting it later.
 
+## Shoot 4 (2026-08-21): PASSED. This is the usable set.
+
+Twelve frames in `assets/Sportif_Bands/Original_New_method/`, white sheet, direct sun, renamed to
+the D-021 convention. **The colour verifies.**
+
+Corrected against the white sheet in the family shot, the heavy band lands at **hue 17 deg / 53%
+saturation** against the known-good first shoot at **hue 17 deg / 50%**. Hue is exact, saturation is
+within three points. That is a match, and it means the whole set can be trusted for colour.
+
+### The three colourways, measured
+
+| Band | hex | RGB | hue / sat |
+|---|---|---|---|
+| LIGHT | `#B8A080` | 184 160 128 | 35 deg / 30% |
+| MEDIUM | `#9D7459` | 157 116 89 | 24 deg / 44% |
+| HEAVY | `#6C4333` | 108 67 51 | 17 deg / 53% |
+
+Taken from the family shot, because all three sit under identical light in one frame. That is
+exactly what the family shot is for. Swatch card at `clients/sportif/products/band-colourways.jpg`.
+
+**Note for the strips:** the real product runs DEEPER than the brand palette swatches. Heavy at
+`#6C4333` is well below terracotta `#833827`. Build the colourway strips off these measured values,
+not off brand.md's palette table, or the strip will not match the band sitting on it.
+
+### What is in the set
+
+| Band | front folded | back flat | grip A | grip B |
+|---|---|---|---|---|
+| Light | yes | yes | **missing** | **missing** |
+| Medium | yes | yes | yes | yes |
+| Heavy | yes | yes | yes | yes |
+
+Plus two family shots. No front-flat and no label close-ups this round, but the front-folded frames
+carry the label and the family shot reads all three labels cleanly, so neither blocks anything.
+
+**Only real gap: the light band's two grip shots.** Four frames next time out and the set is
+complete: light grip A, light grip B, and a label close-up or two if convenient.
+
 ---
 
 ## The one rule
