@@ -90,9 +90,10 @@ though heavy is already done. Keep the existing heavy set either way.
   colour.
 - **Camera:** phone directly overhead, band running top to bottom of the frame, filling most of
   the height. That is what the heavy set looks like, so matching it keeps the scale consistent.
-- **Lock exposure and white balance.** On iPhone, tap and hold on the band until AE/AF LOCK
-  appears. Do it once and leave it locked for all three bands. This is the single most important
-  step for colour matching.
+- **Lock exposure.** Tap the band, lift the sun slider slightly, then press and hold until AE/AF
+  LOCK appears, and do not tap the screen again. Note: **AE/AF Lock does NOT lock white balance**,
+  that is not available in the stills camera. It does not matter, because the white sheet is the
+  reference and I correct against it per frame. Full phone setup at `iphone-camera-setup.md`.
 - **Do not crop in the phone.** Full frame, every shot. Cropping throws away pixels I may want.
 
 ## The shots, per band
