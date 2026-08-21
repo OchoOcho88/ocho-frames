@@ -45,6 +45,27 @@ For nineteen overhead shots that have to match, this is the difference between a
 and a set where every band is subtly keystoned at a slightly different angle. Wait for yellow on
 every frame.
 
+## B2. Where to stand relative to the sun
+
+**Sun to your left or right. Not behind your back, not in front of you.**
+
+- **Sun behind your back** is the worst option here. You are pointing straight down, so you stand
+  between the sun and the band, and your own shadow lands on it.
+- **Facing the sun** works, your shadow falls behind you, but the light hits the band flat on from the
+  far side and flattens the weave.
+- **Sun to the side** puts your shadow out of frame AND rakes the light across the fabric. Think of
+  photographing a coin: lit head on it looks like a flat disc, lit from the side you see every raised
+  detail. Same with the knit.
+
+Hugo's test frame already had this right, the shadow falls to the left so the sun was over his right.
+Stand the same way. Put the white bounce card on the shadow side, which is the left.
+
+**Check the screen for your own shadow, and the phone's, before every frame.** Easy to miss while
+concentrating on the band.
+
+**Mid-morning or mid-afternoon beats midday.** Overhead noon sun means leaning right over the subject
+and the light goes flat anyway. An angled sun gives the rake.
+
 ## C. In the Camera app (each time)
 
 1. **Photo** mode, **1x** lens. Not 0.5x, it distorts. Not 2x or 3x, it crops and softens.
@@ -80,6 +101,7 @@ again for no benefit here.
 
 ## The thirty second version
 
-Photographic Styles on **Standard**. Grid on, crosshairs **yellow**. Tap the **band**, lift the sun a
-touch, hold to lock. White sheet under, white card just outside frame on the shadow side. Shoot all
-nineteen without touching the screen.
+Photographic Styles on **Standard**. Grid on, crosshairs **yellow**. Sun to your **side**, not your
+back. Tap the **band**, lift the sun a touch, hold to lock. White sheet under, white card just
+outside frame on the shadow side. Check your own shadow is out of shot. Shoot all nineteen without
+touching the screen.
