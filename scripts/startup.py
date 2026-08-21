@@ -181,6 +181,22 @@ def main():
                 flags.append(f"RESUME-NOTE.md still describes Session {m.group(1)} (we are on {num}). Stale, rewrite or delete.")
     if not (ROOT / ".env").exists():
         flags.append("No .env in the workspace root. API-backed scripts will fail.")
+
+    # S031/S033: Cowork commits cannot unlink inside the mount, so they leave
+    # stale locks and tmp_obj files behind. git then wrongly claims another
+    # process is running, and git gc fails.
+    git_dir = ROOT / ".git"
+    locks = sorted(git_dir.glob("*.lock")) if git_dir.exists() else []
+    tmp_objs = list(git_dir.glob("objects/*/tmp_obj_*")) if git_dir.exists() else []
+    if locks:
+        names = ", ".join(f".git/{p.name}" for p in locks)
+        flags.append(f"Stale git lock(s): {names}. A previous Cowork commit could not clean up.")
+        if env == "Cowork":
+            flags.append("  Clear them here with: mkdir -p .git/_stale_locks && mv -f .git/*.lock .git/_stale_locks/")
+        else:
+            flags.append("  Clear them here with: rm -f .git/*.lock && git gc --prune=now")
+    if tmp_objs and env == "Claude Code":
+        flags.append(f"{len(tmp_objs)} orphaned tmp_obj file(s) in .git/objects. Run: git gc --prune=now")
     if env == "Cowork":
         flags.append("Cowork: iterate images at quality low (45s cap). Render finals in Claude Code.")
         flags.append("Cowork: file DELETION needs the allow_cowork_file_delete tool. Overwrite with cp -f instead.")
