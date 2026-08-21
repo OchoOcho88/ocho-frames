@@ -5,6 +5,35 @@
 > Unblocks Q-015, and with it the colourway strips (ref 06), the range card and the wholesale
 > line sheet.
 
+## Shoot 2 result (2026-08-20): reshoot needed, one reason
+
+Hugo shot all three bands in one sitting, which was the important part and it worked. Twenty two
+frames, every face covered, all three weights confirmed by their labels. Renamed and filed.
+
+**But they were shot on a blue card, and the colour is not recoverable.** Measured against the
+first shoot, whose heavy band is known good at `#8F5B47`:
+
+| | hex | hue | saturation |
+|---|---|---|---|
+| Heavy, shoot 1 (correct) | `#8F5B47` | 17 deg | 50% |
+| Heavy, shoot 2 as shot | `#736A88` | 258 deg | 22% |
+| Heavy, shoot 2 white balanced | `#83635E` | 7 deg | 28% |
+
+A caramel band came back reading purple. Correcting white balance against the cream label pulls the
+hue back to roughly right, but **saturation only recovers to 28% against a true 50%**. The blue field
+filled the frame, the camera balanced for it, and the red channel simply never recorded the
+separation. There is nothing in the file to restore.
+
+There was also no neutral in the set to correct against. The sheet under the bands in the family shot
+is blue card, not white paper, so the one safeguard that would have rescued this was not in frame.
+
+**Still usable from shoot 2:** shape, weave texture, the labels, every framing. Fine as AI product
+references and fine for cutting practice in Photoshop.
+**Not usable:** anything where the colour is the point. That is the colourway strips, the range card,
+the line sheet, and anything Lucy sees.
+
+---
+
 ## The one rule
 
 **Shoot all three bands in one sitting, in the same spot, without touching the light.**
@@ -17,7 +46,7 @@ though heavy is already done. Keep the existing heavy set either way.
 
 ## Setup
 
-- **Surface:** plain white or light grey. Not peach, not wood, not coloured. A coloured surface
+- **Surface:** plain white or light grey. Not peach, not wood, and NOT BLUE. This is the one that cost shoot 2. Blue is the opposite of caramel on the colour wheel, so it is the single worst choice for warm product. White printer paper, a white sheet, or a grey card. A coloured surface
   bounces its colour up into the band and contaminates the cutout edge, which is the thing that
   makes a composite look pasted.
 - **Light:** soft and even, slightly to one side so the weave still reads. One big soft source
