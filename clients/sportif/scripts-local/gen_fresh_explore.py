@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Fresh gpt-image-2 GENERATIONS (not edits) — exploratory Sportif key visuals.
+"""Fresh gpt-image-2 GENERATIONS (not edits), exploratory Sportif key visuals.
 
 Three directions x two variants. Warm-neutral affordable-luxury world, brand
 guardrails baked in (no leather, flat knitted fabric band, modest/elevated not glam,
-no text — we overlay type ourselves). Prompts are the source of truth (binaries gitignored).
+no text, we overlay type ourselves). Prompts are the source of truth (binaries gitignored).
 
 Low quality works in-harness; high hits the ~60s cap -> run from a native Terminal:
     python3 clients/sportif/scripts-local/gen_fresh_explore.py low
@@ -34,7 +34,7 @@ REALISM = ("Shot on 35mm film, Kodak Portra 400, 50mm f/2 lens, natural availabl
            "a real fashion photographer. Absolutely avoid any glossy, plastic, waxy, over-smoothed, "
            "airbrushed, symmetrical, CGI or 3D-render look.")
 
-PALETTE = ("Colour palette: warm neutrals only — blush peach, caramel tan, terracotta clay, "
+PALETTE = ("Colour palette: warm neutrals only, blush peach, caramel tan, terracotta clay, "
            "linen cream, warm charcoal. Soft natural warm light, gentle shadows, film-like grain, "
            "muted and elevated, affordable-luxury editorial mood.")
 GUARD = ("Modest, tasteful, elevated athletic fitness editorial photograph; full-coverage "

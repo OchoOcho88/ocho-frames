@@ -123,6 +123,9 @@ def fix_dashes_in(p):
     n = sum(t.count(d) for d in DASHES)
     if not n:
         return 0
+    # A dash between digits is a RANGE. "2-3 uses" must become "2 to 3 uses",
+    # never "2, 3 uses" (S033).
+    t = re.sub(rf"(\d)\s*[{DASHES[0]}{DASHES[1]}]\s*(\d)", r"\1 to \2", t)
     for pat, rep in ((f" {DASHES[0]} ", ", "), (f" {DASHES[1]} ", ", "),
                      (DASHES[0], ", "), (DASHES[1], ", ")):
         t = t.replace(pat, rep)

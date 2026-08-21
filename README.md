@@ -21,14 +21,14 @@ hyperframes/
 ├── compositions/             ← your own video projects live here
 │   └── starter/             ← scaffolded starter project (with 15 AI skills pre-installed)
 │
-├── assets/                  ← reusable media — shared across projects
+├── assets/                  ← reusable media, shared across projects
 │   ├── audio/               ← music, SFX, narration files
 │   ├── video/               ← stock footage, b-roll
 │   ├── images/              ← logos, photos, illustrations
 │   └── fonts/               ← custom typography
 │
 ├── brand/                   ← brand kit: colors, fonts, voice, style guide
-│   └── brand-kit.md         ← starter (modern default — customize when you're ready)
+│   └── brand-kit.md         ← starter (modern default, customize when you're ready)
 │
 ├── scripts/                 ← INPUTS: content scripts, storyboards, voiceover scripts
 │
@@ -72,14 +72,14 @@ npm run dev
 
 The starter project has 15 AI skills pre-installed in `.agents/skills/`. When you open the project in Claude Code, Cursor, or another AI agent, you can invoke them with slash commands:
 
-- `/hyperframes` — main composition authoring
-- `/hyperframes-cli` — init, lint, preview, render commands
-- `/hyperframes-media` — TTS, transcription, background removal
-- `/gsap` — timeline animations
-- `/tailwind` — utility-class styling
-- `/lottie`, `/three`, `/waapi`, `/animejs`, `/css-animations` — specific animation runtimes
-- `/website-to-hyperframes` — turn a URL into a video
-- `/remotion-to-hyperframes` — port from Remotion
+- `/hyperframes`, main composition authoring
+- `/hyperframes-cli`, init, lint, preview, render commands
+- `/hyperframes-media`, TTS, transcription, background removal
+- `/gsap`, timeline animations
+- `/tailwind`, utility-class styling
+- `/lottie`, `/three`, `/waapi`, `/animejs`, `/css-animations`, specific animation runtimes
+- `/website-to-hyperframes`, turn a URL into a video
+- `/remotion-to-hyperframes`, port from Remotion
 
 ## Goals for this workspace
 
@@ -91,8 +91,8 @@ The starter project has 15 AI skills pre-installed in `.agents/skills/`. When yo
 
 ## Integrations planned
 
-- **OpenAI GPT Image 2.0** — for generated visuals inside compositions
-- **HeyGen** — AI avatar narrators and template videos
+- **OpenAI GPT Image 2.0**, for generated visuals inside compositions
+- **HeyGen**, AI avatar narrators and template videos
 
 API keys go in `.env` (copy `.env.example` to start). Never commit `.env`.
 
@@ -139,7 +139,7 @@ This is currently a personal workspace, but if you're collaborating with me:
 
 2. **Update `memory.md`.** Every session that does meaningful work should add an entry at the top, following the format in the template comment at the bottom of the file.
 
-3. **Save new prompts to `prompts/`** if you've refined a workflow over 2–3 uses.
+3. **Save new prompts to `prompts/`** if you've refined a workflow over 2 to 3 uses.
 
 4. **Save new recipes to `recipes/`** when a workflow is proven. Use `_template.md` as the starting point.
 

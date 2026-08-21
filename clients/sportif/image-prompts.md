@@ -19,7 +19,7 @@ BAND = flat wide knitted-fabric loop.
 - **bu1 / bu2** band-in-use editorial (standing abduction in a reformer studio / squat with the band
   visibly tensioned).
 Casting came back naturally diverse (fits Sportif's inclusive positioning). Note the bands are
-AI-imagined here (not the real SPORTIF label) — stamp the real label for product-accurate use.
+AI-imagined here (not the real SPORTIF label), stamp the real label for product-accurate use.
 **Real SPORTIF band swap (`realband_in_hand.py`):** the bands in the generations are AI-imagined
 (blank label). To make them the actual product, a two-image gpt-image-2 edit passes the campaign
 photo + the real MEDIUM label crop (`band-inuse/label-medium.png`) so gpt stamps the real SPORTIF /
@@ -34,8 +34,8 @@ RESISTANCE` right-aligned on the open wall (soft light halo for separation) + te
 WAITLIST pill + `@sportifcollection`. Navy headline (not cream) because the wall is light beige.
 
 **Photoreal `_r` variants (kept):** the plain low proofs looked "a bit AI" (waxy, over-smooth). Adding a
-REALISM block (`... real` 3rd arg) — 35mm Kodak Portra 400, 50mm lens, natural light, visible skin
-texture/pores/flyaways, film grain, candid documentary realism, explicitly forbid glossy/plastic/CGI —
+REALISM block (`... real` 3rd arg), 35mm Kodak Portra 400, 50mm lens, natural light, visible skin
+texture/pores/flyaways, film grain, candid documentary realism, explicitly forbid glossy/plastic/CGI , 
 markedly cut the AI look across all three directions (skin, plaster, natural light all read real). The
 `_r_low.png` set is the preferred base. Finals: run `gen_fresh_explore.py high all real` from a native
 macOS Terminal (high blows past the ~60s harness cap).
@@ -52,7 +52,7 @@ Reskin of a reference layout Lucy sent (a pilates-studio "WE'RE OPEN" ad). Techn
 - watermark: faint oversized `SPORTIF` (~12% alpha, lower area)
 - CTA: solid terracotta #833827 `JOIN THE WAITLIST` pill, cream text, soft lift shadow (bottom-anchored)
 - footer: SPORTIF lockup + `@sportifcollection`
-- bridge only: a framed single-band product card in the left void (blush MEDIUM card, rounded + shadow + cream border) — ties product to lifestyle inside one still.
+- bridge only: a framed single-band product card in the left void (blush MEDIUM card, rounded + shadow + cream border), ties product to lifestyle inside one still.
 Finals: `generated/images/reference-reskin/reskin-bridge.png` (lead), `reskin-asis.png` (alt). No dates (trademark hold). Every copy/colour/size is a one-line edit.
 
 ## cosmos-peach series (2026-07-20) LUCY-APPROVED, 15 finals

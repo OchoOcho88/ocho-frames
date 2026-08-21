@@ -31,7 +31,7 @@ These rules apply to ALL copy produced by or through this workspace. That includ
 
 ### Hard rules (non-negotiable)
 
-1. **No em dashes (—). Ever.** Em dashes are an AI tell. Use periods, commas, colons, or parentheses depending on context. Hyphens (-) and en dashes (–) are fine.
+1. **No em dashes (, ). Ever.** Em dashes are an AI tell. Use periods, commas, colons, or parentheses depending on context. Hyphens (-) and en dashes (, ) are fine.
 2. **Friendly and professional, to the point.** Short sentences. Cut anything that doesn't earn its place. If a comma is doing the work of a period, use the period.
 3. **Plain language over jargon.** "Faster" beats "performant." "We can ship by Friday" beats "We are positioned to deliver an EOW release."
 4. **One idea per sentence.** If a sentence has two ideas, split it.
@@ -41,12 +41,12 @@ These rules apply to ALL copy produced by or through this workspace. That includ
 
 | Original instinct | Use instead |
 |---|---|
-| "Take your time — there's no wrong answer." | "Take your time. There's no wrong answer." |
-| "We did X — and Y." | "We did X, and Y." |
-| "A few things — X, Y, Z." | "A few things: X, Y, Z." (colon) |
-| "(by the way — important)" | "(by the way: important)" or parenthetical recast |
-| "Same idea — any brand." | "Same idea. Any brand." |
-| "It works — well." (for emphasis) | "It works. Well." or just "It works well." |
+| "Take your time, there's no wrong answer." | "Take your time. There's no wrong answer." |
+| "We did X, and Y." | "We did X, and Y." |
+| "A few things, X, Y, Z." | "A few things: X, Y, Z." (colon) |
+| "(by the way, important)" | "(by the way: important)" or parenthetical recast |
+| "Same idea, any brand." | "Same idea. Any brand." |
+| "It works, well." (for emphasis) | "It works. Well." or just "It works well." |
 
 ### Voice anchors
 

@@ -58,14 +58,14 @@ The handle is only for assets travelling without the account attached: stockist 
 
 Bottom to top:
 
-1. **Background** — flat colour fill, peach or cream.
-2. **Headline** — Glacial Bold, huge, tracked -20. Let it run past the canvas edges if it wants to.
+1. **Background**, flat colour fill, peach or cream.
+2. **Headline**, Glacial Bold, huge, tracked -20. Let it run past the canvas edges if it wants to.
    This is the layer she will sit in front of.
-3. **Subject cutout** — your Photoshop cut of the generated plate, on transparency.
-4. **Foreground type, optional** — a second type layer ON TOP of the subject. This is the ref 08
+3. **Subject cutout**, your Photoshop cut of the generated plate, on transparency.
+4. **Foreground type, optional**, a second type layer ON TOP of the subject. This is the ref 08
    trick: one word behind her, the next word in front. That flip is what sells the depth, more than
    the size of the type does.
-5. **Grain** — new layer, fill 50% grey, set to Overlay, Filter > Noise > Add Noise at about 3%,
+5. **Grain**, new layer, fill 50% grey, set to Overlay, Filter > Noise > Add Noise at about 3%,
    monochromatic. Ties the composite together. Skip it and the cutout reads as pasted.
 
 ### Making the cutout hold up
