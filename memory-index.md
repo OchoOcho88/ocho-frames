@@ -5,7 +5,7 @@
 
 | # | Date | Env | Title |
 |---|------|-----|-------|
-| 32 | 2026-08-20 | Cowork | first posters from the real bands, cutouts renamed, 3D path chosen |
+| 32 | 2026-08-21 | Cowork | first posters from the real bands, cutouts renamed, 3D path chosen |
 | 31 | 2026-08-17 | Cowork | Lucy's email-02 revisions, the collection mark goes master, art-direction overrides |
 | 30 | 2026-08-11 | Cowork | SPORTIF collection grid tiles (Lucy's reference lockup across 3 IG tiles) |
 | 29 | 2026-07-28 | Claude Code | Email 03 (Lucy's 3-band photo request) + the band-swap labelling method |

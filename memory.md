@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-08-20 | Last session: 032 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally | **FIRST THING NEXT SESSION: Gemini / Nano Banana Pro is wired but not callable. GEMINI_API_KEY is in `.env`; open Settings, Capabilities, Network Egress, allow `generativelanguage.googleapis.com`, and note that a NEW chat is required after the change (Q-017).** | Then: photograph the LIGHT and MEDIUM bands; Hugo's Pinterest poster refs into `assets/style-references/posters/` and the prompts rewritten to reference them by role; Hugo to react to the two poster directions; Shopify-ready GLB route; SEND the email-02 v2 batch to Lucy (still not sent); back-catalogue pass to the SPORTIF/collection mark; high-quality band-swap renders + email-03; waitlist page; Canva Pro*
+*Last updated: 2026-08-21 | Last session: 032 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally | **FIRST THING NEXT SESSION: Gemini / Nano Banana Pro is wired but not callable. GEMINI_API_KEY is in `.env`; open Settings, Capabilities, Network Egress, allow `generativelanguage.googleapis.com`, and note that a NEW chat is required after the change (Q-017).** | Then: Hugo runs the three gpt-image-2 poster prompts at full quality in ChatGPT and sends the plates back for the label swap and the type; build the colourway strips (ref 06) now that Q-015 is closed and the colours are measured; four frames to finish the band set (label close-ups, Q-018); SEND the email-02 v2 batch to Lucy (still not sent); back-catalogue pass to the SPORTIF/collection mark; high-quality band-swap renders + email-03; waitlist page; Canva Pro*
 
 - **NEW (Session 032): first posters built from the REAL product, and the band cutouts renamed.** Lucy sent the physical bands and Hugo shot them on an iPhone with the backgrounds removed. All six cutouts are the **HEAVY** band (front flat, front folded, back, two inside-grip faces, label close-up), renamed from `IMG_96xx Background Removed.png` to `sportif-band-heavy-<face>.png` in `clients/sportif/assets/Sportif_Bands/`. Two poster directions built by `clients/sportif/scripts-local/build_band_posters.py`, each in IG feed 4:5 and story 9:16, output to `clients/sportif/generated/images/band-posters/` with a README: an **editorial collage** (cream ground, peach plate, EVERYDAY TRAINING ELEVATED in Glacial Bold, band tilted in front breaking the plate, tilted cream card holding an inside-grip swatch) and a **coming-soon teaser** (peach ground, band as the one pop of colour, terracotta waitlist pill, no dates). Both use the SPORTIF / rule / collection master mark (D-017) and carry no handle (D-018). See [[real-band-content-pipeline]].
 - **NEW (Session 032, second half): AI poster prompts written against the real product.** Hugo wants to feed the real band shots into gpt-image-2 and Nano Banana Pro as references rather than generate a band from scratch. Settled with him: **text-free plates** (we still own the type, D-005 holds) and the band must be **our exact product**. Four prompts at `clients/sportif/band-poster-prompts.md` (plinth still life, morning-ritual flat lay, in-use under tension, graphic poster plate with an empty type well), each carrying a hard product-accuracy and no-text block. Six clean white reference plates at 2048px in `clients/sportif/products/band-reference-plates/`. Nano Banana Pro (Gemini 3 Pro Image) takes up to 14 references, so product plates and style references go in the same run; gpt-image-2 drifts past three or four. Hugo is running this round in the Gemini app himself.
@@ -251,10 +251,12 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 
 ---
 
-## Session 032 (2026-08-20, Cowork): first posters from the real bands, cutouts renamed, 3D path chosen
+## Session 032 (2026-08-21, Cowork): first posters from the real bands, cutouts renamed, 3D path chosen
 
 Client: Sportif
-Tags: real-bands, cutouts, posters, collage, teaser, instagram, 3d, shopify-ar, naming
+Tags: real-bands, cutouts, posters, collage, teaser, instagram, 3d, shopify-ar, naming, colour, photography, gpt-image-2, textures, layout-rule
+
+Long session, started the evening of 2026-08-20 and ran through 08-21.
 
 Lucy has sent the physical bands (light, medium, heavy). Hugo photographed them on an iPhone and
 removed the backgrounds, and dropped six PNGs into `clients/sportif/assets/Sportif_Bands/`. Reading
