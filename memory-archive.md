@@ -6,6 +6,29 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-08-21 -->
+
+## Session 027 (2026-07-25, Claude Code): Lucy expert-brand content strategy (Phase 1) + disk cleanup
+
+Client: Sportif
+Tags: content-strategy, lucy, expert-brand, devin-jatho
+
+Hugo's idea: apply the Devin Jatho expert-brand / 4-quadrant model (transcript in `devin-jatho/`) to Lucy Wayne, so content builds her authority and converts to SALES not just followers. Devin's system: build an EXPERT brand (trust of expertise) not a personal brand; 3 switches = (1) expert niche defined by the problem your offer solves + one avatar, (2) four non-overlapping content quadrants, (3) give your best away free (positive reinforcement). We adapt it as founder-led authority marketing for a product brand.
+
+**Direction locked (Hugo's calls):** authority-first (monetise later, perfect for the trademark hold), hybrid on-camera (Lucy's real presence + our produced content), editorials via links.
+
+**Phase 1 done:**
+- Fetched + analysed Lucy's 3 published interviews (voyagela, boldjourney, magnateview). She is a fashion-designer-turned-celebrity-stylist (Katy Perry, The Great Gatsby) AND certified PT + reformer Pilates devotee. Her unfair advantage = the STYLE + STRENGTH fusion, aimed at REAL women (size 14+, inclusive), the antidote to the White Fox world (reinforces existing brand.md positioning).
+- **Le Sport Collectif was the OLD brand name; Sportif is LOCKED IN** (so the trademark issue is not the name). Confirmed by Hugo.
+- Built `clients/sportif/lucy-content-library.md` (internal draw-from: taglines, her real quotes, DRAFT mantras clearly separated so we never misattribute) and `clients/sportif/lucy-profile.md` -> rendered to `lucy-profile-for-review.pdf` via `build-lucy-profile.py` (headless Chrome, since weasyprint is not on the Mac; Glacial fonts base64-embedded, warm palette).
+- The PDF is titled **"Content Creation Strategy"** and written as a WARM STUDIO LETTER from Ocho Productions to Lucy (Hugo: the first draft read too AI/clinical). Carries the principle "every piece has a job, pointed at a sale" and the give-value-then-ask (jab) idea, and a "What happens next" list of 6 candidate topic directions for her to react to.
+
+**Disk cleanup:** Hugo's Mac boot volume was full (121MB free of 460GB), which broke a file write. Cleared safe regenerable caches at his OK (Adobe media cache ~79GB, BorisFX ~10GB, Chrome ~2.2GB, VSCode ~1.5GB) -> freed ~93GB. Left NordVPN (23GB) and Claude app data (16GB) untouched (his data).
+
+**Open:** Q-006 = Phase 2 (lock Lucy's expert niche, one avatar, and FOUR quadrants) pending Lucy's reaction to the PDF. See [[real-band-content-pipeline]].
+
+---
+
 <!-- archived batch, moved 2026-08-20 -->
 
 ## Session 026 (2026-07-24, Claude Code): memory system v2, hardening for scale (multi-client)

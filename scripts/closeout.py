@@ -69,6 +69,31 @@ def read(path):
 
 # --------------------------------------------------------------------------
 
+def clear_locks(env):
+    """Move or remove stranded git lock files. Returns how many were cleared.
+
+    Cowork cannot unlink inside the mount, so EVERY git call here strands a
+    lock. Clearing once at the start is not enough: the calls made by the
+    checks in between put a fresh one back. Call this again before committing.
+    """
+    git_dir = ROOT / ".git"
+    locks = sorted(git_dir.glob("*.lock"))
+    if not locks:
+        return 0
+    if env == "Cowork":
+        quarantine = git_dir / "_stale_locks"
+        quarantine.mkdir(exist_ok=True)
+        stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S-%f")
+        for lock in locks:
+            try:
+                lock.rename(quarantine / f"{lock.name}.{stamp}")
+            except OSError:
+                return -1
+        return len(locks)
+    subprocess.run("rm -f .git/*.lock", cwd=ROOT, shell=True, capture_output=True)
+    return len(locks)
+
+
 def step_locks(env):
     """Cowork cannot unlink inside the mount, so its commits strand lock files."""
     git_dir = ROOT / ".git"
@@ -76,20 +101,15 @@ def step_locks(env):
     if not locks:
         record("PASS", "No stale git locks")
         return
-    if env == "Cowork":
-        quarantine = git_dir / "_stale_locks"
-        quarantine.mkdir(exist_ok=True)
-        stamp = dt.datetime.now().strftime("%Y%m%d-%H%M%S")
-        for lock in locks:
-            try:
-                lock.rename(quarantine / f"{lock.name}.{stamp}")
-            except OSError as exc:
-                record("FAIL", f"Could not move {lock.name}", str(exc))
-                return
-        record("PASS", f"Cleared {len(locks)} stale git lock(s) into .git/_stale_locks/")
+    n = clear_locks(env)
+    if n < 0:
+        record("FAIL", "Could not clear stale git lock(s)")
+        return
+    if env == "Claude Code":
+        sh("git gc --prune=now")
+        record("PASS", f"Cleared {n} stale git lock(s) and ran git gc")
     else:
-        code, out = sh("rm -f .git/*.lock && git gc --prune=now", check=True)
-        record("PASS" if code == 0 else "FAIL", f"Cleared {len(locks)} stale git lock(s) and ran git gc", out)
+        record("PASS", f"Cleared {n} stale git lock(s) into .git/_stale_locks/")
 
 
 def changed_files():
@@ -267,7 +287,9 @@ def step_commit(do_commit, message, num, env, blocked):
     if not message:
         message = f"Session {num:03d} CLOSE-OUT ({env})"
     body = f"{message}\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>\n"
+    clear_locks(env)          # the checks above stranded a fresh one in Cowork
     subprocess.run(["git", "add", "-A"], cwd=ROOT, capture_output=True)
+    clear_locks(env)
     proc = subprocess.run(["git", "commit", "-q", "-F", "-"], cwd=ROOT,
                           input=body, text=True, capture_output=True)
     # Cowork cannot unlink inside the mount, so a successful commit still
