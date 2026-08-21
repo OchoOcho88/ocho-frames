@@ -45,7 +45,13 @@ Which one am I? If shell paths look like `/sessions/<name>/mnt/hyperframes/`, th
 **The handoff protocol (both environments, no exceptions):**
 
 1. **Session start:** read the CURRENT STATE block, then `git log --oneline -5` to see what the other environment did last. If the working tree is dirty with changes you did not make, a session somewhere did not close out; commit or flag before working. To orient fast: `python3 scripts/memory_tools.py open --client <client>` (open loops) and `... search "<term>"` (find past context).
-2. **Session end (the close-out ritual):** (a) update the CURRENT STATE block (including the handoff line); (b) add a session entry to the top of `memory.md` tagged with the environment AND with `Client:` + `Tags:` lines, e.g. `## Session 026 (2026-07-24, Claude Code): ...`; (c) record any new settled decisions in `DECISIONS.md` and any new/resolved open loops in `OPEN-QUESTIONS.md` (schemas are in those files); (d) run `python3 scripts/archive_memory.py` (no-op unless memory.md crossed 90KB) and `python3 scripts/memory_tools.py index` (regenerates `memory-index.md`); (e) run `python3 scripts/memory_tools.py check` (must print OK) and optionally `... reconcile`; (f) `git add -A && git commit`. The commit is what makes the work visible to the other side. (A pre-push hook runs `check` as a warn-only reminder; `MEMORY_ENFORCE=1` makes it block.)
+2. **Session end (the close-out ritual):** write the session entry at the top of `memory.md` (numbered one above the last, tagged with the environment, carrying `Client:` and `Tags:` lines), refresh the CURRENT STATE block including the handoff line, mirror settled decisions into `DECISIONS.md` and new or resolved loops into `OPEN-QUESTIONS.md`, then run:
+
+    ```
+    python3 scripts/closeout.py --commit -m "Session NNN: what happened"
+    ```
+
+    That handles the rest: stale git locks, the em dash sweep over everything changed, verification that the entry and the CURRENT STATE block are actually present and correct for this session, `archive_memory.py`, `memory_tools.py index`, `memory_tools.py check`, and the commit. It refuses to commit while anything fails. Drop `--commit` to check without committing. In Claude Code the whole ritual is `/close-out`. The commit is what makes the work visible to the other side. (A pre-push hook runs `check` as a warn-only reminder; `MEMORY_ENFORCE=1` makes it block.)
 3. **Session numbers are continuous across both environments.** Check the top of memory.md for the last number before starting a new entry.
 4. **Do not run both environments on the same files at the same time.** If both are open, one is the builder and the other is the sounding board; the sounding board reads but does not write.
 5. **Environment-specific learnings** go in "Tools and gotchas" below, labelled with which environment they apply to.
