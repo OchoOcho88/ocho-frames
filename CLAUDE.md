@@ -1,12 +1,24 @@
 # Workspace: ocho-frames
 
-## Read these first, every session, before doing anything else
+## FIRST THING, EVERY SESSION, BEFORE ANYTHING ELSE
 
-1. `memory.md`, starting with the CURRENT STATE block at the very top, then the top session entries (the running log: what we did, learned, decided, and what is still open).
-2. The active client's `brand.md`, currently `clients/sportif/brand.md`, and `clients/sportif/voice-guidelines.md` before writing any content.
-3. Any status or resume note in the active client's folder, e.g. `clients/sportif/intake/RESEARCH-RUN-STATUS.md`.
+```
+python3 scripts/startup.py
+```
+
+That one command IS the session-start protocol. It is read-only and prints, in one pass: the environment, this session's number, the last five commits, a dirty-tree warning, the CURRENT STATE block, open loops for the active client, the files gating content work, the house rules, and any stale-file flags. Read all of it before replying to Hugo.
+
+In Claude Code the same thing is `/startup`. It is the mirror of `/close-out`: close-out writes the state, startup reads it back.
+
+Then, still before starting work:
+
+1. Read the top session entry in `memory.md` for the detail the CURRENT STATE block compresses.
+2. If any client-facing content is going to be written this session, read `clients/sportif/brand.md` and `clients/sportif/voice-guidelines.md` FIRST. Not a word of content before that.
+3. If the script raised FLAGS or reported a dirty tree, surface it to Hugo in your first message rather than absorbing it.
 
 Doing this is what gives a new session continuity. Do not start work cold.
+
+Why it is a script and not a paragraph: this file is NOT auto-loaded in Cowork (S031), so a protocol that lives only as prose gets skipped by whichever session did not think to read the file. It was skipped again at the top of S033. A named command survives that.
 
 ## What this workspace is
 
