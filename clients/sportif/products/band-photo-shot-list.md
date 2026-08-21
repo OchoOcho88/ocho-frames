@@ -32,6 +32,40 @@ references and fine for cutting practice in Photoshop.
 **Not usable:** anything where the colour is the point. That is the colourway strips, the range card,
 the line sheet, and anything Lucy sees.
 
+## Shoot 3 test frame (2026-08-21): this is the setup
+
+Hugo re-shot the light band on a **white cloth in direct sun** and asked whether it was better than
+the shaded set. It is, decisively, and it is the setup to use.
+
+| Same light band | hex | hue | saturation |
+|---|---|---|---|
+| Blue card, in shade | `#798096` | 226 deg | 19% |
+| White cloth, direct sun, as shot | `#8B7B69` | 32 deg | 24% |
+| White cloth, direct sun, corrected | `#C2A883` | 34 deg | **33%** |
+
+**Why the shade was the real culprit.** Open shade outdoors is lit by blue sky, not by the sun. So the
+old set had two blue sources stacked: blue skylight plus a blue card. Direct sun is a strong warm
+source that overwhelms the sky, which is why the hue lands right.
+
+**And now the correction actually works**, because the white cloth is a real neutral sitting in every
+frame. Correcting against it puts the moulded label at hue 39 / 36%, against the known-good label at
+hue 35 / 34%. That is a match. The blue-card set could not be corrected because nothing neutral was
+in shot.
+
+**Shooting on white means the colour reference is always in frame.** No separate white-paper shot is
+needed any more. That replaces step 8 below.
+
+### Two refinements before the real shoot
+
+1. **Soften the sun.** Direct sun leaves a hard shadow down one side of the band, and that shadow is
+   filled by blue sky, so it goes cold. Fix by standing a **sheet of white paper or card just outside
+   the frame on the shadow side** to bounce warm light back in. Keeps the sun's colour, kills the
+   hard edge. Thin cloud does the same job for free.
+2. **Expose for the band, not the sheet.** The test frame is about a third of a stop dark because the
+   bright white cloth pulled the meter down. Tap the **band**, then drag the little sun slider up
+   slightly before locking. Nothing is blown, so this is recoverable, but getting it right in camera
+   is better than lifting it later.
+
 ---
 
 ## The one rule
@@ -49,9 +83,11 @@ though heavy is already done. Keep the existing heavy set either way.
 - **Surface:** plain white or light grey. Not peach, not wood, and NOT BLUE. This is the one that cost shoot 2. Blue is the opposite of caramel on the colour wheel, so it is the single worst choice for warm product. White printer paper, a white sheet, or a grey card. A coloured surface
   bounces its colour up into the band and contaminates the cutout edge, which is the thing that
   makes a composite look pasted.
-- **Light:** soft and even, slightly to one side so the weave still reads. One big soft source
-  beats two competing ones. No hard direct sun, no overhead spot that leaves a hot line down the
-  middle.
+- **Light:** **direct sun, softened.** Proven in the shoot 3 test. Do NOT use open shade outdoors:
+  it is lit by blue sky and that is what wrecked shoot 2. Stand a sheet of white card just outside
+  the frame on the shadow side to bounce warm fill back in and soften the hard edge. Thin cloud does
+  the same job. Indoors near a big window works too, as long as the room is not painted a strong
+  colour.
 - **Camera:** phone directly overhead, band running top to bottom of the frame, filling most of
   the height. That is what the heavy set looks like, so matching it keeps the scale consistent.
 - **Lock exposure and white balance.** On iPhone, tap and hold on the band until AE/AF LOCK
@@ -75,12 +111,14 @@ Three bands times six shots is eighteen frames. Then:
 7. **One family shot** of all three together, laid parallel, same distance. Even though I would
    normally build a lineup from the individual cutouts (more control over spacing), a real group
    shot is the safety net that proves the three colours actually sit together.
-8. **One frame with a plain sheet of white printer paper** in shot beside a band. This is the
-   colour reference. If the three sets drift, that white gives me a neutral to correct against.
-   Costs you ten seconds and can save the whole set.
+8. ~~One frame with white paper as a colour reference.~~ **Not needed once the surface is white.**
+   The white surface is the neutral, and it is in every single frame, which is better.
 
 ## After the shoot
 
+- **HEIC is fine, do not convert to JPEG.** HEIC reads directly once `pillow-heif` is installed
+  (`pip install pillow-heif --break-system-packages`, a few seconds, needed once per sandbox
+  session). It keeps the EXIF and the full capture data, both of which a JPEG conversion throws away.
 - **Keep the originals as well as the cutouts.** Put the untouched camera files in
   `assets/Sportif_Bands/originals/`. The background removal strips the EXIF, so the cutouts lose
   the camera data, and if a matte comes out badly I need the original to redo it.
