@@ -6,7 +6,14 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-08-21 | Last session: 033 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally, 24 commits UNPUSHED (push from the Mac) | **FIRST THING NEXT SESSION: the band's 3D MODEL (Q-016). Hugo has signed up to Tripo AI. Feed it the multi-view plates in `clients/sportif/products/band-reference-plates-v2/`, target a Shopify-ready GLB (about 4MB, real-world scale, origin at the base, textures at or under 2048px). Fall back to a hand-built Blender loop if the mesh comes back lumpy.** | Also waiting: Gemini is wired but not callable from Cowork, GEMINI_API_KEY is in `.env` and needs `generativelanguage.googleapis.com` allowed in Network Egress plus a NEW chat (Q-017); poster 2 needs a re-run with the band across both thighs (Q-019); label close-ups for the swap (Q-020); build the colourway strips now the colours are measured; SEND the email-02 v2 batch to Lucy (still not sent); back-catalogue pass to the SPORTIF/collection mark; waitlist page; Canva Pro*
+*Last updated: 2026-08-26 | Last session: 034 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally, commits UNPUSHED (push from the Mac, Q-022) | **FIRST THING NEXT SESSION: Hugo rebuilds shot 01 of the Lucy-friend band placement FROM SCRATCH with the MEDIUM band, working through `clients/sportif/lucyfriend-band-placement/PHOTOSHOP-GUIDE.md` himself, then again with heavy. He is learning Photoshop, so walk him through it, do not do it for him. Use the COLOUR CORRECTED cutouts only (D-039).** | Also waiting: photograph the band DROPPED on a floor, which unblocks all five placements (Q-023); Lucy's reply on the weave concept email, SENT 2026-08-26 (Q-024); the band's 3D model via Tripo (Q-016); Gemini egress still not allowed from Cowork (Q-017); poster 2 re-run (Q-019); label close-ups (Q-020); memory.md hygiene pass (Q-021); and the email-02 v2 batch to Lucy is STILL not sent (Q-012)*
+
+- **NEW (Session 034): the SPORTIF weave tiles are a complete set, and an email about them has gone to Lucy.** Three 1080x1350 Instagram feed posts, one per colourway, sitting as one grid row, built by `clients/sportif/scripts-local/build_texture_weight_tiles.py` into `generated/images/texture-weight-tiles/`. Full-bleed single-crop weave plate (no mirror seam), the canonical SPORTIF / rule / collection lockup at 66% of canvas width, a two-pass warm drop shadow, and the WEIGHT as a fourth line in caps with wide tracking, sized off MEDIUM so all three share one point size. The white shooting sheet is trimmed out automatically by a median-saturation scan. Each plate is tone-matched to its D-027 colourway with a per-channel gamma. Files numbered POST-1 (heavy) to POST-3 (light) by upload order, because Instagram puts the newest post on the left. Email SENT with all three attached, draft at `clients/sportif/message-to-lucy-weave-concept.md` (Q-024).
+- **NEW (Session 034): EVERY band cutout in the workspace was about a stop underexposed, and is now fixed (D-039).** Measured against D-027: LIGHT 47% value against 72%, MEDIUM 37% against 62%, HEAVY 24% against 42%, saturation down about a third across the board. Invisible on the white shooting sheet, ruinous on a dark gym floor. Corrected copies live at `assets/Sportif_Bands/Bands_background_removed/colour-corrected/` and **that folder is the only one to composite from**. Hugo cut out medium and light himself in Photoshop this session; all three cutouts verified clean at the edges, no white rim.
+- **NEW (Session 034): the Lucy-friend band placement job is set up and shot 01 is built.** `clients/sportif/lucyfriend-band-placement/` holds `lucy-direction/` (her four marked-up screenshots, renamed to pair with each photo), `plates/`, `created/`, a README and `PHOTOSHOP-GUIDE.md`. Five source photos renamed and filed. **The bands are PROPS on flat surfaces, not worn, and Lucy's marks never overlap her, so no clean plate is needed and she is never cut out.** No direction for shot 03, so that one is improvised in two versions. Shots 04 and 05 sit against a mirrored wall and need a flipped, dimmed reflection or they will read wrong.
+- **DECISION (Session 034, D-038): Lucy's friend's photos go through no image generator at any stage.** She has not consented to her likeness being used that way and Hugo is not asking. His call and it stands. It costs nothing, because the props method needs no AI.
+- **Learning (Session 034, D-040): the staging trap.** Our cutouts are catalogue poses, laid out flat and squared up. Composite one into a candid photo and it reads pasted even when light, shadow and colour are all correct. Proven by measurement: the band darkened the floor by 16 levels against 30 for the real skipping rope handles, so the shadow was too light rather than too heavy. The tell was tidiness. Fix in Photoshop with a small Warp; fix properly by photographing the band actually dropped on a floor (Q-023).
+- **Learning (Session 034): apply the EXIF rotation flag before describing any iPhone photo.** Three of five filenames were wrong because a contact sheet was built without `ImageOps.exif_transpose`. What was called "standing rack full length" is her seated on a BOSU.
 
 - **NEW (Session 033): the session protocol is now two commands, and both halves are checked.** `python3 scripts/startup.py` (`/startup` in Claude Code) and `python3 scripts/closeout.py --commit -m "..."` (`/close-out`). Startup reads the state, close-out checks and writes it. Startup prints the environment, this session's number, git state with a dirty-tree warning, CURRENT STATE, open loops for the active client, the content gate, house rules and flags. Close-out clears stale git locks, sweeps changed files for em and en dashes, verifies the session entry and CURRENT STATE block are real and correct for THIS session, runs the archiver, index and check, and refuses to commit while anything fails. The reason it is a script and not a paragraph: CLAUDE.md is not auto-loaded in Cowork (S031), and the protocol was skipped again at the top of this session. See D-035.
 - **NEW (Session 032): first posters built from the REAL product, and the band cutouts renamed.** Lucy sent the physical bands and Hugo shot them on an iPhone with the backgrounds removed. All six cutouts are the **HEAVY** band (front flat, front folded, back, two inside-grip faces, label close-up), renamed from `IMG_96xx Background Removed.png` to `sportif-band-heavy-<face>.png` in `clients/sportif/assets/Sportif_Bands/`. Two poster directions built by `clients/sportif/scripts-local/build_band_posters.py`, each in IG feed 4:5 and story 9:16, output to `clients/sportif/generated/images/band-posters/` with a README: an **editorial collage** (cream ground, peach plate, EVERYDAY TRAINING ELEVATED in Glacial Bold, band tilted in front breaking the plate, tilted cream card holding an inside-grip swatch) and a **coming-soon teaser** (peach ground, band as the one pop of colour, terracotta waitlist pill, no dates). Both use the SPORTIF / rule / collection master mark (D-017) and carry no handle (D-018). See [[real-band-content-pipeline]].
@@ -76,6 +83,66 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Still waiting on Lucy:** feedback on the four tagline-row directions and three banner colourways, plus the hero-concept pick and the blocker email reply.
 
 ---
+## Weekly Review, 2026-08-23 (week of 2026-08-17)
+
+Three sessions this week (031 on 08-17, 032 running from the evening of 08-20 through 08-21, and 033 on 08-21), against one last week. Throughput came back, and it went almost entirely into one place: the real product. The physical bands arrived, were shot four separate times, had a colour problem diagnosed and fixed, and by the end of the week every colourway is measured, every face is photographed, the weave is a brand asset, and two finished posters exist that were built from the actual band rather than around it. The workspace also finally closed a protocol hole it had been falling through for three sessions. What did not move is the queue waiting on Lucy, including a batch that has been packed and ready to send since Monday.
+
+### Highlights
+- **The real product is now the source of truth, and the colour is measured rather than guessed.** Four shoots in three days. Shoot 2 failed on a blue card and the failure was worth more than the frames: open outdoor shade is lit by blue sky, so a blue surface plus a blue sky stacked two casts and the heavy band came back at hue 258 with 22% saturation against a known-good hue 17 at 50%. Direct sun on a white sheet fixed it, verified rather than assumed (corrected heavy lands hue 17 / 53% against 17 / 50%). Measured colourways are now house canon (D-027): LIGHT `#B8A080`, MEDIUM `#9D7459`, HEAVY `#6C4333`, all noticeably deeper than the palette in brand.md. Colourway strips, the range card and the wholesale line sheet are unblocked as a direct result.
+- **Two finished posters built from the real bands, plus a head to head that settled the generator question.** `build_band_posters.py` produced an editorial collage and a coming-soon teaser, each in feed 4:5 and story 9:16. Separately, Hugo ran all three poster prompts through gpt-image-2 and Gemini: **Gemini held the band colour, rendered the knit as fabric rather than a smooth strap, and actually followed the placement instruction, so it is now the default (D-032)**. The strongest single output of the week is `p3-blur-gemini-TYPED.png`, the SPORTIF lockup burned into the wall behind a blurred figure using the S031 luminance trick, with no cutout needed at all.
+- **Hugo invented a brand asset mid-shoot.** He shot three texture close-ups on his own initiative, one per band. Those became `assets/textures/`: a seamless 1024px tile per colourway plus a large single-crop plate that needs no tiling for full-bleed use (D-028). The demo, heavy weave full bleed under the cream lockup, reads genuinely expensive, and the texture frames turned out to be the most accurate colour samples in the whole project because the band fills the frame with nothing else in it.
+- **Lucy approved the email-02 socials and the master mark changed on the back of it.** Her three notes were addressed, and three things changed beyond her ask: the lockup is now SPORTIF / rule / collection everywhere (D-017), the @handle came off on-platform assets (D-018), and placement became photo-led through a clearance search plus Hugo's marked override boxes (D-019). Two bugs she never saw were also caught: story lockups sitting under Instagram's own profile row, and type reading small on a real phone.
+- **The session protocol became two commands that check themselves (D-035).** `scripts/startup.py` and `scripts/closeout.py`, both wired to slash commands. Close-out verifies the session entry, the CURRENT STATE block, both registries, the dash sweep and the git state, and refuses to commit while anything fails. It caught a bug in itself on its first run, which is the argument for the whole exercise.
+
+### Patterns I noticed
+- **Controlled tests keep beating opinions, and they keep overturning the intuitive answer.** The blue card was blamed for the colour failure until a sun versus shade test showed open shade was the bigger culprit. Hugo's hunch that a label close-up in the references would fix label rendering was tested as a matched pair and was wrong: the reference made no difference, crop scale did (D-033). Same method as last week's brute-force tracking search. This is now the workspace's default move on a contested question.
+- **Hugo's eye remains the last QA gate, and this week it rejected my work twice.** The texture transplant got "that looks bad" and was recorded as a dead end rather than defended (D-034). The first prompt doc was unfollowable and had to be rewritten into self-contained paste blocks (D-031). Both rejections produced better rules than the original work did.
+- **Every protocol that lived only in prose got skipped.** The em-dash breach in S031 and the skipped startup in S033 have the same root cause: CLAUDE.md is not auto-loaded in Cowork, so anything documented only there depends on a session choosing to open a file nothing forces it to open. Both halves are now named commands. The general shape is that automating one end of a loop guarantees the failures land on the other end.
+- **One rule emerged from all the AI work and it is a constraint, not a technique: never let a generator draw the band at large scale.** Big in frame means shoot it or composite the real cutout; small and incidental means generate it and swap the label. Every band failure this week (smooth suede strap, towelling weave, blank label, band along the leg instead of across the thighs) is downstream of asking a generator to render the product.
+- **The Lucy queue did not move, and this time it is on our side.** The email-02 v2 batch has been staged, drafted and send-ready since 08-17 and is still sitting on disk six days later. Sending is not blocked by anything.
+
+### Skills / knowledge gained
+- **Product photography, now settled house method:** shoot on a white surface in DIRECT SUN, never open shade (shade is lit by blue sky, which stacks with any coloured surface); a white bounce card just outside frame on the shadow side; expose for the BAND, not the sheet; iPhone Photographic Styles must be Standard or a second invisible colour shift is baked into every frame; AE/AF Lock does NOT lock white balance in stills, so the in-frame neutral is what makes correction possible. Full setup at `clients/sportif/products/iphone-camera-setup.md`.
+- **File handling:** `pillow-heif` reads HEIC directly, so the JPEG conversion step was never needed and was discarding EXIF; background removal strips EXIF, so originals must live alongside cutouts.
+- **Generation craft:** describe a physical object by negation as well as description, and dress the model in a contrasting colour so the product is the only accent; more references improve PLACEMENT but not label legibility; label legibility is a function of how many pixels the label occupies, roughly 300px works and roughly 60px does not; Nano Banana Pro accepts up to 14 references while gpt-image-2 drifts past three or four.
+- **Compositing details worth reusing:** drop shadows on the warm palette must be tinted warm brown (122, 78, 56), never grey, and the alpha must be padded before blurring or the blur clips at the object edge; a tall thin cutout rotated 14 degrees returns a bounding box nearly twice the object's width, so place by intended size and cap against the neighbour rather than trusting the box.
+- **Cowork environment mechanics:** `rm` is blocked inside the mount but `mv` is not, which is the general workaround for anything needing deletion, and specifically for the stranded `.git/*.lock` files that make every second commit fail with a misleading error (D-036).
+- **Two tooling lessons that generalise:** a warning that can never be cleared is worse than no warning, because it trains you to skim the whole warning channel; and a mechanical rewrite is only as safe as the smallest surface you can still proof-read, proven when a blunt dash rule turned "2-3 uses" into "2, 3 uses".
+- **3D target spec (for Q-016):** Shopify wants GLB, about 4MB total, textures as optimised JPG at or under 2048x2048, diffuse plus normal plus a combined occlusion/roughness/metalness map, real-world scale, origin centred at the product's base.
+
+### Open questions still unresolved
+**Resolved (by a later session this week):**
+- [x] ~~Q-015: reshoot the bands on white so the colour is usable~~ RESOLVED Session 032 (shoot 4): 12 frames on a white sheet in direct sun, corrected heavy at hue 17 / 53% against a known-good 17 / 50%, measured colourways recorded.
+- [x] ~~Q-018: complete the band set~~ RESOLVED Session 032 (shoot 5, same afternoon): all three bands now carry all five faces, plus three texture close-ups and two tight parallel trios.
+- [x] ~~Q-007: Lucy's reply on the email-02 socials~~ RESOLVED Session 031: approved with three notes, whole batch rebuilt as v2.
+- Note: Session 033 opened Q-021 and Q-022 and no later session exists, so neither could be resolved. Nothing in the most recent session's open loops needed flipping.
+
+**Still open:**
+- [ ] **Q-016: build the band's 3D model.** Flagged as the first task of the next session. Tripo AI account exists, multi-view plates are ready in `products/band-reference-plates-v2/`, weave plates in `assets/textures/` are the material source. Fall back to a hand-built Blender loop if the mesh comes back lumpy.
+- [ ] **Q-012: SEND the email-02 v2 batch to Lucy.** Drafted, 12 attachments staged in `TO-SEND-2026-08-17/`, not sent. Then her pick of black / white / outline to lock the house standard.
+- [ ] **Q-017: Gemini is wired but not callable from Cowork.** `GEMINI_API_KEY` is in `.env`; needs `generativelanguage.googleapis.com` allowed in Network Egress plus a NEW chat, because egress changes only apply to a freshly booted sandbox.
+- [ ] **Q-019: poster 2 needs a re-run.** Both engines put the band diagonally along the leg; the prompt needs "horizontally across both thighs, perpendicular to the legs".
+- [ ] **Q-020: shoot dedicated label close-ups** of all three bands, tight and high-res, for the two-image swap. Not as AI references (D-033 settled that), for the swap itself.
+- [ ] **Q-021: memory.md hygiene pass.** CURRENT STATE is about 35KB against a brief of roughly 12 lines, and there are 8 Weekly Reviews when 4 is the useful window. Fold settled items into DECISIONS.md and archive the older reviews.
+- [ ] **Q-022: push the local commits from the Mac.** 24 commits unpushed; Cowork cannot push reliably.
+- [ ] **Q-013: back-catalogue pass to the SPORTIF / rule / collection mark** (posters, product shots, the three IG ads, the band-swap set, both Lucy-facing PDFs).
+- [ ] **Q-014: Hugo's Photoshop reference** for the burned-in wordmark treatment, ideally with the layers panel.
+- [ ] **Build the colourway strips, range card and wholesale line sheet.** Newly unblocked by the measured colours; the tight parallel trios from shoot 5 are the intended source.
+- [ ] **Q-001: standalone waitlist capture page + 3-email welcome flow.** Now named the top unbuilt item in seven separate sessions. Needs neither Lucy nor the trademark.
+- [ ] **Q-010: high-quality band-swap renders in a native Mac terminal**, then finalise and send email-03. Fifth week carried.
+- [ ] **Lucy's outstanding picks:** Q-011 (collection grid sign-off and whether she wants cream or white), Q-006 (Content Creation Strategy reaction, which gates Phase 2), Q-004 (music-bed pacing), Q-003 (incentive A/B/C).
+- [ ] **Q-008: Hugo's Photoshop cutout of the ball hero**, which blocks the layered poster.
+- [ ] **Q-005: Canva Pro**, brand kit and folder share with Lucy. Expected ~2026-07-30, still not done.
+- [ ] **Q-002: trademark clearance**, the critical-path gate, on Lucy's lawyer's clock.
+- [ ] Carried: ambassador/instructor seeding shortlist (tenth week, needs nothing from anyone), film the unboxing, ElevenLabs API key, Shopify store, materials question, Stage 3 synthesis template, PDF generators still on Poppins.
+
+### Suggested focus for next week
+1. **Send Lucy ONE message that clears the whole queue.** The email-02 v2 batch is packed and has been for six days (Q-012); fold in the collection-grid colourway (Q-011), the Content Creation Strategy reaction (Q-006), music-bed pacing (Q-004) and the incentive A/B/C (Q-003). Five threads have been waiting in parallel and one message is far likelier to get answered than five. This was also last week's number one focus and it did not happen.
+2. **Do Q-016 in one timeboxed sitting, and unblock Gemini while waiting on the mesh.** Tripo is signed up and the plates are ready, so the only real decision is when to abandon it for a hand-built Blender loop. Give it one session, judge the mesh honestly, and switch if it lumps. Q-017 is a settings change plus a new chat and should be done at the same time so the default engine is actually callable from here.
+3. **Turn the measured colours into the commercial assets they unblocked:** colourway strips, the range card, the wholesale line sheet. Four shoots were spent getting to trustworthy colour and nothing has yet been built on top of it. If there is time after that, the waitlist page, seventh session running.
+
+---
+
 ## Weekly Review, 2026-08-17 (week of 2026-08-10)
 
 One session this week (030, 2026-08-11, Cowork), and, worth saying plainly, one session in the last twenty days: the log jumps from 2026-07-28 (Sessions 028/029) straight to 2026-08-11. The single session that did run was a clean, self-contained client deliverable that went out the door the same day, which is the right shape for a low-volume week, but the backlog underneath it has not moved.
@@ -254,6 +321,121 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 1. **Make the Tuesday Lucy meeting count.** The agenda is already staged in funnel-plan.md: get the launch slip reason and a new launch date, approval for the standalone waitlist page, the incentive decision (A/B/C), and movement on the Shopify blockers. This one meeting unblocks nearly everything else.
 2. **Stand up the standalone waitlist capture page immediately after approval.** It is the first workstream that does not wait on Shopify, it un-deadends every piece of content already built, and the Funnel 1 spec is written. Pair it with the 3-email welcome flow so capture and nurture ship together.
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
+
+---
+
+## Session 034 (2026-08-26, Cowork): the weave tiles, and a colour fault in every band cutout
+
+Client: Sportif
+Tags: instagram, grid, texture, colour-correction, photoshop, compositing, lucy-friend, consent, teaching
+
+Hugo drove. Four things happened: the weave tiles got built and an email about them went to Lucy,
+Lucy's friend's gym photos were filed and briefed, a colour fault was found in every band cutout in
+the workspace, and Hugo built his first composite in Photoshop from end to end.
+
+**The SPORTIF weave tiles.** He liked the S032 demo (heavy weave full bleed under the cream lockup)
+and wanted the set completed. Built `clients/sportif/scripts-local/build_texture_weight_tiles.py`,
+three 1080x1350 feed posts sitting as one grid row, output to
+`generated/images/texture-weight-tiles/` with a README. Four changes from the mock, all his call:
+SPORTIF went from about 44% of the canvas width to 66%; the type carries a two-pass warm shadow, a
+soft lift plus a tight core, tinted (45, 24, 18); the weight sits under "collection" as a fourth
+line, caps, wide tracking, sized off MEDIUM so all three share one point size; and the background
+switched from the mirrored tile to the single-crop plate, which has no repeat and no seam. A
+`band_only()` pass finds the columns and rows whose median saturation clears a threshold and trims
+the white sheet out automatically, so the weave runs edge to edge.
+
+The light tile came back reading olive. Measured, its hue and saturation were exactly on target
+(34 deg, 30%) but the frame was about a stop dark, so it landed at `#88765F` instead of `#B8A080`.
+Fixed with a per-channel gamma that lands each plate's mean on its D-027 value. Gamma rather than a
+gain, so black and white are preserved and no highlight in the weave clips. Applied to all three:
+medium and heavy were already on target, so their correction is near 1.0 and the treatment stays
+identical across the set. **This was the first sighting of the fault, and it turned out to be
+everywhere.**
+
+**Email to Lucy, SENT.** His concept: crop the band fabric so close nobody can tell what it is, use
+it to build mystery ahead of showing the bands properly, and note that it is the actual product
+rather than anything generated. Drafted a short message and an email version, both saved to
+`clients/sportif/message-to-lucy-weave-concept.md`, plus a paragraph explaining that the posts go up
+in reverse order (heavy first, light last) because Instagram puts the newest post on the left. He
+sent it with the three tiles attached. Files numbered POST-1 to POST-3 by upload order.
+
+**Lucy's friend, gym shoot: a new job.** Five photos from 18 April 2025, two phones, one sitting.
+Renamed to the D-021 convention. Note the mistake: the first pass named them off a contact sheet
+built without applying the EXIF rotation flag, and three of the five descriptions were wrong. What
+was called "standing rack full length" is her seated on a BOSU. Corrected against the upright
+images. **Always apply `ImageOps.exif_transpose` before describing an iPhone photo.**
+
+New folder `clients/sportif/lucyfriend-band-placement/` with `lucy-direction/`, `plates/`,
+`created/` and a README. Lucy sent four iPhone screenshots with a red mark showing where each band
+goes, matched to shots by timestamp and renamed `direction-NN-<descriptor>.jpeg` so a markup can
+never be paired with the wrong photo. **All four marks are on flat surfaces she does not overlap**,
+so no clean plate is needed anywhere and she never has to be cut out. There is no direction for shot
+03, confirmed with Hugo, so that one is improvised: building two versions, the bench pad and the
+floor by the barbell, and picking after.
+
+**Hugo's method call, and it was the right one.** He proposed cutting her out, generating the band
+into a clean plate with AI, then putting her back, and his stated reason was that he does not have
+her friend's permission to put her likeness through a generator and does not want to ask. The
+consent instinct is right and stands. The workflow around it was not needed: since the bands are
+props on flat surfaces rather than worn, the real cutouts composite straight in and no AI is
+involved at all, so the problem he was designing around stops existing rather than being worked
+around. Also worth noting the clean plate would have actively hurt on a worn band, because removing
+her removes the only thing telling a generator where "around her thighs" is.
+
+**The finding that matters: every band cutout in the workspace is about a stop underexposed.**
+Hugo cut out medium and light himself in Photoshop (Select Subject, Select and Mask with Shift Edge
+-10%, output to layer mask). All three verified clean, edge brightness within 6 levels of the
+interior, so no white rim survived. But measured against D-027 the fabric came back at LIGHT 47%
+value against 72%, MEDIUM 37% against 62%, HEAVY 24% against 42%, with saturation down a third
+across the board. On a white sheet you cannot see it. On a dark gym floor the band turns to putty.
+Corrected copies written to `assets/Sportif_Bands/Bands_background_removed/colour-corrected/`, all
+three landing on their measured values. See D-039.
+
+The sting: Hugo's first composite looked roughly the right brightness for a dim gym, but by accident.
+The band was too dark and the gym should have darkened it, and the two errors cancelled. Saturation
+does not cancel, which is why it read as gaffer tape rather than sand.
+
+**Shot 01 built end to end.** Place Embedded as a Smart Object, 20% scale, rotated -101 (90 to lay
+it across frame plus 11 to tilt), squashed to about two thirds for floor foreshortening, a two-layer
+contact shadow sampled from the floor rather than the warm house brown, a Curves adjustment clipped
+to the band at Input 128 / Output 105 for the gym's ambient, then 0.6px blur and 3% Gaussian
+monochromatic noise to match the photo's grain. Measured grain on that floor at 6 to 7 levels of
+average deviation.
+
+**The staging trap (D-040).** With everything else right Hugo still said it looked wrong, and he was
+correct. Measured, the shadow was not the culprit: the band darkened the floor by 16 levels against
+30 for the real skipping rope handles, so it was if anything too light. The tell was tidiness. The
+towel is crumpled, the rope is in a heap, her shoes sit at odd angles, and our band is a perfect
+rectangle with square-cut ends lying dead flat, because our cutouts are product-shot poses. A
+catalogue pose composited into a candid photo reads wrong even when the light is right.
+
+**`lucyfriend-band-placement/PHOTOSHOP-GUIDE.md`.** Seven numbered steps, each a self-contained
+block, per D-031: open and save as PSD, place, squash, shadow, ambient, grain, export. Plus a
+per-shot table, the mirror problem for 04 and 05, and the staging section. Written because Hugo is
+new to Photoshop and is deliberately rebuilding shot 01 from scratch with medium and then heavy, to
+learn the process rather than swap contents.
+
+### What we learned
+- **Apply the EXIF rotation flag before describing any iPhone photo.** Three of five filenames were
+  wrong because a contact sheet was built without it.
+- **A fault invisible on the shooting surface can be fatal on the destination surface.** The
+  underexposure was undetectable on white and ruinous on a dark floor.
+- **Measure before believing your eyes on a composite.** Both of us assumed the shadow was wrong. It
+  was the second most accurate thing in the frame.
+- **Two errors cancelling is not a method.** Correct the asset, then adjust deliberately.
+- **Gamma beats gain for tone matching**, because it preserves black and white and cannot clip.
+- Photoshop's 3D toolset was removed by Adobe. `Filter > Vanishing Point` is the nearest equivalent
+  for placing an object on a plane, and it is worth trying on shots 04 and 05.
+- A sideways label on a band lying horizontally is correct, not a fault. Only a mirrored one is
+  wrong, and rotating never mirrors. I flagged this incorrectly first time and corrected it.
+
+### Decisions
+Decided: D-038, D-039, D-040.
+
+### Open questions / next steps
+Opened: Q-023, Q-024, Q-025.
+Next session: Hugo rebuilds shot 01 from scratch with the MEDIUM band, working through
+PHOTOSHOP-GUIDE.md, then again with heavy. Then the three-way colour comparison.
 
 ---
 
@@ -519,33 +701,6 @@ Lucy's email 03: "create a picture of my 3 bands like this" with 6 competitor ST
 **Deliverables:** primary set in `created/` (hero, labelled draped, labelled flat-lay, 3 in-use); the stronger swap experiments in `created/band-swap-test/` (flatlay-branded-fixed, draped swapped). Email to Lucy drafted (`email-to-lucy.md`): what we did, the copyright heads-up, and the real-shoot option.
 
 **Open:** Q-010 = run the high-quality swap/branded renders in Terminal for crisp text, then finalise the attach set and send Lucy. See [[real-band-content-pipeline]], [[go-the-extra-mile]].
-
----
-
-## Session 028 (2026-07-28, Claude Code): Lucy's Canva requests (emails 01 + 02) + poster experiments + matting/inpaint tooling
-
-Client: Sportif
-Tags: lucy, canva, social, posters, cutouts, rembg, cv2, logo-lockup
-
-Multi-day session working Lucy's Canva design requests, one self-contained folder per request.
-
-**Email 01 (finished the pilates reskin ad):** Lucy asked to add the band + logo and remove the ankle straps on the hip-raise model. Clarified with Hugo: band shown as a PRODUCT PLACEMENT (not worn) + the SPORTIF logo, original raised-leg pose kept (not the glute-bridge variant). `reskin_clean_plate.py` retouches the worn band off the plate; `layout_reskin_clean.py` lays the type + band card. Final `reskin-clean.png`.
-
-**Lucy's 4 photos cleaned** into `reference-images/lucy-canva-picks/` (NON-AI where possible): downloaded the "Use these Pictures only for Social Media" Canva pages, cropped the sky/hills Canva bg off the reformer-duo, cleaned the pilates ref (removed the PILATES watermark by flattening the background beige + the "First class is free!" navy text via cv2.inpaint). Black ankle weights removed with a gpt patch-composite (pad to 2:3 to avoid distortion, then feather ONLY the two ankle patches back onto the native-res original), cv2 inpaint smudged the ankles, gpt was needed.
-
-**Email 02 (light-touch social batch):** folder `clients/sportif/email-02-social/` (downloads/ + created/ + README + email-to-lucy.md). 4 feed (4:5) + 4 stories (9:16) from the 4 cleaned photos, `build_email02_social.py`. Branding = the REAL logo lockup (SPORTIF Glacial Regular tracking -0.059 + underline rule) top-right, @sportifcollection centred beneath, over a soft top-right corner scrim. Hugo QA caught two logo bugs: the underline was missing (I'd used bare wide-spaced text) and the handle was right-aligned (skewed) not centred under the wordmark, both fixed.
-
-**Poster experiments** (Hugo loved a JANNAYON collage poster; borrow the LAYOUT, keep our warm palette not periwinkle, own the type):
-- gpt-image-2 poster (`gen_poster_jannayon.py`) then a pixel-perfect pass: cv2.inpaint lifts gpt's baked-in headline/wordmark off Hugo's high-res ChatGPT render, we lay real Glacial (`poster_final_type.py`).
-- `poster_lucy_real.py` flat grid from Lucy's real photos (parametrised: headline + output name as args; made an "IT'S PARTY TIME" demo for Hugo's brother-in-law).
-- `poster_lucy_depth.py` cut-out pilates hero pops forward over the headline with a soft cast shadow; cv2 painted out a second person's stray forearms before matting.
-- `poster_lucy_layered.py` SPORTIF wordmark sandwiched between a faded legs-in-air background and the ball hero in front. BLOCKED on a clean ball cutout (Q-008).
-
-**New Mac tooling installed:** rembg (isnet-general-use) + onnxruntime + opencv (cv2) + scipy + numpy = matting, cv2.inpaint (text/object removal), distance-transform defringe (also used for `band_cutouts.py`: transparent light/medium/heavy + joined-set band PNGs for Hugo's Photoshop).
-
-**Learnings:** (a) Canva MCP here = search + generate + export only; can't read/edit, export fails "Not allowed to access" on view-only shared designs -> manual download flow (D-010). (b) White-on-light mattes fail in rembg (white ball + bra on a light wall smeared); Hugo cuts those in Photoshop, plain-bg subjects matte perfectly (D-012). (c) gpt poster: prompt craft was equal, quality tier is the differentiator (Hugo's full-quality ChatGPT > my harness-capped low) -> he runs hero finals in ChatGPT, I iterate + do exact-type production. (d) Saved the [[go-the-extra-mile]] feedback memory (fix obvious imperfections before showing, do not ask).
-
-**Open:** Q-007 (Lucy's reply on the email-02 socials), Q-008 (Hugo's PS cutout of the ball hero), Q-009 (email 03 pending screenshot). See [[real-band-content-pipeline]], [[go-the-extra-mile]].
 
 ---
 

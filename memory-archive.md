@@ -6,6 +6,35 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-08-26 -->
+
+## Session 028 (2026-07-28, Claude Code): Lucy's Canva requests (emails 01 + 02) + poster experiments + matting/inpaint tooling
+
+Client: Sportif
+Tags: lucy, canva, social, posters, cutouts, rembg, cv2, logo-lockup
+
+Multi-day session working Lucy's Canva design requests, one self-contained folder per request.
+
+**Email 01 (finished the pilates reskin ad):** Lucy asked to add the band + logo and remove the ankle straps on the hip-raise model. Clarified with Hugo: band shown as a PRODUCT PLACEMENT (not worn) + the SPORTIF logo, original raised-leg pose kept (not the glute-bridge variant). `reskin_clean_plate.py` retouches the worn band off the plate; `layout_reskin_clean.py` lays the type + band card. Final `reskin-clean.png`.
+
+**Lucy's 4 photos cleaned** into `reference-images/lucy-canva-picks/` (NON-AI where possible): downloaded the "Use these Pictures only for Social Media" Canva pages, cropped the sky/hills Canva bg off the reformer-duo, cleaned the pilates ref (removed the PILATES watermark by flattening the background beige + the "First class is free!" navy text via cv2.inpaint). Black ankle weights removed with a gpt patch-composite (pad to 2:3 to avoid distortion, then feather ONLY the two ankle patches back onto the native-res original), cv2 inpaint smudged the ankles, gpt was needed.
+
+**Email 02 (light-touch social batch):** folder `clients/sportif/email-02-social/` (downloads/ + created/ + README + email-to-lucy.md). 4 feed (4:5) + 4 stories (9:16) from the 4 cleaned photos, `build_email02_social.py`. Branding = the REAL logo lockup (SPORTIF Glacial Regular tracking -0.059 + underline rule) top-right, @sportifcollection centred beneath, over a soft top-right corner scrim. Hugo QA caught two logo bugs: the underline was missing (I'd used bare wide-spaced text) and the handle was right-aligned (skewed) not centred under the wordmark, both fixed.
+
+**Poster experiments** (Hugo loved a JANNAYON collage poster; borrow the LAYOUT, keep our warm palette not periwinkle, own the type):
+- gpt-image-2 poster (`gen_poster_jannayon.py`) then a pixel-perfect pass: cv2.inpaint lifts gpt's baked-in headline/wordmark off Hugo's high-res ChatGPT render, we lay real Glacial (`poster_final_type.py`).
+- `poster_lucy_real.py` flat grid from Lucy's real photos (parametrised: headline + output name as args; made an "IT'S PARTY TIME" demo for Hugo's brother-in-law).
+- `poster_lucy_depth.py` cut-out pilates hero pops forward over the headline with a soft cast shadow; cv2 painted out a second person's stray forearms before matting.
+- `poster_lucy_layered.py` SPORTIF wordmark sandwiched between a faded legs-in-air background and the ball hero in front. BLOCKED on a clean ball cutout (Q-008).
+
+**New Mac tooling installed:** rembg (isnet-general-use) + onnxruntime + opencv (cv2) + scipy + numpy = matting, cv2.inpaint (text/object removal), distance-transform defringe (also used for `band_cutouts.py`: transparent light/medium/heavy + joined-set band PNGs for Hugo's Photoshop).
+
+**Learnings:** (a) Canva MCP here = search + generate + export only; can't read/edit, export fails "Not allowed to access" on view-only shared designs -> manual download flow (D-010). (b) White-on-light mattes fail in rembg (white ball + bra on a light wall smeared); Hugo cuts those in Photoshop, plain-bg subjects matte perfectly (D-012). (c) gpt poster: prompt craft was equal, quality tier is the differentiator (Hugo's full-quality ChatGPT > my harness-capped low) -> he runs hero finals in ChatGPT, I iterate + do exact-type production. (d) Saved the [[go-the-extra-mile]] feedback memory (fix obvious imperfections before showing, do not ask).
+
+**Open:** Q-007 (Lucy's reply on the email-02 socials), Q-008 (Hugo's PS cutout of the ball hero), Q-009 (email 03 pending screenshot). See [[real-band-content-pipeline]], [[go-the-extra-mile]].
+
+---
+
 <!-- archived batch, moved 2026-08-21 -->
 
 ## Session 027 (2026-07-25, Claude Code): Lucy expert-brand content strategy (Phase 1) + disk cleanup
