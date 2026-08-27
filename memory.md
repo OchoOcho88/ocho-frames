@@ -6,7 +6,13 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-08-26 | Last session: 034 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally, commits UNPUSHED (push from the Mac, Q-022) | **FIRST THING NEXT SESSION: Hugo rebuilds shot 01 of the Lucy-friend band placement FROM SCRATCH with the MEDIUM band, working through `clients/sportif/lucyfriend-band-placement/PHOTOSHOP-GUIDE.md` himself, then again with heavy. He is learning Photoshop, so walk him through it, do not do it for him. Use the COLOUR CORRECTED cutouts only (D-039).** | Also waiting: photograph the band DROPPED on a floor, which unblocks all five placements (Q-023); Lucy's reply on the weave concept email, SENT 2026-08-26 (Q-024); the band's 3D model via Tripo (Q-016); Gemini egress still not allowed from Cowork (Q-017); poster 2 re-run (Q-019); label close-ups (Q-020); memory.md hygiene pass (Q-021); and the email-02 v2 batch to Lucy is STILL not sent (Q-012)*
+*Last updated: 2026-08-27 | Last session: 035 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally, commits UNPUSHED (push from the Mac, Q-022) | **FIRST THING NEXT SESSION: the Fit Expo booth posters (Q-027). Lucy is putting the pilates picture on a PRINTED booth panel and everything we have is 1080px wide. It is blocked on panel dimensions from her, and Hugo owes her that email. The handle goes back ON for booth assets, DRAW_HANDLE=True (Q-028).** | Also waiting: Lucy's pick between the three treatments, sent 2026-08-27 (Q-026); the 3D band, now promised to her in writing (Q-016); her reply on the weave tiles (Q-024); the band DROPPED on a floor, which unblocks all five placements (Q-023); shot 01 colourway test (Q-025); Gemini egress from Cowork (Q-017); poster 2 re-run (Q-019); label close-ups (Q-020); memory.md hygiene pass (Q-021)*
+
+- **NEW (Session 035): Lucy's second round of marks is in, and the positions were MEASURED, not eyeballed.** Four phone photos of her pen marks on the v2 files were matched to the real assets with SIFT plus a RANSAC homography, warped into asset pixel space and differenced so only the pen remained. Built by `build_email02_social_v3.py` into `created/v3/`; her marks and the method are at `email-02-social/lucy-marks-2026-08-26/README.md`. Three of the four needed a documented nudge, for Instagram's 260px story chrome and for the ceiling beam that enters the type footprint at y370. See D-041.
+- **NEW (Session 035): the peach grade hit a hard ceiling, and the ceiling is the answer (D-042, D-043).** Two attempts failed and Hugo called both on sight: the first lifted every shadow (story-duo black point 0.024 to 0.094) and read "washed out and lifeless"; the second added saturation and contrast and read "fake tan". **On these photos more peach and tanned skin are the same slider**, because skin and the studio wall both sit near hue 25 degrees, and a hue-based skin mask selects 91% of the frame. The corrected grade, both dead ends, and the reasoning live in `scripts-local/sportif_grade.py`; LUTs at `assets/luts/`; the set is parked in `created/v4/`.
+- **NEW (Session 035): THE WEAVE ROOM. Hugo built it himself in Photoshop and it is the best thing produced today.** Separating the person from the room removes the ceiling entirely, verified (her average brightness 53.4% before and after, no halo). On that split he built a terracotta `#833827` Solid Color fill at Overlay 60%, measured safe, then the band's own weave over it held to the wall with Blend If. Recipe and PSDs at `email-02-social/photoshop/`. Two results worth keeping: black type beats white on terracotta 6.8:1 against 2.1:1, and the 1024px tile is fine at feed size but will seam on a 1920 story, so stories need the plate. Not house method until Lucy reacts.
+- **NEW (Session 035): email SENT to Lucy, and reading her 21 Aug message properly surfaced three things nobody had flagged.** The pilates picture is going to the **Fit Expo booth**, which is PRINT, and everything we have is 1080px (Q-027). She has handed us the **handle rule**, off for Instagram and on for booth assets (Q-028). And she is expecting the **3D band**, which has not been started (Q-016). Split into separate emails to keep the reply on one subject; both are promised to her in writing. 12 attachments, draft at `email-02-social/TO-SEND-2026-08-26/email-to-lucy-v3.md`. **Q-012 is closed.**
+- **Two writing rules from Session 035, both caught by Hugo.** Lucy is NOT the model in the email-02 photos, they are her Canva picks, so never write "you" about the person in frame. And "blush" cannot be used for the MEDIUM band, because Blush Peach `#F0CDB3` is the primary brand colour: refer to bands by weight, one colour name each per document. Both are warnings at the top of the draft.
 
 - **NEW (Session 034): the SPORTIF weave tiles are a complete set, and an email about them has gone to Lucy.** Three 1080x1350 Instagram feed posts, one per colourway, sitting as one grid row, built by `clients/sportif/scripts-local/build_texture_weight_tiles.py` into `generated/images/texture-weight-tiles/`. Full-bleed single-crop weave plate (no mirror seam), the canonical SPORTIF / rule / collection lockup at 66% of canvas width, a two-pass warm drop shadow, and the WEIGHT as a fourth line in caps with wide tracking, sized off MEDIUM so all three share one point size. The white shooting sheet is trimmed out automatically by a median-saturation scan. Each plate is tone-matched to its D-027 colourway with a per-channel gamma. Files numbered POST-1 (heavy) to POST-3 (light) by upload order, because Instagram puts the newest post on the left. Email SENT with all three attached, draft at `clients/sportif/message-to-lucy-weave-concept.md` (Q-024).
 - **NEW (Session 034): EVERY band cutout in the workspace was about a stop underexposed, and is now fixed (D-039).** Measured against D-027: LIGHT 47% value against 72%, MEDIUM 37% against 62%, HEAVY 24% against 42%, saturation down about a third across the board. Invisible on the white shooting sheet, ruinous on a dark gym floor. Corrected copies live at `assets/Sportif_Bands/Bands_background_removed/colour-corrected/` and **that folder is the only one to composite from**. Hugo cut out medium and light himself in Photoshop this session; all three cutouts verified clean at the edges, no white rim.
@@ -321,6 +327,76 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 1. **Make the Tuesday Lucy meeting count.** The agenda is already staged in funnel-plan.md: get the launch slip reason and a new launch date, approval for the standalone waitlist page, the incentive decision (A/B/C), and movement on the Shopify blockers. This one meeting unblocks nearly everything else.
 2. **Stand up the standalone waitlist capture page immediately after approval.** It is the first workstream that does not wait on Shopify, it un-deadends every piece of content already built, and the Funnel 1 spec is written. Pair it with the 3-email welcome flow so capture and nurture ship together.
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
+
+---
+
+## Session 035 (2026-08-27, Cowork): Lucy's marks measured onto the assets, two failed grades, and the weave room
+
+Client: Sportif
+Tags: instagram, lucy-marks, homography, colour-grade, photoshop, masking, blend-modes, texture, client-email, teaching
+
+Hugo drove. The session started as a small placement fix and turned into a colour-grading dead end,
+a correction of that dead end, and then a genuinely new treatment that Hugo built himself in
+Photoshop. A client email went out at the end carrying the whole thing.
+
+**Lucy's marks, measured rather than eyeballed.** Four iPhone photos of Hugo's screen landed in
+`Lucy-Wayne-pictures/changes_needed_pilates_room/`, showing four v2 files with Lucy's black pen marks
+on them: an X meaning "put the mark here", with a line drawn from the current lockup. Rather than
+guess the positions, each photo was matched to its real asset with SIFT plus a RANSAC homography (81
+to 210 inliers), warped into the asset's own pixel space, and differenced so the only thing left was
+the pen. Centres in asset pixels: feed-ballreach 831/239, story-ballreach 858/300, story-sidestretch
+396/137, story-duo 219/395. Files renamed to pair with their assets and moved to
+`email-02-social/lucy-marks-2026-08-26/` with a README holding the method and the numbers. Built by
+`build_email02_social_v3.py`, a copy of v2 so v2 stays intact. Three of her four marks needed a nudge
+and each is documented: sidestretch sat at y137, inside Instagram's 260px story chrome, so it went to
+y290; story-duo could only drop from y260 to y355 because the second ceiling beam enters the type
+footprint at y370, measured; story-ballreach moved 27px for the same safe-zone reason. See D-041.
+
+**Two colour grades that failed, and the finding underneath them.** Hugo asked for a LUT or brand
+colour overtone. First attempt mapped every tone onto a Sportif ramp and mixed it in brightness and
+all; because the ramp's dark end is a mid brown, every shadow lifted and story-duo's black point went
+from 0.024 to 0.094, four times lighter. Hugo: "a bit washed out and lifeless". Second attempt fixed
+the brightness but added a saturation boost and a heavy S-curve for punch, both of which land hardest
+on the most saturated warm thing in frame. Hugo: "made her skin look like fake tan". Both calls were
+right and both were made on sight. **The finding: on these photos more peach and tanned skin are the
+same slider,** because her skin and the studio wall both sit near hue 25 degrees. A hue-based skin
+mask is no rescue either, it selected 91 percent of feed-ballreach because the wall qualifies as skin.
+That caps the whole approach. See D-042 and D-043. The corrected grade (no global saturation, light
+contrast, chroma only for what was already dull) survives at `scripts-local/sportif_grade.py` with
+both dead ends written into the file, plus `assets/luts/sportif-peach-{25,45,70}.cube`. The full set
+is in `created/v4/`, parked.
+
+**The weave room, and Hugo went round the obstacle rather than tuning against it.** Told the ceiling
+was set by skin sharing a hue with the wall, he opened Photoshop and separated the person from the
+room, which is the one thing that removes the ceiling. Verified against the original: her average
+brightness 53.4% before and 53.4% after, identical, and no halo at her edge. He then built two
+treatments on top of that split. A terracotta `#833827` Solid Color fill at Overlay 60%, measured safe
+(room's darkest 5% went 0.317 to 0.242, pixels at pure black only 0.30 to 0.33 percent). Then the
+band's own weave over it, held to the wall with Blend If so it sits behind the barre and the rings
+rather than over them. Recipe at `email-02-social/photoshop/WEAVE-ROOM-RECIPE.md`, working PSDs
+alongside. Two counterintuitive results worth keeping: black type beats white on that terracotta (6.8:1
+against 2.1:1, because terracotta is a mid tone at 43% luminance), and the 1024px tile is fine at feed
+size but will seam on a 1920 story, so stories need the plate.
+
+**Hugo's judgement call on scope, and it was the right one.** Offered an auto-cut of the other seven
+with rembg, he declined: send the eight files Lucy actually asked for, plus the two concepts on one
+photo, and do not build seven versions of a look she has not agreed to. "The main thing for me was
+that I got to practice in Photoshop, and think creatively."
+
+**Email sent, and it surfaced three things nobody had flagged.** Reading Lucy's 21 Aug message
+properly: the pilates picture is going to the **Fit Expo booth**, which is print, and everything we
+have is 1080px; she has handed us the **handle rule** (off for Instagram, on for booth assets); and
+she is expecting the **3D band**, which has not been started. Hugo split those into separate emails to
+keep the reply on one subject, and the sent email promises both in writing. Two writing corrections he
+caught: Lucy is NOT the model in these photos, they are her Canva picks, so never write "you" about
+the person in frame; and "blush" cannot be used for the medium band because Blush Peach `#F0CDB3` is
+the primary brand colour, so bands are referred to by weight. Both are now warnings at the top of the
+draft. Sent 2026-08-27 with 12 attachments, draft at
+`email-02-social/TO-SEND-2026-08-26/email-to-lucy-v3.md`, copy-ready page published as an Artifact.
+
+**Still open:** Lucy's pick between the three treatments (Q-026); the Fit Expo booth posters, blocked
+on her panel dimensions (Q-027); the 3D band, now promised to her (Q-016); everything carried from
+S034.
 
 ---
 
@@ -678,31 +754,6 @@ Lucy asked for the Instagram grid banner again, this time with "collection" unde
 **Also settled:** brute-forced tracking 0.24 to 0.34 and sizes 440 to 560 and found NO combination where a tile seam misses every letter. A 7-letter word across 3 tiles always has a seam land inside a glyph, so the clipped T crossbar is inherent to the format (the first grid had it too and Lucy accepted it). Worth saying out loud in future client emails rather than being asked about it.
 
 **Sent:** email drafted at `clients/sportif/email-to-lucy-collection-grid.md` and Hugo sent it with the attachments the same session.
-
-## Session 029 (2026-07-28, Claude Code): Email 03 (Lucy's 3-band photo request) + the band-swap labelling method
-
-Client: Sportif
-Tags: lucy, email-03, bands, product-photo, band-swap, labels, copyright, gpt-image-2
-
-Lucy's email 03: "create a picture of my 3 bands like this" with 6 competitor STYLE references (YR, Pilates Reformers Australia, moveactive), shared as a PDF. Rendered the PDF to images with PyMuPDF (installed; poppler/pdftoppm is not on the Mac). Folder `clients/sportif/email-03-band-photo/` (downloads/ + created/ + README + email-to-lucy.md), per the per-request convention. Clarified with Hugo: recreate each reference LOOK with OUR bands and assets, not edits of the competitor photos.
-
-**Built (all ownable, no competitor imagery):**
-- 3-band product HERO (`band_hero_ref1.py`): our 3 transparent band cutouts fanned/stacked on warm cream, SPORTIF labels visible. Fixed the cutouts at source too: `trim_base` in `band_cutouts.py` removes the leftover peach FLOOR strip rembg kept at the band bottoms (texture-based).
-- Range-concept FLATLAY (`gen_flatlay_concept.py`, from scratch): the 3 bands + IMAGINARY Sportif pieces (ribbed grip socks, cotton pouch, rolled towel). pg-6 could not be copied faithfully (competitor full-range flat-lay with props that are not Sportif products).
-- DRAPED-arm shot (`gen_draped_arm.py`, from scratch): photoreal model, bands draped over the forearm.
-- In-use shots reused from our existing band-inuse library.
-
-**Copyright (important):** the reference photos are competitor brands' OWN photos; we must not edit them (swap band, reuse model) into Sportif marketing (their copyright + the model's release is for their brand). Lucy also does not want AI models. Resolution (Hugo): use AI models we generate (fully owned) for now and TELL Lucy via email; the premium option is a real shoot (Lucy or a model with the actual bands), which we then style. Reference photos stay STYLE-ONLY.
-
-**Label breakthrough (the reusable bit):** gpt-image-2 garbles small brand text at low quality (SPOTE, MEAVY, a garbled towel label). Two lessons:
-- Reaffirmed the HOUSE RULE (AI makes the plate, WE own the type): PIL-composited clean SPORTIF labels (`label_flatlay_pil.py`, `label_draped_pil.py`) = guaranteed spelling, but a flat/pasted look.
-- WINNING method (Hugo's idea): a TWO-IMAGE gpt swap (`band_swap_test.py`) = pass the scene + our finished hero bands, and gpt drops our real caramel SPORTIF label onto the scene bands NATURALLY (beats the PIL composite). Plus `add_stitched_branding.py` adds tonal stitched SPORTIF to the soft goods (pouch/socks/towel) so the whole flat-lay reads as one branded set. Remaining small-text garbles are cleared by a HIGH Terminal render or a quick PIL patch (`fix_towel_label.py` fixed the garbled towel label; `fix_light_word.py` fixed one band size word).
-
-**Deliverables:** primary set in `created/` (hero, labelled draped, labelled flat-lay, 3 in-use); the stronger swap experiments in `created/band-swap-test/` (flatlay-branded-fixed, draped swapped). Email to Lucy drafted (`email-to-lucy.md`): what we did, the copyright heads-up, and the real-shoot option.
-
-**Open:** Q-010 = run the high-quality swap/branded renders in Terminal for crisp text, then finalise the attach set and send Lucy. See [[real-band-content-pipeline]], [[go-the-extra-mile]].
-
----
 
 ## Weekly Review, 2026-07-05 (week of 2026-06-29)
 

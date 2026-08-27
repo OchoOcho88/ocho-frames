@@ -6,6 +6,33 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-08-27 -->
+
+## Session 029 (2026-07-28, Claude Code): Email 03 (Lucy's 3-band photo request) + the band-swap labelling method
+
+Client: Sportif
+Tags: lucy, email-03, bands, product-photo, band-swap, labels, copyright, gpt-image-2
+
+Lucy's email 03: "create a picture of my 3 bands like this" with 6 competitor STYLE references (YR, Pilates Reformers Australia, moveactive), shared as a PDF. Rendered the PDF to images with PyMuPDF (installed; poppler/pdftoppm is not on the Mac). Folder `clients/sportif/email-03-band-photo/` (downloads/ + created/ + README + email-to-lucy.md), per the per-request convention. Clarified with Hugo: recreate each reference LOOK with OUR bands and assets, not edits of the competitor photos.
+
+**Built (all ownable, no competitor imagery):**
+- 3-band product HERO (`band_hero_ref1.py`): our 3 transparent band cutouts fanned/stacked on warm cream, SPORTIF labels visible. Fixed the cutouts at source too: `trim_base` in `band_cutouts.py` removes the leftover peach FLOOR strip rembg kept at the band bottoms (texture-based).
+- Range-concept FLATLAY (`gen_flatlay_concept.py`, from scratch): the 3 bands + IMAGINARY Sportif pieces (ribbed grip socks, cotton pouch, rolled towel). pg-6 could not be copied faithfully (competitor full-range flat-lay with props that are not Sportif products).
+- DRAPED-arm shot (`gen_draped_arm.py`, from scratch): photoreal model, bands draped over the forearm.
+- In-use shots reused from our existing band-inuse library.
+
+**Copyright (important):** the reference photos are competitor brands' OWN photos; we must not edit them (swap band, reuse model) into Sportif marketing (their copyright + the model's release is for their brand). Lucy also does not want AI models. Resolution (Hugo): use AI models we generate (fully owned) for now and TELL Lucy via email; the premium option is a real shoot (Lucy or a model with the actual bands), which we then style. Reference photos stay STYLE-ONLY.
+
+**Label breakthrough (the reusable bit):** gpt-image-2 garbles small brand text at low quality (SPOTE, MEAVY, a garbled towel label). Two lessons:
+- Reaffirmed the HOUSE RULE (AI makes the plate, WE own the type): PIL-composited clean SPORTIF labels (`label_flatlay_pil.py`, `label_draped_pil.py`) = guaranteed spelling, but a flat/pasted look.
+- WINNING method (Hugo's idea): a TWO-IMAGE gpt swap (`band_swap_test.py`) = pass the scene + our finished hero bands, and gpt drops our real caramel SPORTIF label onto the scene bands NATURALLY (beats the PIL composite). Plus `add_stitched_branding.py` adds tonal stitched SPORTIF to the soft goods (pouch/socks/towel) so the whole flat-lay reads as one branded set. Remaining small-text garbles are cleared by a HIGH Terminal render or a quick PIL patch (`fix_towel_label.py` fixed the garbled towel label; `fix_light_word.py` fixed one band size word).
+
+**Deliverables:** primary set in `created/` (hero, labelled draped, labelled flat-lay, 3 in-use); the stronger swap experiments in `created/band-swap-test/` (flatlay-branded-fixed, draped swapped). Email to Lucy drafted (`email-to-lucy.md`): what we did, the copyright heads-up, and the real-shoot option.
+
+**Open:** Q-010 = run the high-quality swap/branded renders in Terminal for crisp text, then finalise the attach set and send Lucy. See [[real-band-content-pipeline]], [[go-the-extra-mile]].
+
+---
+
 <!-- archived batch, moved 2026-08-26 -->
 
 ## Session 028 (2026-07-28, Claude Code): Lucy's Canva requests (emails 01 + 02) + poster experiments + matting/inpaint tooling
