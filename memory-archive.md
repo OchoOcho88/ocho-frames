@@ -6,6 +6,25 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-08-31 -->
+
+## Session 030 (2026-08-11, Cowork): SPORTIF collection grid tiles (Lucy's reference lockup across 3 IG tiles)
+
+Client: Sportif
+Tags: lucy, instagram, grid-banner, collection, wordmark, glacial-indifference, pillow
+
+Lucy asked for the Instagram grid banner again, this time with "collection" underneath the wordmark, and gave a square reference lockup (peach background, white SPORTIF, short rule, lowercase "collection") which Hugo saved to `clients/sportif/Sportif_Collection/Sportif_Collection_wordmark.jpg`. Note the word is **collection**, not "collective" (Hugo typed collective, the artwork says collection, confirmed with him before building). "Le Sport Collectif" remains the retired old name.
+
+**Confirmed with Hugo before building:** wording = collection; tile shape = 3:4 portrait 1080x1440 (same as the first grid); colourway = peach `#F0CDB3` with white type only, matching the reference. Cream and white variants were offered to Lucy in the email rather than built up front.
+
+**Built:** `clients/sportif/scripts-local/build_collection_grid.py`, adapted from `build_grid_banner.py`. One 3240x1440 peach master, SPORTIF in Glacial Indifference Regular tracked at 0.28em to 80% of canvas width, a rule, then "collection" at 0.06em tracking, split into three 1080x1440 tiles whose file numbers ARE the posting order (rightmost posts first). Deliverables + `POST-ORDER.md` in `clients/sportif/Sportif_Collection/grid/`. Sampled the reference background as (241,205,179), effectively the brand blush, so used `#F0CDB3`.
+
+**The one real design problem, and the fix.** Reproducing the reference proportions literally (sub ascender = 0.48x the SPORTIF cap height, taken off the 500px reference: cap 41, sub ascender 20, rule 90 wide vs sub 120 wide) blew "collection" out to 1030px inside a 1080px tile, hard against both gutters. The cause is that SPORTIF is tracked enormously wide to span three tiles, so anything sized off ITS cap height inherits that stretch. Fix: size the sub as a share of the CENTRE TILE (0.55 of tile width) and the rule as 0.75x the sub width (the reference's own rule-to-sub ratio). Result reads like the reference and keeps roughly 245px of clear space either side. Lockup vertical balance checked by ink-bounds scan: top margin 307, bottom 340, i.e. a slight optical lift.
+
+**Also settled:** brute-forced tracking 0.24 to 0.34 and sizes 440 to 560 and found NO combination where a tile seam misses every letter. A 7-letter word across 3 tiles always has a seam land inside a glyph, so the clipped T crossbar is inherent to the format (the first grid had it too and Lucy accepted it). Worth saying out loud in future client emails rather than being asked about it.
+
+**Sent:** email drafted at `clients/sportif/email-to-lucy-collection-grid.md` and Hugo sent it with the attachments the same session.
+
 <!-- archived batch, moved 2026-08-27 -->
 
 ## Session 029 (2026-07-28, Claude Code): Email 03 (Lucy's 3-band photo request) + the band-swap labelling method

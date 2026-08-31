@@ -14,6 +14,7 @@ from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 REG = os.path.join(ROOT, "brand/fonts/glacial-indifference/GlacialIndifference-Regular.otf")
+BOLD = os.path.join(ROOT, "brand/fonts/glacial-indifference/GlacialIndifference-Bold.otf")
 TEX = os.path.join(ROOT, "clients/sportif/assets/textures")
 OUT = os.path.join(ROOT, "clients/sportif/generated/images/texture-weight-tiles")
 
@@ -24,7 +25,16 @@ WORDMARK, SUBLINE = "SPORTIF", "collection"
 TRACK_EM, SUB_TRACK_EM = -0.059, 0.06        # canonical lockup tracking (D-017)
 RULE_OF_WORDMARK, RULE_OF_SUBLINE = 0.43, 0.75
 
-WORD_W_FRAC = 0.66                # SPORTIF tracked width as a share of canvas width
+# The whole lockup keys off this one number. Cap height, the rule, "collection",
+# the weight line and every gap derive from it, so changing it scales the block
+# and holds every proportion. Raised from 0.66 to 0.76 on 2026-08-31 (S1),
+# because type reads smaller on Instagram than on a desktop screen. The ceiling
+# is the 3:4 profile-grid crop, a centred 1012px column: 0.76 leaves 96px of
+# margin each side. See generated/.../scale-options/README.md.
+WORD_W_FRAC = 0.76                # SPORTIF tracked width as a share of canvas width
+SCALE_K = WORD_W_FRAC / 0.66      # blurs and offsets scale with the type
+WEIGHT_FONT = BOLD                # 2026-08-31: the weight line was too thin and got lost
+WEIGHT_HALO = 45                  # extra halo under the weight line, where the weave is busiest
 WEIGHT_TRACK_EM = 0.30            # wide tracking on the weight line
 WEIGHT_OF_SUB = 0.92              # weight line width relative to "collection"
 NUDGE_UP = 0.015
@@ -51,16 +61,16 @@ def tracked_width(d, text, font, track):
     return ws, sum(ws) + track * (len(text) - 1)
 
 
-def fit_to_width(d, text, target_w, track_em, lo=8, hi=600):
+def fit_to_width(d, text, target_w, track_em, lo=8, hi=700, path=REG):
     while lo < hi:
         m = (lo + hi + 1) // 2
-        f = ImageFont.truetype(REG, m)
+        f = ImageFont.truetype(path, m)
         _, w = tracked_width(d, text, f, m * track_em)
         if w <= target_w:
             lo = m
         else:
             hi = m - 1
-    return ImageFont.truetype(REG, lo)
+    return ImageFont.truetype(path, lo)
 
 
 def draw_centred(d, text, font, track, cx, y, fill):
@@ -125,7 +135,9 @@ def build(colourway, weight_label):
     bg = tone_match(bg, MEASURED[colourway])
 
     type_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    weight_layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     d = ImageDraw.Draw(type_layer)
+    dw = ImageDraw.Draw(weight_layer)
     cx = W / 2
 
     # SPORTIF
@@ -155,9 +167,10 @@ def build(colourway, weight_label):
 
     # weight line
     # size off the LONGEST label so the point size is identical across the set
-    gf = fit_to_width(d, WEIGHT_SIZING_REF, sub_w * WEIGHT_OF_SUB, WEIGHT_TRACK_EM)
+    gf = fit_to_width(dw, WEIGHT_SIZING_REF, sub_w * WEIGHT_OF_SUB, WEIGHT_TRACK_EM,
+                      path=WEIGHT_FONT)
     gtrack = gf.size * WEIGHT_TRACK_EM
-    gb = d.textbbox((0, 0), weight_label, font=gf)
+    gb = dw.textbbox((0, 0), weight_label, font=gf)
     weight_h = gb[3] - gb[1]
     gap_above_weight = cap * 0.52
 
@@ -171,23 +184,32 @@ def build(colourway, weight_label):
     sy = ry + rule_t + cap * 0.42
     draw_centred(d, SUBLINE, sf, stro, cx, sy - sb[1], CREAM)
     gy = sy + sub_h + gap_above_weight
-    draw_centred(d, weight_label, gf, gtrack, cx, gy - gb[1], CREAM)
+    draw_centred(dw, weight_label, gf, gtrack, cx, gy - gb[1], CREAM)
 
-    # warm drop shadow, built from the type layer's own alpha
-    a = type_layer.split()[3].filter(ImageFilter.GaussianBlur(SHADOW_BLUR))
-    a = a.point(lambda v: int(v * SHADOW_ALPHA / 255))
-    shadow = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    shadow.paste(Image.new("RGBA", (W, H), SHADOW_TINT + (255,)), SHADOW_OFFSET, a)
-
-    ca = type_layer.split()[3].filter(ImageFilter.GaussianBlur(CORE_BLUR))
-    ca = ca.point(lambda v: int(v * CORE_ALPHA / 255))
-    core = Image.new("RGBA", (W, H), (0, 0, 0, 0))
-    core.paste(Image.new("RGBA", (W, H), SHADOW_TINT + (255,)), (2, 4), ca)
-
+    # warm drop shadow, built from the lockup's own alpha. Blurs and offsets
+    # scale with the type, otherwise the halo thins out as the type grows.
+    both = Image.alpha_composite(type_layer, weight_layer)
     out = bg.convert("RGBA")
-    out.alpha_composite(shadow)
-    out.alpha_composite(core)
-    out.alpha_composite(type_layer)
+
+    off = (round(SHADOW_OFFSET[0] * SCALE_K), round(SHADOW_OFFSET[1] * SCALE_K))
+    for blur, alpha, offset in ((SHADOW_BLUR * SCALE_K, SHADOW_ALPHA, off),
+                                (CORE_BLUR * SCALE_K, CORE_ALPHA,
+                                 (round(2 * SCALE_K), round(4 * SCALE_K)))):
+        a = both.split()[3].filter(ImageFilter.GaussianBlur(blur))
+        a = a.point(lambda v: int(v * alpha / 255))
+        lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        lay.paste(Image.new("RGBA", (W, H), SHADOW_TINT + (255,)), offset, a)
+        out.alpha_composite(lay)
+
+    # the weight line sits lower on the plate, where the weave is busiest, so
+    # it carries an extra halo of its own
+    a = weight_layer.split()[3].filter(ImageFilter.GaussianBlur(10 * SCALE_K))
+    a = a.point(lambda v: int(v * WEIGHT_HALO / 255))
+    lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+    lay.paste(Image.new("RGBA", (W, H), SHADOW_TINT + (255,)), (0, 0), a)
+    out.alpha_composite(lay)
+
+    out.alpha_composite(both)
     return out.convert("RGB"), (wf.size, sf.size, gf.size)
 
 

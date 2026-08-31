@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-08-27 | Last session: 035 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally, commits UNPUSHED (push from the Mac, Q-022) | **FIRST THING NEXT SESSION: the Fit Expo booth posters (Q-027). Lucy is putting the pilates picture on a PRINTED booth panel and everything we have is 1080px wide. It is blocked on panel dimensions from her, and Hugo owes her that email. The handle goes back ON for booth assets, DRAW_HANDLE=True (Q-028).** | Also waiting: Lucy's pick between the three treatments, sent 2026-08-27 (Q-026); the 3D band, now promised to her in writing (Q-016); her reply on the weave tiles (Q-024); the band DROPPED on a floor, which unblocks all five placements (Q-023); shot 01 colourway test (Q-025); Gemini egress from Cowork (Q-017); poster 2 re-run (Q-019); label close-ups (Q-020); memory.md hygiene pass (Q-021)*
+*Last updated: 2026-08-31 | Last session: 036 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally, commits UNPUSHED (push from the Mac, Q-022) | **FIRST THING NEXT SESSION: the 3D band hero frame (Q-016). Run 2 proved the method, the shoot list is written and validated, and it is one photograph plus one Tripo job to know if this is solved. Needs morning light in shade, plain smooth white surface, HEAVY band open as a relaxed oval, one object in frame.** | Also waiting: Lucy's reaction to the revised weave tiles and the colour call, two emails sent 2026-08-31 (Q-029); her pick between the three email-02 treatments (Q-026); the Fit Expo booth panel dimensions, and note the show looks like JANUARY not February (Q-027); the handle rule confirmation (Q-028); the band DROPPED on a floor (Q-023); shot 01 colourway test (Q-025); label close-ups, now folded into the 3D shoot (Q-020); Gemini egress from Cowork (Q-017); poster 2 re-run (Q-019); memory.md hygiene pass (Q-021). **Lucy is on holidays this week, so nothing client-blocking will move.***
 
 - **NEW (Session 035): Lucy's second round of marks is in, and the positions were MEASURED, not eyeballed.** Four phone photos of her pen marks on the v2 files were matched to the real assets with SIFT plus a RANSAC homography, warped into asset pixel space and differenced so only the pen remained. Built by `build_email02_social_v3.py` into `created/v3/`; her marks and the method are at `email-02-social/lucy-marks-2026-08-26/README.md`. Three of the four needed a documented nudge, for Instagram's 260px story chrome and for the ceiling beam that enters the type footprint at y370. See D-041.
 - **NEW (Session 035): the peach grade hit a hard ceiling, and the ceiling is the answer (D-042, D-043).** Two attempts failed and Hugo called both on sight: the first lifted every shadow (story-duo black point 0.024 to 0.094) and read "washed out and lifeless"; the second added saturation and contrast and read "fake tan". **On these photos more peach and tanned skin are the same slider**, because skin and the studio wall both sit near hue 25 degrees, and a hue-based skin mask selects 91% of the frame. The corrected grade, both dead ends, and the reasoning live in `scripts-local/sportif_grade.py`; LUTs at `assets/luts/`; the set is parked in `created/v4/`.
@@ -87,6 +87,63 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Grid banner READY (Session 015):** 3-tile SPORTIF wordmark banner in three colourways at `clients/sportif/generated/images/grid-banner/`, peach/white is the on-brand pick. Posting recipe PROVEN on a mock account: 1080x1440 tiles, tap Original on the crop screen (default 1:1 crop breaks it), post right tile first, or reorder afterwards (IG added grid drag-reorder June 2026).
 - **INSTA LAUNCH IS THIS FRIDAY (2026-07-10). TEASER REEL RENDERED AND LAUNCH-READY, now 15s with the identity end card, in TWO variants.** Standard: `compositions/sportif-teaser/renders/sportif-teaser_2026-07-08_13-48-53.mp4`. With a follow CTA: `compositions/sportif-teaser/renders/sportif-teaser-cta.mp4` (rendered via the `cta` composition variable). Both 1080x1920, 15s, check clean 0/0/0. End card is now blush peach with warm-white wordmark, warm-charcoal launch line, terracotta handle, and holds ~3s before the fade. Backgrounds are MEDIUM quality (true-high blocked by the ~60s Claude Code network cap): to upgrade, run `python3 clients/sportif/scripts-local/gen_action_bg.py <variant> high` in a NATIVE Mac terminal, then rebuild tiles, re-copy, re-render.
 - **Still waiting on Lucy:** feedback on the four tagline-row directions and three banner colourways, plus the hero-concept pick and the blocker email reply.
+
+---
+## Weekly Review, 2026-08-31 (week of 2026-08-24)
+
+Two sessions this week (034 on 08-26 and 035 on 08-27), both in Cowork, both driven by Hugo, back to back on consecutive days and then nothing for four days. Smaller count than last week, but the character changed: less generating, more measuring, and for the first time in a long while things actually LEFT the building. Two client emails went to Lucy in two days, and Q-012, which had been sitting packed and unsent since 08-17 and was the number one focus of the last two reviews, is finally closed. The week's real work was Hugo learning Photoshop properly and, in the middle of that, inventing a treatment that is better than anything the scripts have produced.
+
+### Highlights
+- **The weave room, and Hugo went ROUND the obstacle instead of tuning against it.** Told that the peach grade was capped because her skin and the studio wall both sit near hue 25 degrees, he opened Photoshop and separated the person from the room, which is the one move that removes the collision entirely. Verified rather than assumed: her average brightness 53.4% before and 53.4% after, no halo at the edge. On that split he built a terracotta `#833827` fill at Overlay 60%, measured safe, then held the band's own weave to the wall with Blend If so it sits behind the barre and rings. Recipe and PSDs at `email-02-social/photoshop/`. It is the best thing produced this week and he built it himself.
+- **Lucy's marks were MEASURED onto the assets, not eyeballed.** Four phone photos of her pen marks were matched to the real files with SIFT plus a RANSAC homography (81 to 210 inliers), warped into asset pixel space and differenced until only the pen remained. Three of the four then needed a documented nudge, for Instagram's 260px story chrome and for a ceiling beam that enters the type footprint at y370. Built into `created/v3/`, method and numbers at `email-02-social/lucy-marks-2026-08-26/README.md`. See D-041.
+- **A colour fault was found in EVERY band cutout in the workspace (D-039).** All of them about a stop underexposed against the D-027 measured values: LIGHT 47% value against 72%, MEDIUM 37% against 62%, HEAVY 24% against 42%, saturation down about a third across the board. Invisible on the white shooting sheet, ruinous on a dark gym floor, where the band turns to putty. Corrected copies at `assets/Sportif_Bands/Bands_background_removed/colour-corrected/`, and that folder is now the only one to composite from. Caught because one weave tile read olive.
+- **Two emails sent in two days, and reading Lucy's 21 Aug message properly surfaced three things nobody had flagged.** The weave tiles went out on 08-26 as a complete three-colourway grid row; the email-02 v3 batch went out on 08-27 with 12 attachments. Underneath it: the pilates picture is going to the **Fit Expo booth**, which is PRINT and everything we hold is 1080px (Q-027); Lucy has handed us the **handle rule**, off for Instagram and on for booth assets (Q-028); and she is expecting the **3D band**, which has not been started (Q-016). Three live obligations that had been sitting unread in an email for five days.
+
+### Patterns I noticed
+- **A fault that is invisible on the surface you author on can be fatal on the surface you deliver to, and that same shape showed up three separate times this week.** The cutout underexposure is undetectable on white and ruinous on a dark floor. The 1024px weave tile is clean at feed size and will seam on a 1920 story. And 1080px is fine on Instagram and nowhere near a printed booth panel. Different problems, one lesson: check the asset against its destination, not against the surface it was made on.
+- **Measurement kept overturning the intuitive answer, and it did it in both directions.** The composite looked wrong and both of us blamed the shadow; measured, the shadow was the second most accurate thing in the frame (16 levels of floor darkening against 30 for the real rope handles) and the actual tell was TIDINESS. The light tile looked olive and turned out to be exactly on hue and saturation, just a stop dark. A hue-based skin mask sounded like the rescue for the grade and selected 91% of the frame because the wall qualifies as skin. Same move as the last two weeks; it is now the default on any contested question.
+- **Hugo's eye is the deciding gate and it was right every time this week.** He called both failed grades on sight and named them exactly ("washed out and lifeless", then "fake tan"), and the measurements agreed afterwards. He declined the offer to auto-cut the other seven photos, on the grounds that Lucy has not agreed to the look yet, which is correct. And his consent instinct on Lucy's friend's photos (D-038) stands even though the workflow he designed around it turned out not to be needed.
+- **Two errors cancelling is not a method.** His first composite happened to read at roughly the right brightness because the band was too dark and the gym should have darkened it. Value cancelled; saturation did not, which is why it read as gaffer tape rather than sand. Correct the asset first, then adjust deliberately.
+- **The client queue moved, and immediately grew.** Two emails out, one long-carried item closed, and three new waits opened in their place (Q-026, Q-027, Q-028). Sending clears the backlog and starts the clock; it does not empty the board.
+
+### Skills / knowledge gained
+- **Client pen marks on a phone photo can be turned into exact asset coordinates.** SIFT features plus a RANSAC homography maps a photo of a screen back into the asset's own pixel space; difference the warped photo against the original and only the pen survives. This replaces guessing at "put it about here" for good.
+- **On these photos, more peach and tanned skin are the same slider (D-042, D-043).** Skin and the studio wall both sit near hue 25 degrees, so any warm push lands on both, and a hue-based skin mask cannot separate them. That caps the whole grading approach; the corrected grade at `scripts-local/sportif_grade.py` carries both dead ends written into the file, and the v4 set is parked.
+- **Black type beats white on terracotta `#833827`, 6.8:1 against 2.1:1**, because terracotta is a mid tone at 43% luminance. Worth checking rather than assuming on any mid-tone brand fill.
+- **Tile versus plate is a size decision:** the 1024px seamless tile holds at feed size, seams on a 1920 story, so stories take the large single-crop plate.
+- **Gamma beats gain for tone matching**, because it preserves black and white and cannot clip a highlight. Used to land each weave plate's mean on its D-027 value.
+- **The staging trap (D-040):** our cutouts are catalogue poses, flat and square-cut, and composited into a candid photo they read pasted even when light, shadow and colour are all correct. Fix in Photoshop with a small Warp; fix properly by photographing the band actually dropped (Q-023).
+- **Always apply `ImageOps.exif_transpose` before describing an iPhone photo.** Three of five filenames were wrong because a contact sheet skipped it; "standing rack full length" was actually her seated on a BOSU.
+- **Photoshop specifics now on record:** Select Subject plus Select and Mask with Shift Edge -10% gives a clean cutout with no white rim (verified, edge within 6 levels of interior); Adobe removed the 3D toolset, so `Filter > Vanishing Point` is the nearest equivalent for placing an object on a plane; a sideways label on a horizontal band is correct, only a mirrored one is wrong, and rotating never mirrors.
+- **Two writing rules for Lucy-facing work:** she is NOT the model in the email-02 photos, they are her Canva picks, so never write "you" about the person in frame; and "blush" cannot be used for the MEDIUM band, because Blush Peach `#F0CDB3` is the primary brand colour, so bands are referred to by weight.
+
+### Open questions still unresolved
+**Resolved (by a later session this week):**
+- [x] ~~Q-012: SEND the email-02 v2 batch to Lucy~~ RESOLVED Session 035: sent 2026-08-27 as v3 with Lucy's measured marks applied, 12 attachments. Carried in three consecutive weekly reviews before it moved.
+- Note: Session 035 is the most recent session and no later session exists, so its own open loops (Q-026, Q-027, Q-028) could not be resolved by anything. Session 034's three items (Q-023, Q-024, Q-025) are all still genuinely open; S035 went to the email-02 socials rather than the placement job, so it touched none of them.
+
+**Still open, opened this week:**
+- [ ] **Q-027: the Fit Expo booth posters. Highest-priority item in the workspace.** Lucy wants the pilates picture on a PRINTED booth panel and everything we hold is 1080px. Not a redo (the build script takes a different canvas), but BLOCKED on panel dimensions and bleed from her or the expo organisers, and Hugo owes her that email, promised in writing on 08-27. Also check the Canva stock licence covers print and event display before anyone pays for panels.
+- [ ] **Q-028: apply the handle rule.** `@sportifcollection` OFF for Instagram (D-018 holds), ON for booth assets, because those travel without the account name attached. One-line change, `DRAW_HANDLE=True`. Confirm it back to Lucy in the booth email so it is on the record.
+- [ ] **Q-026: Lucy's pick between the three treatments** (as-is, terracotta room, weave room), sent 08-27. The other seven are deliberately not built until she answers. `rembg` is on the Mac if she says yes; the duo shot has two people and may need Hugo's hand.
+- [ ] **Q-025: the shot 01 colourway test.** Hugo rebuilds shot 01 with MEDIUM then HEAVY, then all three compare. Prediction from the contrast numbers: every surface Lucy picked is dark, so LIGHT separates by about 42 points, MEDIUM by 31, HEAVY by only 12 and will sink into the floor. Medium is the recommendation.
+- [ ] **Q-024: Lucy's reply on the weave close-up concept**, sent 08-26 with the three tiles attached.
+- [ ] **Q-023: photograph the band actually DROPPED on a floor.** White surface, direct sun, house setup (D-026). Ten minutes of shooting removes the warping step from all five placements and gives a real in-use asset for the range card and line sheet. Highest leverage item on the placement job.
+
+**Still open, carried from before:**
+- [ ] **Q-016: the 3D band**, now promised to Lucy in writing, which changes it from a nice-to-have to a commitment. Tripo account exists, plates ready, weave plates are the material source, Blender loop is the fallback.
+- [ ] **Q-017: Gemini egress from Cowork** (settings change plus a fresh sandbox); **Q-019: poster 2 re-run** with "horizontally across both thighs"; **Q-020: dedicated label close-ups** for the swap; **Q-021: memory.md hygiene pass**, now more overdue than last week; **Q-022: push 24-plus local commits from the Mac**; **Q-013: back-catalogue pass to the SPORTIF / rule / collection mark**; **Q-014: Hugo's Photoshop reference** for the burned-in wordmark.
+- [ ] **Colourway strips, range card and wholesale line sheet.** Unblocked by the measured colours two weeks ago, still unbuilt.
+- [ ] **Q-001: standalone waitlist capture page + 3-email welcome flow.** Now the top unbuilt item in eight separate sessions. Needs neither Lucy nor the trademark.
+- [ ] **Q-010: high-quality band-swap renders in a native Mac terminal**, then finalise and send email-03.
+- [ ] **Lucy's older picks:** Q-011 (collection grid colourway), Q-006 (Content Creation Strategy reaction, gates Phase 2), Q-004 (music-bed pacing), Q-003 (incentive A/B/C). All four are candidates to fold into the booth email rather than chased separately.
+- [ ] **Q-008: Photoshop cutout of the ball hero**; **Q-005: Canva Pro** brand kit and folder share; **Q-002: trademark clearance**, still the critical-path gate on Lucy's lawyer's clock.
+- [ ] Carried: ambassador/instructor seeding shortlist (eleventh week, needs nothing from anyone), film the unboxing, ElevenLabs API key, Shopify store, materials question, Stage 3 synthesis template, PDF generators still on Poppins.
+
+### Suggested focus for next week
+1. **Send the Fit Expo booth email, and send it first (Q-027, Q-028).** It is the only item in the workspace with an external deadline attached, it is blocked on nothing but an email Hugo already promised, and until the panel dimensions arrive no booth asset can be built at the right size. Ask for dimensions and bleed, confirm the handle goes back on, and check the Canva licence covers print and event display in the same pass. Fold Lucy's four older unanswered picks (Q-011, Q-006, Q-004, Q-003) into that message rather than chasing them separately, since one message has consistently beaten five.
+2. **Spend ten minutes shooting the band DROPPED on a floor (Q-023).** White sheet, direct sun, house setup. It is the smallest task on the board with the widest unblock: it removes the warping step from all five placements, kills the staging trap at source rather than patching around it, and produces a real in-use asset the range card and line sheet both need. Then do the shot 01 colourway comparison (Q-025) with a clean Replace Contents pass so the three builds are actually comparable.
+3. **Start the 3D band (Q-016), timeboxed to one sitting.** It is now promised in writing, which is a different obligation from the last three weeks of carrying it. Give Tripo one session, judge the mesh honestly, and switch to a hand-built Blender loop if it comes back lumpy. Unblock Gemini egress (Q-017) in the same session so the default engine is callable from here while the mesh runs.
 
 ---
 ## Weekly Review, 2026-08-23 (week of 2026-08-17)
@@ -329,6 +386,80 @@ The one big miss: **the Friday 2026-07-10 IG launch did not happen.** Reason not
 3. **Start the ambassador/instructor seeding shortlist.** It has been carried for four straight weeks, it is the designated main growth engine, it needs lead time before any launch date, and it requires nothing from Lucy.
 
 ---
+
+## Session 036 (2026-08-31, Cowork): Lucy answers on the grid, the weave tiles get bolder, and the 3D band finally makes a loop
+
+Client: Sportif
+Tags: instagram, weave-tiles, typography, client-email, colour-accuracy, 3d, tripo, photogrammetry, diagnosis
+
+Hugo drove, from a standing start of "where are we at". The day ran in two halves: a client
+thread answered and shipped in the morning, and an evening spent diagnosing why the 3D band kept
+coming back wrong, ending with the first result that was actually the right shape.
+
+**Lucy replied on the weave grid tiles, and the reply carried two asks.** She loves the concept
+and wants to post it, which closes Q-024. She asked for them sized for the Instagram tiles, and
+for the tiles in her brand colour.
+
+The sizing ask needed no work. The tiles were already 1080x1350, which IS the feed size. The one
+real thing behind it is the profile grid, which crops thumbnails to 3:4 and shows a centred
+1012px column; the lockup is 820px, so it clears by 96px each side. Answered with a mockup rather
+than a paragraph, at `generated/images/texture-weight-tiles/grid-preview-for-lucy.jpg`.
+
+**The colour ask was declined, and Hugo's reasoning is the one that matters (D-046).** Three
+directions were built and measured first (as-shot, 50 percent tinted, full brand ramp), then he
+called it: these tiles are a close-up of the actual fabric at a scale where colour is the only
+thing a buyer can judge, so tinting them sells a colour the customer does not receive. A returns
+problem and a trust problem on a launch where Lucy is the brand. The experiments are parked at
+`brand-colour-options/` as a dead end that was tried.
+
+**Then Hugo caught a second mistake, and it is the more interesting one.** Her words were "can
+you please SHOW ME what it would look like in my brand colour". The first reply declined the
+colour change and did not show her, which answers a question she did not ask and declines the one
+she did. "Show me" and "pick one" are different requests, and the earlier advice collapsed them.
+Fixed with a follow-up ten minutes later carrying one comparison image, real colour against full
+brand colour, with the recommendation attached. Showing something with a clear recommendation is
+not the same as offering a choice. Both rows are built by the CURRENT house build so colour is
+the only variable, and the halfway tinted version was deliberately withheld because it fails the
+same accuracy test by half.
+
+**The weight line was too thin, and a thumbnail test settled it (D-047).** Hugo flagged that
+LIGHT / MEDIUM / HEAVY was getting lost. Rendered down to 128px, roughly a real profile-grid
+thumbnail, the Regular line was gone entirely on the light tile. Glacial Indifference BOLD fixes
+it, plus an extra halo under that line alone. Separately the whole lockup went 0.66 to 0.76 of
+canvas width, since type reads smaller on Instagram; one number scales the block and holds every
+proportion, and the blurs and shadow offset scale with it. Folded into
+`build_texture_weight_tiles.py` as the house build and the delivered set regenerated. Two emails
+went to Lucy, both sent (Q-029).
+
+**A date correction nobody had noticed.** Her intake says "LA Fitness Expo in February next
+year". TheFitExpo Los Angeles 2027 is listed as 23 to 24 January. If that is her show, the runway
+is three weeks shorter than the workspace has been assuming, and print deadlines land well before
+the show. Noted against Q-027, needs confirming with her.
+
+**The 3D band: two runs, one dead end and one breakthrough (D-048).** Run 1 came back as four
+flat open straps, one a standalone gold plaque, at 1.9M triangles and no real world scale. The
+first diagnosis blamed the prompt, which said "strap" and "metal label". Hugo pushed back that it
+had used the photographs, and he was right. Looking properly at the references settled it:
+**every band photo in the workspace shows the band pressed FLAT**, so the hole is never visible,
+and a flattened loop from above is the same picture as a strap. The mesher was never given the
+information.
+
+Then Hugo tested it himself. Run 2 used a gpt-image-2 image showing a band lying open as an oval,
+hole visible, and Tripo returned a genuine closed loop, rendered six ways at
+`3d-band/renders/band-run2-contact-sheet.jpg`. One variable, proven in both directions in one
+evening. It still carries the pouch bag from the same input image, invented peach colour, 2M
+triangles and no scale, but the shape question is answered and the shoot list is validated before
+a frame is shot.
+
+**Working method worth keeping: the thumbnail test.** Twice today the decisive evidence came from
+rendering an asset down to the size it will actually be seen at and looking at that, rather than
+judging it at full size. The weight line failed at 128px while looking fine at 1080. Same shape
+of move as the S035 measurement work: build the test that answers the question rather than
+arguing about it.
+
+**Hugo's eye was the deciding gate again, three times.** The colour call, the thin weight line,
+and the push back on my prompt diagnosis. All three were right and all three overturned something
+I had written down.
 
 ## Session 035 (2026-08-27, Cowork): Lucy's marks measured onto the assets, two failed grades, and the weave room
 
@@ -737,23 +868,6 @@ feed-sidestretch, feed-ballreach, story-duo, story-pilates) and would benefit fr
 sending. See [[real-band-content-pipeline]], [[go-the-extra-mile]].
 
 ---
-
-## Session 030 (2026-08-11, Cowork): SPORTIF collection grid tiles (Lucy's reference lockup across 3 IG tiles)
-
-Client: Sportif
-Tags: lucy, instagram, grid-banner, collection, wordmark, glacial-indifference, pillow
-
-Lucy asked for the Instagram grid banner again, this time with "collection" underneath the wordmark, and gave a square reference lockup (peach background, white SPORTIF, short rule, lowercase "collection") which Hugo saved to `clients/sportif/Sportif_Collection/Sportif_Collection_wordmark.jpg`. Note the word is **collection**, not "collective" (Hugo typed collective, the artwork says collection, confirmed with him before building). "Le Sport Collectif" remains the retired old name.
-
-**Confirmed with Hugo before building:** wording = collection; tile shape = 3:4 portrait 1080x1440 (same as the first grid); colourway = peach `#F0CDB3` with white type only, matching the reference. Cream and white variants were offered to Lucy in the email rather than built up front.
-
-**Built:** `clients/sportif/scripts-local/build_collection_grid.py`, adapted from `build_grid_banner.py`. One 3240x1440 peach master, SPORTIF in Glacial Indifference Regular tracked at 0.28em to 80% of canvas width, a rule, then "collection" at 0.06em tracking, split into three 1080x1440 tiles whose file numbers ARE the posting order (rightmost posts first). Deliverables + `POST-ORDER.md` in `clients/sportif/Sportif_Collection/grid/`. Sampled the reference background as (241,205,179), effectively the brand blush, so used `#F0CDB3`.
-
-**The one real design problem, and the fix.** Reproducing the reference proportions literally (sub ascender = 0.48x the SPORTIF cap height, taken off the 500px reference: cap 41, sub ascender 20, rule 90 wide vs sub 120 wide) blew "collection" out to 1030px inside a 1080px tile, hard against both gutters. The cause is that SPORTIF is tracked enormously wide to span three tiles, so anything sized off ITS cap height inherits that stretch. Fix: size the sub as a share of the CENTRE TILE (0.55 of tile width) and the rule as 0.75x the sub width (the reference's own rule-to-sub ratio). Result reads like the reference and keeps roughly 245px of clear space either side. Lockup vertical balance checked by ink-bounds scan: top margin 307, bottom 340, i.e. a slight optical lift.
-
-**Also settled:** brute-forced tracking 0.24 to 0.34 and sizes 440 to 560 and found NO combination where a tile seam misses every letter. A 7-letter word across 3 tiles always has a seam land inside a glyph, so the clipped T crossbar is inherent to the format (the first grid had it too and Lucy accepted it). Worth saying out loud in future client emails rather than being asked about it.
-
-**Sent:** email drafted at `clients/sportif/email-to-lucy-collection-grid.md` and Hugo sent it with the attachments the same session.
 
 ## Weekly Review, 2026-07-05 (week of 2026-06-29)
 
