@@ -5,14 +5,28 @@ under 2048x2048, real-world scale, origin centred at the product's base.
 
 ## Where to put things
 
-| Folder | What goes in it |
-|---|---|
-| `runs-in/<date>-<tool>/` | exactly what the generator gave back, untouched |
-| `renders/` | turntable views and close-ups rendered from those files |
-| `notes/` | what each run got right and wrong, and what to try next |
+| Folder | What goes in it | Tracked in git |
+|---|---|---|
+| `runs-in/<date>-<tool>/` | exactly what the generator gave back, untouched | previews yes, model files NO |
+| `renders/` | turntable views and close-ups rendered from those files | yes |
+| `notes/` | what each run got right and wrong, and what to try next | yes |
+| `final/` | the finished Shopify AR deliverable | yes |
 
-Keep every run, including the bad ones. A dead end that was tried is worth more
-than a dead end that gets tried twice.
+Keep every run on disk, including the bad ones. A dead end that was tried is
+worth more than a dead end that gets tried twice.
+
+**But raw model files are not committed** (Q-030, added 2026-09-01). Every run is
+roughly 60MB and git keeps a binary forever once it has seen it: run 1 alone put
+227MB into history for four models that were rejected on sight. The `.gitignore`
+excludes `.glb`, `.fbx`, `.obj`, `.usdz`, `.stl`, `.ply` and `.blend` under
+`runs-in/`, and nothing else.
+
+What is tracked instead is enough to review a run without opening it: the tool's
+own preview PNGs, the rendered contact sheets in `renders/`, and the notes. The
+model files stay on disk and stay downloadable from the Tripo account.
+
+`final/` is deliberately NOT excluded. The finished deliverable is about 4MB and
+belongs in git.
 
 ## Dropping a run in
 
