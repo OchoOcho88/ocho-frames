@@ -27,6 +27,20 @@ import subprocess
 import sys
 from pathlib import Path
 
+# --- workspace timezone -----------------------------------------------------
+# The Cowork container runs on UTC. Sydney is UTC+10, so any session before
+# 10am local sees YESTERDAY if we use the machine's date. That broke the
+# pre-push hook and the close-out date check on 2026-09-01. Pin it.
+WORKSPACE_TZ = "Australia/Sydney"
+
+
+def today_local():
+    from zoneinfo import ZoneInfo
+    import datetime as _dt
+    return _dt.datetime.now(ZoneInfo(WORKSPACE_TZ)).date()
+# ----------------------------------------------------------------------------
+
+
 ROOT = Path(__file__).resolve().parent.parent
 
 # Files that must be read before writing any client-facing content.
@@ -105,7 +119,7 @@ def main():
     env, env_note = detect_environment()
     client = active_client(args.client)
     num, date, senv = last_session(memory)
-    today = dt.date.today()
+    today = today_local()
 
     print("=" * 66)
     print("  OCHO-FRAMES :: SESSION START")

@@ -24,6 +24,20 @@ import subprocess
 import sys
 from pathlib import Path
 
+# --- workspace timezone -----------------------------------------------------
+# The Cowork container runs on UTC. Sydney is UTC+10, so any session before
+# 10am local sees YESTERDAY if we use the machine's date. That broke the
+# pre-push hook and the close-out date check on 2026-09-01. Pin it.
+WORKSPACE_TZ = "Australia/Sydney"
+
+
+def today_local():
+    from zoneinfo import ZoneInfo
+    import datetime as _dt
+    return _dt.datetime.now(ZoneInfo(WORKSPACE_TZ)).date()
+# ----------------------------------------------------------------------------
+
+
 ROOT = Path(__file__).resolve().parent.parent
 
 DASHES = ("\u2014", "\u2013")   # em dash, en dash, written as escapes
@@ -201,7 +215,7 @@ def step_dashes(skip, fix=False, scope_all=False):
 
 def step_memory(env):
     memory = read("memory.md")
-    today = dt.date.today().isoformat()
+    today = today_local().isoformat()
 
     m = re.search(r"^## Session (\d+)\s*\(([^,]+),\s*([^)]+)\)", memory, re.M)
     if not m:
@@ -318,7 +332,7 @@ def main():
     print("  OCHO-FRAMES :: CLOSE-OUT")
     print("=" * 66)
     print(f"  Environment: {env}")
-    print(f"  Date       : {dt.date.today().isoformat()}")
+    print(f"  Date       : {today_local().isoformat()}")
     print()
 
     step_locks(env)

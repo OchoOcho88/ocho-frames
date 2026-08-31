@@ -20,6 +20,20 @@ Conventions this tool expects (see docs/memory-system.md):
 """
 import argparse, datetime, os, re, sys
 
+# --- workspace timezone -----------------------------------------------------
+# The Cowork container runs on UTC. Sydney is UTC+10, so any session before
+# 10am local sees YESTERDAY if we use the machine's date. That broke the
+# pre-push hook and the close-out date check on 2026-09-01. Pin it.
+WORKSPACE_TZ = "Australia/Sydney"
+
+
+def today_local():
+    from zoneinfo import ZoneInfo
+    import datetime as _dt
+    return _dt.datetime.now(ZoneInfo(WORKSPACE_TZ)).date()
+# ----------------------------------------------------------------------------
+
+
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEM = os.path.join(ROOT, 'memory.md')
 ARC = os.path.join(ROOT, 'memory-archive.md')
@@ -42,7 +56,7 @@ def read(path):
 
 
 def today():
-    return datetime.date.today().isoformat()
+    return today_local().isoformat()
 
 
 def current_state_block():
