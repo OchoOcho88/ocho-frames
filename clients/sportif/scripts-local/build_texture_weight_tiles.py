@@ -20,6 +20,11 @@ OUT = os.path.join(ROOT, "clients/sportif/generated/images/texture-weight-tiles"
 
 W, H = 1080, 1350                 # Instagram 4:5 feed
 CREAM = (246, 238, 229)
+# Type colour and output dir are overridable so a colourway test does not
+# need a forked script. Defaults reproduce the sent set exactly.
+TYPE_COL = tuple(int(v) for v in os.environ.get("SPORTIF_TYPE_COL", "246,238,229").split(","))
+OUT = os.environ.get("SPORTIF_OUT", OUT)
+_HALO = float(os.environ.get("SPORTIF_HALO", "1.0"))   # multiplier on every halo pass
 
 WORDMARK, SUBLINE = "SPORTIF", "collection"
 TRACK_EM, SUB_TRACK_EM = -0.059, 0.06        # canonical lockup tracking (D-017)
@@ -178,13 +183,13 @@ def build(colourway, weight_label):
                + gap_above_weight + weight_h)
     top = (H - block_h) / 2 - H * NUDGE_UP
 
-    draw_centred(d, WORDMARK, wf, wtrack, cx, top - wb[1], CREAM)
+    draw_centred(d, WORDMARK, wf, wtrack, cx, top - wb[1], TYPE_COL)
     ry = top + cap + gap_above_rule
-    d.rectangle([cx - rule_w / 2, ry, cx + rule_w / 2, ry + rule_t], fill=CREAM)
+    d.rectangle([cx - rule_w / 2, ry, cx + rule_w / 2, ry + rule_t], fill=TYPE_COL)
     sy = ry + rule_t + cap * 0.42
-    draw_centred(d, SUBLINE, sf, stro, cx, sy - sb[1], CREAM)
+    draw_centred(d, SUBLINE, sf, stro, cx, sy - sb[1], TYPE_COL)
     gy = sy + sub_h + gap_above_weight
-    draw_centred(dw, weight_label, gf, gtrack, cx, gy - gb[1], CREAM)
+    draw_centred(dw, weight_label, gf, gtrack, cx, gy - gb[1], TYPE_COL)
 
     # warm drop shadow, built from the lockup's own alpha. Blurs and offsets
     # scale with the type, otherwise the halo thins out as the type grows.
@@ -192,8 +197,8 @@ def build(colourway, weight_label):
     out = bg.convert("RGBA")
 
     off = (round(SHADOW_OFFSET[0] * SCALE_K), round(SHADOW_OFFSET[1] * SCALE_K))
-    for blur, alpha, offset in ((SHADOW_BLUR * SCALE_K, SHADOW_ALPHA, off),
-                                (CORE_BLUR * SCALE_K, CORE_ALPHA,
+    for blur, alpha, offset in ((SHADOW_BLUR * SCALE_K, min(255, SHADOW_ALPHA * _HALO), off),
+                                (CORE_BLUR * SCALE_K, min(255, CORE_ALPHA * _HALO),
                                  (round(2 * SCALE_K), round(4 * SCALE_K)))):
         a = both.split()[3].filter(ImageFilter.GaussianBlur(blur))
         a = a.point(lambda v: int(v * alpha / 255))
@@ -204,7 +209,7 @@ def build(colourway, weight_label):
     # the weight line sits lower on the plate, where the weave is busiest, so
     # it carries an extra halo of its own
     a = weight_layer.split()[3].filter(ImageFilter.GaussianBlur(10 * SCALE_K))
-    a = a.point(lambda v: int(v * WEIGHT_HALO / 255))
+    a = a.point(lambda v: int(v * min(255, WEIGHT_HALO * _HALO) / 255))
     lay = Image.new("RGBA", (W, H), (0, 0, 0, 0))
     lay.paste(Image.new("RGBA", (W, H), SHADOW_TINT + (255,)), (0, 0), a)
     out.alpha_composite(lay)

@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-01 | Last session: 037 (Cowork, CLOSED) | Working tree: committed clean | Git: pushed, in sync with origin/main | **FIRST THING NEXT SESSION: the 3D band hero frame (Q-016). One photograph and one Tripo job decides it. Morning light IN SHADE (these are geometry shots, the D-026 sun rule is for colour and does not apply), plain smooth white surface not a t-shirt, HEAVY band open as a relaxed oval, camera 30 to 45 degrees down and off to one side so the hole and the far side both read, ONE object in frame. Full list in `clients/sportif/products/band-3d-shoot-list.md`.** | Also waiting: Lucy's reaction to the revised weave tiles and the colour call, two emails sent 2026-08-31 (Q-029); her pick between the three email-02 treatments (Q-026); the Fit Expo booth panel dimensions, show looks like JANUARY not February (Q-027); the handle rule confirmation (Q-028); the band DROPPED on a floor (Q-023); shot 01 colourway test (Q-025); Gemini egress (Q-017); poster 2 re-run (Q-019). **Lucy is on holidays this week, so nothing client-blocking will move.***
+*Last updated: 2026-09-03 | Last session: 038 (Cowork, CLOSED) | Working tree: committed clean | Git: committed locally, PUSH FROM THE MAC | **FIRST THING NEXT SESSION: still the 3D band hero frame (Q-016). One photograph and one Tripo job decides it. Morning light IN SHADE (these are geometry shots, the D-026 sun rule is for colour and does not apply), plain smooth white surface not a t-shirt, HEAVY band open as a relaxed oval, camera 30 to 45 degrees down and off to one side so the hole and the far side both read, ONE object in frame. Full list in `clients/sportif/products/band-3d-shoot-list.md`.** | **Lucy replied 2026-09-02 and Q-029 is CLOSED. She asked for the lockup TYPE in her logo peach, not the plates, so the real-product-colour position survives. But her Pantone chip does not match the peach on record, so the live loop is now Q-033, which peach is the logo peach. Email sent 2026-09-02 with 8 attachments, both peaches, both postable sets. She is back Thursday 10 September.** | Also waiting: her pick between the three email-02 treatments (Q-026); the Fit Expo booth panel dimensions, show looks like JANUARY not February (Q-027); the handle rule confirmation (Q-028); the band DROPPED on a floor (Q-023); shot 01 colourway test (Q-025); Gemini egress (Q-017); poster 2 re-run (Q-019).*
 
 - **The critical path is TRADEMARK, not Shopify.** Launch and the whole go-to-market are held until Lucy's lawyer clears the name (logged from the 2026-07-14 meeting, still open). Underneath that there is still nowhere to sell the band: Shopify unopened, prices and the pouch threshold unset, fabric undecided, all blocked on Lucy.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Strategy locked: parallel wholesale plus DTC, one hub. Client-facing docs are exactly two PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -230,6 +230,47 @@ Eight sessions this week (020 to 027), the busiest week the workspace has ever h
 1. **Send Lucy the Content Creation Strategy PDF and bundle her pending picks into the same ask** (PDF reaction + music-bed pacing + incentive A/B/C). One message clears the whole feedback queue and un-gates Phase 2 of the expert-brand strategy.
 2. **Build the standalone waitlist capture page + 3-email welcome flow.** Four sessions in a row called it the top unbuilt item; it needs neither Lucy nor the trademark, and every piece of content built this week dead-ends without it.
 3. **When Canva Pro lands (~07-30), set up the brand kit and share the Sportif folder with Lucy**, and use the waiting days to finally start the ambassador/instructor seeding shortlist (six weeks carried) and film the unboxing.
+
+## Session 038 (2026-09-03, Cowork): Lucy says peach type, and the peach itself is now the question
+
+Client: Sportif
+Tags: sportif, lucy, weave-tiles, brand-colour, pantone, contrast, email, instagram
+
+**Q-029 closed, and it closed the right way.** Lucy replied 2026-09-02 asking for "the branding
+colour like the font colour to be in my logo peach colour". Read plainly that is the TYPE, not the
+plates. She did not choose the brand-colour weave, so D-039 and D-046 hold and the real product
+colour stays on the plates. She is away until Thursday 10 September.
+
+**She attached a Pantone chip and it does not match our records, which is the new loop (Q-033).**
+Her chip is Pantone 162 C, about `#FFC0A0`. Two independent sources say her logo peach is
+`#F0CDB3`: her own logo artwork `assets/05-logo-sportif-white-on-peach.png` and her swatch
+`assets/11-swatch-peach-nude.png` both measure `#F0CDB4`, and her intake questionnaire of
+2026-06-13 lists "Light Orange (in Canva #f0cdb3)". The Pantone chip is the outlier. Her answer
+sets the primary brand colour in `brand.md` line 105, not just these tiles, so it was worth
+stopping for rather than just applying the chip.
+
+**Peach type costs a quarter of the contrast, and the halo buys it back.** Measured behind the
+lockup: LIGHT 2.47:1 cream against 1.86:1 peach, MEDIUM 3.84 against 2.90, HEAVY 5.93 against
+4.47. Darkening the LIGHT plate was already off the table, so the lever was the existing warm
+halo, lifted 1.55x on every peach build. The wordmark, rule, subline and weight line all hold on
+all three at that setting.
+
+**`build_texture_weight_tiles.py` is now parameterised instead of forked.** Three environment
+overrides: `SPORTIF_TYPE_COL`, `SPORTIF_HALO`, `SPORTIF_OUT`. Defaults reproduce the set Lucy has
+already seen, byte for byte. Five builds this session came out of one script rather than five
+copies of it, and when she names the colour the reissue is one command.
+
+**Everything went out in one email, deliberately.** 8 attachments: two comparison rows, one per
+peach, plus BOTH finished postable sets, three tiles each at 1080x1350, numbered in upload order
+(post 1 heavy, then medium, then light, so the grid row reads LIGHT MEDIUM HEAVY). Hugo's reasoning,
+now a standing rule: front-load every version in one send so the client can answer the question and
+use the work off the same email, with no round trip. It also removed the objection that she might
+post live in a colour that turns out to be wrong, since she now holds the files for either answer.
+Draft at `clients/sportif/email-grid-tiles/peach-confirm-to-lucy-2026-09-03.md`. Sent 2026-09-02.
+
+**Housekeeping.** The stranded `.git/HEAD.lock` from a previous Cowork commit is cleared.
+
+---
 
 ## Session 037 (2026-09-01, Cowork): the workspace itself gets cleaned up
 
