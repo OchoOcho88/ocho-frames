@@ -1,6 +1,6 @@
 # Resume note
 
-This file used to hold a hand-written session-start briefing. It went stale (it still described Session 013 four months later), which is exactly the failure a hand-maintained note invites.
+This file used to hold a hand-written session-start briefing. It went stale (it still described a session from four months earlier), which is exactly the failure a hand-maintained note invites.
 
 It has been replaced by a command that reads the live state instead of remembering an old one.
 
