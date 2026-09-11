@@ -1,7 +1,7 @@
 # Sportif Brand Value Plan (client cut)
 
 > Short, client-facing version. Built into the PDF by build-brand-value-plan.py.
-> Source of truth: brand-value-plan.md | Last synced: 2026-07-01
+> Source of truth: brand-value-plan.md | Last synced: 2026-09-11 (checked against the Pantone 162 C change, no content change needed)
 > DRIFT RULE: if brand-value-plan.md changes, update this file, bump the synced date, re-run the generator.
 > Voice rule: no em dashes, no en dashes.
 

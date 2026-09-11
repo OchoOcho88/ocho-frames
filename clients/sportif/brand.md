@@ -102,13 +102,15 @@ Warm, tonal, sand-to-earth. Confirmed primary plus the FLOW tones Lucy loved.
 
 | Role | Colour | Hex |
 |---|---|---|
-| Primary brand colour (confirmed by Lucy, "Light Orange") | Blush Peach | `#F0CDB3` |
+| Primary brand colour (**Pantone 162 C**, set by Lucy 2026-09-11) | Blush Peach | `#FFBE9F` |
 | Warm mid accent | Caramel / Tan | `#C6926E` |
 | Rich accent (FLOW band, Lucy-loved) | Terracotta / Clay | `#833827` |
 | Deep anchor / contrast | Chocolate Brown | `#2D1814` |
 | Soft neutral grounds | Cream / Linen | `#F6EEE5` to `#FFFBF8` |
 | Type and negative space | White | `#FFFFFF` |
 | Primary type colour | Warm Charcoal | `#4A433C` |
+
+**The primary changed on 2026-09-11 (D-051).** Lucy's packaging printer, New Directions, matched her Canva "Light Orange" `#F0CDB3` to **Pantone 162 C** as the closest print colour, and Lucy asked for the brand colour to become that Pantone. So: **print uses Pantone 162 C, screens use `#FFBE9F`** (Pantone's own sRGB value for 162 C), and the two now match. It is a stronger, more orange peach than the old `#F0CDB3`, which is retired and must not be used for anything new. Recoloured logo files are in `assets/logo-pantone-162c/`; the originals in `assets/` are still the old peach and are kept only as her source artwork.
 
 ### Typography
 

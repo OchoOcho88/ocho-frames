@@ -15,7 +15,7 @@ Q=sys.argv[1] if len(sys.argv)>1 else 'low'
 ONLY=sys.argv[2].split(',') if len(sys.argv)>2 else None
 
 BASE=("Warm, elevated editorial PILATES photograph in a calm feminine studio. Soft natural window "
-      "light, golden warmth, Sportif palette (blush peach #F0CDB3, caramel tan #C6926E, terracotta clay "
+      "light, golden warmth, Sportif palette (blush peach #FFBE9F, caramel tan #C6926E, terracotta clay "
       "#833827, cream linen). A healthy woman in MODEST full-coverage feminine activewear (a supportive "
       "high-neck sports bra and high-waist leggings, {set} tones) {pose} on a soft cream pilates mat. "
       "She wears a wide flat continuous closed-loop ribbed fabric SPORTIF resistance booty band in {band} "

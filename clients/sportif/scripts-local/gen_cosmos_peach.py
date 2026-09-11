@@ -12,7 +12,7 @@ ONLY = sys.argv[2].split(',') if len(sys.argv) > 2 else None
 OUT = f'/tmp/peach/{QUALITY}'
 os.makedirs(OUT, exist_ok=True)
 
-PALETTE = ("Sportif palette: blush peach #F0CDB3, caramel tan #C6926E, terracotta clay #833827, "
+PALETTE = ("Sportif palette: blush peach #FFBE9F, caramel tan #C6926E, terracotta clay #833827, "
            "cream linen #F6EEE5, warm charcoal #4A433C.")
 SAFE = ("This is a tasteful, professional athletic fitness editorial photograph of athletes in modest "
         "full-coverage sportswear, suitable for a mainstream sportswear catalogue.")

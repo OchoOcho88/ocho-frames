@@ -30,4 +30,4 @@ elevated, considered, for the long run, everyday training elevated, made to be s
 
 ## Imagery rules
 
-Warm-neutral palette (blush peach #F0CDB3, caramel, terracotta, chocolate, linen). Tasteful, elevated, never skin-heavy. Fonts: Glacial Indifference is the real brand font; in the sandbox use letter-spaced Poppins for the wordmark and Lora for editorial titles.
+Warm-neutral palette (blush peach #FFBE9F, which is Pantone 162 C for print, set 2026-09-11, caramel, terracotta, chocolate, linen). Tasteful, elevated, never skin-heavy. Fonts: Glacial Indifference is the real brand font; in the sandbox use letter-spaced Poppins for the wordmark and Lora for editorial titles.

@@ -12,7 +12,7 @@ import sys
 
 # Brand
 CREAM = "#F6EEE5"
-BLUSH = "#F0CDB3"
+BLUSH = "#FFBE9F"
 
 # variant support: "white" = white bg / blush text, "peach" = blush bg / white text
 if "peach" in sys.argv:

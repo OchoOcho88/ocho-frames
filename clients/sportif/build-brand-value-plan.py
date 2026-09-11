@@ -16,6 +16,7 @@ MD      = os.path.join(SPORTIF, "brand-value-plan-client.md")
 SRC_FLOW= os.path.join(HYPER, "experiments/2026-05-29-bahe-flowloops/results/FLOW.png")
 OUT     = os.path.join(SPORTIF, "Sportif-Brand-Value-Plan.pdf")
 FLOW    = os.path.join(tempfile.gettempdir(), "sportif_flow_clean.png")
+GLACIAL = os.path.join(HYPER, "brand/fonts/glacial-indifference")  # the real brand font (CLAUDE.md, switched S039)
 
 im = Image.open(SRC_FLOW).convert("RGB"); w, h = im.size
 im.crop((0, 268, w, h)).save(FLOW)
@@ -89,9 +90,12 @@ DOC = f"""<!doctype html><html><head><meta charset="utf-8"><style>
 @page {{ size:A4; margin:19mm 17mm 16mm 17mm; }}
 @page cover {{ margin:0; }}
 * {{ margin:0; padding:0; box-sizing:border-box; }}
-:root{{ --peach:#F0CDB3; --caramel:#C6926E; --terr:#833827; --choc:#2D1814;
+@font-face {{ font-family:'Glacial Indifference'; font-weight:400; font-style:normal; src:url('file://{GLACIAL}/GlacialIndifference-Regular.otf'); }}
+@font-face {{ font-family:'Glacial Indifference'; font-weight:700; font-style:normal; src:url('file://{GLACIAL}/GlacialIndifference-Bold.otf'); }}
+@font-face {{ font-family:'Glacial Indifference'; font-weight:400; font-style:italic; src:url('file://{GLACIAL}/GlacialIndifference-Italic.otf'); }}
+:root{{ --peach:#FFBE9F; --caramel:#C6926E; --terr:#833827; --choc:#2D1814;
         --cream:#F6EEE5; --linen:#FFFBF8; --charcoal:#4A433C; --line:rgba(198,146,110,.34); }}
-body{{ font-family:'Poppins',sans-serif; color:var(--charcoal); font-size:10.6pt; line-height:1.5; }}
+body{{ font-family:'Glacial Indifference',sans-serif; color:var(--charcoal); font-size:11.6pt; line-height:1.5; }}
 strong{{ font-weight:600; color:var(--choc); }}
 .mono{{ font-weight:500; }}
 .cover{{ page:cover; width:210mm; height:297mm; position:relative; overflow:hidden; background:var(--cream); }}
@@ -100,24 +104,24 @@ strong{{ font-weight:600; color:var(--choc); }}
 .cover .col{{ position:absolute; top:0; left:0; bottom:0; width:47%; padding:19mm 15mm 16mm 18mm; display:flex; flex-direction:column; }}
 .cover .mast{{ font-weight:600; letter-spacing:.42em; text-transform:uppercase; color:var(--terr); font-size:11.5pt; }}
 .cover .rule{{ width:16mm; height:2px; background:var(--terr); margin-bottom:8mm; }}
-.cover .title{{ font-family:'Lora',serif; font-weight:600; color:var(--choc); font-size:35pt; line-height:1.03; }}
-.cover .sub{{ font-weight:300; font-size:11.5pt; line-height:1.5; margin-top:7mm; }}
-.cover .foot{{ font-weight:300; font-size:8pt; letter-spacing:.03em; color:var(--caramel); border-top:1px solid var(--line); padding-top:5mm; line-height:1.6; }}
+.cover .title{{ font-family:'Glacial Indifference',sans-serif; font-weight:600; color:var(--choc); font-size:35pt; line-height:1.03; }}
+.cover .sub{{ font-weight:300; font-size:12.5pt; line-height:1.5; margin-top:7mm; }}
+.cover .foot{{ font-weight:300; font-size:8.8pt; letter-spacing:.03em; color:var(--caramel); border-top:1px solid var(--line); padding-top:5mm; line-height:1.6; }}
 .grow{{ flex:1; }}
-.intro{{ background:var(--linen); border-left:3px solid var(--terr); border-radius:4px 10px 10px 4px; padding:6.5mm 8mm; margin-bottom:8mm; font-size:12pt; line-height:1.55; }}
+.intro{{ background:var(--linen); border-left:3px solid var(--terr); border-radius:4px 10px 10px 4px; padding:6.5mm 8mm; margin-bottom:8mm; font-size:13pt; line-height:1.55; }}
 .intro .kick{{ font-weight:600; color:var(--terr); }}
 .card{{ background:var(--linen); border:1px solid var(--line); border-radius:12px; padding:7mm 8mm; margin-bottom:6mm; break-inside:avoid; }}
 .lhead{{ display:flex; align-items:center; gap:9px; margin-bottom:3mm; }}
 .badge{{ flex:none; width:24px; height:24px; border-radius:50%; background:var(--terr); color:var(--cream); font-weight:600; font-size:11pt; text-align:center; line-height:24px; }}
-.ltitle{{ font-family:'Lora',serif; font-weight:600; font-size:16.5pt; color:var(--choc); line-height:1.1; }}
-.idea{{ font-style:italic; color:var(--caramel); font-size:10.6pt; margin-bottom:3.5mm; line-height:1.45; }}
+.ltitle{{ font-family:'Glacial Indifference',sans-serif; font-weight:600; font-size:16.5pt; color:var(--choc); line-height:1.1; }}
+.idea{{ font-style:italic; color:var(--caramel); font-size:11.6pt; margin-bottom:3.5mm; line-height:1.45; }}
 ul.blts{{ margin:0 0 0 4.8mm; }}
 ul.blts li{{ margin-bottom:2.4mm; padding-left:1.5mm; line-height:1.46; }}
 ul.blts li::marker{{ color:var(--caramel); }}
 .impl{{ background:#F3E1D2; border-radius:8px; padding:4.5mm 5.5mm 4mm; margin-top:4mm; }}
 .impl .dolabel{{ display:block; font-weight:700; letter-spacing:.12em; color:var(--terr); font-size:8.5pt; margin-bottom:2.5mm; }}
 ul.impls{{ margin:0 0 0 4.8mm; }}
-ul.impls li{{ margin-bottom:1.8mm; padding-left:1.5mm; font-size:9.9pt; line-height:1.42; }}
+ul.impls li{{ margin-bottom:1.8mm; padding-left:1.5mm; font-size:10.9pt; line-height:1.42; }}
 ul.impls li::marker{{ color:var(--terr); }}
 .sec{{ font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--terr); font-size:9.5pt; margin-bottom:4mm; }}
 </style></head><body>

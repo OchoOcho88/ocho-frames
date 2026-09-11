@@ -12,16 +12,19 @@ import sys
 from PIL import Image, ImageDraw, ImageFont
 
 # Brand
-BLUSH = "#F0CDB3"
+BLUSH = "#FFBE9F"
 CREAM = "#F6EEE5"
 WHITE = "#FFFFFF"
 
-BG, INK, SUFFIX = BLUSH, WHITE, ""
+# Overrides (D-050, parameterise rather than fork): SPORTIF_BG for the ground colour,
+# SPORTIF_OUT for the output folder, SPORTIF_SUFFIX appended to every filename.
+# Defaults are the current brand peach (Pantone 162 C, D-051).
+BG, INK, SUFFIX = os.environ.get("SPORTIF_BG", BLUSH), WHITE, os.environ.get("SPORTIF_SUFFIX", "")
 
 # paths resolve from this file, so the script works in both Cowork and Claude Code
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..", ".."))
 FONT = os.path.join(ROOT, "brand/fonts/glacial-indifference/GlacialIndifference-Regular.otf")
-OUT = os.path.join(ROOT, "clients/sportif/Sportif_Collection/grid")
+OUT = os.environ.get("SPORTIF_OUT", os.path.join(ROOT, "clients/sportif/Sportif_Collection/grid"))
 
 TILE_W, TILE_H = 1080, 1440
 W, H = TILE_W * 3, TILE_H

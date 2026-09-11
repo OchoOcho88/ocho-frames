@@ -80,7 +80,7 @@ One direction, three honest tests. Each is a distinct hypothesis about what make
 
 ## Visual and voice system (quick reference, full detail in brand.md)
 
-- **Palette:** warm-neutral grounds (linen, cream, sand), with the product colourway (curated from the factory range) as the only saturated element. Primary blush peach #F0CDB3, FLOW tones caramel, terracotta, chocolate. Deliberately NOT the saturated beige minimalism of the field and NOT PE Nation loudness.
+- **Palette:** warm-neutral grounds (linen, cream, sand), with the product colourway (curated from the factory range) as the only saturated element. Primary blush peach #FFBE9F, FLOW tones caramel, terracotta, chocolate. Deliberately NOT the saturated beige minimalism of the field and NOT PE Nation loudness.
 - **Light and texture:** soft natural window light, golden warmth, linen and sand, tactile close-ups. Coastal, relaxed, elevated.
 - **Type:** Glacial Indifference wordmark, letter-spaced, with a script signature used sparingly.
 - **Voice:** Anine Bing restraint plus Kikiva warmth. Short, confident lines, genuine founder heart, the occasional playful "Too fashionable not to WEAR." Never the White Fox hype register.

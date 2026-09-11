@@ -34,13 +34,13 @@ KEEP = ("Keep the SPORTIF fabric resistance booty bands EXACTLY identical: same 
 JOBS = {
  'flatlay': ('bands.jpg', '1536x1024',
     "Remove all clutter (juice glass, water bottle, plastic bag, hard shadows) and replace the "
-    "countertop and background with a smooth seamless blush-peach studio surface (#F0CDB3). "
+    "countertop and background with a smooth seamless blush-peach studio surface (#FFBE9F). "
     "Keep all three bands laid in a neat row."),
  'flatlay-cream': ('bands.jpg', '1536x1024',
     "Remove all clutter and replace the surface with a soft cream linen studio backdrop (#F6EEE5), "
     "keeping all three bands in a neat row."),
  'trio-portrait': ('bands_2.jpg', '1024x1536',
-    "Remove all clutter and replace the background with a smooth blush-peach studio surface (#F0CDB3). "
+    "Remove all clutter and replace the background with a smooth blush-peach studio surface (#FFBE9F). "
     "Recompose to a vertical 4:5-friendly portrait product shot of the three bands stacked, generous "
     "clean peach space above and below for a caption."),
 }

@@ -34,7 +34,7 @@ OUT.mkdir(parents=True, exist_ok=True)
 
 # ---------------------------------------------------------------- brand constants
 CREAM = (246, 238, 229)
-PEACH = (240, 205, 179)
+PEACH = (255, 190, 159)  # Pantone 162 C, brand colour from 2026-09-11 (was 240, 205, 179)
 CARAMEL = (198, 146, 110)
 TERRA = (131, 56, 39)
 CHAR = (74, 67, 60)

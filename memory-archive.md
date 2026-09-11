@@ -2,6 +2,237 @@
 
 Older session entries moved out of memory.md to keep it light.
 Same format, same rules, nothing deleted. Newest archived batch at the top.
+Weekly Reviews (the summaries) stay in memory.md permanently.
+
+---
+
+<!-- archived batch, moved 2026-09-11 -->
+
+## Session 033 (2026-08-21, Cowork): the session protocol becomes two checked commands
+
+Client: Ochoproductions
+Tags: workflow, tooling, memory-system, close-out, startup, git, cowork, voice-rule, em-dashes
+
+Short session, no client work. Hugo opened with "fresh session starting" and I answered with a
+greeting instead of opening the workspace. He had to tell me twice: first "you should read the
+start up protocol", then "why didnt you run startup?". Both were fair.
+
+The second question turned out to be the interesting one, because the answer was structural rather
+than personal. There was no startup command. `.claude/commands/` held exactly one file,
+`close-out.md`. The session-start protocol existed only as prose inside CLAUDE.md, and CLAUDE.md is
+not auto-loaded in Cowork, which was already logged as a learning in S031 after a client-facing
+email reached final draft full of em dashes. So half the loop was protected by a named command and
+the other half depended on a session remembering to open a file nothing forced it to open. That
+half failed again here.
+
+What was built:
+
+**`scripts/startup.py` plus `.claude/commands/startup.md`.** One read-only pass that prints the
+environment (detected from the path, Cowork vs Claude Code, with that environment's gotchas), this
+session's number counted off the last entry in memory.md, the last five commits, a loud warning if
+the tree is dirty or the branch is ahead of the remote, the CURRENT STATE block, open loops for the
+active client, the content gate (brand.md and voice-guidelines.md, with a missing-file check), the
+house rules with the dash rule first, and flags. `--short` skips the state block, `--client NAME`
+overrides the client auto-detected from CLAUDE.md. CLAUDE.md now OPENS with the command instead of
+a prose checklist.
+
+**`scripts/closeout.py`, the mirror.** It runs every close-out step a machine can verify and
+refuses to pass while anything is unfinished, leaving only the writing to a human or an agent. It
+clears stale git locks the correct way per environment, sweeps changed files for em and en dashes
+(`--fix-dashes` to auto-correct, `--all-files` for the whole repo), verifies the session entry
+exists with the right number, date, environment tag, `Client:` and `Tags:` lines, verifies CURRENT
+STATE was updated today and names this session, checks both registries for rows tagged with this
+session, runs `archive_memory.py`, `memory_tools.py index` and `memory_tools.py check`, then
+commits. `.claude/commands/close-out.md` was rewritten to drive it.
+
+Three drift bugs surfaced while wiring it up:
+
+1. **`close-out.md` hardcoded the tag "Claude Code".** Every close-out run from Cowork was stamping
+   the wrong environment onto its own session entry, which is the single field the handoff protocol
+   depends on. Now environment-agnostic, and the script verifies the tag against reality.
+2. **`close-out.md` was missing steps (d) and (e) from CLAUDE.md**, the `memory_tools index` and
+   `check` runs. Both now run automatically inside the script.
+3. **The "memory.md > 90KB" warning could never be cleared.** memory.md is 114KB, the archiver
+   keeps the newest 6 session entries and there are exactly 6, so it had nothing to move and never
+   will. The bulk is elsewhere: the CURRENT STATE block alone is 34KB, roughly 30% of the file,
+   against a brief in CLAUDE.md of about 12 lines, and eight Weekly Reviews make up most of the
+   rest. Neither is touched by the archiver. The warning now fires only when archiving would
+   genuinely move something, and separately names the real culprits. See D-037 and Q-021.
+
+**The Cowork git lock problem is now handled rather than rediscovered (D-036).** It bit twice this
+session. Cowork cannot unlink inside the mount, so every commit strands `.git/index.lock` and
+`.git/HEAD.lock`, and the next commit refuses to run claiming another git process is active, which
+is a misleading error. `rm` fails but `mv` works, so the fix is to move them into
+`.git/_stale_locks/`. startup.py detects the locks and prints the right command for the
+environment; closeout.py clears them automatically.
+
+**Em dash sweep, client-facing scope.** A repo-wide scan found roughly 330 legacy dashes across 48
+of our own files, most written before the voice rule existed. Hugo chose the narrow scope: the
+seven files that could ever reach a client or the public site (README.md, index.html,
+brand/agency-brand-kit.md, and four Sportif docs including image-prompts.md and
+gen_fresh_explore.py). 46 dashes removed. Internal notes and research dumps are left alone; the
+close-out sweep will catch each one the first time anyone edits it. memory_tools.py and
+memory-archive.md were cleaned as a side effect of being touched.
+
+**The narrow scope was vindicated immediately.** The blunt replacement rule (a spaced dash becomes
+a comma) turned "2-3 uses" into "2, 3 uses", which is nonsense. A repo-wide run would have planted
+that class of error in 48 files at once, in text nobody would have gone back to re-read. Fixed in
+the two affected spots and fixed in the tool: a dash between digits is now recognised as a range
+and becomes "to" before the comma rule runs. The general lesson is that a mechanical rewrite is
+only as safe as the smallest surface you can still proof-read.
+
+The harness caught a bug in itself on its first real run. Close-out cleared the stranded git locks
+as step one, then every git call made by the checks in between put a fresh `index.lock` back, so the
+commit at the end failed with the same misleading "another git process is running" error the script
+exists to prevent. Locks are now cleared again immediately before the commit. Worth noting because
+it is the argument for the whole exercise: the check found a failure that a human running the same
+steps by hand would have hit and blamed on git.
+
+Learned:
+
+- A protocol that lives only in prose gets skipped by whoever did not open the file. A named
+  command survives that. Automating one end of a loop and not the other guarantees the unautomated
+  end is where the failures land.
+- A warning that cannot be acted on is worse than no warning, because it teaches you to skim past
+  the warning channel entirely. Both of the CURRENT STATE and Weekly Review warnings that replaced
+  it are things someone can actually do something about.
+- In Cowork, `rm` is blocked inside the mount but `mv` is not. That is the general workaround for
+  anything needing deletion here, not just git locks.
+
+Decided: D-035, D-036, D-037.
+Opened: Q-021 (memory.md hygiene pass), Q-022 (push the local commits from the Mac).
+Still first up next session: Q-016, the band's 3D model. No client work happened today.
+
+---
+
+
+## Session 032 (2026-08-21, Cowork): first posters from the real bands, cutouts renamed, 3D path chosen
+
+Client: Sportif
+Tags: real-bands, cutouts, posters, collage, teaser, instagram, 3d, shopify-ar, naming, colour, photography, gpt-image-2, textures, layout-rule
+
+Long session, started the evening of 2026-08-20 and ran through 08-21.
+
+Lucy has sent the physical bands (light, medium, heavy). Hugo photographed them on an iPhone and
+removed the backgrounds, and dropped six PNGs into `clients/sportif/assets/Sportif_Bands/`. Reading
+the labels showed every one of them is the **HEAVY** band: two front views (flat with the label near
+the top, folded with the label mid band), the plain back, two shots of the inside grip face with its
+twin dark stripes, and a close crop of the moulded SPORTIF / HEAVY patch. Hugo confirmed the reading.
+Renamed to `sportif-band-heavy-front-flat / front-folded / back-flat / inside-grip-a / inside-grip-b /
+label-detail`.
+
+**Two poster directions, Hugo's picks, feed 4:5 and story 9:16 each.** One script,
+`clients/sportif/scripts-local/build_band_posters.py`, no arguments, re-runs clean.
+
+*Editorial collage:* cream ground, inset peach plate under a thin caramel rule, the lockup on the
+cream above it, EVERYDAY TRAINING ELEVATED set left in Glacial Bold (straight off the brand say-list),
+the folded band tilted 10 degrees in front and breaking the plate at the bottom, and a tilted cream
+card holding a swatch of the inside grip face so the poster shows two textures of the product rather
+than one. Caramel footer lines, MADE TO BE SEEN left and BOOTY BAND, HEAVY right.
+
+*Coming-soon teaser:* peach ground, the band centred as the single pop of colour, white lockup above,
+COMING SOON tracked in warm charcoal, terracotta JOIN THE WAITLIST pill. No dates, consistent with the
+launch being on hold (D-001).
+
+**Craft notes worth keeping.** Warm brown shadows, not grey (see the learning above). The shadow
+helper pads the alpha before blurring, otherwise the blur clips at the object edge and reads as a box.
+The story layouts key their type up about 25 percent and push the peach plate closer to the safe edges,
+because sizes derived from the 1080px width look undersized on a 1920px canvas. Story content stays
+inside the 260px / 340px safe zones (D-020).
+
+**3D.** Hugo's goal is a Shopify AR / 3D viewer asset, not a turntable video. Researched what Shopify
+actually requires and what the current image-to-3D tools do. The honest position, given to Hugo: a
+booty band is a flat loop of woven fabric, which is a simple shape that AI meshers tend to lump and
+smooth, so a hand-built Blender model textured from these same photos would be more accurate than any
+generated mesh. If we go the AI route, Tripo AI is the pick (multi-image input, PBR output, direct GLB
+export, free tier of 200 credits a month). Left as an open decision (Q-016).
+
+Learned: the workspace CLAUDE.md was read at session start this time, per the S031 learning, and it
+caught the em-dash rule before any copy was written.
+
+## Session 031 (2026-08-17, Cowork): Lucy's email-02 revisions, the collection mark goes master, art-direction overrides
+
+Client: Sportif
+Tags: lucy, email-02, social, logo-lockup, collection, instagram, placement, pillow, voice-rule
+
+Lucy replied to the email-02 socials (Q-007, open since S028): "These look great!" plus three
+notes. Change feed-duo's logo to the LEFT in BLACK, the ceiling beam is covering the logo on
+the rest, and she'll send Canva notes on the story pilates pic. Rebuilt the whole batch in
+`build_email02_social_v2.py` (v1 script untouched), output to `created/v2/{black,white,outline}/`,
+send-ready copies with client-readable filenames in `TO-SEND-2026-08-17/` (12 files, ~20MB).
+Email drafted at `email-to-lucy-v2.md`. NOT YET SENT.
+
+**The beam fix generalised into a placement engine.** Rather than hand-positioning, the script
+scans the left column and slides the lockup down until its footprint contains no dark pixels,
+so it cannot land on the beam on these photos or future ones. Later refactored into one
+function, `find_clear_y`, with `prefer='top'` for the mark and `prefer='bottom'` for the
+footer. Worth knowing: the p2 (2nd-percentile) score it reports is pessimistic, because the
+padded search box catches nearby dark objects even when the type itself sits clean. Judge by
+eye, not by the number.
+
+**Caught two things Lucy did not ask for.** (a) v1 put story lockups at y=150, underneath
+Instagram's own profile row and progress bars, so they would have been half covered once
+posted; stories now sit inside a 260px top / 340px bottom safe zone. (b) Hugo checked a post
+on his phone and the lettering read small, so the lockup went up 25%. Size is one constant,
+`SCALE`, which drives type, rule, gaps, shadow and stroke; the clearance search re-solves
+placements automatically against the bigger footprint, so positions are never hand-tuned.
+
+**The master mark changed (Hugo's call).** The lockup is now SPORTIF / rule / collection, per
+Lucy's artwork, and it applies to EVERYTHING from here, not just collection-launch pieces. See
+D-017. Proportions are derived rather than eyeballed: keep our canonical rule (0.43x wordmark
+width), then size 'collection' so the rule is 0.75x its width, which reproduces her reference
+without inheriting tracking distortion. Measured against her 500px original: rule/sub 0.741 vs
+0.750, sub/cap 0.458 vs 0.488. NOTE the back catalogue (posters, product shots, the three IG
+ads, band-swap set, both client PDFs) is still on the old wordmark+rule. Q-013.
+
+**The @handle came off.** First it collided with the new mark (the word "collection" sitting
+directly above "@sportifcollection" reads as a stutter), so it moved to a bottom footer. Then
+Hugo made the better argument: on Instagram the account name is already printed above every
+post and story, so stamping it into the image repeats what the viewer can already see. Now
+`DRAW_HANDLE = False`. The footer code is kept, not deleted, because the logic reverses the
+moment an image travels without the account name attached (stockist decks, Pinterest, print).
+D-018.
+
+**Art direction beat the algorithm, and that is now a documented workflow.** The clearance
+search finds ground the type can legibly SIT on; it cannot judge composition, and left to
+itself it hugged the top-left on every frame. Hugo opened the PNGs, dragged selection boxes
+where the mark should go, and screenshotted them. Those convert to `MANUAL_PLACEMENT` entries
+(x0,y0,x1,y1 in the image's own pixels) which override the search and survive re-runs. Set for
+story-ballreach, story-sidestretch, feed-pilates. story-sidestretch is deliberately on the
+RIGHT of frame, so the set is no longer uniformly left-aligned; the email now explains that
+placement follows each photo rather than a fixed rule. Full-frame screenshots convert cleanly,
+Preview-window ones need the ~88px toolbar offset backed out. D-019.
+
+**New treatment: the wordmark burned into the wall.** Hugo's idea, a separate pilates variant
+with SPORTIF collection set large and tone-on-tone BEHIND her, so her raised leg occludes the
+type. `build_pilates_bg_wordmark.py`, four strengths, deboss-medium is the pick. No matting
+model needed: that plate's background is a flat (230,224,217) with a clean empty gap in the
+histogram between wall (~222+) and skin (~130), so a feathered luminance threshold at 200 is a
+clean subject mask. The effect works because we shift the wall's OWN tone by a few percent
+inside the letterforms rather than pasting a colour on top. IMPORTANT LIMIT: this only works on
+a flat, evenly-lit background. The three studio shots have shelving, arches and mirrors behind,
+where a threshold cannot separate subject from background, so the same look there needs a
+Photoshop cutout. Hugo is making a PS version to show exactly what he meant. Q-014.
+
+**Voice rule breach, worth not repeating.** The first drafts of the Lucy email, the README and
+both scripts were full of em dashes, against the rule in CLAUDE.md line 45. Hugo caught it.
+Root cause: `hyperframes/CLAUDE.md` was not loaded into the Cowork session context, so the
+workspace conventions (including the session-start protocol) were not being applied until it
+was read explicitly. Fix going forward: read `hyperframes/CLAUDE.md` at the start of every
+session in this folder. Rewrote all four files clean rather than swapping characters. The same
+pass caught a factual error in the email, which claimed the logo moved "down the left-hand side
+on each one" after story-sidestretch had gone to the right.
+
+**Open:** Q-012 (send the email, then Lucy's pick of black/white/outline to lock the house
+standard), Q-013 (back-catalogue pass to the new mark), Q-014 (Hugo's Photoshop reference for
+the burned-in wordmark). Five images are still on automatic placement (feed-duo,
+feed-sidestretch, feed-ballreach, story-duo, story-pilates) and would benefit from boxes before
+sending. See [[real-band-content-pipeline]], [[go-the-extra-mile]].
+
+# Workspace Memory Archive
+
+Older session entries moved out of memory.md to keep it light.
+Same format, same rules, nothing deleted. Newest archived batch at the top.
 The newest 4 Weekly Reviews stay in memory.md; older ones are archived here.
 
 ---
