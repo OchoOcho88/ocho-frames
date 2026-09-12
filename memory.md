@@ -44,7 +44,7 @@ Tags: ochoproductions, memory-system, token-diet, startup, closeout, memory-tool
 
 **Decided.** D-054, the five rules as standing policy.
 
-**Open.** Q-037 resolved, nothing new opened. The five-weekly-reviews warning is gone: on Hugo's call the 2026-07-26 review moved to `memory-archive.md` (third close-out). Everything else is in the loops startup prints.
+**Open.** Q-037 resolved, nothing new opened. The five-weekly-reviews warning is gone: on Hugo's call the 2026-07-26 review moved to `memory-archive.md` (third close-out). Q-026 parked on Hugo's call (fourth close-out): waiting on Lucy since 27 August, unpark when she answers. Everything else is in the loops startup prints.
 
 **Next.** Check for Lucy's replies on the inspiration board (Q-036) and the signature original (Q-034); the Fit Expo booth email (Q-027) is still owed.
 
