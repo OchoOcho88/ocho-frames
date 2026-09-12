@@ -6,7 +6,7 @@ Source of truth: `clients/sportif/brand.md`. Do not invent colours or fonts.
 
 | Role | Hex |
 |---|---|
-| Blush Peach (primary) | #F0CDB3 |
+| Blush Peach (primary) | #FFBE9F |
 | Caramel accent | #C6926E |
 | Terracotta accent | #833827 |
 | Chocolate anchor | #2D1814 |

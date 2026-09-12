@@ -17,7 +17,7 @@ scene, copy a different base over the matching `scene*.png` and re-render.
 ## Design
 
 - **Card-on-peach treatment:** each 4:5 shot sits whole on the blush-peach ground
-  (#F0CDB3) as a soft-shadowed framed print. Preserves the full composition (no crop),
+  (#FFBE9F) as a soft-shadowed framed print. Preserves the full composition (no crop),
   reads as a premium lookbook, keeps the brand colour dominant.
 - Scenes 2-5 start at `opacity:0` and fade in on cue (explicit, satisfies the 0.7.64
   `gsap_fullscreen_overlay_starts_visible` lint rule). Do not remove the initial

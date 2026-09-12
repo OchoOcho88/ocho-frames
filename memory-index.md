@@ -5,7 +5,7 @@
 
 | # | Date | Env | Title |
 |---|------|-----|-------|
-| 41 | 2026-09-12 | Claude Code | The token diet, Q-037 done in five moves |
+| 41 | 2026-09-12 | Claude Code | The token diet, then the three loops the workspace could close alone |
 | 40 | 2026-09-12 | Claude Code | Lucy asks for an animated inspiration board, and a mock goes back the same day |
 | 39 | 2026-09-11 | Claude Code | Lucy picks Pantone 162 C, the brand colour moves, and two emails go out |
 | 38 | 2026-09-03 | Cowork | Lucy says peach type, and the peach itself is now the question |

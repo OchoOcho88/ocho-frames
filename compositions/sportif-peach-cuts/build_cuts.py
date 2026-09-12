@@ -58,13 +58,13 @@ html = f'''<!doctype html>
       @font-face {{ font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Regular.woff2") format("woff2"); font-weight: 400; }}
       @font-face {{ font-family: "Glacial Indifference"; src: url("fonts/GlacialIndifference-Bold.woff2") format("woff2"); font-weight: 700; }}
       * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-      html, body {{ margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #F0CDB3; font-family: "Glacial Indifference", sans-serif; }}
-      #stage {{ position: absolute; inset: 0; overflow: hidden; background: #F0CDB3; }}
+      html, body {{ margin: 0; width: 1080px; height: 1920px; overflow: hidden; background: #FFBE9F; font-family: "Glacial Indifference", sans-serif; }}
+      #stage {{ position: absolute; inset: 0; overflow: hidden; background: #FFBE9F; }}
       /* stacked full-bleed cuts, all hidden until the timeline reveals them */
       .cut {{ position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0; transform-origin: center; will-change: transform, opacity; }}
 
       /* intro wordmark + end card overlays */
-      .overlay {{ position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #F0CDB3; z-index: 50; }}
+      .overlay {{ position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; background: #FFBE9F; z-index: 50; }}
       #endcard {{ opacity: 0; }}
       .wm {{ color: #FFFBF8; font-size: 132px; letter-spacing: 0.26em; text-indent: 0.26em; }}
       .rule {{ width: 200px; height: 7px; background: #FFFBF8; margin-top: 34px; transform-origin: center; }}

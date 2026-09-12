@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-12 | Last session: 041 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12 | Next: Check for Lucy's replies first (she is not on Gmail, Hugo pastes or screenshots them): the animated inspiration board email went out 2026-09-12 with four questions pending (Q-036), and the signature original is still wanted (Q-034). When her answers land, extend `scripts-local/build_inspiration_board_mock.py` to paste the layers in over about 34 frames at 140 ms, a 600px GIF for email and a 1080x1350 MP4 for Instagram. Everything else waiting is in the open loops that startup prints, the Fit Expo booth email (Q-027) at the top of them.*
+*Last updated: 2026-09-12 | Last session: 041 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12 | Next: Check for Lucy's replies first (she is not on Gmail, Hugo pastes or screenshots them): the inspiration board questions (Q-036) and the signature original (Q-034) are both pending, and when they land the build is `scripts-local/build_inspiration_board_mock.py` extended to about 34 frames at 140 ms. Hugo's two S041 hand-backs: pick the shot 01 colourway from `lucyfriend-band-placement/plates/colourway-compare/` (Q-025) and run `gen_poster_1b.py high` from a native Terminal for the poster 2 keeper (Q-019). Everything else is in the loops startup prints, the Fit Expo booth email (Q-027) at the top.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -20,33 +20,27 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
 
 ---
-## Session 041 (2026-09-12, Claude Code): The token diet, Q-037 done in five moves
+## Session 041 (2026-09-12, Claude Code): The token diet, then the three loops the workspace could close alone
 
-Client: Ochoproductions
-Tags: ochoproductions, memory-system, token-diet, startup, closeout, memory-tools, claude-md, housekeeping
+Client: Ochoproductions, Sportif
+Tags: ochoproductions, sportif, memory-system, token-diet, startup, closeout, band-placement, colourway, poster, ig-ads, master-mark, pantone-162c, hyperframes
 
-**Done.** All five Q-037 moves in order, nothing else touched. (1) `memory_tools.py open --brief` prints one line per loop, the first sentence capped at 160 characters; `startup.py` uses it and the footer says where the full rows are. (2) Q-001 to Q-010 parked with `[p]` in `OPEN-QUESTIONS.md` (eight rows, two were already resolved); `memory_tools.py` hides them unless `--parked` and `reconcile` skips them. Q-002, the trademark gate, is parked too, but the first CURRENT STATE bullet still carries it. (3) "Tools and gotchas" and the PDF venv recipe moved to `docs/gotchas.md`, grouped by environment, with three S040 learnings that belonged there; startup names the file in its own section and never prints it; CLAUDE.md rewritten around the protocol and the conventions. (4) The "read the top session entry" step dropped from CLAUDE.md and `/startup`; the handoff line rewritten to three sentences. (5) Five-heading template in `docs/memory-system.md` (v2.1 note, em dashes swept out); `closeout.py` warns past 500 words, on a missing heading, and past three handoff sentences. Its commit trailer now names the current model. Then, on Hugo's call after the first close-out, the 13 CURRENT STATE bullets were cut to 10, each pointing at its D-number instead of restating it, and the session closed out a second time.
+**Done.** Part one, the token diet (Q-037, all five moves). `memory_tools.py open --brief` prints one line per loop and `startup.py` uses it; Q-001 to Q-010 parked with `[p]`, which `memory_tools.py` now understands; "Tools and gotchas" moved to `docs/gotchas.md`, named by startup and never printed; the top-entry read dropped from CLAUDE.md and `/startup`; the handoff line cut to three sentences; five-heading template in `docs/memory-system.md` with `closeout.py` warning past 500 words, a missing heading, or a four-sentence handoff. Then, on Hugo's calls: CURRENT STATE cut from 13 bullets to 10 D-number pointers, the 2026-07-26 weekly review archived, Q-026 parked. Part two, the three loops that needed nobody. Q-025: `build_colourway_compare_shot01.py` lifts Hugo's placement out of the shot 01 PSD and rebuilds it with LIGHT, MEDIUM and HEAVY, colour the only variable. Q-019: `gen_poster_1b.py` with the band written as a closed loop crossing both thighs; two low candidates both correct. Q-013: band posters rebuilt, the three Lucy posters and the three IG ads moved to the master mark through a new shared `house_lockup.py`, handle off per D-018, and the three compositions re-rendered in 162 C.
 
-**Measured** (chars divided by 4, tiktoken is not installed):
-
-| | before | after |
-|---|---|---|
-| startup print | 4,709 | 2,090 (final, clean tree) |
-| of which open loops | 2,845 | 588 |
-| of which CURRENT STATE | 1,144 | 722 (10 bullets) |
-| CLAUDE.md, paid every turn | 2,810 | 1,289 |
-| close-out entry | 1,106 (741 words) | 670 (430 words, this entry) |
+**Measured** (characters divided by four). Startup print 4,709 to 2,119 tokens (open loops 2,845 to 588, CURRENT STATE 1,144 to 722). CLAUDE.md, paid every turn, 2,810 to 1,289. Close-out entry 1,106 to about 700.
 
 **Learned.**
-- After the five moves startup still sat at about 2,500 because the 13 CURRENT STATE bullets were 1,091 tokens on their own. Cutting them to 10 D-number pointers was the second half of the saving; the numbers above are the final ones.
-- A first-sentence cap needs a floor. "THE 3D BAND." says nothing, so the brief keeps taking sentences until the line passes 80 characters.
-- Size caps warn rather than block (D-037), otherwise they get bypassed.
+- A first-sentence cap needs a floor: "THE 3D BAND." says nothing, so the brief keeps taking sentences until it passes 80 characters.
+- Photoshop's rotation sign is the reverse of Pillow's. The PSD layer is the check: +101 in Pillow matched Hugo's -101 at 20/255, the other sign at 88/255.
+- Post-grade, band against the floor around it, the separations are LIGHT +19, MEDIUM +9, HEAVY minus 4. The S034 numbers (42/31/12) were pre-grade against the bare floor.
+- gpt-image-2 at high quality cannot be called from the Claude Code shell, the connection drops at 60 seconds. Low works; high is a native Terminal job.
+- The band geometry failure was wording, not references: "one closed loop that encircles BOTH thighs, perpendicular to the legs" fixed it first time.
 
-**Decided.** D-054, the five rules as standing policy.
+**Decided.** D-054, the token diet rules as standing policy.
 
-**Open.** Q-037 resolved, nothing new opened. The five-weekly-reviews warning is gone: on Hugo's call the 2026-07-26 review moved to `memory-archive.md` (third close-out). Q-026 parked on Hugo's call (fourth close-out): waiting on Lucy since 27 August, unpark when she answers. Everything else is in the loops startup prints.
+**Open.** Q-038 new (composition end cards: old mark, handle, and a "Launching September 2026" line). Q-025 resolved, Hugo picks the colourway. Q-019 waits on his high-quality run. Q-013 mostly done, remainder listed on the row. Q-037 resolved.
 
-**Next.** Check for Lucy's replies on the inspiration board (Q-036) and the signature original (Q-034); the Fit Expo booth email (Q-027) is still owed.
+**Next.** Lucy's replies (Q-036, Q-034); then Hugo's two hand-backs, the colourway pick and the poster 2 high run.
 
 ---
 ## Session 040 (2026-09-12, Claude Code): Lucy asks for an animated inspiration board, and a mock goes back the same day

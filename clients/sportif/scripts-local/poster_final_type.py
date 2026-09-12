@@ -12,6 +12,9 @@ pixels over their beige panels and reconstructing the beige, then sets real Glac
 import cv2
 import numpy as np
 from pathlib import Path
+import sys as _sys, os as _os
+_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
+from house_lockup import draw_lockup, measure_lockup  # master mark, D-017
 from PIL import Image, ImageDraw, ImageFont
 
 ROOT = Path('/Users/hugobrizuela/Desktop/hyperframes')
@@ -83,12 +86,9 @@ for i, ln in enumerate(['STRENGTH', 'YOU CAN', 'WEAR']):
     draw_tracked((LEFT, top + i * pitch), ln, hf, CHAR, track_px=hsize * TRACK_EM)
 
 # Wordmark: SPORTIF, widely tracked caps, centred on the bottom band (match the ref's spacing).
-wsize = 46
-wf = ImageFont.truetype(REG, wsize)
-# vertically centre in the scrubbed band y=1378..1452
-wb = d.textbbox((0, 0), 'SPORTIF', font=wf)
-wy = (1378 + 1452) / 2 - (wb[3] + wb[1]) / 2
-draw_tracked((0, wy), 'SPORTIF', wf, CHAR, track_px=wsize * 0.42, center_x=Ww / 2)
+# master mark SPORTIF / rule / collection (D-017), centred in the scrubbed band y=1378..1452
+_lw, _lh = measure_lockup(d, 36)
+draw_lockup(d, Ww / 2, (1378 + 1452) / 2 - _lh / 2, 36, CHAR, align='center')
 
 img.save(OUT)
 print('ok ->', OUT.relative_to(ROOT))
