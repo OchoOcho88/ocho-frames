@@ -508,6 +508,54 @@ session entries; the live loops are in OPEN-QUESTIONS.md.
 
 ---
 
+<!-- Weekly Review archived 2026-09-12, session 041 (keep four in memory.md) -->
+
+## Weekly Review, 2026-07-26 (week of 2026-07-20)
+
+Eight sessions this week (020 to 027), the busiest week the workspace has ever had, up from one last week. The logjam broke on day one: Session 021 finally captured the Tuesday 2026-07-14 Lucy meeting outcomes (last week's #1 focus), which reframed the whole strategy around the trademark hold. The rest of the week banked an enormous amount of trademark-independent production: a full real-band product content pipeline, a fresh generation pipeline, a Canva collaboration workflow, memory system v2, and the opening move of a Lucy expert-brand content strategy.
+
+### Highlights
+- **The Tuesday Lucy meeting outcomes were finally logged (Session 021), and they changed the map.** Launch is held indefinitely pending trademark talks with Lucy's lawyer, trademark, not Shopify, is now the critical-path gate. The 500 band units HAVE landed (unboxing now filmable). The correct posture is explicit: bank everything that doesn't depend on trademark.
+- **A complete real-band product content pipeline shipped (Sessions 023 to 024).** From 3 casual snapshots of the real bands: restaged flatlay, 3 hero cards, a range reel, two lifestyle+product blends, a "they've landed" teaser, a band-in-use pilates reel with the real SPORTIF label stamped in, plus the reusable **reference-reskin technique** (AI generates a no-text plate, we own the type in PIL) with two waitlist-poster finals. The bands' colourways ARE the peach palette, the whole direction validated by physical product.
+- **Fresh from-scratch generation + Canva workflow established (Session 025).** `gen_fresh_explore.py` makes Sportif key visuals from scratch with three durable prompt lessons (name the garments, contrast skin tone, smooth not ribbed), and the two-avenue model (our pipeline = studio, Canva = shareable workbench) is set up with a Sportif folder chain to Lucy, Pro-gated pieces (brand kit, folder share) land when Hugo gets Canva Pro ~2026-07-30.
+- **Two infrastructure/strategy moves: memory system v2 (Session 026) and the Lucy expert-brand strategy Phase 1 (Session 027).** v2 adds registries (`DECISIONS.md`, `OPEN-QUESTIONS.md`), per-client filtering, and a close-out `check` hook, directly mitigating the compliance failure that lost the Tuesday meeting notes for a week. Phase 1 applied the Devin Jatho 4-quadrant model to Lucy and produced the "Content Creation Strategy" PDF, ready to send.
+
+### Patterns I noticed
+- **The ~60s render/network cap shaped nearly every session again.** High-quality gpt-image-2 renders hit it in Sessions 023, 024, and 025 (even in the VS Code terminal); the standing answer is iterate low in-harness, finals from a native Mac terminal. This is now a permanent column in the workflow map, not a transient annoyance.
+- **"AI makes the plate, we own the type" hardened from a technique into the house style.** Overlay scripts, the reference reskin, the label stamp, the PIL type layer, every finished piece this week separated AI-generated imagery from brand-controlled typography. Hugo enforced it explicitly ("NO YOU LAYOUT TEXT, THATS OUR WORKFLOW").
+- **Hugo's eyeball QA keeps catching what tooling can't**, the card-crop neighbour bleed (023), the GSAP selector bug hiding the end-card wordmark (022), navy type fighting the warm palette (025), the too-clinical first PDF draft (027). Fourth straight week this pattern holds.
+- **The Lucy dependency changed shape: from hard blocker to feedback latency.** Nothing is structurally blocked on her anymore (trademark is on her lawyer), but a queue of small picks is accumulating: music-bed pacing, the Content Creation Strategy reaction, the incentive A/B/C decision. Meanwhile the waitlist capture page, which needs neither Lucy nor trademark, was named "still the top unbuilt item" in four separate sessions and is still unbuilt.
+
+### Skills / knowledge gained
+- **Durable gpt-image-2 prompt lessons:** name the actual garments; garment colour must CONTRAST skin (flesh-adjacent tones read as nude); material = smooth four-way-stretch, never ribbed (except the band itself); scope edit prompts to "keep the product EXACTLY identical"; a REALISM block (Portra 400, real skin texture, forbid glossy/CGI) cuts the AI look; low-quality label stamps read more natural than crisp composites.
+- **The reference-reskin technique generalises:** any reference layout → no-text AI plate → our type in PIL; generate both pose variants when ambiguous and let product-clarity decide; solid opaque CTA pills beat thin script over busy areas.
+- **Canva mechanics:** connector can't ingest local files (public URLs only); short simple briefs succeed where long hex-code briefs fail; `asset_ids` only reliably used ~1 in 4 candidates (use editor Replace instead); brand kit + folder sharing are Pro-gated; the API's `/d/` URLs are private and 404 standalone.
+- **Production fixes worth keeping:** colour-boundary crop detection for touching products (not equal thirds); feathered Gaussian alpha for peach-on-peach edges; scope GSAP selectors per section when class names repeat; system python has PIL-not-numpy, the .venvs/tts python has numpy-not-PIL.
+- **Memory tooling:** `memory_tools.py check/index/search/decisions/open/reconcile` exist and filter by client; the pre-push warn hook is installed; `MEMORY_ENFORCE=1` flips it to blocking.
+
+### Open questions still unresolved
+**Resolved this week:**
+- [x] ~~Log the Tuesday 2026-07-14 Lucy meeting outcomes~~ RESOLVED Session 021: launch held indefinitely on trademark, waitlist page never put to Lucy, incentive undecided, no Shopify movement, the 500 bands HAVE landed.
+
+**Still open (from this week's sessions):**
+- [ ] **Send Lucy the Content Creation Strategy PDF**, then Phase 2 of the expert-brand strategy: lock her expert niche, one avatar, and the four quadrants (Q-006, Session 027, gated on her reaction).
+- [ ] **Standalone waitlist capture page**, named the top unbuilt item in Sessions 023, 024, and 025; needs neither Lucy nor trademark. Pair with the 3-email welcome flow.
+- [ ] **Canva Pro (~2026-07-30):** set up the Sportif brand kit + share the Sportif folder with Lucy (lucy@lucywayne.com.au) once Hugo upgrades (Session 025).
+- [ ] **Lucy's picks pending:** music-bed pacing (calm ~100 BPM vs upbeat ~118 BPM, Sessions 022 to 023) and the incentive decision A/B/C (Session 021).
+- [ ] **High-res finals past the ~60s cap**, print-quality product/in-use renders need a native Mac terminal run (Sessions 023 to 025).
+- [ ] **ElevenLabs TTS awaiting Hugo's API key** (`.env` slot + script ready, Session 022).
+- [ ] **Film the unboxing**, bands are in hand since Session 021 confirmed landing; footage not yet shot.
+- [ ] **Trademark clearance**, the critical-path gate, on Lucy's lawyer's clock, nothing accelerates it (Session 021).
+- [ ] `cosmos_yoga-duo.mp4` peach video edit would need the Seedance path (Session 020).
+- [ ] Carried from prior weeks, still open: ambassador/instructor seeding shortlist (sixth week carried, needs nothing from anyone), Shopify store (gated on trademark), materials question, Stage 3 synthesis template + Seedance adapter, PDF generators still on Poppins.
+
+### Suggested focus for next week
+1. **Send Lucy the Content Creation Strategy PDF and bundle her pending picks into the same ask** (PDF reaction + music-bed pacing + incentive A/B/C). One message clears the whole feedback queue and un-gates Phase 2 of the expert-brand strategy.
+2. **Build the standalone waitlist capture page + 3-email welcome flow.** Four sessions in a row called it the top unbuilt item; it needs neither Lucy nor the trademark, and every piece of content built this week dead-ends without it.
+3. **When Canva Pro lands (~07-30), set up the brand kit and share the Sportif folder with Lucy**, and use the waiting days to finally start the ambassador/instructor seeding shortlist (six weeks carried) and film the unboxing.
+
+---
+
 <!-- Weekly Reviews archived 2026-08-31, session 036, second pass -->
 
 ## Weekly Review, 2026-07-05 (week of 2026-06-29)
