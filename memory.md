@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-11 | Last session: 039 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-11, in sync with origin/main | **FIRST THING NEXT SESSION: check for Lucy's replies. Two emails went out 2026-09-11: the brand colour reissue (6 files, ending with Hugo asking what she wants to work on next, Q-035) and the animated signature offer (Q-034, waiting on her yes plus the original file or the font name).** | **Brand colour is now Pantone 162 C, screen `#FFBE9F` (D-051), Q-033 CLOSED. Standalone logo files follow her own artwork (D-052). Both client PDFs rebuilt in Glacial Indifference, not resent.** | Still carried: the 3D band hero frame (Q-016, one photograph, list in `clients/sportif/products/band-3d-shoot-list.md`); the Fit Expo booth email, deferred again by Hugo in S039 (Q-027, show looks like JANUARY); the handle rule (Q-028); the email-02 treatment pick (Q-026); the band DROPPED on a floor (Q-023); shot 01 colourway test (Q-025); Gemini egress (Q-017); poster 2 re-run (Q-019).*
+*Last updated: 2026-09-12 | Last session: 040 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12, in sync with origin/main | **FIRST THING NEXT SESSION: check for Lucy's replies (she is not on Gmail, Hugo pastes or screenshots them). The animated inspiration board email went out 2026-09-12 with a final-frame mock attached, four questions pending (Q-036, draft and measured SABO pacing in `clients/sportif/inspiration-board/`). When her answers land, the build is `scripts-local/build_inspiration_board_mock.py` extended to paste the layers in over about 34 frames at 140 ms, GIF for email plus MP4 for Instagram.** | Also waiting: the animated signature original (Q-034, a 156x70 crop is now on file). | Still carried: the Fit Expo booth email (Q-027, deferred again, show looks like JANUARY); the 3D band hero frame (Q-016); the handle rule (Q-028); the email-02 treatment pick (Q-026); the band DROPPED on a floor (Q-023); shot 01 colourway test (Q-025); Gemini egress (Q-017); poster 2 re-run (Q-019); the back-catalogue move to 162 C (Q-013).*
 
 - **The critical path is TRADEMARK, not Shopify.** Launch and the whole go-to-market are held until Lucy's lawyer clears the name (logged from the 2026-07-14 meeting, still open). Underneath that there is still nowhere to sell the band: Shopify unopened, prices and the pouch threshold unset, fabric undecided, all blocked on Lucy.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Strategy locked: parallel wholesale plus DTC, one hub. Client-facing docs are exactly two PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -21,6 +21,31 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **The session protocol is two checked commands (D-035):** `python3 scripts/startup.py` and `python3 scripts/closeout.py --commit -m "..."`. It is a script rather than a paragraph because **CLAUDE.md is NOT auto-loaded in Cowork** and the protocol kept being skipped.
 - **House voice: no em or en dashes anywhere.** Close-out sweeps every changed file and refuses to commit on a hit.
 - **Where the detail lives.** Settled decisions in `DECISIONS.md`, live loops in `OPEN-QUESTIONS.md`, session narrative below and in `memory-archive.md`, both indexed by `memory-index.md`. Query with `python3 scripts/memory_tools.py [check|index|search|decisions|open]`.
+
+---
+## Session 040 (2026-09-12, Claude Code): Lucy asks for an animated inspiration board, and a mock goes back the same day
+
+Client: Sportif
+Tags: sportif, lucy, inspiration-board, stop-motion, mock, signature, email, gmail, pillow
+
+**Q-035 answered by Lucy herself.** She forwarded SABO's "Tropic Muse" marketing email (a stop-motion cork board GIF) and asked "do you happen to know how to do something like this inspiration board?". Hugo's read, correct: can we make a stop-motion loop for Sportif. That is the next job.
+
+**The reference was measured, not eyeballed.** Hugo screen-recorded the GIF (two full loops, `clients/sportif/inspiration-board/reference-sabo-tropic-muse-screenrec.mov`, gitignored). A frame-difference pass over every frame gave the spec in `reference-notes.md`: 4.8 s loop, about 34 frames at roughly 140 ms each (about 7 fps, uniform), empty board held 0.3 s, four big frames for the fabric laying down, then one or two items a frame, full board held 0.2 s, hard cut back to empty. No easing, no slides; each item simply exists in the next frame. Staging: board in a white frame leaning on a pale wall, sunglasses in the foreground that never move, a collection-name caption under the board on every frame.
+
+**A final-frame mock, real assets only.** `scripts-local/build_inspiration_board_mock.py` (Pillow) builds a 1200x1500 board from what the workspace already holds: the seamless weave tiles as the fabric layer (tiled at 0.2 scale so the pitch matches the band cutouts; the plates at native scale read as rope), the three colour-corrected band cutouts hanging from pins, a Pantone 162 C chip plus LIGHT, MEDIUM and HEAVY chips in the measured band colours down the right edge SABO style, the master mark on a card, polaroids (three of Lucy from her Instagram screenshots, two of her friend from the gym set, one Canva pick), a note card with her signature, a placeholder caption in Glacial Italic, and a band lying on the table in front. Cork is procedural. Three passes: v1 (weave too magnified, cork blotchy, a polaroid over two chips), v2 (Hugo's three edits: band centred, Lucy polaroids added, signature card), v3 (her real signature, from a 156x70 crop Hugo screenshotted from her email and dropped in the folder; the script lifts the ink off the paper and tints it chocolate). No generator touched anything, so D-038 is clean. Caption, weave scale, output and signature path are environment overrides (D-050).
+
+**Email sent 2026-09-12** on her thread with the v3 mock attached, draft at `inspiration-board/email-to-lucy-2026-09-12.md`. Two calls by Hugo shaped it: the first draft offered her a choice between a real shoot and a computer build, and he cut that ("just tell her I can do it, and here is a reference I made up for her"), and the mock went in the same send as the questions rather than after them. Four questions remain for her: where it will live, what the board is about, what goes on it, whether it carries words. Recorded as D-053.
+
+**Learned.**
+- Hugo is not on Gmail. Two empty searches for an email he had open in another client. The Gmail connector is not his client mailbox; Lucy's mail arrives as pasted text, screenshots, or files dropped in the client folder. Saved as an auto-memory so no session repeats it.
+- macOS puts a narrow no-break space before am and pm in screenshot and screen recording names. A pasted path fails on `cp`; match with a glob (`*12.02.43*`) or `Path.glob` instead.
+- A screen recording of a GIF is enough to recover its frame timing: extract every frame, threshold the mean frame difference, and the change list gives the hold times and the loop period directly.
+- A close-up plate tiled at its own scale reads as rope, not fabric. The seamless tile scaled so the weave pitch matches the product cutout in the same frame is what reads as the same material.
+- Images pasted into the chat cannot be saved to disk from here. Ask for the file in the folder.
+
+**Decided:** D-053 (a client "can you do this" gets a yes, a mock from her own assets, and short answerable questions; no menu of methods).
+
+**Open:** Q-036 (her four answers, then the loop build: same script pasting the layers in over about 34 frames, 600px GIF for email and 1080x1350 MP4 for Instagram), Q-034 (the signature original is still wanted; the crop is fine for a card, not for a write-on), Q-027 (the booth email, still owed), and every loop carried in CURRENT STATE.
 
 ---
 ## Session 039 (2026-09-11, Claude Code): Lucy picks Pantone 162 C, the brand colour moves, and two emails go out
@@ -565,121 +590,6 @@ draft. Sent 2026-08-27 with 12 attachments, draft at
 **Still open:** Lucy's pick between the three treatments (Q-026); the Fit Expo booth posters, blocked
 on her panel dimensions (Q-027); the 3D band, now promised to her (Q-016); everything carried from
 S034.
-
----
-
-## Session 034 (2026-08-26, Cowork): the weave tiles, and a colour fault in every band cutout
-
-Client: Sportif
-Tags: instagram, grid, texture, colour-correction, photoshop, compositing, lucy-friend, consent, teaching
-
-Hugo drove. Four things happened: the weave tiles got built and an email about them went to Lucy,
-Lucy's friend's gym photos were filed and briefed, a colour fault was found in every band cutout in
-the workspace, and Hugo built his first composite in Photoshop from end to end.
-
-**The SPORTIF weave tiles.** He liked the S032 demo (heavy weave full bleed under the cream lockup)
-and wanted the set completed. Built `clients/sportif/scripts-local/build_texture_weight_tiles.py`,
-three 1080x1350 feed posts sitting as one grid row, output to
-`generated/images/texture-weight-tiles/` with a README. Four changes from the mock, all his call:
-SPORTIF went from about 44% of the canvas width to 66%; the type carries a two-pass warm shadow, a
-soft lift plus a tight core, tinted (45, 24, 18); the weight sits under "collection" as a fourth
-line, caps, wide tracking, sized off MEDIUM so all three share one point size; and the background
-switched from the mirrored tile to the single-crop plate, which has no repeat and no seam. A
-`band_only()` pass finds the columns and rows whose median saturation clears a threshold and trims
-the white sheet out automatically, so the weave runs edge to edge.
-
-The light tile came back reading olive. Measured, its hue and saturation were exactly on target
-(34 deg, 30%) but the frame was about a stop dark, so it landed at `#88765F` instead of `#B8A080`.
-Fixed with a per-channel gamma that lands each plate's mean on its D-027 value. Gamma rather than a
-gain, so black and white are preserved and no highlight in the weave clips. Applied to all three:
-medium and heavy were already on target, so their correction is near 1.0 and the treatment stays
-identical across the set. **This was the first sighting of the fault, and it turned out to be
-everywhere.**
-
-**Email to Lucy, SENT.** His concept: crop the band fabric so close nobody can tell what it is, use
-it to build mystery ahead of showing the bands properly, and note that it is the actual product
-rather than anything generated. Drafted a short message and an email version, both saved to
-`clients/sportif/message-to-lucy-weave-concept.md`, plus a paragraph explaining that the posts go up
-in reverse order (heavy first, light last) because Instagram puts the newest post on the left. He
-sent it with the three tiles attached. Files numbered POST-1 to POST-3 by upload order.
-
-**Lucy's friend, gym shoot: a new job.** Five photos from 18 April 2025, two phones, one sitting.
-Renamed to the D-021 convention. Note the mistake: the first pass named them off a contact sheet
-built without applying the EXIF rotation flag, and three of the five descriptions were wrong. What
-was called "standing rack full length" is her seated on a BOSU. Corrected against the upright
-images. **Always apply `ImageOps.exif_transpose` before describing an iPhone photo.**
-
-New folder `clients/sportif/lucyfriend-band-placement/` with `lucy-direction/`, `plates/`,
-`created/` and a README. Lucy sent four iPhone screenshots with a red mark showing where each band
-goes, matched to shots by timestamp and renamed `direction-NN-<descriptor>.jpeg` so a markup can
-never be paired with the wrong photo. **All four marks are on flat surfaces she does not overlap**,
-so no clean plate is needed anywhere and she never has to be cut out. There is no direction for shot
-03, confirmed with Hugo, so that one is improvised: building two versions, the bench pad and the
-floor by the barbell, and picking after.
-
-**Hugo's method call, and it was the right one.** He proposed cutting her out, generating the band
-into a clean plate with AI, then putting her back, and his stated reason was that he does not have
-her friend's permission to put her likeness through a generator and does not want to ask. The
-consent instinct is right and stands. The workflow around it was not needed: since the bands are
-props on flat surfaces rather than worn, the real cutouts composite straight in and no AI is
-involved at all, so the problem he was designing around stops existing rather than being worked
-around. Also worth noting the clean plate would have actively hurt on a worn band, because removing
-her removes the only thing telling a generator where "around her thighs" is.
-
-**The finding that matters: every band cutout in the workspace is about a stop underexposed.**
-Hugo cut out medium and light himself in Photoshop (Select Subject, Select and Mask with Shift Edge
--10%, output to layer mask). All three verified clean, edge brightness within 6 levels of the
-interior, so no white rim survived. But measured against D-027 the fabric came back at LIGHT 47%
-value against 72%, MEDIUM 37% against 62%, HEAVY 24% against 42%, with saturation down a third
-across the board. On a white sheet you cannot see it. On a dark gym floor the band turns to putty.
-Corrected copies written to `assets/Sportif_Bands/Bands_background_removed/colour-corrected/`, all
-three landing on their measured values. See D-039.
-
-The sting: Hugo's first composite looked roughly the right brightness for a dim gym, but by accident.
-The band was too dark and the gym should have darkened it, and the two errors cancelled. Saturation
-does not cancel, which is why it read as gaffer tape rather than sand.
-
-**Shot 01 built end to end.** Place Embedded as a Smart Object, 20% scale, rotated -101 (90 to lay
-it across frame plus 11 to tilt), squashed to about two thirds for floor foreshortening, a two-layer
-contact shadow sampled from the floor rather than the warm house brown, a Curves adjustment clipped
-to the band at Input 128 / Output 105 for the gym's ambient, then 0.6px blur and 3% Gaussian
-monochromatic noise to match the photo's grain. Measured grain on that floor at 6 to 7 levels of
-average deviation.
-
-**The staging trap (D-040).** With everything else right Hugo still said it looked wrong, and he was
-correct. Measured, the shadow was not the culprit: the band darkened the floor by 16 levels against
-30 for the real skipping rope handles, so it was if anything too light. The tell was tidiness. The
-towel is crumpled, the rope is in a heap, her shoes sit at odd angles, and our band is a perfect
-rectangle with square-cut ends lying dead flat, because our cutouts are product-shot poses. A
-catalogue pose composited into a candid photo reads wrong even when the light is right.
-
-**`lucyfriend-band-placement/PHOTOSHOP-GUIDE.md`.** Seven numbered steps, each a self-contained
-block, per D-031: open and save as PSD, place, squash, shadow, ambient, grain, export. Plus a
-per-shot table, the mirror problem for 04 and 05, and the staging section. Written because Hugo is
-new to Photoshop and is deliberately rebuilding shot 01 from scratch with medium and then heavy, to
-learn the process rather than swap contents.
-
-### What we learned
-- **Apply the EXIF rotation flag before describing any iPhone photo.** Three of five filenames were
-  wrong because a contact sheet was built without it.
-- **A fault invisible on the shooting surface can be fatal on the destination surface.** The
-  underexposure was undetectable on white and ruinous on a dark floor.
-- **Measure before believing your eyes on a composite.** Both of us assumed the shadow was wrong. It
-  was the second most accurate thing in the frame.
-- **Two errors cancelling is not a method.** Correct the asset, then adjust deliberately.
-- **Gamma beats gain for tone matching**, because it preserves black and white and cannot clip.
-- Photoshop's 3D toolset was removed by Adobe. `Filter > Vanishing Point` is the nearest equivalent
-  for placing an object on a plane, and it is worth trying on shots 04 and 05.
-- A sideways label on a band lying horizontally is correct, not a fault. Only a mirrored one is
-  wrong, and rotating never mirrors. I flagged this incorrectly first time and corrected it.
-
-### Decisions
-Decided: D-038, D-039, D-040.
-
-### Open questions / next steps
-Opened: Q-023, Q-024, Q-025.
-Next session: Hugo rebuilds shot 01 from scratch with the MEDIUM band, working through
-PHOTOSHOP-GUIDE.md, then again with heavy. Then the three-way colour comparison.
 
 ---
 

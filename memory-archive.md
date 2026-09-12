@@ -6,6 +6,123 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-09-12 -->
+
+## Session 034 (2026-08-26, Cowork): the weave tiles, and a colour fault in every band cutout
+
+Client: Sportif
+Tags: instagram, grid, texture, colour-correction, photoshop, compositing, lucy-friend, consent, teaching
+
+Hugo drove. Four things happened: the weave tiles got built and an email about them went to Lucy,
+Lucy's friend's gym photos were filed and briefed, a colour fault was found in every band cutout in
+the workspace, and Hugo built his first composite in Photoshop from end to end.
+
+**The SPORTIF weave tiles.** He liked the S032 demo (heavy weave full bleed under the cream lockup)
+and wanted the set completed. Built `clients/sportif/scripts-local/build_texture_weight_tiles.py`,
+three 1080x1350 feed posts sitting as one grid row, output to
+`generated/images/texture-weight-tiles/` with a README. Four changes from the mock, all his call:
+SPORTIF went from about 44% of the canvas width to 66%; the type carries a two-pass warm shadow, a
+soft lift plus a tight core, tinted (45, 24, 18); the weight sits under "collection" as a fourth
+line, caps, wide tracking, sized off MEDIUM so all three share one point size; and the background
+switched from the mirrored tile to the single-crop plate, which has no repeat and no seam. A
+`band_only()` pass finds the columns and rows whose median saturation clears a threshold and trims
+the white sheet out automatically, so the weave runs edge to edge.
+
+The light tile came back reading olive. Measured, its hue and saturation were exactly on target
+(34 deg, 30%) but the frame was about a stop dark, so it landed at `#88765F` instead of `#B8A080`.
+Fixed with a per-channel gamma that lands each plate's mean on its D-027 value. Gamma rather than a
+gain, so black and white are preserved and no highlight in the weave clips. Applied to all three:
+medium and heavy were already on target, so their correction is near 1.0 and the treatment stays
+identical across the set. **This was the first sighting of the fault, and it turned out to be
+everywhere.**
+
+**Email to Lucy, SENT.** His concept: crop the band fabric so close nobody can tell what it is, use
+it to build mystery ahead of showing the bands properly, and note that it is the actual product
+rather than anything generated. Drafted a short message and an email version, both saved to
+`clients/sportif/message-to-lucy-weave-concept.md`, plus a paragraph explaining that the posts go up
+in reverse order (heavy first, light last) because Instagram puts the newest post on the left. He
+sent it with the three tiles attached. Files numbered POST-1 to POST-3 by upload order.
+
+**Lucy's friend, gym shoot: a new job.** Five photos from 18 April 2025, two phones, one sitting.
+Renamed to the D-021 convention. Note the mistake: the first pass named them off a contact sheet
+built without applying the EXIF rotation flag, and three of the five descriptions were wrong. What
+was called "standing rack full length" is her seated on a BOSU. Corrected against the upright
+images. **Always apply `ImageOps.exif_transpose` before describing an iPhone photo.**
+
+New folder `clients/sportif/lucyfriend-band-placement/` with `lucy-direction/`, `plates/`,
+`created/` and a README. Lucy sent four iPhone screenshots with a red mark showing where each band
+goes, matched to shots by timestamp and renamed `direction-NN-<descriptor>.jpeg` so a markup can
+never be paired with the wrong photo. **All four marks are on flat surfaces she does not overlap**,
+so no clean plate is needed anywhere and she never has to be cut out. There is no direction for shot
+03, confirmed with Hugo, so that one is improvised: building two versions, the bench pad and the
+floor by the barbell, and picking after.
+
+**Hugo's method call, and it was the right one.** He proposed cutting her out, generating the band
+into a clean plate with AI, then putting her back, and his stated reason was that he does not have
+her friend's permission to put her likeness through a generator and does not want to ask. The
+consent instinct is right and stands. The workflow around it was not needed: since the bands are
+props on flat surfaces rather than worn, the real cutouts composite straight in and no AI is
+involved at all, so the problem he was designing around stops existing rather than being worked
+around. Also worth noting the clean plate would have actively hurt on a worn band, because removing
+her removes the only thing telling a generator where "around her thighs" is.
+
+**The finding that matters: every band cutout in the workspace is about a stop underexposed.**
+Hugo cut out medium and light himself in Photoshop (Select Subject, Select and Mask with Shift Edge
+-10%, output to layer mask). All three verified clean, edge brightness within 6 levels of the
+interior, so no white rim survived. But measured against D-027 the fabric came back at LIGHT 47%
+value against 72%, MEDIUM 37% against 62%, HEAVY 24% against 42%, with saturation down a third
+across the board. On a white sheet you cannot see it. On a dark gym floor the band turns to putty.
+Corrected copies written to `assets/Sportif_Bands/Bands_background_removed/colour-corrected/`, all
+three landing on their measured values. See D-039.
+
+The sting: Hugo's first composite looked roughly the right brightness for a dim gym, but by accident.
+The band was too dark and the gym should have darkened it, and the two errors cancelled. Saturation
+does not cancel, which is why it read as gaffer tape rather than sand.
+
+**Shot 01 built end to end.** Place Embedded as a Smart Object, 20% scale, rotated -101 (90 to lay
+it across frame plus 11 to tilt), squashed to about two thirds for floor foreshortening, a two-layer
+contact shadow sampled from the floor rather than the warm house brown, a Curves adjustment clipped
+to the band at Input 128 / Output 105 for the gym's ambient, then 0.6px blur and 3% Gaussian
+monochromatic noise to match the photo's grain. Measured grain on that floor at 6 to 7 levels of
+average deviation.
+
+**The staging trap (D-040).** With everything else right Hugo still said it looked wrong, and he was
+correct. Measured, the shadow was not the culprit: the band darkened the floor by 16 levels against
+30 for the real skipping rope handles, so it was if anything too light. The tell was tidiness. The
+towel is crumpled, the rope is in a heap, her shoes sit at odd angles, and our band is a perfect
+rectangle with square-cut ends lying dead flat, because our cutouts are product-shot poses. A
+catalogue pose composited into a candid photo reads wrong even when the light is right.
+
+**`lucyfriend-band-placement/PHOTOSHOP-GUIDE.md`.** Seven numbered steps, each a self-contained
+block, per D-031: open and save as PSD, place, squash, shadow, ambient, grain, export. Plus a
+per-shot table, the mirror problem for 04 and 05, and the staging section. Written because Hugo is
+new to Photoshop and is deliberately rebuilding shot 01 from scratch with medium and then heavy, to
+learn the process rather than swap contents.
+
+### What we learned
+- **Apply the EXIF rotation flag before describing any iPhone photo.** Three of five filenames were
+  wrong because a contact sheet was built without it.
+- **A fault invisible on the shooting surface can be fatal on the destination surface.** The
+  underexposure was undetectable on white and ruinous on a dark floor.
+- **Measure before believing your eyes on a composite.** Both of us assumed the shadow was wrong. It
+  was the second most accurate thing in the frame.
+- **Two errors cancelling is not a method.** Correct the asset, then adjust deliberately.
+- **Gamma beats gain for tone matching**, because it preserves black and white and cannot clip.
+- Photoshop's 3D toolset was removed by Adobe. `Filter > Vanishing Point` is the nearest equivalent
+  for placing an object on a plane, and it is worth trying on shots 04 and 05.
+- A sideways label on a band lying horizontally is correct, not a fault. Only a mirrored one is
+  wrong, and rotating never mirrors. I flagged this incorrectly first time and corrected it.
+
+### Decisions
+Decided: D-038, D-039, D-040.
+
+### Open questions / next steps
+Opened: Q-023, Q-024, Q-025.
+Next session: Hugo rebuilds shot 01 from scratch with the MEDIUM band, working through
+PHOTOSHOP-GUIDE.md, then again with heavy. Then the three-way colour comparison.
+
+---
+
 <!-- archived batch, moved 2026-09-11 -->
 
 ## Session 033 (2026-08-21, Cowork): the session protocol becomes two checked commands
