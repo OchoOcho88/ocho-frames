@@ -44,3 +44,13 @@ Cowork. Paths like `/Users/hugobrizuela/...` mean Claude Code.
 
 - **Client PDF set:** exactly two Lucy-facing PDFs are current, `Sportif-Brand-Value-Plan.pdf` (strategy) and `Sportif-Launch-Plan.pdf` (operations), regenerated via `build-brand-value-plan.py` and `build-launch-plan.py` from the `-client.md` sources. Everything else lives in `clients/sportif/_archive/`. Do not resurrect archived PDFs.
 - **Two-doc drift rule:** internal source docs (e.g. `brand-value-plan.md`) drive condensed client cuts (e.g. `brand-value-plan-client.md`). Any change to an internal doc must be reflected in its client cut and the PDF re-exported. Each client cut carries a "Source of truth" header; update its synced date when you sync.
+
+## Token spend inside a session (both environments, S041)
+
+The token diet trimmed what loads every turn. What dominates a session is tool output,
+so these four habits save more than the diet did:
+
+- **Bound every read.** `cut -c1-N` and `head` on command output, line ranges on file reads. A full read of a long script or registry costs more than the whole CLAUDE.md saving on a turn.
+- **One montage, not six images.** An image read is the most expensive single call there is. Tile the candidates into one contact sheet and read that once.
+- **Read a file once.** Edit and Write report their own success; do not re-read a file to check an edit landed. Re-read only when something else may have changed it.
+- **Close out once.** Each close-out re-runs every check and prints them. Batch the changes and close out at the end, unless a commit is needed mid-session for the other environment to see it.
