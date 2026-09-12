@@ -50,7 +50,7 @@ OPN_RE = re.compile(r'^-\s+\[( |x|p)\]\s+\[Q-(\d+)\]\s+([\d-]+)\s+\|\s+([^|]+?)\
 OPENED_RE = re.compile(r'opened\s+S(\d+)', re.I)
 
 # --brief: one line per open loop for the startup print (S041 token diet).
-BRIEF_CHARS = 160
+BRIEF_CHARS = 100
 
 
 def brief(text, limit=BRIEF_CHARS):

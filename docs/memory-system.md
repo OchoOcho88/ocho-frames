@@ -177,7 +177,7 @@ One tool with subcommands, addressing the two things that otherwise break at sca
 | `index` | Regenerates `memory-index.md`, a TOC of every session (hot + archived). | **Retrieval** (a scannable map that does not decay with size) |
 | `search QUERY` | Case-insensitive search across memory + registries + docs. | **Retrieval** |
 | `decisions [--client X]` | Lists decisions from `DECISIONS.md`, filterable by client. | **Structure / scale** |
-| `open [--client X] [--stale N] [--brief] [--parked]` | Lists open questions, flags any open at N or more sessions. `--brief` gives one line per row (first sentence, about 160 characters) for the startup print. `[p]` parked rows are hidden unless `--parked`. | **Structure / scale** |
+| `open [--client X] [--stale N] [--brief] [--parked]` | Lists open questions, flags any open at N or more sessions. `--brief` gives one line per row (first sentence, about 100 characters) for the startup print. `[p]` parked rows are hidden unless `--parked`. | **Structure / scale** |
 | `reconcile` | Flags CURRENT STATE staleness: dead file references, an out-of-date "Last updated", and aged open questions. | **Staleness** |
 | `install-hooks` | Installs a git **pre-push** hook that runs `check`. Warn-only by default; `MEMORY_ENFORCE=1` makes it block. | **Compliance** |
 
