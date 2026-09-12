@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-12 | Last session: 040 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12, in sync with origin/main | **FIRST THING NEXT SESSION: check for Lucy's replies (she is not on Gmail, Hugo pastes or screenshots them). The animated inspiration board email went out 2026-09-12 with a final-frame mock attached, four questions pending (Q-036, draft and measured SABO pacing in `clients/sportif/inspiration-board/`). When her answers land, the build is `scripts-local/build_inspiration_board_mock.py` extended to paste the layers in over about 34 frames at 140 ms, GIF for email plus MP4 for Instagram.** | Also waiting: the animated signature original (Q-034, a 156x70 crop is now on file). | Still carried: the Fit Expo booth email (Q-027, deferred again, show looks like JANUARY); the 3D band hero frame (Q-016); the handle rule (Q-028); the email-02 treatment pick (Q-026); the band DROPPED on a floor (Q-023); shot 01 colourway test (Q-025); Gemini egress (Q-017); poster 2 re-run (Q-019); the back-catalogue move to 162 C (Q-013).*
+*Last updated: 2026-09-12 | Last session: 041 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12 | Next: Check for Lucy's replies first (she is not on Gmail, Hugo pastes or screenshots them): the animated inspiration board email went out 2026-09-12 with four questions pending (Q-036), and the signature original is still wanted (Q-034). When her answers land, extend `scripts-local/build_inspiration_board_mock.py` to paste the layers in over about 34 frames at 140 ms, a 600px GIF for email and a 1080x1350 MP4 for Instagram. Everything else waiting is in the open loops that startup prints, the Fit Expo booth email (Q-027) at the top of them.*
 
 - **The critical path is TRADEMARK, not Shopify.** Launch and the whole go-to-market are held until Lucy's lawyer clears the name (logged from the 2026-07-14 meeting, still open). Underneath that there is still nowhere to sell the band: Shopify unopened, prices and the pouch threshold unset, fabric undecided, all blocked on Lucy.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Strategy locked: parallel wholesale plus DTC, one hub. Client-facing docs are exactly two PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -20,7 +20,36 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **No @handle on Instagram assets (D-018), handle back ON for anything used at the Fit Expo booth (Q-028),** because booth assets travel without the account name attached.
 - **The session protocol is two checked commands (D-035):** `python3 scripts/startup.py` and `python3 scripts/closeout.py --commit -m "..."`. It is a script rather than a paragraph because **CLAUDE.md is NOT auto-loaded in Cowork** and the protocol kept being skipped.
 - **House voice: no em or en dashes anywhere.** Close-out sweeps every changed file and refuses to commit on a hit.
-- **Where the detail lives.** Settled decisions in `DECISIONS.md`, live loops in `OPEN-QUESTIONS.md`, session narrative below and in `memory-archive.md`, both indexed by `memory-index.md`. Query with `python3 scripts/memory_tools.py [check|index|search|decisions|open]`.
+- **Where the detail lives.** Settled decisions in `DECISIONS.md`, live loops in `OPEN-QUESTIONS.md` (dormant ones parked `[p]`, `open --parked` lists them), environment gotchas in `docs/gotchas.md`, session narrative below and in `memory-archive.md`, both indexed by `memory-index.md`. Query with `python3 scripts/memory_tools.py [check|index|search|decisions|open]`. Startup prints one line per loop; the session entry is five headings under 500 words (D-054).
+
+---
+## Session 041 (2026-09-12, Claude Code): The token diet, Q-037 done in five moves
+
+Client: Ochoproductions
+Tags: ochoproductions, memory-system, token-diet, startup, closeout, memory-tools, claude-md, housekeeping
+
+**Done.** All five Q-037 moves in order, nothing else touched. (1) `memory_tools.py open --brief` prints one line per loop, the first sentence capped at 160 characters; `startup.py` uses it and the footer says where the full rows are. (2) Q-001 to Q-010 parked with `[p]` in `OPEN-QUESTIONS.md` (eight rows, two were already resolved); `memory_tools.py` hides them unless `--parked` and `reconcile` skips them. Q-002, the trademark gate, is parked too, but the first CURRENT STATE bullet still carries it. (3) "Tools and gotchas" and the PDF venv recipe moved to `docs/gotchas.md`, grouped by environment, with three S040 learnings that belonged there; startup names the file in its own section and never prints it; CLAUDE.md rewritten around the protocol and the conventions. (4) The "read the top session entry" step dropped from CLAUDE.md and `/startup`; the handoff line rewritten to three sentences. (5) Five-heading template in `docs/memory-system.md` (v2.1 note, em dashes swept out); `closeout.py` warns past 500 words, on a missing heading, and past three handoff sentences. Its commit trailer now names the current model.
+
+**Measured** (chars divided by 4, tiktoken is not installed):
+
+| | before | after |
+|---|---|---|
+| startup print | 4,709 | 2,532 (about 2,450 once the tree is clean) |
+| of which open loops | 2,845 | 588 |
+| of which CURRENT STATE | 1,144 | 1,091 |
+| CLAUDE.md, paid every turn | 2,810 | 1,289 |
+| close-out entry | 1,106 (741 words) | 670 (430 words, this entry) |
+
+**Learned.**
+- Two of the three targets landed (CLAUDE.md about 1,300 against 1,200; the entry under 500 words). Startup missed its 1,500 target because the 13 CURRENT STATE bullets are 1,091 tokens on their own and the brief only capped the handoff line. That block is the next lever, and it was left alone on purpose.
+- A first-sentence cap needs a floor. "THE 3D BAND." says nothing, so the brief keeps taking sentences until the line passes 80 characters.
+- Size caps warn rather than block (D-037), otherwise they get bypassed.
+
+**Decided.** D-054, the five rules as standing policy.
+
+**Open.** Q-037 resolved, nothing new opened. The check still warns about five weekly reviews in memory.md (keep four); not in the brief, left alone. Everything else is in the loops startup prints.
+
+**Next.** Check for Lucy's replies on the inspiration board (Q-036) and the signature original (Q-034); the Fit Expo booth email (Q-027) is still owed.
 
 ---
 ## Session 040 (2026-09-12, Claude Code): Lucy asks for an animated inspiration board, and a mock goes back the same day
@@ -522,76 +551,6 @@ arguing about it.
 **Hugo's eye was the deciding gate again, three times.** The colour call, the thin weight line,
 and the push back on my prompt diagnosis. All three were right and all three overturned something
 I had written down.
-
-## Session 035 (2026-08-27, Cowork): Lucy's marks measured onto the assets, two failed grades, and the weave room
-
-Client: Sportif
-Tags: instagram, lucy-marks, homography, colour-grade, photoshop, masking, blend-modes, texture, client-email, teaching
-
-Hugo drove. The session started as a small placement fix and turned into a colour-grading dead end,
-a correction of that dead end, and then a genuinely new treatment that Hugo built himself in
-Photoshop. A client email went out at the end carrying the whole thing.
-
-**Lucy's marks, measured rather than eyeballed.** Four iPhone photos of Hugo's screen landed in
-`Lucy-Wayne-pictures/changes_needed_pilates_room/`, showing four v2 files with Lucy's black pen marks
-on them: an X meaning "put the mark here", with a line drawn from the current lockup. Rather than
-guess the positions, each photo was matched to its real asset with SIFT plus a RANSAC homography (81
-to 210 inliers), warped into the asset's own pixel space, and differenced so the only thing left was
-the pen. Centres in asset pixels: feed-ballreach 831/239, story-ballreach 858/300, story-sidestretch
-396/137, story-duo 219/395. Files renamed to pair with their assets and moved to
-`email-02-social/lucy-marks-2026-08-26/` with a README holding the method and the numbers. Built by
-`build_email02_social_v3.py`, a copy of v2 so v2 stays intact. Three of her four marks needed a nudge
-and each is documented: sidestretch sat at y137, inside Instagram's 260px story chrome, so it went to
-y290; story-duo could only drop from y260 to y355 because the second ceiling beam enters the type
-footprint at y370, measured; story-ballreach moved 27px for the same safe-zone reason. See D-041.
-
-**Two colour grades that failed, and the finding underneath them.** Hugo asked for a LUT or brand
-colour overtone. First attempt mapped every tone onto a Sportif ramp and mixed it in brightness and
-all; because the ramp's dark end is a mid brown, every shadow lifted and story-duo's black point went
-from 0.024 to 0.094, four times lighter. Hugo: "a bit washed out and lifeless". Second attempt fixed
-the brightness but added a saturation boost and a heavy S-curve for punch, both of which land hardest
-on the most saturated warm thing in frame. Hugo: "made her skin look like fake tan". Both calls were
-right and both were made on sight. **The finding: on these photos more peach and tanned skin are the
-same slider,** because her skin and the studio wall both sit near hue 25 degrees. A hue-based skin
-mask is no rescue either, it selected 91 percent of feed-ballreach because the wall qualifies as skin.
-That caps the whole approach. See D-042 and D-043. The corrected grade (no global saturation, light
-contrast, chroma only for what was already dull) survives at `scripts-local/sportif_grade.py` with
-both dead ends written into the file, plus `assets/luts/sportif-peach-{25,45,70}.cube`. The full set
-is in `created/v4/`, parked.
-
-**The weave room, and Hugo went round the obstacle rather than tuning against it.** Told the ceiling
-was set by skin sharing a hue with the wall, he opened Photoshop and separated the person from the
-room, which is the one thing that removes the ceiling. Verified against the original: her average
-brightness 53.4% before and 53.4% after, identical, and no halo at her edge. He then built two
-treatments on top of that split. A terracotta `#833827` Solid Color fill at Overlay 60%, measured safe
-(room's darkest 5% went 0.317 to 0.242, pixels at pure black only 0.30 to 0.33 percent). Then the
-band's own weave over it, held to the wall with Blend If so it sits behind the barre and the rings
-rather than over them. Recipe at `email-02-social/photoshop/WEAVE-ROOM-RECIPE.md`, working PSDs
-alongside. Two counterintuitive results worth keeping: black type beats white on that terracotta (6.8:1
-against 2.1:1, because terracotta is a mid tone at 43% luminance), and the 1024px tile is fine at feed
-size but will seam on a 1920 story, so stories need the plate.
-
-**Hugo's judgement call on scope, and it was the right one.** Offered an auto-cut of the other seven
-with rembg, he declined: send the eight files Lucy actually asked for, plus the two concepts on one
-photo, and do not build seven versions of a look she has not agreed to. "The main thing for me was
-that I got to practice in Photoshop, and think creatively."
-
-**Email sent, and it surfaced three things nobody had flagged.** Reading Lucy's 21 Aug message
-properly: the pilates picture is going to the **Fit Expo booth**, which is print, and everything we
-have is 1080px; she has handed us the **handle rule** (off for Instagram, on for booth assets); and
-she is expecting the **3D band**, which has not been started. Hugo split those into separate emails to
-keep the reply on one subject, and the sent email promises both in writing. Two writing corrections he
-caught: Lucy is NOT the model in these photos, they are her Canva picks, so never write "you" about
-the person in frame; and "blush" cannot be used for the medium band because Blush Peach `#F0CDB3` is
-the primary brand colour, so bands are referred to by weight. Both are now warnings at the top of the
-draft. Sent 2026-08-27 with 12 attachments, draft at
-`email-02-social/TO-SEND-2026-08-26/email-to-lucy-v3.md`, copy-ready page published as an Artifact.
-
-**Still open:** Lucy's pick between the three treatments (Q-026); the Fit Expo booth posters, blocked
-on her panel dimensions (Q-027); the 3D band, now promised to her (Q-016); everything carried from
-S034.
-
----
 
 ## Session NNN, YYYY-MM-DD, One-line summary
 ### What we did

@@ -11,8 +11,9 @@ Run at the top of EVERY session, in either environment:
 
 Prints, in one pass: which environment this is, the next session number,
 git state (with a loud warning if the tree is dirty), the CURRENT STATE
-block, open loops for the active client, the files that must be read
-before writing content, the house rules, and any stale-file flags.
+block, open loops for the active client (one line each, S041 token diet;
+full rows via memory_tools.py open), the files that must be read before
+writing content, the house rules, and any stale-file flags.
 
 Options:
     --client NAME   override the auto-detected active client
@@ -158,7 +159,7 @@ def main():
     # ---------------- open loops ----------------
     if client:
         print(rule(f"OPEN LOOPS ({client})"))
-        out = sh(f'python3 scripts/memory_tools.py open --client "{client}"')
+        out = sh(f'python3 scripts/memory_tools.py open --client "{client}" --brief')
         print(out or "(none, or memory_tools.py is unavailable)")
 
     # ---------------- content gate ----------------
@@ -172,6 +173,11 @@ def main():
         for note in ("RESUME-NOTE.md", "intake/RESEARCH-RUN-STATUS.md"):
             if (ROOT / cdir / note).exists():
                 print(f"  [note] {cdir / note}")
+    # Named, never printed: the environment and tool gotchas moved out of
+    # CLAUDE.md in S041 so they stop costing tokens on every turn.
+    print(rule("READ WHEN A TOOL OR ENVIRONMENT MISBEHAVES (not printed)"))
+    mark = "ref " if (ROOT / "docs/gotchas.md").exists() else "MISSING"
+    print(f"  [{mark}] docs/gotchas.md")
 
     # ---------------- house rules ----------------
     print(rule("HOUSE RULES (CLAUDE.md, non-negotiable)"))

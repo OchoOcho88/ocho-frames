@@ -49,6 +49,11 @@ SKIP_DIRS = {".git", "_archive", "node_modules", "renders", "generated", "assets
 # the SOURCE needs fixing, not this file. Do not block the commit on it.
 SKIP_FILES = {"memory-index.md"}
 
+# S041 token diet: the session entry template (docs/memory-system.md) and caps.
+ENTRY_HEADINGS = ("Done", "Learned", "Decided", "Open", "Next")
+ENTRY_MAX_WORDS = 500
+HANDOFF_MAX_SENTENCES = 3
+
 results = []   # (status, label, detail) where status is PASS, FAIL or NOTE
 
 
@@ -240,13 +245,26 @@ def step_memory(env):
                f"{already.splitlines()[0]}\n"
                f"This is a NEW session. Add a Session {num + 1} entry at the top of memory.md.")
 
-    body = memory[m.end(): m.end() + 4000]
-    body = re.split(r"^## Session ", body, flags=re.M)[0]
+    body = re.split(r"^(?:## |---\s*$)", memory[m.end():], maxsplit=1, flags=re.M)[0]
     for field in ("Client:", "Tags:"):
         if re.search(rf"^\*?\*?{field}", body, re.M):
             record("PASS", f"Session entry has a {field.rstrip(':')} line")
         else:
             record("FAIL", f"Session entry is missing its {field.rstrip(':')} line")
+
+    # S041 token diet: five headings, under ENTRY_MAX_WORDS. Warn, do not block.
+    words = len(body.split())
+    if words > ENTRY_MAX_WORDS:
+        record("NOTE", f"Session entry is {words} words, over the {ENTRY_MAX_WORDS}-word cap",
+               "Detail belongs in DECISIONS.md, OPEN-QUESTIONS.md or a doc, not the entry.")
+    else:
+        record("PASS", f"Session entry is {words} words (cap {ENTRY_MAX_WORDS})")
+    missing = [h for h in ENTRY_HEADINGS if not re.search(rf"^\*\*{h}\.?\*\*", body, re.M)]
+    if missing:
+        record("NOTE", f"Session entry is missing heading(s): {', '.join(missing)}",
+               "Template (Done, Learned, Decided, Open, Next) is in docs/memory-system.md.")
+    else:
+        record("PASS", "Session entry has all five headings")
 
     head = memory[:2000]
     if f"Last updated: {today}" in head:
@@ -258,6 +276,16 @@ def step_memory(env):
         record("PASS", f"CURRENT STATE handoff line names Session {num}")
     else:
         record("FAIL", f"CURRENT STATE handoff line does not name Session {num}")
+
+    # S041 token diet: the handoff line is capped at three sentences.
+    hm = re.search(r"^\*Last updated:.*$", memory, re.M)
+    if hm:
+        sentences = len(re.findall(r"[.!?](?=[\s*]|$)", hm.group(0)))
+        if sentences > HANDOFF_MAX_SENTENCES:
+            record("NOTE", f"CURRENT STATE handoff line runs {sentences} sentences, cap is {HANDOFF_MAX_SENTENCES}",
+                   "Name what is first, point at the Q-numbers for the rest.")
+        else:
+            record("PASS", f"CURRENT STATE handoff line is {sentences} sentence(s) (cap {HANDOFF_MAX_SENTENCES})")
     return num
 
 
@@ -265,7 +293,8 @@ def step_registries(num):
     if num is None:
         return
     tag = f"S{num:03d}"
-    pattern = re.compile(rf"\((?:opened |resolved )?{tag}\)")
+    # "(opened S041)", "(resolved S041)" or the registry's "RESOLVED S041 (date)" form.
+    pattern = re.compile(rf"\((?:opened |resolved )?{tag}\)|RESOLVED {tag}\b")
     for name in ("DECISIONS.md", "OPEN-QUESTIONS.md"):
         if pattern.search(read(name)):
             record("PASS", f"{name} has at least one {tag} row")
@@ -300,7 +329,7 @@ def step_commit(do_commit, message, num, env, blocked):
         return
     if not message:
         message = f"Session {num:03d} CLOSE-OUT ({env})"
-    body = f"{message}\n\nCo-Authored-By: Claude Opus 5 <noreply@anthropic.com>\n"
+    body = f"{message}\n\nCo-Authored-By: Claude Fable 5.1 <noreply@anthropic.com>\n"
     clear_locks(env)          # the checks above stranded a fresh one in Cowork
     subprocess.run(["git", "add", "-A"], cwd=ROOT, capture_output=True)
     clear_locks(env)

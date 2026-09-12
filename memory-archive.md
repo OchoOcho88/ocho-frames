@@ -8,6 +8,78 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 <!-- archived batch, moved 2026-09-12 -->
 
+## Session 035 (2026-08-27, Cowork): Lucy's marks measured onto the assets, two failed grades, and the weave room
+
+Client: Sportif
+Tags: instagram, lucy-marks, homography, colour-grade, photoshop, masking, blend-modes, texture, client-email, teaching
+
+Hugo drove. The session started as a small placement fix and turned into a colour-grading dead end,
+a correction of that dead end, and then a genuinely new treatment that Hugo built himself in
+Photoshop. A client email went out at the end carrying the whole thing.
+
+**Lucy's marks, measured rather than eyeballed.** Four iPhone photos of Hugo's screen landed in
+`Lucy-Wayne-pictures/changes_needed_pilates_room/`, showing four v2 files with Lucy's black pen marks
+on them: an X meaning "put the mark here", with a line drawn from the current lockup. Rather than
+guess the positions, each photo was matched to its real asset with SIFT plus a RANSAC homography (81
+to 210 inliers), warped into the asset's own pixel space, and differenced so the only thing left was
+the pen. Centres in asset pixels: feed-ballreach 831/239, story-ballreach 858/300, story-sidestretch
+396/137, story-duo 219/395. Files renamed to pair with their assets and moved to
+`email-02-social/lucy-marks-2026-08-26/` with a README holding the method and the numbers. Built by
+`build_email02_social_v3.py`, a copy of v2 so v2 stays intact. Three of her four marks needed a nudge
+and each is documented: sidestretch sat at y137, inside Instagram's 260px story chrome, so it went to
+y290; story-duo could only drop from y260 to y355 because the second ceiling beam enters the type
+footprint at y370, measured; story-ballreach moved 27px for the same safe-zone reason. See D-041.
+
+**Two colour grades that failed, and the finding underneath them.** Hugo asked for a LUT or brand
+colour overtone. First attempt mapped every tone onto a Sportif ramp and mixed it in brightness and
+all; because the ramp's dark end is a mid brown, every shadow lifted and story-duo's black point went
+from 0.024 to 0.094, four times lighter. Hugo: "a bit washed out and lifeless". Second attempt fixed
+the brightness but added a saturation boost and a heavy S-curve for punch, both of which land hardest
+on the most saturated warm thing in frame. Hugo: "made her skin look like fake tan". Both calls were
+right and both were made on sight. **The finding: on these photos more peach and tanned skin are the
+same slider,** because her skin and the studio wall both sit near hue 25 degrees. A hue-based skin
+mask is no rescue either, it selected 91 percent of feed-ballreach because the wall qualifies as skin.
+That caps the whole approach. See D-042 and D-043. The corrected grade (no global saturation, light
+contrast, chroma only for what was already dull) survives at `scripts-local/sportif_grade.py` with
+both dead ends written into the file, plus `assets/luts/sportif-peach-{25,45,70}.cube`. The full set
+is in `created/v4/`, parked.
+
+**The weave room, and Hugo went round the obstacle rather than tuning against it.** Told the ceiling
+was set by skin sharing a hue with the wall, he opened Photoshop and separated the person from the
+room, which is the one thing that removes the ceiling. Verified against the original: her average
+brightness 53.4% before and 53.4% after, identical, and no halo at her edge. He then built two
+treatments on top of that split. A terracotta `#833827` Solid Color fill at Overlay 60%, measured safe
+(room's darkest 5% went 0.317 to 0.242, pixels at pure black only 0.30 to 0.33 percent). Then the
+band's own weave over it, held to the wall with Blend If so it sits behind the barre and the rings
+rather than over them. Recipe at `email-02-social/photoshop/WEAVE-ROOM-RECIPE.md`, working PSDs
+alongside. Two counterintuitive results worth keeping: black type beats white on that terracotta (6.8:1
+against 2.1:1, because terracotta is a mid tone at 43% luminance), and the 1024px tile is fine at feed
+size but will seam on a 1920 story, so stories need the plate.
+
+**Hugo's judgement call on scope, and it was the right one.** Offered an auto-cut of the other seven
+with rembg, he declined: send the eight files Lucy actually asked for, plus the two concepts on one
+photo, and do not build seven versions of a look she has not agreed to. "The main thing for me was
+that I got to practice in Photoshop, and think creatively."
+
+**Email sent, and it surfaced three things nobody had flagged.** Reading Lucy's 21 Aug message
+properly: the pilates picture is going to the **Fit Expo booth**, which is print, and everything we
+have is 1080px; she has handed us the **handle rule** (off for Instagram, on for booth assets); and
+she is expecting the **3D band**, which has not been started. Hugo split those into separate emails to
+keep the reply on one subject, and the sent email promises both in writing. Two writing corrections he
+caught: Lucy is NOT the model in these photos, they are her Canva picks, so never write "you" about
+the person in frame; and "blush" cannot be used for the medium band because Blush Peach `#F0CDB3` is
+the primary brand colour, so bands are referred to by weight. Both are now warnings at the top of the
+draft. Sent 2026-08-27 with 12 attachments, draft at
+`email-02-social/TO-SEND-2026-08-26/email-to-lucy-v3.md`, copy-ready page published as an Artifact.
+
+**Still open:** Lucy's pick between the three treatments (Q-026); the Fit Expo booth posters, blocked
+on her panel dimensions (Q-027); the 3D band, now promised to her (Q-016); everything carried from
+S034.
+
+---
+
+<!-- archived batch, moved 2026-09-12 -->
+
 ## Session 034 (2026-08-26, Cowork): the weave tiles, and a colour fault in every band cutout
 
 Client: Sportif

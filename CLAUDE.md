@@ -6,28 +6,17 @@
 python3 scripts/startup.py
 ```
 
-That one command IS the session-start protocol. It is read-only and prints, in one pass: the environment, this session's number, the last five commits, a dirty-tree warning, the CURRENT STATE block, open loops for the active client, the files gating content work, the house rules, and any stale-file flags. Read all of it before replying to Hugo.
+That command IS the session-start protocol (`/startup` in Claude Code). It is read-only and prints the environment, this session's number, git state, the CURRENT STATE block, one line per open loop, the content gate, the house rules and any flags. Read all of it before replying to Hugo. Then:
 
-In Claude Code the same thing is `/startup`. It is the mirror of `/close-out`: close-out writes the state, startup reads it back.
+1. If the script raised FLAGS or reported a dirty tree, surface it to Hugo in your first message rather than absorbing it.
+2. If any client-facing content will be written this session, read `clients/sportif/brand.md` and `clients/sportif/voice-guidelines.md` FIRST. Not a word of content before that.
+3. Past detail is on demand, not read by default: `python3 scripts/memory_tools.py search "<term>"` and `... open --client <client>` (full rows).
 
-Then, still before starting work:
-
-1. Read the top session entry in `memory.md` for the detail the CURRENT STATE block compresses.
-2. If any client-facing content is going to be written this session, read `clients/sportif/brand.md` and `clients/sportif/voice-guidelines.md` FIRST. Not a word of content before that.
-3. If the script raised FLAGS or reported a dirty tree, surface it to Hugo in your first message rather than absorbing it.
-
-Doing this is what gives a new session continuity. Do not start work cold.
-
-Why it is a script and not a paragraph: this file is NOT auto-loaded in Cowork (S031), so a protocol that lives only as prose gets skipped by whichever session did not think to read the file. It was skipped again at the top of S033. A named command survives that.
+It is a script because this file is NOT auto-loaded in Cowork (S031) and prose protocols got skipped (S033). Do not start work cold.
 
 ## What this workspace is
 
-Hugo's (Ocho's) personal creative and marketing workspace. Two tracks:
-
-1. A creative-strategy pipeline: competitor analysis, then a synthesis brief, then AI-generated production media. See `docs/pipeline-architecture.md` and `docs/marketing-fundamentals.md`.
-2. Client work under `clients/`.
-
-It is also a HyperFrames video workspace (video as code). See `README.md`.
+Hugo's (Ocho's) creative and marketing workspace: a creative-strategy pipeline (competitor analysis, synthesis brief, AI-generated media; `docs/pipeline-architecture.md`, `docs/marketing-fundamentals.md`) and client work under `clients/`. Also a HyperFrames video workspace (video as code, `README.md`).
 
 ## Active work
 
@@ -35,48 +24,28 @@ It is also a HyperFrames video workspace (video as code). See `README.md`.
 
 ## Two environments, one workspace (sync protocol)
 
-Hugo works on this folder from TWO places, often alternating within the same day:
-
-1. **Claude Code** (terminal / VS Code on his Mac): full shell, background processes survive, all local fonts, direct file deletion.
-2. **Cowork** (Claude desktop app): sandboxed Linux shell, see the Cowork-specific gotchas below.
-
-Which one am I? If shell paths look like `/sessions/<name>/mnt/hyperframes/`, this is Cowork. If they look like `/Users/hugobrizuela/...`, this is Claude Code.
+Hugo works on this folder from **Claude Code** (terminal on his Mac: full shell, background jobs survive, local fonts, rm works) and **Cowork** (Claude desktop app: sandboxed Linux, 45s per call, no background jobs, rm blocked in the mount), often alternating within a day. Paths under `/sessions/<name>/mnt/hyperframes/` mean Cowork; `/Users/hugobrizuela/...` means Claude Code. Environment and tool gotchas live in `docs/gotchas.md`, which startup names but does not print; read it when a tool misbehaves and add new learnings there, labelled by environment.
 
 **The handoff protocol (both environments, no exceptions):**
 
-1. **Session start:** read the CURRENT STATE block, then `git log --oneline -5` to see what the other environment did last. If the working tree is dirty with changes you did not make, a session somewhere did not close out; commit or flag before working. To orient fast: `python3 scripts/memory_tools.py open --client <client>` (open loops) and `... search "<term>"` (find past context).
-2. **Session end (the close-out ritual):** write the session entry at the top of `memory.md` (numbered one above the last, tagged with the environment, carrying `Client:` and `Tags:` lines), refresh the CURRENT STATE block including the handoff line, mirror settled decisions into `DECISIONS.md` and new or resolved loops into `OPEN-QUESTIONS.md`, then run:
+1. **Session start** is `startup.py` above. A dirty tree means a session somewhere did not close out; commit or flag before working.
+2. **Session end (the close-out ritual, `/close-out` in Claude Code):** write the session entry at the top of `memory.md` with the five-heading template in `docs/memory-system.md` (Done, Learned, Decided, Open, Next; under 500 words; environment tag, `Client:` and `Tags:` lines), refresh CURRENT STATE (handoff line at most three sentences), mirror decisions into `DECISIONS.md` and loops into `OPEN-QUESTIONS.md`, then run:
 
     ```
     python3 scripts/closeout.py --commit -m "Session NNN: what happened"
     ```
 
-    That handles the rest: stale git locks, the em dash sweep over everything changed, verification that the entry and the CURRENT STATE block are actually present and correct for this session, `archive_memory.py`, `memory_tools.py index`, `memory_tools.py check`, and the commit. It refuses to commit while anything fails. Drop `--commit` to check without committing. In Claude Code the whole ritual is `/close-out`. The commit is what makes the work visible to the other side. (A pre-push hook runs `check` as a warn-only reminder; `MEMORY_ENFORCE=1` makes it block.)
-3. **Session numbers are continuous across both environments.** Check the top of memory.md for the last number before starting a new entry.
-4. **Do not run both environments on the same files at the same time.** If both are open, one is the builder and the other is the sounding board; the sounding board reads but does not write.
-5. **Environment-specific learnings** go in "Tools and gotchas" below, labelled with which environment they apply to.
+    It clears stale git locks, sweeps changed files for em and en dashes, verifies the entry and CURRENT STATE, runs the archiver, index and `check`, and refuses to commit while anything fails. Drop `--commit` to check only. The commit is the handoff; push from the Mac.
+3. **Session numbers are continuous across both environments.** Startup prints the next one.
+4. **Do not run both environments on the same files at the same time.** If both are open, one builds and the other only reads.
 
 ## Conventions (follow these)
 
-- **Log every session.** At the end of any session with real work, add an entry to the TOP of `memory.md` (date, what we did, learned, decided, open). Match the existing format, and include a `Client:` line (client name, or `Ochoproductions` for workspace-wide) and a `Tags:` line. Mirror settled decisions into `DECISIONS.md` and open loops into `OPEN-QUESTIONS.md` (extractable registries, filterable by client, queried via `scripts/memory_tools.py`). The full memory system is documented in `docs/memory-system.md`.
-- **Memory scales by client.** One unified chronological log (keeps cross-client learnings), but everything is tagged and filterable per client. When a second client goes active, split the CURRENT STATE block into per-client mini-blocks under a shared workspace header.
+- **Log every session** with real work, as above. Registries are filterable by client (`scripts/memory_tools.py`); the system is documented in `docs/memory-system.md`. Dormant loops are parked with `[p]`, not deleted. A second active client splits CURRENT STATE into per-client mini-blocks.
 - **Voice rule: no em dashes and no en dashes** anywhere in written output or files. Use commas, periods, or parentheses instead.
-- **Layout rule for anything Hugo ACTS on** (prompts, instructions, checklists, setup steps): heading, then the thing to copy or use as ONE complete self-contained block, then the inputs or file names as bullet points. Nothing in between. Analysis, reasoning and caveats go at the END, a few bullets at most, never woven through the steps. Annotating the steps makes them harder to follow even when the annotation is correct. Established S032, after an annotated prompt doc had to be rewritten.
+- **Layout rule for anything Hugo ACTS on** (prompts, instructions, checklists, setup steps): heading, then the thing to copy or use as ONE complete self-contained block, then the inputs or file names as bullets. Nothing in between. Analysis and caveats go at the END, a few bullets at most, never woven through the steps (S032).
 - **Secrets:** API keys go in `.env` only (gitignored). Never put a real key in `.env.example`, never commit secrets.
 - **Work with Hugo:** ask for project context before assuming, and flag trade-offs rather than defaulting to one approach. Background on how he works is in the `hugo-working-style` skill.
-- **Generated media** goes in `clients/<client>/generated/images/` or `generated/videos/`, and every keeper's prompt is saved to the client's `image-prompts.md` (the prompt is the source of truth, binaries are gitignored). Iterate at quality low in Cowork (45s cap), render finals in Claude Code.
-
-## Tools and gotchas
-
-- **Research (Perplexity), Cowork version.** In Cowork, background shell processes do NOT survive across tool calls (the sandbox reaps them; each call caps at ~45s), so nohup-and-poll does not work here. Use `scripts/pplx_async.py` instead: it submits async deep-research jobs that run server-side at Perplexity, persists request ids to a registry file on disk, and polls them in later short calls. Perplexity rate-limits async submissions (HTTP 429), so stagger submits (12 to 18s) and resubmit failures. Quick synchronous queries with sonar-pro can still use `python3 scripts/perplexity_search.py "..." --model sonar-pro`. (The old nohup workflow only works on Hugo's Mac via Claude Code, a different environment.)
-- **Images:** the proven engine for our warm-neutral look is **gpt-image-2** (OpenAI API key in `.env`, or run the prompts in ChatGPT). Pixa is a different engine; if you use it, flag the mismatch to Hugo. gpt-image-2 prompt format is in `docs/platform-prompt-formats.md`.
-- **Network egress:** scripts that call the internet need the sandbox Domain allowlist open (Settings, Capabilities, Network Egress). A change only applies to a freshly booted sandbox, so a NEW chat is required after changing it.
-- **PDF generation:** weasyprint must be pip-installed per fresh sandbox (`pip install weasyprint --break-system-packages`). System sandbox fonts are limited to Lora (serif) and Poppins (geometric sans), BUT brand font files now live in `brand/fonts/` and load by path in both environments. **Glacial Indifference (Sportif's real font, all three weights) is at `brand/fonts/glacial-indifference/`**: use it via @font-face (weasyprint) or ImageFont.truetype (Pillow) for wordmarks and overlays instead of the old Poppins stand-in. Both PDF generators now load Glacial Indifference by path for body AND titles (switched S039; Lora is not on the Mac, and brand.md puts headlines in Glacial anyway). Glacial reads about 10 percent smaller than Poppins at the same size, so the reading sizes were scaled up to match.
-- **PDF builds on the Mac (Claude Code, S039).** `/usr/bin/python3` cannot load Homebrew's pango, so weasyprint lives in `.venvs/pdf` on Homebrew Python 3.11 (gitignored). Rebuild with `.venvs/pdf/bin/python clients/sportif/build-launch-plan.py` (and `build-brand-value-plan.py`). If the venv is missing: `brew install pango`, then `/opt/homebrew/bin/python3.11 -m venv .venvs/pdf && .venvs/pdf/bin/pip install weasyprint pymupdf`. Never put `opacity` on SVG text in these generators: weasyprint clips the line (it ate "powered by" in the Launch Plan diagram).
-- **Showing PDFs to Hugo:** present_files does not reliably preview a PDF in chat. Render pages to PNG and show a combined montage instead.
-- **File locations:** keep all deliverables in the mounted hyperframes folder (stable path). Treat the sandbox outputs dir as throwaway; it gets wiped when the sandbox reboots mid-session.
-- **File deletion in the mount** requires the `allow_cowork_file_delete` tool first; plain `rm` fails with Operation not permitted. Overwriting in place (`cp -f`) works fine and avoids the whole problem when refreshing a staged folder.
-- **Committing from Cowork leaves stale git locks on the Mac (S031).** Because the sandbox cannot unlink inside the mount, `git commit` succeeds but cannot clean up `.git/HEAD.lock`, `.git/index.lock` or its `tmp_obj_*` files. Commit and push still work, but `git gc` fails with "cannot lock ref 'HEAD' ... File exists" and wrongly implies another git process is running. Fix on the Mac: `rm -f .git/HEAD.lock .git/index.lock && git gc --prune=now`. Consider this part of the Mac-side close-out whenever the previous session was Cowork.
-- **Read this file at session start in Cowork (S031).** `hyperframes/CLAUDE.md` is not loaded into the Cowork context automatically, so the conventions above (voice rule, handoff protocol, close-out ritual) are invisible unless read explicitly. A client-facing email reached final draft full of em dashes because of this.
-- **Client PDF set (Sportif):** exactly two Lucy-facing PDFs are current, `Sportif-Brand-Value-Plan.pdf` (strategy) and `Sportif-Launch-Plan.pdf` (operations), regenerated via `build-brand-value-plan.py` and `build-launch-plan.py` from the `-client.md` sources. Everything else lives in `clients/sportif/_archive/`. Do not resurrect archived PDFs.
-- **Two-doc drift rule:** internal source docs (e.g. `brand-value-plan.md`) drive condensed client cuts (e.g. `brand-value-plan-client.md`). Any change to an internal doc must be reflected in its client cut and the PDF re-exported. Each client cut carries a "Source of truth" header; update its synced date when you sync.
+- **Generated media** goes in `clients/<client>/generated/images/` or `generated/videos/`, and every keeper's prompt is saved to the client's `image-prompts.md` (the prompt is the source of truth, binaries are gitignored). Iterate at quality low in Cowork, render finals in Claude Code.
+- **Images:** the proven engine for the warm-neutral look is **gpt-image-2**; if another engine is used, flag the mismatch to Hugo. Prompt formats are in `docs/platform-prompt-formats.md`.
+- **Two-doc drift rule:** an internal source doc drives its condensed client cut and PDF. Change one, sync the other and re-export (details and the Sportif PDF set in `docs/gotchas.md`).

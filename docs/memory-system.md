@@ -1,4 +1,4 @@
-# The Memory System (portable spec) — v2
+# The Memory System (portable spec), v2.1
 
 A layered, file-based memory system that gives a stateless AI agent real continuity
 across sessions, machines, and environments. Written to be handed to another project
@@ -7,9 +7,18 @@ workspace, and calls out clearly what is portable vs project-specific.
 
 **v2 (2026-07-24)** hardens the base system for scale: extractable client-tagged registries
 (`DECISIONS.md`, `OPEN-QUESTIONS.md`), a session index + full-text search, a close-out
-`check` with a git pre-push hook (enforcement), and a `reconcile` staleness pass — all via
+`check` with a git pre-push hook (enforcement), and a `reconcile` staleness pass, all via
 one stdlib tool, `scripts/memory_tools.py`. The additions target the two things that break a
 prose-log system as it grows: **retrieval decay** and **compliance drift**.
+
+**v2.1 (2026-09-12, S041)** is the token diet. The system had grown to about 4,700 tokens
+of startup print plus 2,800 tokens of instructions file on every turn. Fixes: the startup
+print shows one line per open loop (full rows on demand), dormant loops are parked with a
+`[p]` marker, environment gotchas moved out of the instructions file into `docs/gotchas.md`
+(named, never printed), the previous session entry is no longer read by default, the
+handoff line is capped at three sentences, and the session entry has a five-heading
+template with a 500-word warning at close-out. The principle: **what loads every turn
+must be small, and everything else must be one command away.**
 
 ---
 
@@ -57,14 +66,19 @@ project it is the handoff channel (see §6).
 
 Everything else is detail. If a project does only these two things, it has the system.
 
-### Session start — read-first
-1. Read the `CURRENT STATE` block, then the top few session entries of `memory.md`.
+### Session start, read-first
+1. Read the `CURRENT STATE` block. Its handoff line (three sentences at most) is the
+   whole briefing; the previous session entry is NOT read by default. Pull detail on
+   demand with `memory_tools.py search` or `open` (v2.1).
 2. Read the active context docs (brand/voice/status notes for whatever is in flight).
 3. Run `git log --oneline -5` to see what the last session (possibly on another machine)
    did. If the working tree is dirty with changes you did not make, a prior session did
    not close out, reconcile before working.
 
-### Session end — close-out
+In this workspace all of that is one read-only command, `python3 scripts/startup.py`,
+which also lists open loops one line each and names `docs/gotchas.md` without printing it.
+
+### Session end, close-out
 1. **Update `CURRENT STATE`** (including the one-line handoff header: last-updated date,
    last session number, environment, working-tree status, git status, next action).
 2. **Add a session entry to the top of the log** (see format in §4), tagged with
@@ -91,24 +105,45 @@ A single italic line at the very top of the block, so status is scannable at a g
 
 ```
 *Last updated: YYYY-MM-DD | Last session: NNN (Environment, CLOSED) |
-Working tree: committed clean | Git: pushed | Next: <the one next action>*
+Working tree: committed clean | Git: pushed | Next: <at most three sentences>*
 ```
+
+The `Next:` part is capped at three sentences (v2.1). It names what the next session
+picks up first and points at the Q-numbers for everything else; the open-loop registry
+carries the detail, so the line never restates it.
 
 Then ~12 bullet lines max. Newest/most-important context first. Prefix genuinely new
 items with **NEW (Session NNN):** so a returning session sees what changed. Ruthlessly
 delete or compress stale bullets, this block is a dashboard, not an archive.
 
-### Session log entry
+### Session log entry (five headings, under 500 words)
 Reverse-chronological (newest at top of the log), continuously numbered across *all*
-environments so the sequence is never ambiguous:
+environments so the sequence is never ambiguous. Five headings, always in this order,
+and the whole entry under 500 words (the close-out checker warns above that, v2.1):
 
 ```
 ## Session NNN (YYYY-MM-DD, Environment): short title
 
-What we did, what we learned, what we decided, what is still open.
-Call out durable lessons explicitly so they can be lifted into reference docs later.
-Cross-link related memory with [[wikilinks]] where the agent memory supports it.
+Client: <client name, or the workspace name for workspace-wide work>
+Tags: comma, separated, lowercase
+
+**Done.** What happened, in the order it happened. Files by path. Numbers only
+where they change a decision.
+
+**Learned.** Durable lessons only, one line each, written so they can be lifted
+into a reference doc later. Not a replay of the work.
+
+**Decided.** D-numbers with a half-line each. The full text lives in DECISIONS.md.
+
+**Open.** Q-numbers with a half-line each, new ones first. The full text lives in
+OPEN-QUESTIONS.md.
+
+**Next.** The one thing the next session picks up first. Same as the handoff line.
 ```
+
+Why the cap: the entry was running 1,100 tokens and duplicating CURRENT STATE and the
+registries. The entry is the narrative record; the registries are the queryable one.
+When something wants more than a line here, it wants a doc, a D-row or a Q-row instead.
 
 ### Reference doc header (for derived/synced docs)
 When a source doc drives a condensed or client-facing derivative, stamp the derivative:
@@ -125,14 +160,14 @@ When a source doc drives a condensed or client-facing derivative, stamp the deri
 Two small Python scripts keep the system bounded, queryable, and self-checking. Both are
 plain-stdlib and operate on the markdown files, so the system stays legible.
 
-### 5.1 The archiver — bounded hot memory
+### 5.1 The archiver, bounded hot memory
 `scripts/archive_memory.py` keeps the always-loaded memory from bloating the context window:
 - **No-op** until `memory.md` exceeds a size threshold (this project uses 90 KB).
 - When exceeded, it **moves the oldest session entries** into `memory-archive.md`, bringing
   the working file back under a lower watermark (~75 KB). Nothing is lost; only the *hot*
   file shrinks. Safe to run unconditionally.
 
-### 5.2 `memory_tools.py` — retrieval, structure, and enforcement
+### 5.2 `memory_tools.py`: retrieval, structure, and enforcement
 One tool with subcommands, addressing the two things that otherwise break at scale
 (retrieval decay and compliance drift):
 
@@ -142,7 +177,7 @@ One tool with subcommands, addressing the two things that otherwise break at sca
 | `index` | Regenerates `memory-index.md`, a TOC of every session (hot + archived). | **Retrieval** (a scannable map that does not decay with size) |
 | `search QUERY` | Case-insensitive search across memory + registries + docs. | **Retrieval** |
 | `decisions [--client X]` | Lists decisions from `DECISIONS.md`, filterable by client. | **Structure / scale** |
-| `open [--client X] [--stale N]` | Lists open questions, flags any open ≥ N sessions. | **Structure / scale** |
+| `open [--client X] [--stale N] [--brief] [--parked]` | Lists open questions, flags any open at N or more sessions. `--brief` gives one line per row (first sentence, about 160 characters) for the startup print. `[p]` parked rows are hidden unless `--parked`. | **Structure / scale** |
 | `reconcile` | Flags CURRENT STATE staleness: dead file references, an out-of-date "Last updated", and aged open questions. | **Staleness** |
 | `install-hooks` | Installs a git **pre-push** hook that runs `check`. Warn-only by default; `MEMORY_ENFORCE=1` makes it block. | **Compliance** |
 
@@ -152,12 +187,16 @@ the *authoritative* source for those two query-types (no auto-generation, no ove
 ```
 DECISIONS.md      - [D-NNN] YYYY-MM-DD | Client | decision text (Sxxx)
 OPEN-QUESTIONS.md - [ ] [Q-NNN] YYYY-MM-DD | Client | question (opened Sxxx)   # open
+                  - [p] [Q-NNN] YYYY-MM-DD | Client | question (opened Sxxx)   # parked
                   - [x] [Q-NNN] YYYY-MM-DD | Client | ... RESOLVED Sxxx: outcome  # done
 ```
 Aging is computed from the `opened Sxxx` tag against the latest session number, so a loop
-that has been open too long surfaces itself instead of quietly persisting.
+that has been open too long surfaces itself instead of quietly persisting. A **parked**
+row (v2.1) is still open and still in the registry, but it is dormant: left out of the
+startup print and the age warning, listed with `open --parked`, and flipped back to `[ ]`
+when it wakes up. Parking is how the startup print stays short without deleting anything.
 
-**Why enforcement matters:** "mandatory" instructions are not self-enforcing — a single
+**Why enforcement matters:** "mandatory" instructions are not self-enforcing. A single
 skipped close-out leaves a permanent gap (this project lost a key meeting's outcomes exactly
 once that way). `check` + the pre-push hook turn the discipline into a gate.
 
@@ -176,15 +215,17 @@ app). The memory system doubles as the sync protocol:
   so environment-specific gotchas are attributable.
 - **Never write from both environments at once.** If both are open, one is the builder
   and the other reads but does not write.
-- **Environment-specific learnings** live in a labelled "Tools and gotchas" section of
-  the instructions file, so the next session in that environment inherits them.
+- **Environment-specific learnings** live in a labelled gotchas doc (`docs/gotchas.md`
+  here), grouped by environment. The instructions file and the startup print NAME it and
+  never print it, so it costs nothing until a tool misbehaves (v2.1; it used to live in
+  the instructions file and cost about 1,300 tokens on every turn).
 
 If your project has only one environment, keep the commit discipline and the numbering;
 drop the rest.
 
 ---
 
-## 7. Agent-native memory (layer 4) — optional but powerful
+## 7. Agent-native memory (layer 4), optional but powerful
 
 If your agent/harness offers a persistent memory store (Claude Code's auto-memory does),
 use it for **facts that outlive any single session and should be primed automatically**:
@@ -202,17 +243,19 @@ use it for **facts that outlive any single session and should be primed automati
 - **Recalled memory reflects when it was written.** If a fact names a file or flag, verify
   it still exists before acting on it.
 
-This layer is harness-specific. Layers 0–3 (the repo files) work with any agent or tool
+This layer is harness-specific. Layers 0 to 3 (the repo files) work with any agent or tool
 and are the portable core.
 
 ---
 
 ## 8. What is portable vs project-specific
 
-**Portable — implement anywhere:**
+**Portable, implement anywhere:**
 - The tiered files (hot state / episodic log / cold archive / reference docs).
 - The two rituals (read-first, close-out) written as mandatory instructions.
-- The `CURRENT STATE` dashboard with a handoff header line.
+- The `CURRENT STATE` dashboard with a handoff header line (three sentences max).
+- The five-heading session entry template with a word cap, and `[p]` parking for
+  dormant loops, so the always-loaded surface stays small (v2.1).
 - Continuous, newest-first session numbering.
 - The size-triggered archiver + archive file.
 - The `memory_tools.py` tooling: `check` + pre-push hook (enforcement), `index` + `search`
@@ -220,17 +263,17 @@ and are the portable core.
 - The client-tagged registries (`DECISIONS.md`, `OPEN-QUESTIONS.md`) and per-client tagging.
 - Source-of-truth-over-binaries (`.gitignore` the generated, commit the reproducible).
 
-**Project-specific — adapt to your context:**
+**Project-specific, adapt to your context:**
 - Multi-environment sync (§6). Keep only if you actually have >1 environment.
 - The two-doc drift rule and synced-date headers (§4). Keep if you maintain derived docs.
 - The exact reference docs (brand, voice, prompt logs), these depend on the domain.
 
-**Optional — depends on your harness:**
+**Optional, depends on your harness:**
 - Agent-native memory (§7).
 
 ---
 
-## 9. Implement from scratch — checklist
+## 9. Implement from scratch, a checklist
 
 1. Create `memory.md` with a `CURRENT STATE` block at the top and a reverse-chronological
    session log beneath it. Seed CURRENT STATE with the project's current status and next
@@ -262,12 +305,12 @@ and are the portable core.
 - **Bounded hot memory** (CURRENT STATE + a lean log, kept small by the archiver) means the
   agent reloads *only* what matters, fast, without context bloat.
 - **Full history is never lost** (archive + git), so you can always dig deeper.
-- **Retrieval does not decay with size** — the session index, full-text `search`, and the
+- **Retrieval does not decay with size**: the session index, full-text `search`, and the
   extractable decision/open-loop registries mean growth does not bury the past.
-- **Compliance is enforced, not hoped for** — `check` plus the pre-push hook turn the
+- **Compliance is enforced, not hoped for**: `check` plus the pre-push hook turn the
   close-out ritual from a good intention into a gate, closing the one failure mode that
   actually bit this project.
-- **Scales by client** — one chronological log for cross-client learning, with per-client
+- **Scales by client**: one chronological log for cross-client learning, with per-client
   tagging and filtering so no single client's context drowns the others.
 - **Source-of-truth-over-binaries** keeps the repo legible and reproducible, and keeps the
   memory about *intent*, not output.

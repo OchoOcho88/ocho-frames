@@ -8,7 +8,8 @@ Low-tech, stdlib-only. Complements scripts/archive_memory.py. Subcommands:
   index         regenerate memory-index.md (a TOC of every session, hot + archived).
   search QUERY  case-insensitive search across memory + registries + docs.
   decisions     list decisions from DECISIONS.md   (--client X to filter).
-  open          list open questions from OPEN-QUESTIONS.md (--client X, --stale N).
+  open          list open questions from OPEN-QUESTIONS.md (--client X, --stale N,
+                --brief for one line per row, --parked to include parked rows).
   reconcile     flag CURRENT STATE staleness: dead file refs, old date, aged questions.
   install-hooks install a git pre-push hook that runs `check` (warn-only by default).
 
@@ -16,6 +17,8 @@ Conventions this tool expects (see docs/memory-system.md):
   - Session headers:  ## Session NNN (YYYY-MM-DD, Environment): title
   - DECISIONS.md row: - [D-NNN] YYYY-MM-DD | Client | text (Sxxx)
   - OPEN row (open):  - [ ] [Q-NNN] YYYY-MM-DD | Client | text (opened Sxxx)
+  - OPEN row (parked):- [p] [Q-NNN] ... (still open, but dormant: kept in the registry,
+                      left out of the startup print and the stale warning, S041)
   - OPEN row (done):  - [x] [Q-NNN] ... RESOLVED Sxxx: ...
 """
 import argparse, datetime, os, re, sys
@@ -43,8 +46,26 @@ IDX = os.path.join(ROOT, 'memory-index.md')
 
 SESSION_RE = re.compile(r'^##\s+Session\s+(\d+)\s+\(([\d-]+),\s*([^)]*?)\):\s*(.*)$', re.M)
 DEC_RE = re.compile(r'^-\s+\[D-(\d+)\]\s+([\d-]+)\s+\|\s+([^|]+?)\s+\|\s+(.*)$')
-OPN_RE = re.compile(r'^-\s+\[( |x)\]\s+\[Q-(\d+)\]\s+([\d-]+)\s+\|\s+([^|]+?)\s+\|\s+(.*)$')
+OPN_RE = re.compile(r'^-\s+\[( |x|p)\]\s+\[Q-(\d+)\]\s+([\d-]+)\s+\|\s+([^|]+?)\s+\|\s+(.*)$')
 OPENED_RE = re.compile(r'opened\s+S(\d+)', re.I)
+
+# --brief: one line per open loop for the startup print (S041 token diet).
+BRIEF_CHARS = 160
+
+
+def brief(text, limit=BRIEF_CHARS):
+    """First sentence of a registry row, markdown emphasis stripped, capped at `limit`."""
+    s = re.sub(r'\*\*|__|`', '', text).strip()
+    # First sentence. A bare title ("THE 3D BAND.") says nothing on its own,
+    # so keep taking sentences while the line is still under half the cap.
+    out = ''
+    for sent in re.findall(r'.+?[.!?](?=\s|$)|.+$', s):
+        if out and len(out) >= limit // 2:
+            break
+        out = (out + ' ' + sent.strip()).strip()
+    if len(out) > limit:
+        out = out[:limit - 3].rstrip() + '...'
+    return out
 
 
 def read(path):
@@ -192,22 +213,34 @@ def cmd_decisions(args):
 
 def cmd_open(args):
     latest = latest_session_num()
-    n = 0
+    n = parked = 0
     for m in _rows(OPN, OPN_RE):
-        done, qid, date, client, text = m.group(1) == 'x', m.group(2), m.group(3), m.group(4).strip(), m.group(5)
-        if done:
+        mark, qid, date, client, text = m.group(1), m.group(2), m.group(3), m.group(4).strip(), m.group(5)
+        if mark == 'x':
             continue
         if args.client and args.client.lower() not in client.lower():
             continue
+        if mark == 'p':
+            parked += 1
+            if not args.parked:
+                continue
         age = ''
         om = OPENED_RE.search(text)
-        if om and latest:
+        if mark == 'p':
+            age = '  [parked]'
+        elif om and latest:
             gap = latest - int(om.group(1))
             if args.stale and gap >= args.stale:
                 age = f'  ⚠ open {gap} sessions'
-        print(f'Q-{qid}  {date}  [{client}]  {text}{age}')
+        body = brief(text) if args.brief else text
+        print(f'Q-{qid}  {date}  [{client}]  {body}{age}')
         n += 1
-    print(f'--- {n} open question(s)' + (f' for {args.client}' if args.client else ''))
+    tail = f' for {args.client}' if args.client else ''
+    if parked and not args.parked:
+        tail += f', plus {parked} parked (--parked to list)'
+    if args.brief:
+        tail += '. Full rows: memory_tools.py open' + (f' --client {args.client}' if args.client else '')
+    print(f'--- {n} open question(s){tail}')
     return 0
 
 
@@ -235,7 +268,7 @@ def cmd_reconcile(args):
     latest = latest_session_num()
     aged = []
     for m in _rows(OPN, OPN_RE):
-        if m.group(1) == 'x':
+        if m.group(1) in ('x', 'p'):      # parked rows are exempt from the age nag
             continue
         om = OPENED_RE.search(m.group(5))
         if om and latest and latest - int(om.group(1)) >= 5:
@@ -284,6 +317,8 @@ def main():
     sp = sub.add_parser('search'); sp.add_argument('query', nargs='+')
     sp = sub.add_parser('decisions'); sp.add_argument('--client', default='')
     sp = sub.add_parser('open'); sp.add_argument('--client', default=''); sp.add_argument('--stale', type=int, default=5)
+    sp.add_argument('--brief', action='store_true', help='one line per row: first sentence, capped at %d chars' % BRIEF_CHARS)
+    sp.add_argument('--parked', action='store_true', help='include [p] parked rows')
     sub.add_parser('reconcile')
     sub.add_parser('install-hooks')
     args = ap.parse_args()
