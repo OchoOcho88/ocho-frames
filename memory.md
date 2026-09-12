@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-12 | Last session: 041 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12 | Next: Check for Lucy's replies first (she is not on Gmail, Hugo pastes or screenshots them): the inspiration board questions (Q-036) and the signature original (Q-034) are both pending, and when they land the build is `scripts-local/build_inspiration_board_mock.py` extended to about 34 frames at 140 ms. Hugo's two S041 hand-backs: pick the shot 01 colourway from `lucyfriend-band-placement/plates/colourway-compare/` (Q-025) and run `gen_poster_1b.py high` from a native Terminal for the poster 2 keeper (Q-019). Everything else is in the loops startup prints, the Fit Expo booth email (Q-027) at the top.*
+*Last updated: 2026-09-12 | Last session: 041 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12 | Next: Check for Lucy's replies first (she is not on Gmail, Hugo pastes or screenshots them): the inspiration board questions (Q-036) and the signature original (Q-034) are both pending, and when they land the build is `scripts-local/build_inspiration_board_mock.py` extended to about 34 frames at 140 ms. Hugo's one S041 hand-back: pick the shot 01 colourway from `lucyfriend-band-placement/plates/colourway-compare/` (Q-025). Everything else is in the loops startup prints, the Fit Expo booth email (Q-027) at the top.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -39,9 +39,9 @@ Tags: ochoproductions, sportif, memory-system, token-diet, startup, closeout, ba
 
 **Decided.** D-054, the token diet rules as standing policy.
 
-**Open.** Q-038 new (composition end cards: old mark, handle, and a "Launching September 2026" line). Q-025 resolved, Hugo picks the colourway. Q-019 waits on his high-quality run. Q-013 mostly done, remainder listed on the row. Q-037 resolved.
+**Open.** Q-038 new (composition end cards: old mark, handle, and a "Launching September 2026" line). Q-025 resolved, Hugo picks the colourway. Q-019 resolved, the high plate dropped as not needed. Q-013 mostly done, remainder listed on the row. Q-037 resolved.
 
-**Next.** Lucy's replies (Q-036, Q-034); then Hugo's two hand-backs, the colourway pick and the poster 2 high run.
+**Next.** Lucy's replies (Q-036, Q-034); then Hugo's colourway pick.
 
 ---
 ## Session 040 (2026-09-12, Claude Code): Lucy asks for an animated inspiration board, and a mock goes back the same day
