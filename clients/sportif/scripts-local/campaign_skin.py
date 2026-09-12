@@ -8,9 +8,6 @@ campaign shot. Tuned for ch2_r_low_realband (model left, clean warm wall upper-r
 """
 import sys
 from pathlib import Path
-import sys as _sys, os as _os
-_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-from house_lockup import draw_lockup  # master mark, D-017
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path('/Users/hugobrizuela/Desktop/hyperframes')
@@ -39,8 +36,12 @@ def tracked(draw, y, text, font, fill, track, anchor, right=None, cx=None):
         draw.text((x, y), c, font=font, fill=fill); x += w + track
 
 def logo(draw, cx, y, size, fill):
-    """SPORTIF / rule / collection master mark (D-017), centred on cx. Imported, not copied (D-050)."""
-    return draw_lockup(draw, cx, y, size, fill, align='center')
+    T = 'SPORTIF'; f = ImageFont.truetype(REG, size); sp = size * -0.059
+    ws = [draw.textlength(c, font=f) for c in T]; w = sum(ws) + sp * (len(T) - 1)
+    b = draw.textbbox((0, 0), T, font=f); ch = b[3] - b[1]; x = cx - w / 2
+    for c, cw in zip(T, ws): draw.text((x, y - b[1]), c, font=f, fill=fill); x += cw + sp
+    rt = max(2, round(ch * 0.045)); rw = w * 0.43; ry = y + ch + ch * 0.44
+    draw.rectangle([cx - rw / 2, ry, cx + rw / 2, ry + rt], fill=fill)
 
 def cta(img, cx, cy, text):
     d = ImageDraw.Draw(img); f = ImageFont.truetype(BOLD, 33); tk = 3
@@ -76,11 +77,7 @@ tracked(d, y0 - 42, 'meet sportif', kf, NAVY, 4, None, right=rx)
 # CTA pill + handle bottom-centre
 cta(img, cx, H * 0.9, 'JOIN THE WAITLIST')
 d = ImageDraw.Draw(img)
-# master mark bottom-centre, in the slot the handle used to take (D-017)
-logo(d, cx, H * 0.945, 28, CREAMW)
-DRAW_HANDLE = False   # D-018: no @handle on Instagram assets (flip for booth prints, Q-028)
-if DRAW_HANDLE:
-    tracked(d, H * 0.955, '@sportifcollection', ImageFont.truetype(REG, 25), (250, 246, 240), 2, None, cx=cx)
+tracked(d, H * 0.955, '@sportifcollection', ImageFont.truetype(REG, 25), (250, 246, 240), 2, None, cx=cx)
 
 out = FE / f'{name}_AD.png'
 img.convert('RGB').save(out); print('ok ->', out)

@@ -12,9 +12,6 @@ Composites her three clean studio shots into a grid and lays real Glacial type o
 """
 import sys
 from pathlib import Path
-import sys as _sys, os as _os
-_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-from house_lockup import draw_lockup, measure_lockup  # master mark, D-017
 from PIL import Image, ImageDraw, ImageFont, ImageOps
 
 # optional args: headline (pipe-separated lines) and output filename
@@ -100,9 +97,10 @@ for i, ln in enumerate(lines):
     draw_tracked((LEFT, top + i * pitch), ln, hf, CHAR, track_px=hsize * TRACK_EM)
 
 # --- wordmark (bottom band) ---
-# master mark SPORTIF / rule / collection (D-017), centred in the bottom band
-_lw, _lh = measure_lockup(d, 44)
-draw_lockup(d, W / 2, (bandTop + H) / 2 - _lh / 2, 44, CHAR, align='center')
+wf = ImageFont.truetype(REG, 52)
+wb = d.textbbox((0, 0), 'SPORTIF', font=wf)
+wy = (bandTop + H) / 2 - (wb[3] + wb[1]) / 2
+draw_tracked((0, wy), 'SPORTIF', wf, CHAR, track_px=52 * 0.44, center_x=W / 2)
 
 canvas.save(OUT)
 print('ok ->', OUT.relative_to(ROOT), canvas.size)

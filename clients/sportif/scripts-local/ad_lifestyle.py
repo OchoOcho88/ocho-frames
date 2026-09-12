@@ -9,9 +9,6 @@ upper-left wall). Brand-world headline (no product line since there's no band).
 """
 import sys
 from pathlib import Path
-import sys as _sys, os as _os
-_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-from house_lockup import draw_lockup  # master mark, D-017
 from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
 ROOT = Path('/Users/hugobrizuela/Desktop/hyperframes')
@@ -38,8 +35,13 @@ def tracked(draw, y, text, font, fill, track, left=None, cx=None):
         draw.text((x, y), c, font=font, fill=fill); x += w + track
 
 def logo(draw, left, y, size, fill):
-    """SPORTIF / rule / collection master mark (D-017), flush left. Imported, not copied (D-050)."""
-    return draw_lockup(draw, left, y, size, fill)[0]
+    T = 'SPORTIF'; f = ImageFont.truetype(REG, size); sp = size * -0.059
+    ws = [draw.textlength(c, font=f) for c in T]; w = sum(ws) + sp * (len(T) - 1)
+    b = draw.textbbox((0, 0), T, font=f); ch = b[3] - b[1]; x = left
+    for c, cw in zip(T, ws): draw.text((x, y - b[1]), c, font=f, fill=fill); x += cw + sp
+    rt = max(2, round(ch * 0.05)); rw = w * 0.42; ry = y + ch + ch * 0.42
+    draw.rectangle([left, ry, left + rw, ry + rt], fill=fill)
+    return w
 
 def cta(img, cx, cy, text):
     d = ImageDraw.Draw(img); f = ImageFont.truetype(BOLD, 34); tk = 3
@@ -92,9 +94,7 @@ tracked(d, y0 + len(HEAD) * lh + 14, SUB, sf, INK, 1, left=LX + 4)
 # CTA pill + handle, bottom
 cta(img, W / 2, H - 150, 'JOIN THE WAITLIST')
 d = ImageDraw.Draw(img)
-DRAW_HANDLE = False   # D-018: no @handle on Instagram assets (flip for booth prints, Q-028)
-if DRAW_HANDLE:
-    tracked(d, H - 66, '@sportifcollection', ImageFont.truetype(REG, 26), (250, 246, 240), 2, cx=W / 2)
+tracked(d, H - 66, '@sportifcollection', ImageFont.truetype(REG, 26), (250, 246, 240), 2, cx=W / 2)
 
 out = FE / f'{name}_IGAD.png'
 img.convert('RGB').save(out); print('ok ->', out, img.size)

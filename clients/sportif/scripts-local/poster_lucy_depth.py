@@ -8,9 +8,6 @@ imagery is Lucy's real photos; type is real Glacial.
     python3 clients/sportif/scripts-local/poster_lucy_depth.py
 """
 from pathlib import Path
-import sys as _sys, os as _os
-_sys.path.insert(0, _os.path.dirname(_os.path.abspath(__file__)))
-from house_lockup import draw_lockup, measure_lockup  # master mark, D-017
 from PIL import Image, ImageDraw, ImageFont, ImageOps, ImageFilter
 from rembg import remove, new_session
 
@@ -100,9 +97,9 @@ canvas.alpha_composite(hero, (hx, hyy))
 
 # --- wordmark ---
 d = ImageDraw.Draw(canvas)
-# master mark SPORTIF / rule / collection (D-017), centred where the wordmark sat
-_lw, _lh = measure_lockup(d, 40)
-draw_lockup(d, W / 2, H - 54 - _lh / 2, 40, CHAR, align='center')
+wf = ImageFont.truetype(REG, 54)
+wb = d.textbbox((0, 0), 'SPORTIF', font=wf)
+tracked((0, H - 74 - (wb[3] + wb[1]) / 2 + 20), 'SPORTIF', wf, CHAR, track_px=54 * 0.44, cx=W / 2)
 
 canvas.convert('RGB').save(OUT)
 print('ok ->', OUT.relative_to(ROOT), (W, H))
