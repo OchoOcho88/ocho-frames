@@ -8,19 +8,16 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 *Last updated: 2026-09-12 | Last session: 041 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12 | Next: Check for Lucy's replies first (she is not on Gmail, Hugo pastes or screenshots them): the animated inspiration board email went out 2026-09-12 with four questions pending (Q-036), and the signature original is still wanted (Q-034). When her answers land, extend `scripts-local/build_inspiration_board_mock.py` to paste the layers in over about 34 frames at 140 ms, a 600px GIF for email and a 1080x1350 MP4 for Instagram. Everything else waiting is in the open loops that startup prints, the Fit Expo booth email (Q-027) at the top of them.*
 
-- **The critical path is TRADEMARK, not Shopify.** Launch and the whole go-to-market are held until Lucy's lawyer clears the name (logged from the 2026-07-14 meeting, still open). Underneath that there is still nowhere to sell the band: Shopify unopened, prices and the pouch threshold unset, fabric undecided, all blocked on Lucy.
-- **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Strategy locked: parallel wholesale plus DTC, one hub. Client-facing docs are exactly two PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
-- **The real product exists and its colours are MEASURED (D-027):** LIGHT `#B8A080`, MEDIUM `#9D7459`, HEAVY `#6C4333`, off shoots 4 and 5 shot on white in direct sun (D-026). **Composite ONLY from `assets/Sportif_Bands/Bands_background_removed/colour-corrected/`** (D-039): every other cutout in the workspace is about a stop underexposed, invisible on white and ruinous on a dark floor.
-- **The band's own weave is a brand asset (D-028):** seamless tiles plus large single-crop plates at `clients/sportif/assets/textures/`. They are photographs of the real product, and they are the texture source for everything, 2D or 3D.
-- **Product assets carry the REAL product colour, never the brand palette (D-046).** The brand-colour weave is valid only where the weave is a BACKGROUND rather than the product itself (D-045).
-- **The generator rules, all learned the hard way.** Never let a generator draw the band large in frame: big means shoot it or composite the real cutout, small means generate and swap the label (D-033, D-034). No image generator touches Lucy's friend's photos at any stage (D-038). Label text comes back mangled at every scale and every engine, so the label is always fixed from the real photograph.
-- **The weave tile house build** is `clients/sportif/scripts-local/build_texture_weight_tiles.py`: real colours, Glacial Indifference BOLD on the weight line, lockup at 76 percent of canvas width (D-047). The Instagram profile grid crops to 3:4, a centred 1012px column, and that is the ceiling for anything built for the grid.
-- **The brand colour is Pantone 162 C, screen `#FFBE9F` (D-051);** the old `#F0CDB3` is retired for new work. **Two client-facing writing rules (D-044).** Lucy is NOT the model in the email-02 photos, they are her Canva picks, so never write "you" about the person in frame. Never call the MEDIUM band "blush", because Blush Peach is the primary brand colour; refer to bands by weight.
-- **"Show me" and "pick one" are different client requests (D-046).** Declining the second is not licence to refuse the first. Show the thing with the recommendation attached.
-- **No @handle on Instagram assets (D-018), handle back ON for anything used at the Fit Expo booth (Q-028),** because booth assets travel without the account name attached.
-- **The session protocol is two checked commands (D-035):** `python3 scripts/startup.py` and `python3 scripts/closeout.py --commit -m "..."`. It is a script rather than a paragraph because **CLAUDE.md is NOT auto-loaded in Cowork** and the protocol kept being skipped.
-- **House voice: no em or en dashes anywhere.** Close-out sweeps every changed file and refuses to commit on a hit.
-- **Where the detail lives.** Settled decisions in `DECISIONS.md`, live loops in `OPEN-QUESTIONS.md` (dormant ones parked `[p]`, `open --parked` lists them), environment gotchas in `docs/gotchas.md`, session narrative below and in `memory-archive.md`, both indexed by `memory-index.md`. Query with `python3 scripts/memory_tools.py [check|index|search|decisions|open]`. Startup prints one line per loop; the session entry is five headings under 500 words (D-054).
+- **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
+- **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
+- **Brand colour is Pantone 162 C, screen `#FFBE9F` (D-051).** The old `#F0CDB3` is retired for new work; rendered back catalogue still to move (Q-013).
+- **Product colours are measured (D-027):** LIGHT `#B8A080`, MEDIUM `#9D7459`, HEAVY `#6C4333`. Composite ONLY from `assets/Sportif_Bands/Bands_background_removed/colour-corrected/` (D-039). Product assets carry the real colour, never the brand palette (D-046); the brand-colour weave is a background only (D-045).
+- **The weave is a brand asset (D-028):** tiles and plates at `clients/sportif/assets/textures/`, the texture source for everything, 2D or 3D. House tile build is `scripts-local/build_texture_weight_tiles.py` (D-047). The Instagram grid crops to 3:4, a centred 1012px column.
+- **Generator rules (D-033, D-034, D-038).** Never let a generator draw the band large: big means shoot or composite the real cutout, small means generate and swap the label from the real photo. No generator touches Lucy's friend's photos.
+- **Client writing rules (D-044, D-046).** Lucy is not the model in the email-02 photos, so never "you" about the person in frame. Bands are named by weight, never "blush". "Show me" and "pick one" are different requests: show the thing with a recommendation attached.
+- **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).**
+- **Protocol and voice (D-035, D-054).** `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
+- **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
 
 ---
 ## Session 041 (2026-09-12, Claude Code): The token diet, Q-037 done in five moves
@@ -28,20 +25,20 @@ Running log of what we've done, what we've learned, decisions made, and question
 Client: Ochoproductions
 Tags: ochoproductions, memory-system, token-diet, startup, closeout, memory-tools, claude-md, housekeeping
 
-**Done.** All five Q-037 moves in order, nothing else touched. (1) `memory_tools.py open --brief` prints one line per loop, the first sentence capped at 160 characters; `startup.py` uses it and the footer says where the full rows are. (2) Q-001 to Q-010 parked with `[p]` in `OPEN-QUESTIONS.md` (eight rows, two were already resolved); `memory_tools.py` hides them unless `--parked` and `reconcile` skips them. Q-002, the trademark gate, is parked too, but the first CURRENT STATE bullet still carries it. (3) "Tools and gotchas" and the PDF venv recipe moved to `docs/gotchas.md`, grouped by environment, with three S040 learnings that belonged there; startup names the file in its own section and never prints it; CLAUDE.md rewritten around the protocol and the conventions. (4) The "read the top session entry" step dropped from CLAUDE.md and `/startup`; the handoff line rewritten to three sentences. (5) Five-heading template in `docs/memory-system.md` (v2.1 note, em dashes swept out); `closeout.py` warns past 500 words, on a missing heading, and past three handoff sentences. Its commit trailer now names the current model.
+**Done.** All five Q-037 moves in order, nothing else touched. (1) `memory_tools.py open --brief` prints one line per loop, the first sentence capped at 160 characters; `startup.py` uses it and the footer says where the full rows are. (2) Q-001 to Q-010 parked with `[p]` in `OPEN-QUESTIONS.md` (eight rows, two were already resolved); `memory_tools.py` hides them unless `--parked` and `reconcile` skips them. Q-002, the trademark gate, is parked too, but the first CURRENT STATE bullet still carries it. (3) "Tools and gotchas" and the PDF venv recipe moved to `docs/gotchas.md`, grouped by environment, with three S040 learnings that belonged there; startup names the file in its own section and never prints it; CLAUDE.md rewritten around the protocol and the conventions. (4) The "read the top session entry" step dropped from CLAUDE.md and `/startup`; the handoff line rewritten to three sentences. (5) Five-heading template in `docs/memory-system.md` (v2.1 note, em dashes swept out); `closeout.py` warns past 500 words, on a missing heading, and past three handoff sentences. Its commit trailer now names the current model. Then, on Hugo's call after the first close-out, the 13 CURRENT STATE bullets were cut to 10, each pointing at its D-number instead of restating it, and the session closed out a second time.
 
 **Measured** (chars divided by 4, tiktoken is not installed):
 
 | | before | after |
 |---|---|---|
-| startup print | 4,709 | 2,532 (about 2,450 once the tree is clean) |
+| startup print | 4,709 | 2,090 (final, clean tree) |
 | of which open loops | 2,845 | 588 |
-| of which CURRENT STATE | 1,144 | 1,091 |
+| of which CURRENT STATE | 1,144 | 722 (10 bullets) |
 | CLAUDE.md, paid every turn | 2,810 | 1,289 |
 | close-out entry | 1,106 (741 words) | 670 (430 words, this entry) |
 
 **Learned.**
-- Two of the three targets landed (CLAUDE.md about 1,300 against 1,200; the entry under 500 words). Startup missed its 1,500 target because the 13 CURRENT STATE bullets are 1,091 tokens on their own and the brief only capped the handoff line. That block is the next lever, and it was left alone on purpose.
+- After the five moves startup still sat at about 2,500 because the 13 CURRENT STATE bullets were 1,091 tokens on their own. Cutting them to 10 D-number pointers was the second half of the saving; the numbers above are the final ones.
 - A first-sentence cap needs a floor. "THE 3D BAND." says nothing, so the brief keeps taking sentences until the line passes 80 characters.
 - Size caps warn rather than block (D-037), otherwise they get bypassed.
 
