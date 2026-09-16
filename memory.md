@@ -20,6 +20,68 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
 
 ---
+## Weekly Review, 2026-09-13 (week of 2026-09-07)
+
+Three sessions this week (039 on 09-11, then 040 and 041 both on 09-12), all in Claude Code, all driven by Hugo. The shape of the week: the primary brand colour finally got settled by the client's own printer and propagated through every forward source in a day; Lucy then asked for something nobody had planned for and got a working mock back the same afternoon; and the workspace turned on itself and cut what it costs to start a session by more than half. Two of the three sessions ended with something in Lucy's inbox. The one thing that did not happen, again, is the Fit Expo booth email, now deferred by Hugo rather than blocked, which is a different and worse status than it had last week.
+
+### Highlights
+- **Pantone 162 C is the brand colour, and it came from her printer rather than from an argument (D-051).** Q-033 had been the sharpest open question on the board: her Pantone chip contradicted two of her own files and her intake form. The answer settled it in the direction the measurement could not, because New Directions matched her Canva `#f0cdb3` to 162 C as the closest printable colour. Screen hex is Pantone's own `#FFBE9F`. The weave tiles she is already posting measure `#FFC09F`, close enough that nothing delivered had to be reissued or apologised for. Forward sources moved the same day: `brand.md`, `voice-guidelines.md`, both client PDFs, the synthesis brief and eight build scripts.
+- **Lucy asked "do you happen to know how to do something like this inspiration board?" and got a finished mock the same day (D-053).** She forwarded SABO's stop-motion cork board GIF. Rather than answer in prose, the reference was measured off a screen recording into a real spec (4.8 s loop, about 34 frames at roughly 140 ms, hold times and cut points all recovered from frame differences) and a 1200x1500 final-frame mock was built from assets the workspace already held: the weave tiles as fabric, the three colour-corrected cutouts, the 162 C chip with the three measured band colours, the master mark, polaroids from her own screenshots, and her real signature lifted off an email crop. Three passes, no generator touched it, so D-038 stayed clean. The mock and the four questions went in the same send.
+- **The token diet cut the cost of existing (Q-037, D-054).** Startup print 4,709 to 2,003 tokens, CLAUDE.md 2,810 to 1,289, close-out entry 1,106 to about 700. The mechanism matters more than the numbers: loops print one brief line each, dormant loops park behind `[p]`, gotchas moved to a file that is named but never printed, and `closeout.py` now warns on a fat entry, a missing heading or a long handoff. The workspace now has a written policy against its own sprawl instead of a periodic cleanup.
+- **Three loops that needed nobody were closed in one sitting, and one thing was overreached.** Q-025 got a colourway compare built out of Hugo's own shot 01 placement with colour as the only variable; Q-019 got the poster re-run right first time once the band was described as "one closed loop that encircles BOTH thighs"; Q-013 got the band posters and three compositions rebuilt in 162 C. Then the three Lucy posters and three IG ads were moved to the master mark on the strength of a settled decision nobody had asked to apply, and Hugo reverted the lot.
+
+### Patterns I noticed
+- **Settled is not the same as wanted now, and that is the sharpest lesson of the week.** The master mark has been house standard since D-017 and Q-013 has sat open for weeks, so moving delivered creative onto it was defensible on paper and still wrong. Delivered work has a different status from unbuilt work. This is the first time this review has had to record the workspace overstepping rather than Hugo overturning it, and the correct rule is narrow: ask before touching anything already in the client's hands.
+- **Reproduce the delivered file before changing one variable in it.** Used twice, both times to convert a claim into a fact: the collection grid was rebuilt in the OLD peach first and matched the posted August files pixel for pixel, so the new set provably differs only in colour; and the colourway compare lifts Hugo's existing placement out of the PSD rather than re-placing it, so the three builds are actually comparable. Same family as last week's "measure the thing you care about, not the tool's own label".
+- **When a client asks a capability question, the answer is an artefact.** D-053 generalises what happened with the inspiration board: a "can you do this" gets a yes, a mock built from her own assets, and short answerable questions, not a menu of methods. Hugo cut the first draft's choice between a real shoot and a computer build for exactly this reason. It is the same instinct as D-046's "show me and pick one are different requests", now applied one step earlier in the conversation.
+- **Two client-facing edits by Hugo were both about earned familiarity.** "It is so you" came out of the signature email as a claim to know her that he has not earned; the Canva ask was softened from instruction to suggestion. Both are now feedback memories. The house voice for Lucy is praise the work, suggest rather than instruct, never claim to know the person.
+- **The board keeps getting more specific rather than shorter.** Q-033 closed and produced the colour that unblocks the commercial assets. Q-035 closed and immediately became Q-036, a build with four client answers in front of it. Q-025 closed as a build and became a one-line decision waiting on Hugo. Q-019 and Q-037 closed outright, Q-038 opened. Net movement is real; the count barely moved.
+
+### Skills / knowledge gained
+- **When a client colour comes from a printer, screen follows print.** Use the Pantone's own sRGB value rather than an eyeballed chip or a Canva hex.
+- **A whole-logo overlay cannot tell fonts apart at 500px** (one pixel of drift halves the overlap), but a per-letter shape match against lookalike fonts can. Glacial Indifference Regular scored 0.82 against her artwork, ahead of Avenir 0.76, Poppins 0.75, Futura 0.67 and Glacial Bold 0.61, which confirms our file and hers are the same face and weight.
+- **A screen recording of a GIF is enough to recover its frame timing.** Extract every frame, threshold the mean frame difference, and the change list gives the hold times and the loop period directly. No need for the original file.
+- **A close-up plate tiled at its own scale reads as rope, not fabric.** What reads as the same material is the seamless tile scaled so the weave pitch matches the product cutout in the same frame, 0.2 scale in this build.
+- **Photoshop's rotation sign is the reverse of Pillow's,** and the PSD layer is the check: +101 in Pillow matched Hugo's -101 at 20/255, the other sign at 88/255.
+- **Post-grade band separations against the floor are LIGHT +19, MEDIUM +9, HEAVY minus 4.** The S034 numbers (42/31/12) were pre-grade against a bare floor and should not be quoted any more.
+- **Environment overrides beat forked scripts.** `build_collection_grid.py` and `build_inspiration_board_mock.py` both took `SPORTIF_*` overrides this week (D-050), so a reissue is one command and the defaults still reproduce the delivered set byte for byte.
+- **Toolchain facts now on record:** weasyprint cannot load Homebrew's pango from `/usr/bin/python3`, so it lives in `.venvs/pdf` on Homebrew Python 3.11; opacity on SVG text makes weasyprint clip the line; gpt-image-2 at high quality cannot be called from the Claude Code shell because the connection drops at 60 seconds, low works and high is a native Terminal job; macOS puts a narrow no-break space before am and pm in screenshot names, so match with a glob rather than a pasted path; images pasted into chat cannot be saved to disk, ask for the file in the folder.
+- **Hugo is not on Gmail.** The Gmail connector is not his client mailbox. Lucy's mail arrives as pasted text, screenshots, or files dropped in the client folder. Two empty searches were spent learning this; it is now an auto-memory.
+- **A first-sentence cap needs a floor,** or a brief reads "THE 3D BAND." and says nothing. The rule is keep taking sentences until past half the cap.
+
+### Open questions still unresolved
+**Resolved (by a later session this week):**
+- [x] ~~Q-033: which peach is the logo peach~~ RESOLVED Session 039: Pantone 162 C, screen `#FFBE9F`, on her printer's match (D-051).
+- [x] ~~Q-011: collection grid colourway sign-off~~ RESOLVED Session 039: she signed off by posting it.
+- [x] ~~Q-035: Lucy's answer on what to work on next~~ RESOLVED Session 040: she asked for a stop-motion inspiration board, which became Q-036.
+- [x] ~~Q-019: poster 2 re-run~~ RESOLVED Session 041: `gen_poster_1b.py` with the band written as a closed loop crossing both thighs, two correct low candidates, high plate dropped as not needed.
+- [x] ~~Q-037: the token diet~~ RESOLVED Session 041: all five moves plus Hugo's three additional calls, measured, and written up as standing policy (D-054).
+- [x] ~~Q-025: build the shot 01 colourway test~~ RESOLVED Session 041 as a build: `build_colourway_compare_shot01.py` rebuilds Hugo's own placement in all three colours. The decision half is still open below.
+- Note: Session 041 is the most recent session and no later session exists, so nothing in its own open loops can be flipped yet.
+
+**Still open, opened this week:**
+- [ ] **Q-036: Lucy's four answers on the inspiration board,** then the loop build. Where it will live, what the board is about, what goes on it, whether it carries words. The build is `scripts-local/build_inspiration_board_mock.py` extended to about 34 frames at 140 ms, out as a 600px GIF for email and 1080x1350 MP4 for Instagram. Blocked on her only.
+- [ ] **Q-034: the signature original,** file or font name. The 156x70 email crop is fine for a card and not good enough for an animated write-on.
+- [ ] **Q-038: composition end cards** still carry the old mark, the handle, and a "Launching September 2026" line. Opened S041, needs nobody.
+- [ ] **Q-025, decision half: Hugo picks the shot 01 colourway** from `lucyfriend-band-placement/plates/colourway-compare/`. One look, one answer. Prediction on the post-grade separations is MEDIUM, with HEAVY at minus 4 confirming it sinks into the floor.
+
+**Still open, carried from before:**
+- [ ] **Q-027: the Fit Expo booth email.** Owed in writing since 08-27, now deferred by Hugo rather than blocked, and the date correction (TheFitExpo LA listed 23 to 24 January 2027, not February) makes the runway three weeks shorter than Lucy's intake assumes. Should carry panel dimensions and bleed, the handle rule (Q-028), the Canva print and event licence check, and the four older picks.
+- [ ] **Q-013: back catalogue to 162 C and the master mark.** Mostly done in S041 for the band posters and three compositions; the remainder is on the row. The delivered ads and posters are explicitly NOT part of this until Hugo asks.
+- [ ] **Q-016: the 3D band, still one photograph away.** Shape proven (D-048), shoot list validated, and it shares a sitting with Q-023 (band dropped on a floor) and Q-020 (label close-ups). Untouched for three weeks.
+- [ ] **Q-028: the handle rule** (off for Instagram, on for booth assets). One line, confirm back to Lucy.
+- [ ] **Q-001: standalone waitlist capture page plus 3-email welcome flow.** Top unbuilt item in ten separate sessions now. Needs neither Lucy nor the trademark.
+- [ ] **Colourway strips, range card and wholesale line sheet.** Unblocked by the measured colours four weeks ago and now, finally, by a settled brand colour. Still unbuilt.
+- [ ] **Q-002: trademark clearance,** still the critical-path gate on Lucy's lawyer's clock, with Shopify, prices, the pouch threshold and the fabric all behind it.
+- [ ] **Parked behind `[p]`:** Q-001 to Q-010 and Q-026, visible with `open --parked`. Includes Q-010 (native-terminal band-swap renders, then email-03), Q-008, Q-005, Q-006, Q-004, Q-003, Q-026 (Lucy's email-02 treatment pick).
+- [ ] Carried: ambassador and instructor seeding shortlist (thirteenth week, needs nothing from anyone), film the unboxing, ElevenLabs API key, Shopify store, materials question, Stage 3 synthesis template, Q-017 Gemini egress, Q-014 Hugo's Photoshop reference.
+
+### Suggested focus for next week
+1. **Send the Fit Expo booth email.** It is the only item on the board with an external deadline, it has been owed in writing for seventeen days, and it is now deferred rather than blocked, which means it is a choice being made weekly. One message asking for show confirmation and dates, panel dimensions and bleed, the Canva licence for print and event display, confirming the handle goes back on, and folding in the four older picks. One message has beaten five every time it has been tried.
+2. **Spend twenty minutes with the phone and close three loops at once (Q-016, Q-023, Q-020).** Geometry shot in shade as an open oval so the hole reads, then step into direct sun for the dropped band and the label close-ups per D-026. Then one Tripo run with the real image. This has been the number one or two recommendation for three consecutive reviews and is the largest unblock available for the smallest effort.
+3. **Build the commercial assets on the settled colour.** Colourway strips, range card and wholesale line sheet have been unblocked by the measured band colours since August and were missing only a settled primary brand colour, which 162 C now is. The measured colours, the corrected cutouts and the tight parallel trios from shoot 5 are all already in the workspace, so this is a build with no external dependency and nothing left to decide.
+
+---
 ## Session 041 (2026-09-12, Claude Code): The token diet, then the three loops the workspace could close alone
 
 Client: Ochoproductions, Sportif
@@ -39,7 +101,7 @@ Tags: ochoproductions, sportif, memory-system, token-diet, startup, closeout, ba
 
 **Decided.** D-054, the token diet rules as standing policy.
 
-**Open.** Q-038 new (composition end cards: old mark, handle, and a "Launching September 2026" line). Q-025 resolved, Hugo picks the colourway. Q-019 resolved, the high plate dropped as not needed. Q-013 mostly done, remainder listed on the row. Q-037 resolved.
+**Open.** Q-038 new (composition end cards: old mark, handle, and a "Launching September 2026" line). Q-025 resolved, Hugo picks the colourway. Q-019 resolved, the high plate dropped as not needed. Q-013 mostly done, remainder listed on the row. Q-037 resolved. *(Weekly review 2026-09-13: this is the most recent session, so no later session exists to resolve anything here. Q-025's decision half, Q-038 and the Q-013 remainder all carried forward unchanged.)*
 
 **Next.** Lucy's replies (Q-036, Q-034); then Hugo's colourway pick.
 
