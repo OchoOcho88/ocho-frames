@@ -90,7 +90,15 @@ MANUAL_PLACEMENT = {
     # then nudged only where the story safe zone or the ceiling beam forced it.
     ('feed',  'ballreach'):   (764, 220, 984, 333),   # Lucy: top RIGHT (was auto, left)
     ('story', 'ballreach'):   (764, 270, 984, 383),   # Lucy: top RIGHT (was left box)
-    ('story', 'sidestretch'): (96,  290, 316, 403),   # Lucy: top LEFT (was right box)
+    # Lucy, 2026-09-16: "move the SPORTIF collection above her hand, the middle of
+    # the logo to line up with middle finger". Her middle finger centres on x=340
+    # (measured off the finger creases at x=333 and x=346); the wordmark centres on
+    # x=342 here. Her fingertips top out at y=306, so the block sits 24px clear of
+    # them. NOTE this is the one story lockup that breaks STORY_SAFE_TOP: above the
+    # hand and inside the safe zone are mutually exclusive on this frame, and the
+    # story already uses the full height of the source, so there is no crop to
+    # borrow from. Hugo took the trade (S042).
+    ('story', 'sidestretch'): (232, 169, 452, 282),   # Lucy: above the hand, on the middle finger
     ('story', 'duo'):         (96,  355, 316, 468),   # Lucy: same spot, dropped lower
     ('feed',  'pilates'):     (155, 293, 376, 473),   # Hugo, 2026-08-17
 }

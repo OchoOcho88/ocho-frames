@@ -6,6 +6,82 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-09-18 -->
+
+## Session 036 (2026-08-31, Cowork): Lucy answers on the grid, the weave tiles get bolder, and the 3D band finally makes a loop
+
+Client: Sportif
+Tags: instagram, weave-tiles, typography, client-email, colour-accuracy, 3d, tripo, photogrammetry, diagnosis
+
+Hugo drove, from a standing start of "where are we at". The day ran in two halves: a client
+thread answered and shipped in the morning, and an evening spent diagnosing why the 3D band kept
+coming back wrong, ending with the first result that was actually the right shape.
+
+**Lucy replied on the weave grid tiles, and the reply carried two asks.** She loves the concept
+and wants to post it, which closes Q-024. She asked for them sized for the Instagram tiles, and
+for the tiles in her brand colour.
+
+The sizing ask needed no work. The tiles were already 1080x1350, which IS the feed size. The one
+real thing behind it is the profile grid, which crops thumbnails to 3:4 and shows a centred
+1012px column; the lockup is 820px, so it clears by 96px each side. Answered with a mockup rather
+than a paragraph, at `generated/images/texture-weight-tiles/grid-preview-for-lucy.jpg`.
+
+**The colour ask was declined, and Hugo's reasoning is the one that matters (D-046).** Three
+directions were built and measured first (as-shot, 50 percent tinted, full brand ramp), then he
+called it: these tiles are a close-up of the actual fabric at a scale where colour is the only
+thing a buyer can judge, so tinting them sells a colour the customer does not receive. A returns
+problem and a trust problem on a launch where Lucy is the brand. The experiments are parked at
+`brand-colour-options/` as a dead end that was tried.
+
+**Then Hugo caught a second mistake, and it is the more interesting one.** Her words were "can
+you please SHOW ME what it would look like in my brand colour". The first reply declined the
+colour change and did not show her, which answers a question she did not ask and declines the one
+she did. "Show me" and "pick one" are different requests, and the earlier advice collapsed them.
+Fixed with a follow-up ten minutes later carrying one comparison image, real colour against full
+brand colour, with the recommendation attached. Showing something with a clear recommendation is
+not the same as offering a choice. Both rows are built by the CURRENT house build so colour is
+the only variable, and the halfway tinted version was deliberately withheld because it fails the
+same accuracy test by half.
+
+**The weight line was too thin, and a thumbnail test settled it (D-047).** Hugo flagged that
+LIGHT / MEDIUM / HEAVY was getting lost. Rendered down to 128px, roughly a real profile-grid
+thumbnail, the Regular line was gone entirely on the light tile. Glacial Indifference BOLD fixes
+it, plus an extra halo under that line alone. Separately the whole lockup went 0.66 to 0.76 of
+canvas width, since type reads smaller on Instagram; one number scales the block and holds every
+proportion, and the blurs and shadow offset scale with it. Folded into
+`build_texture_weight_tiles.py` as the house build and the delivered set regenerated. Two emails
+went to Lucy, both sent (Q-029).
+
+**A date correction nobody had noticed.** Her intake says "LA Fitness Expo in February next
+year". TheFitExpo Los Angeles 2027 is listed as 23 to 24 January. If that is her show, the runway
+is three weeks shorter than the workspace has been assuming, and print deadlines land well before
+the show. Noted against Q-027, needs confirming with her.
+
+**The 3D band: two runs, one dead end and one breakthrough (D-048).** Run 1 came back as four
+flat open straps, one a standalone gold plaque, at 1.9M triangles and no real world scale. The
+first diagnosis blamed the prompt, which said "strap" and "metal label". Hugo pushed back that it
+had used the photographs, and he was right. Looking properly at the references settled it:
+**every band photo in the workspace shows the band pressed FLAT**, so the hole is never visible,
+and a flattened loop from above is the same picture as a strap. The mesher was never given the
+information.
+
+Then Hugo tested it himself. Run 2 used a gpt-image-2 image showing a band lying open as an oval,
+hole visible, and Tripo returned a genuine closed loop, rendered six ways at
+`3d-band/renders/band-run2-contact-sheet.jpg`. One variable, proven in both directions in one
+evening. It still carries the pouch bag from the same input image, invented peach colour, 2M
+triangles and no scale, but the shape question is answered and the shoot list is validated before
+a frame is shot.
+
+**Working method worth keeping: the thumbnail test.** Twice today the decisive evidence came from
+rendering an asset down to the size it will actually be seen at and looking at that, rather than
+judging it at full size. The weight line failed at 128px while looking fine at 1080. Same shape
+of move as the S035 measurement work: build the test that answers the question rather than
+arguing about it.
+
+**Hugo's eye was the deciding gate again, three times.** The colour call, the thin weight line,
+and the push back on my prompt diagnosis. All three were right and all three overturned something
+I had written down.
+
 <!-- archived batch, moved 2026-09-12 -->
 
 ## Session 035 (2026-08-27, Cowork): Lucy's marks measured onto the assets, two failed grades, and the weave room

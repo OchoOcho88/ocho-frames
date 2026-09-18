@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-12 | Last session: 041 (Claude Code, CLOSED) | Working tree: committed clean | Git: pushed 2026-09-12 | Next: Check for Lucy's replies first (she is not on Gmail, Hugo pastes or screenshots them): the inspiration board questions (Q-036) and the signature original (Q-034) are both pending, and when they land the build is `scripts-local/build_inspiration_board_mock.py` extended to about 34 frames at 140 ms. Hugo's one S041 hand-back: pick the shot 01 colourway from `lucyfriend-band-placement/plates/colourway-compare/` (Q-025). Everything else is in the loops startup prints, the Fit Expo booth email (Q-027) at the top.*
+*Last updated: 2026-09-18 | Last session: 042 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: TWO EMAILS ARE DRAFTED AND UNSENT, both in the client folders, the side stretch revision (Q-039) and the signature animation (Q-040). After those, the only build left on the signature is the white-on-terracotta flat render, and three stray files want clearing out of `generated/videos/`. Everything else is in the loops startup prints, the Fit Expo booth email (Q-027) still at the top and now deferred four times.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -18,6 +18,30 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).**
 - **Protocol and voice (D-035, D-054).** `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
+
+---
+## Session 042 (2026-09-18, Claude Code): Lucy's placement on the side stretch, and her signature turned into a write-on
+
+Client: Sportif
+Tags: sportif, lucy, signature, amsterdam-two, canva, after-effects, trim-paths, track-matte, prores, alpha, contrast, story-safe-zone, email
+
+**Done.** Committed three carry-over items found dirty at start (the 2026-09-13 weekly review, `AGENTS.md`, the Codex `.agents/` skills). **Q-039, the side stretch story:** Lucy asked for the mark moved above the model's hand, its middle on her middle finger. Measured her middle finger at x=340 off the finger creases, placed the wordmark at x=343, ink bottom 26px clear of the fingertips, applied to `build_email02_social_v3/v4.py` and both colourways. Email sent under its own subject. **Q-034, the signature, closed end to end.** Lucy said yes and shared her Canva file; the signature is live text in `Amsterdam Two`, so she does not need her PR team, and it is a typeface not handwriting (D-055). Her Canva is free, so PDF Print was the only vector route out. Wrote `scripts-local/extract_lucy_signature.py`: flattens PyMuPDF's glyph `<use>` refs into real paths, inverts the composite for true transparency, and emits a font-free 1080x1920 artboard. Hugo then built the write-on in After Effects across the whole session (D-056) and rendered four files.
+
+**Learned.**
+- Trim Paths on a glyph OUTLINE traces the edge of a letter, not the pen stroke. A write-on needs hand-drawn open paths down the centre of each letter, used as an alpha matte.
+- Illustrator stacks newest on top, so drawing in writing order always imports into AE backwards. Group order is trim order.
+- Trim Paths runs at constant speed along total length, so the `W` (32.6% of the path) ate a third of the animation while `u` and `c` got three frames each. Fixed with a keyframe at each stroke boundary, weights of length^0.55, and pen-lift holds.
+- The finished signature is FIVE disconnected islands; the `u` never touches anything. Every letter must appear detached, because that is the typeface.
+- A shape layer from Create Shapes from Vector Layer anchors at 0,0; AI footage anchors at its centre. Typing the same Position into both breaks the matte. Cost us twenty minutes and my wrong instruction.
+- White on the brand peach is 1.60:1, a ghost. Black covers peach, cream and the light and medium bands; white exists for the heavy terracotta at 8.44:1 and for dark photography.
+- The only photograph of Lucy we hold is 214x320, inside her Canva pdf. Anything full-frame from it is a 6x upscale.
+- Zoom in to fix, zoom out to decide. At 800% three of the four things Hugo flagged were correct behaviour.
+
+**Decided.** D-055 (the signature is Amsterdam Two, animate the outlines, never install the font). D-056 (the write-on is built from pen paths, with the measured numbers).
+
+**Open.** Q-039 new, waiting on Lucy. Q-034 resolved. Q-040 new: the animation is built and Lucy has not seen it, email drafted.
+
+**Next.** Send both drafted emails. Then the white-on-terracotta render, and clear three stray files out of `generated/videos/`.
 
 ---
 ## Weekly Review, 2026-09-13 (week of 2026-09-07)
@@ -487,80 +511,6 @@ refused to commit. The harness built in S033 did exactly what it was built to do
 change that would have shipped broken was stopped at the gate rather than discovered three sessions
 later. Fixed by keeping the pinned helper as `today_local()` and restoring the file's own `today()`
 on top of it, then smoke testing all four scripts.
-
-## Session 036 (2026-08-31, Cowork): Lucy answers on the grid, the weave tiles get bolder, and the 3D band finally makes a loop
-
-Client: Sportif
-Tags: instagram, weave-tiles, typography, client-email, colour-accuracy, 3d, tripo, photogrammetry, diagnosis
-
-Hugo drove, from a standing start of "where are we at". The day ran in two halves: a client
-thread answered and shipped in the morning, and an evening spent diagnosing why the 3D band kept
-coming back wrong, ending with the first result that was actually the right shape.
-
-**Lucy replied on the weave grid tiles, and the reply carried two asks.** She loves the concept
-and wants to post it, which closes Q-024. She asked for them sized for the Instagram tiles, and
-for the tiles in her brand colour.
-
-The sizing ask needed no work. The tiles were already 1080x1350, which IS the feed size. The one
-real thing behind it is the profile grid, which crops thumbnails to 3:4 and shows a centred
-1012px column; the lockup is 820px, so it clears by 96px each side. Answered with a mockup rather
-than a paragraph, at `generated/images/texture-weight-tiles/grid-preview-for-lucy.jpg`.
-
-**The colour ask was declined, and Hugo's reasoning is the one that matters (D-046).** Three
-directions were built and measured first (as-shot, 50 percent tinted, full brand ramp), then he
-called it: these tiles are a close-up of the actual fabric at a scale where colour is the only
-thing a buyer can judge, so tinting them sells a colour the customer does not receive. A returns
-problem and a trust problem on a launch where Lucy is the brand. The experiments are parked at
-`brand-colour-options/` as a dead end that was tried.
-
-**Then Hugo caught a second mistake, and it is the more interesting one.** Her words were "can
-you please SHOW ME what it would look like in my brand colour". The first reply declined the
-colour change and did not show her, which answers a question she did not ask and declines the one
-she did. "Show me" and "pick one" are different requests, and the earlier advice collapsed them.
-Fixed with a follow-up ten minutes later carrying one comparison image, real colour against full
-brand colour, with the recommendation attached. Showing something with a clear recommendation is
-not the same as offering a choice. Both rows are built by the CURRENT house build so colour is
-the only variable, and the halfway tinted version was deliberately withheld because it fails the
-same accuracy test by half.
-
-**The weight line was too thin, and a thumbnail test settled it (D-047).** Hugo flagged that
-LIGHT / MEDIUM / HEAVY was getting lost. Rendered down to 128px, roughly a real profile-grid
-thumbnail, the Regular line was gone entirely on the light tile. Glacial Indifference BOLD fixes
-it, plus an extra halo under that line alone. Separately the whole lockup went 0.66 to 0.76 of
-canvas width, since type reads smaller on Instagram; one number scales the block and holds every
-proportion, and the blurs and shadow offset scale with it. Folded into
-`build_texture_weight_tiles.py` as the house build and the delivered set regenerated. Two emails
-went to Lucy, both sent (Q-029).
-
-**A date correction nobody had noticed.** Her intake says "LA Fitness Expo in February next
-year". TheFitExpo Los Angeles 2027 is listed as 23 to 24 January. If that is her show, the runway
-is three weeks shorter than the workspace has been assuming, and print deadlines land well before
-the show. Noted against Q-027, needs confirming with her.
-
-**The 3D band: two runs, one dead end and one breakthrough (D-048).** Run 1 came back as four
-flat open straps, one a standalone gold plaque, at 1.9M triangles and no real world scale. The
-first diagnosis blamed the prompt, which said "strap" and "metal label". Hugo pushed back that it
-had used the photographs, and he was right. Looking properly at the references settled it:
-**every band photo in the workspace shows the band pressed FLAT**, so the hole is never visible,
-and a flattened loop from above is the same picture as a strap. The mesher was never given the
-information.
-
-Then Hugo tested it himself. Run 2 used a gpt-image-2 image showing a band lying open as an oval,
-hole visible, and Tripo returned a genuine closed loop, rendered six ways at
-`3d-band/renders/band-run2-contact-sheet.jpg`. One variable, proven in both directions in one
-evening. It still carries the pouch bag from the same input image, invented peach colour, 2M
-triangles and no scale, but the shape question is answered and the shoot list is validated before
-a frame is shot.
-
-**Working method worth keeping: the thumbnail test.** Twice today the decisive evidence came from
-rendering an asset down to the size it will actually be seen at and looking at that, rather than
-judging it at full size. The weight line failed at 128px while looking fine at 1080. Same shape
-of move as the S035 measurement work: build the test that answers the question rather than
-arguing about it.
-
-**Hugo's eye was the deciding gate again, three times.** The colour call, the thin weight line,
-and the push back on my prompt diagnosis. All three were right and all three overturned something
-I had written down.
 
 ## Session NNN, YYYY-MM-DD, One-line summary
 ### What we did
