@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-18 | Last session: 042 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: TWO EMAILS ARE DRAFTED AND UNSENT, both in the client folders, the side stretch revision (Q-039) and the signature animation (Q-040). After those, the only build left on the signature is the white-on-terracotta flat render, and three stray files want clearing out of `generated/videos/`. Everything else is in the loops startup prints, the Fit Expo booth email (Q-027) still at the top and now deferred four times.*
+*Last updated: 2026-09-20 | Last session: 043 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: three replies to Lucy went out on 2026-09-20 (the peach concept and her February shoot photos, the behind-the-scenes edits and a Double Bay filming day, a thanks on the side stretch); the SIGNATURE ANIMATION EMAIL (Q-040) IS STILL UNSENT and is the one thing owed with nothing in front of it. Everything else waits on Lucy: which picture she means for the peach concept (Q-026), the February shoot files and the show date (Q-027, Q-043), her LA footage (Q-041), a filming date between 1 and 10 October (Q-042). The white-on-terracotta signature render and three strays in `generated/videos/` are still pending.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -18,6 +18,29 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).**
 - **Protocol and voice (D-035, D-054).** `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
+
+---
+## Session 043 (2026-09-20, Claude Code): three of Lucy's emails answered, nothing built
+
+Client: Sportif
+Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, double-bay, psd-tools, weave-room
+
+**Done.** Committed the After Effects project found dirty at start (saved after the S042 close-out, contents unknown). Read three Lucy chains, all 18 Sep, drafted three replies, all sent by Hugo the same morning, nothing built on his call. **Chain 1 (email 02 thread):** the 27 Aug set is accepted and the pilates post is live on her grid; she wants "the three concepts" tried in the brand peach, and the poster built from her February 2026 shoot. Reply asks her to send back the picture she means, the full-size shoot originals (we hold none) and the booth panel size. Hugo cut the handle line, so Q-028 stays unconfirmed. **Chain 2 (grid tiles thread):** behind-the-scenes edits with effects and branding, reference Kia Buckley, LA footage coming, and would Hugo and Lauren record a day of her in Double Bay; the 16 Sep email also asked for a booth announcement. Reply says yes to the day (1 to 10 October, Lauren unavailable, phone, shot list first, camera hire quoted first) and asks her to confirm the show dates. **Chain 3:** she posted the side stretch, Q-039 resolved. `psd-tools` reads Hugo's refined cutout out of the concept PSD, so a scripted rebuild is possible.
+
+**Learned.**
+- Kia Buckley is the founder of Kikiva, the brand already in `brand.md`. Founder-facing, phone-shot, bad days included.
+- TheFitExpo Los Angeles 2027 is 23 to 24 January, South Hall; a 10 by 10 booth is $3,150 with a skirted table. Panel size still unknown.
+- An ambiguous client phrase ("the three concepts") is not fixed by naming candidates; ask her to send back the picture (Hugo's call).
+- The saved concept PSD is not the recipe: fill at Soft Light 10 percent, texture at 25, against the Overlay 60 in `WEAVE-ROOM-RECIPE.md`. The cutout layer carries the finished mark, so a rebuild starts from the source photo.
+- `sportif_grade.py` still maps mid tones to the retired `#F0CDB3`; the 26 Aug "peach" folder is old peach. Nothing delivered was touched.
+- The side stretch went up as a Story, so the mark sits near Instagram's chrome as the 17 Sep email warned. Her choice; leave it.
+- The S042 handoff line contradicted the loop rows on what was sent. The rows were right.
+
+**Decided.** D-057 (behind-the-scenes is shot on a phone by default; camera hire is a quoted cost, never assumed).
+
+**Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still not on the record with her. Q-040 still unsent. New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
+
+**Next.** Send the signature email (Q-040). When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Then the terracotta render and the three strays.
 
 ---
 ## Session 042 (2026-09-18, Claude Code): Lucy's placement on the side stretch, and her signature turned into a write-on
@@ -449,68 +472,6 @@ Draft at `clients/sportif/email-grid-tiles/peach-confirm-to-lucy-2026-09-03.md`.
 **Housekeeping.** The stranded `.git/HEAD.lock` from a previous Cowork commit is cleared.
 
 ---
-
-## Session 037 (2026-09-01, Cowork): the workspace itself gets cleaned up
-
-Client: Ochoproductions
-Tags: housekeeping, memory, git, filter-repo, gitignore, disk, timezone, infrastructure
-
-No client work. This ran straight on from Session 036 across midnight and is entirely
-infrastructure, which is why it is its own entry.
-
-**Q-021 closed: memory.md was carrying its own history.** The CURRENT STATE block had
-accumulated every session's bullets from 015 to 035 and reached 41,338 bytes, roughly a third of
-the file, and every session was reading all of it at startup. Rewritten as 13 live bullets, each
-pointing at its D-number rather than restating it. All 70 retired bullets went to
-`memory-archive.md` verbatim, along with 6 older Weekly Reviews, keeping the newest 4. memory.md
-164,103 to 81,246 bytes and the check passes with zero warnings for the first time since S033.
-Also fixed a contradiction: the archive header claimed Weekly Reviews stay in memory.md
-permanently, which is the opposite of what `memory_tools.py` warns about, and is probably why
-that warning was ignored for three sessions.
-
-**Q-022 closed: 30 commits pushed.** Cowork has no GitHub credentials, confirmed by trying, so
-this stays a Mac job.
-
-**Q-030 opened and closed: the repo was carrying raw 3D binaries.** The four Tripo GLBs filed in
-S036 went into git with no `.gitignore` rule, 227MB for four models rejected on sight. Now
-excluded under `**/3d-band/runs-in/`, with `3d-band/final/` deliberately left trackable because
-the finished Shopify deliverable is about 4MB and belongs in git. Then `git filter-repo` stripped
-every `.glb` from all 104 commits and the result was force pushed. **Whole folder 3.4GB to 2.0GB,
-`.git` 664MB to 483MB.**
-
-**Two estimates I got wrong, both worth remembering.** I read `git count-objects` reporting 391MB
-of "garbage" as pure waste; most were real objects not yet packed, and gc returned 87MB, not
-391MB. And I quoted the GLBs at 225MB, which was FILE size: in the pack they cost about 103MB,
-because GLB mesh data is float arrays that compress well. **The lesson is the same both times:
-size on disk and size in a pack are different numbers, and the tool's own label is not a
-measurement.** What the survey did settle correctly is where the weight actually is: across
-history it is 295MB PNG, 209MB PSD, 69MB extensionless, 19MB JPG. The PNGs are 36 sessions of
-generated posters, tiles and cutouts, which is the actual work, so 472MB is the floor and no
-further rewrite is worth doing.
-
-**938MB of the folder turned out to be three public repos cloned inside it**, `student-kit`,
-`launch-video` and `hyperframes`, all clean, all re-clonable by `setup.sh`, none of them what
-actually runs a render. Every composition pulls HyperFrames from npm at 0.7.64. Deleted the two
-pure-reference ones. On the student kit, deleted only the 280MB of finished MP4s and kept the
-3.1MB of code, because you learn from the code and it restores offline with `git checkout .`.
-
-**A real bug found at the end: the scripts thought it was yesterday.** The Cowork container runs
-UTC and Hugo is UTC+10, so any Sydney session before 10am sees the previous day. That is what had
-been failing the pre-push hook all morning and it would have forced a wrongly dated session entry.
-`startup.py`, `closeout.py`, `memory_tools.py` and `archive_memory.py` now pin "today" to
-`Australia/Sydney` through a shared `today_local()` helper. The pre-push hook calls
-`memory_tools.py check`, so it is fixed by the same change.
-
-**Also untracked `.git-broken`**, a corrupted git directory from May that had been sitting in the
-repo committed, 19 files.
-
-**The timezone fix broke close-out on its first run, and that is the good news.** The patch
-renamed every `today` it found, but `memory_tools.py` already HAD its own `today()` helper, so six
-callers were orphaned and one line ended up calling itself. `closeout.py` caught the traceback and
-refused to commit. The harness built in S033 did exactly what it was built to do: an infrastructure
-change that would have shipped broken was stopped at the gate rather than discovered three sessions
-later. Fixed by keeping the pinned helper as `today_local()` and restoring the file's own `today()`
-on top of it, then smoke testing all four scripts.
 
 ## Session NNN, YYYY-MM-DD, One-line summary
 ### What we did

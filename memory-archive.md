@@ -6,6 +6,70 @@ Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---
 
+<!-- archived batch, moved 2026-09-20 -->
+
+## Session 037 (2026-09-01, Cowork): the workspace itself gets cleaned up
+
+Client: Ochoproductions
+Tags: housekeeping, memory, git, filter-repo, gitignore, disk, timezone, infrastructure
+
+No client work. This ran straight on from Session 036 across midnight and is entirely
+infrastructure, which is why it is its own entry.
+
+**Q-021 closed: memory.md was carrying its own history.** The CURRENT STATE block had
+accumulated every session's bullets from 015 to 035 and reached 41,338 bytes, roughly a third of
+the file, and every session was reading all of it at startup. Rewritten as 13 live bullets, each
+pointing at its D-number rather than restating it. All 70 retired bullets went to
+`memory-archive.md` verbatim, along with 6 older Weekly Reviews, keeping the newest 4. memory.md
+164,103 to 81,246 bytes and the check passes with zero warnings for the first time since S033.
+Also fixed a contradiction: the archive header claimed Weekly Reviews stay in memory.md
+permanently, which is the opposite of what `memory_tools.py` warns about, and is probably why
+that warning was ignored for three sessions.
+
+**Q-022 closed: 30 commits pushed.** Cowork has no GitHub credentials, confirmed by trying, so
+this stays a Mac job.
+
+**Q-030 opened and closed: the repo was carrying raw 3D binaries.** The four Tripo GLBs filed in
+S036 went into git with no `.gitignore` rule, 227MB for four models rejected on sight. Now
+excluded under `**/3d-band/runs-in/`, with `3d-band/final/` deliberately left trackable because
+the finished Shopify deliverable is about 4MB and belongs in git. Then `git filter-repo` stripped
+every `.glb` from all 104 commits and the result was force pushed. **Whole folder 3.4GB to 2.0GB,
+`.git` 664MB to 483MB.**
+
+**Two estimates I got wrong, both worth remembering.** I read `git count-objects` reporting 391MB
+of "garbage" as pure waste; most were real objects not yet packed, and gc returned 87MB, not
+391MB. And I quoted the GLBs at 225MB, which was FILE size: in the pack they cost about 103MB,
+because GLB mesh data is float arrays that compress well. **The lesson is the same both times:
+size on disk and size in a pack are different numbers, and the tool's own label is not a
+measurement.** What the survey did settle correctly is where the weight actually is: across
+history it is 295MB PNG, 209MB PSD, 69MB extensionless, 19MB JPG. The PNGs are 36 sessions of
+generated posters, tiles and cutouts, which is the actual work, so 472MB is the floor and no
+further rewrite is worth doing.
+
+**938MB of the folder turned out to be three public repos cloned inside it**, `student-kit`,
+`launch-video` and `hyperframes`, all clean, all re-clonable by `setup.sh`, none of them what
+actually runs a render. Every composition pulls HyperFrames from npm at 0.7.64. Deleted the two
+pure-reference ones. On the student kit, deleted only the 280MB of finished MP4s and kept the
+3.1MB of code, because you learn from the code and it restores offline with `git checkout .`.
+
+**A real bug found at the end: the scripts thought it was yesterday.** The Cowork container runs
+UTC and Hugo is UTC+10, so any Sydney session before 10am sees the previous day. That is what had
+been failing the pre-push hook all morning and it would have forced a wrongly dated session entry.
+`startup.py`, `closeout.py`, `memory_tools.py` and `archive_memory.py` now pin "today" to
+`Australia/Sydney` through a shared `today_local()` helper. The pre-push hook calls
+`memory_tools.py check`, so it is fixed by the same change.
+
+**Also untracked `.git-broken`**, a corrupted git directory from May that had been sitting in the
+repo committed, 19 files.
+
+**The timezone fix broke close-out on its first run, and that is the good news.** The patch
+renamed every `today` it found, but `memory_tools.py` already HAD its own `today()` helper, so six
+callers were orphaned and one line ended up calling itself. `closeout.py` caught the traceback and
+refused to commit. The harness built in S033 did exactly what it was built to do: an infrastructure
+change that would have shipped broken was stopped at the gate rather than discovered three sessions
+later. Fixed by keeping the pinned helper as `today_local()` and restoring the file's own `today()`
+on top of it, then smoke testing all four scripts.
+
 <!-- archived batch, moved 2026-09-18 -->
 
 ## Session 036 (2026-08-31, Cowork): Lucy answers on the grid, the weave tiles get bolder, and the 3D band finally makes a loop
