@@ -40,7 +40,7 @@ Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, 
 
 **Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still unconfirmed. Q-040 resolved on WhatsApp, our asset to apply (D-059). New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
 
-**Next.** When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Terracotta flat rendered (`lucy-signature-writeon-terracotta.mp4`, white ink on HEAVY `#6C4333`, ffmpeg over the white alpha, BT.709 tagged, matched to the peach flat within 3 levels). Strays cleared; `studio-reformer-sidestretch.mp4` kept as the signature-over-content preview.
+**Next.** When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Terracotta flat rendered, `lucy-signature-writeon-terracotta.mp4` (detail on the Q-040 row). Strays cleared; `studio-reformer-sidestretch.mp4` kept as the signature-over-content preview.
 
 ---
 ## Session 042 (2026-09-18, Claude Code): Lucy's placement on the side stretch, and her signature turned into a write-on
