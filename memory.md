@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-20 | Last session: 043 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: three replies to Lucy went out on 2026-09-20 (the peach concept and her February shoot photos, the behind-the-scenes edits and a Double Bay filming day, a thanks on the side stretch); the SIGNATURE ANIMATION EMAIL (Q-040) IS STILL UNSENT and is the one thing owed with nothing in front of it. Everything else waits on Lucy: which picture she means for the peach concept (Q-026), the February shoot files and the show date (Q-027, Q-043), her LA footage (Q-041), a filming date between 1 and 10 October (Q-042). The white-on-terracotta signature render and three strays in `generated/videos/` are still pending.*
+*Last updated: 2026-09-20 | Last session: 043 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: three replies to Lucy went out on 2026-09-20 and the signature write-on went to her on WhatsApp (Q-040 resolved, it is our asset to apply, D-059), so nothing is owed to her right now. Everything waits on Lucy: which picture she means for the peach concept (Q-026), the February shoot files and the show date (Q-027, Q-043), her LA footage (Q-041), a filming date between 1 and 10 October (Q-042). Emails to her now follow D-058 (`clients/sportif/email-rules-for-lucy.md`); the white-on-terracotta render and three strays in `generated/videos/` are still pending.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -36,11 +36,11 @@ Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, 
 - The side stretch went up as a Story, so the mark sits near Instagram's chrome as the 17 Sep email warned. Her choice; leave it.
 - The S042 handoff line contradicted the loop rows; the rows were right.
 
-**Decided.** D-057 (behind-the-scenes is shot on a phone by default; camera hire a quoted cost). D-058 (one topic per thread, one question per email, fresh subject per job; template in `clients/sportif/email-rules-for-lucy.md`).
+**Decided.** D-057 (behind-the-scenes is shot on a phone by default; camera hire a quoted cost). D-058 (one topic per thread, one question per email, fresh subject per job). D-059 (motion assets are ours to apply, not hers to use).
 
-**Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still not on the record with her. Q-040 still unsent. New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
+**Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still not on the record with her. Q-040 resolved: sent on WhatsApp, she loved it, it is our asset to apply (D-059). New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
 
-**Next.** Send the signature email (Q-040). When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Then the terracotta render and the three strays.
+**Next.** When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Then the terracotta render and the three strays.
 
 ---
 ## Session 042 (2026-09-18, Claude Code): Lucy's placement on the side stretch, and her signature turned into a write-on
