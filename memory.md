@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-20 | Last session: 043 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: three replies to Lucy went out on 2026-09-20 and the signature write-on went to her on WhatsApp (Q-040 resolved, it is our asset to apply, D-059), so nothing is owed to her right now. Everything waits on Lucy: which picture she means for the peach concept (Q-026), the February shoot files and the show date (Q-027, Q-043), her LA footage (Q-041), a filming date between 1 and 10 October (Q-042). Emails to her now follow D-058 (`clients/sportif/email-rules-for-lucy.md`); the white-on-terracotta render and three strays in `generated/videos/` are still pending.*
+*Last updated: 2026-09-20 | Last session: 043 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: three replies to Lucy went out on 2026-09-20 and the signature write-on went to her on WhatsApp (Q-040 resolved, it is our asset to apply, D-059), so nothing is owed to her right now. Everything waits on Lucy: which picture she means for the peach concept (Q-026), the February shoot files and the show date (Q-027, Q-043), her LA footage (Q-041), a filming date between 1 and 10 October (Q-042). Emails to her now follow D-058 (`clients/sportif/email-rules-for-lucy.md`); the strays in `generated/videos/` are cleared, the white-on-terracotta render is still pending.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -40,7 +40,7 @@ Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, 
 
 **Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still unconfirmed. Q-040 resolved on WhatsApp, our asset to apply (D-059). New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
 
-**Next.** When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Then the terracotta render and the three strays.
+**Next.** When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Then the terracotta render. Strays cleared (a 155MB test over the 6x upscaled photo, a duplicate white ProRes, a flat test on black); `studio-reformer-sidestretch.mp4` kept as the signature-over-content preview.
 
 ---
 ## Session 042 (2026-09-18, Claude Code): Lucy's placement on the side stretch, and her signature turned into a write-on
