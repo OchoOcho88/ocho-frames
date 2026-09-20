@@ -25,20 +25,20 @@ Running log of what we've done, what we've learned, decisions made, and question
 Client: Sportif
 Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, double-bay, psd-tools, weave-room
 
-**Done.** Committed the After Effects project found dirty at start (saved after the S042 close-out, contents unknown). Read three Lucy chains, all 18 Sep, drafted three replies, all sent by Hugo the same morning, nothing built on his call. **Chain 1 (email 02 thread):** the 27 Aug set is accepted and the pilates post is live on her grid; she wants "the three concepts" tried in the brand peach, and the poster built from her February 2026 shoot. Reply asks for the picture she means, the shoot originals (we hold none) and the panel size. Handle line cut, Q-028 still unconfirmed. **Chain 2 (grid tiles thread):** behind-the-scenes edits with effects and branding, reference Kia Buckley, LA footage coming, and would Hugo and Lauren record a day of her in Double Bay; the 16 Sep email also asked for a booth announcement. Reply says yes to the day (1 to 10 October, Lauren unavailable, phone, shot list first, camera hire quoted first) and asks her to confirm the show dates. **Chain 3:** she posted the side stretch, Q-039 resolved. `psd-tools` reads Hugo's refined cutout out of the concept PSD, so a scripted rebuild is possible.
+**Done.** Committed the After Effects project found dirty at start (saved after the S042 close-out, contents unknown). Read three Lucy chains, all 18 Sep, drafted three replies, all sent the same morning, nothing built on Hugo's call. **Chain 1 (email 02 thread):** the 27 Aug set is accepted and the pilates post is live on her grid; she wants "the three concepts" tried in the brand peach, and the poster built from her February 2026 shoot. Reply asks for the picture she means, the shoot originals (we hold none) and the panel size. Handle line cut, Q-028 still unconfirmed. **Chain 2 (grid tiles thread):** behind-the-scenes edits with effects and branding, reference Kia Buckley, LA footage coming, and would Hugo and Lauren record a day of her in Double Bay; the 16 Sep email also asked for a booth announcement. Reply says yes to the day (1 to 10 October, Lauren unavailable, phone, shot list first, camera hire quoted first) and asks her to confirm the show dates. **Chain 3:** she posted the side stretch, Q-039 resolved. `psd-tools` reads Hugo's refined cutout out of the concept PSD, so a scripted rebuild is possible.
 
 **Learned.**
 - Kia Buckley is the founder of Kikiva, the brand already in `brand.md`. Founder-facing, phone-shot, bad days included.
 - TheFitExpo Los Angeles 2027 is 23 to 24 January, South Hall; a 10 by 10 booth is $3,150 with a skirted table. Panel size still unknown.
 - An ambiguous client phrase ("the three concepts") is not fixed by naming candidates; ask her to send back the picture (Hugo's call).
-- The saved concept PSD is not the recipe: fill at Soft Light 10 percent, texture at 25, against the Overlay 60 in `WEAVE-ROOM-RECIPE.md`. The cutout layer carries the finished mark, so a rebuild starts from the source photo.
+- The saved concept PSD is not the recipe: Soft Light 10 and 25 percent, against Overlay 60 in `WEAVE-ROOM-RECIPE.md`. The cutout layer carries the mark, so rebuild from the source photo.
 - `sportif_grade.py` still maps mid tones to the retired `#F0CDB3`; the 26 Aug "peach" folder is old peach. Untouched.
-- The side stretch went up as a Story, so the mark sits near Instagram's chrome as the 17 Sep email warned. Her choice; leave it.
+- The side stretch went up as a Story, mark near Instagram's chrome as the 17 Sep email warned. Her choice.
 - The S042 handoff line contradicted the loop rows; the rows were right.
 
 **Decided.** D-057 (behind-the-scenes is shot on a phone by default; camera hire a quoted cost). D-058 (one topic per thread, one question per email, fresh subject per job). D-059 (motion assets are ours to apply, not hers to use).
 
-**Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still not on the record with her. Q-040 resolved: sent on WhatsApp, she loved it, it is our asset to apply (D-059). New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
+**Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still unconfirmed. Q-040 resolved on WhatsApp, our asset to apply (D-059). New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
 
 **Next.** When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Then the terracotta render and the three strays.
 
