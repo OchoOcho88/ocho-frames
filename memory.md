@@ -32,7 +32,7 @@ Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, 
 - TheFitExpo Los Angeles 2027 is 23 to 24 January, South Hall; a 10 by 10 booth is $3,150 with a skirted table. Panel size still unknown.
 - An ambiguous client phrase ("the three concepts") is not fixed by naming candidates; ask her to send back the picture (Hugo's call).
 - The saved concept PSD is not the recipe: fill at Soft Light 10 percent, texture at 25, against the Overlay 60 in `WEAVE-ROOM-RECIPE.md`. The cutout layer carries the finished mark, so a rebuild starts from the source photo.
-- `sportif_grade.py` still maps mid tones to the retired `#F0CDB3`; the 26 Aug "peach" folder is old peach. Nothing delivered was touched.
+- `sportif_grade.py` still maps mid tones to the retired `#F0CDB3`; the 26 Aug "peach" folder is old peach. Untouched.
 - The side stretch went up as a Story, so the mark sits near Instagram's chrome as the 17 Sep email warned. Her choice; leave it.
 - The S042 handoff line contradicted the loop rows on what was sent. The rows were right.
 
