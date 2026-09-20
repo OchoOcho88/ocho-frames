@@ -4,7 +4,7 @@ archive_memory.py: keeps memory.md light by moving old session entries
 into memory-archive.md once the file crosses a size threshold.
 
 Policy:
-- CURRENT STATE, all Weekly Reviews, and the Session NNN template always stay.
+- CURRENT STATE, the newest 4 Weekly Reviews, and the Session NNN template always stay.
 - The newest KEEP_SESSIONS session entries stay.
 - Older session entries move to memory-archive.md (newest batch on top).
 - Below THRESHOLD bytes the script is a no-op, so it is safe to run at
@@ -44,7 +44,7 @@ ARCHIVE_HEADER = """# Workspace Memory Archive
 
 Older session entries moved out of memory.md to keep it light.
 Same format, same rules, nothing deleted. Newest archived batch at the top.
-Weekly Reviews (the summaries) stay in memory.md permanently.
+The newest 4 Weekly Reviews stay in memory.md; older ones are moved here by hand.
 
 ---
 
