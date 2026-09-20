@@ -12,6 +12,7 @@ Anine Bing's calm polish plus Kikiva's warmth: refined but friendly, confident b
 
 - **Customer-facing (Sportif copy):** short, calm, confident single lines. "Everyday training, elevated." Real founder warmth. Lucy's playful "Too fashionable not to WEAR!" energy used sparingly.
 - **Lucy-facing (client docs):** plain English, "a mum can read it." No jargon, no acronyms without explanation, one-line ideas, tight bullets. Internal working notes never appear in her documents.
+- **Emails to Lucy (D-058):** one topic per thread, one question per email, a fresh subject for every job in the form `Sportif | <the job in her words> | <the ask>`. Question first, answerable in one word. Template and rules in `email-rules-for-lucy.md`.
 
 ## Say (the vocabulary that works)
 

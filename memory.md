@@ -36,7 +36,7 @@ Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, 
 - The side stretch went up as a Story, so the mark sits near Instagram's chrome as the 17 Sep email warned. Her choice; leave it.
 - The S042 handoff line contradicted the loop rows on what was sent. The rows were right.
 
-**Decided.** D-057 (behind-the-scenes is shot on a phone by default; camera hire is a quoted cost, never assumed).
+**Decided.** D-057 (behind-the-scenes is shot on a phone by default; camera hire a quoted cost). D-058 (one topic per thread, one question per email, fresh subject per job; template in `clients/sportif/email-rules-for-lucy.md`).
 
 **Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still not on the record with her. Q-040 still unsent. New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
 
