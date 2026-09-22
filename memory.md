@@ -36,7 +36,7 @@ Tags: sportif, lucy, email, peach-concept, pantone-162c, ball-photo, psd-tools, 
 
 **Decided.** D-060 (when her line has two honest readings, build both, send her ask first and our idea second, own threads, one version each, no options).
 
-**Open.** Q-026 now waits on two yes-or-no answers. Q-027 carries the phone-photo and PR-team facts. The three GLBs in `generated/3D/` are unlogged: which run, which input, Hugo to say. Everything else waits on Lucy.
+**Open.** Q-026 now waits on two yes-or-no answers. Q-027 carries the phone-photo and PR-team facts. The three GLBs in `generated/3D/` are Hugo's original Tripo outputs saved again, not a new run (noted on Q-016). Everything else waits on Lucy.
 
 **Next.** On a yes to email 1, the peach mark on the other seven is a treatment swap in the v3 script. On a yes to email 2, the other seven need cutouts (`rembg` is on the Mac; the duo shot may need Hugo's hand). The Double Bay shot list (Q-042) is still the one thing owed to her that needs nothing from her.
 
