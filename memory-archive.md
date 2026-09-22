@@ -2,6 +2,57 @@
 
 Older session entries moved out of memory.md to keep it light.
 Same format, same rules, nothing deleted. Newest archived batch at the top.
+The newest 4 Weekly Reviews stay in memory.md; older ones are moved here by hand.
+
+---
+
+<!-- archived batch, moved 2026-09-22 -->
+
+## Session 038 (2026-09-03, Cowork): Lucy says peach type, and the peach itself is now the question
+
+Client: Sportif
+Tags: sportif, lucy, weave-tiles, brand-colour, pantone, contrast, email, instagram
+
+**Q-029 closed, and it closed the right way.** Lucy replied 2026-09-02 asking for "the branding
+colour like the font colour to be in my logo peach colour". Read plainly that is the TYPE, not the
+plates. She did not choose the brand-colour weave, so D-039 and D-046 hold and the real product
+colour stays on the plates. She is away until Thursday 10 September.
+
+**She attached a Pantone chip and it does not match our records, which is the new loop (Q-033).**
+Her chip is Pantone 162 C, about `#FFC0A0`. Two independent sources say her logo peach is
+`#F0CDB3`: her own logo artwork `assets/05-logo-sportif-white-on-peach.png` and her swatch
+`assets/11-swatch-peach-nude.png` both measure `#F0CDB4`, and her intake questionnaire of
+2026-06-13 lists "Light Orange (in Canva #f0cdb3)". The Pantone chip is the outlier. Her answer
+sets the primary brand colour in `brand.md` line 105, not just these tiles, so it was worth
+stopping for rather than just applying the chip.
+
+**Peach type costs a quarter of the contrast, and the halo buys it back.** Measured behind the
+lockup: LIGHT 2.47:1 cream against 1.86:1 peach, MEDIUM 3.84 against 2.90, HEAVY 5.93 against
+4.47. Darkening the LIGHT plate was already off the table, so the lever was the existing warm
+halo, lifted 1.55x on every peach build. The wordmark, rule, subline and weight line all hold on
+all three at that setting.
+
+**`build_texture_weight_tiles.py` is now parameterised instead of forked.** Three environment
+overrides: `SPORTIF_TYPE_COL`, `SPORTIF_HALO`, `SPORTIF_OUT`. Defaults reproduce the set Lucy has
+already seen, byte for byte. Five builds this session came out of one script rather than five
+copies of it, and when she names the colour the reissue is one command.
+
+**Everything went out in one email, deliberately.** 8 attachments: two comparison rows, one per
+peach, plus BOTH finished postable sets, three tiles each at 1080x1350, numbered in upload order
+(post 1 heavy, then medium, then light, so the grid row reads LIGHT MEDIUM HEAVY). Hugo's reasoning,
+now a standing rule: front-load every version in one send so the client can answer the question and
+use the work off the same email, with no round trip. It also removed the objection that she might
+post live in a colour that turns out to be wrong, since she now holds the files for either answer.
+Draft at `clients/sportif/email-grid-tiles/peach-confirm-to-lucy-2026-09-03.md`. Sent 2026-09-02.
+
+**Housekeeping.** The stranded `.git/HEAD.lock` from a previous Cowork commit is cleared.
+
+---
+
+# Workspace Memory Archive
+
+Older session entries moved out of memory.md to keep it light.
+Same format, same rules, nothing deleted. Newest archived batch at the top.
 Weekly Reviews (the summaries) stay in memory.md permanently.
 
 ---

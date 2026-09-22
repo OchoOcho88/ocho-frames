@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-20 | Last session: 043 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: three replies to Lucy went out on 2026-09-20 and the signature write-on went to her on WhatsApp (Q-040 resolved, it is our asset to apply, D-059), so nothing is owed to her right now. Everything waits on Lucy: which picture she means for the peach concept (Q-026), the February shoot files and the show date (Q-027, Q-043), her LA footage (Q-041), a filming date between 1 and 10 October (Q-042). Emails to her now follow D-058 (`clients/sportif/email-rules-for-lucy.md`); `generated/videos/` is tidy and holds the five signature files, including the new white-on-terracotta flat.*
+*Last updated: 2026-09-22 | Last session: 044 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: two emails went to Lucy on 2026-09-22 (the ball photo with the logo in 162 C, then the room in 162 C, own threads, D-060), so Q-026 waits on two yes-or-no answers and nothing is owed to her. Still waiting on her: the February phone photos via WhatsApp and the PR team's poster size in October (Q-027), the show date (Q-043), her LA footage (Q-041), a filming date 1 to 10 October (Q-042). The Double Bay shot list is the one thing that needs nobody; three unlogged Tripo GLBs sit ignored in `generated/3D/`.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -18,6 +18,28 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).**
 - **Protocol and voice (D-035, D-054).** `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
+
+---
+## Session 044 (2026-09-22, Claude Code): Lucy's picture arrived, the ball photo built two ways and sent as two emails
+
+Client: Sportif
+Tags: sportif, lucy, email, peach-concept, pantone-162c, ball-photo, psd-tools, cutout, weekly-review, 3d-band
+
+**Done.** Startup found the tree dirty: the 2026-09-20 weekly review sat uncommitted in `memory.md`, and three raw Tripo GLBs (170MB, written 21 Sep, unlogged) sat in `clients/sportif/generated/3D/`. Committed the review, flipped Q-039 to resolved (it was still printing), gitignored `generated/3D/*` with a `.gitkeep`. Lucy answered on 21 Sep with `1-as-it-is.png`, the ball reach: "use this picture here with the peach pantone colour". First build read that as the ROOM in 162 C (concept 2 with the fill swapped): her refined cutout pulled out of the concept PSD with `psd-tools` in a scratch venv and saved as `email-02-social/photoshop/feed-ballreach-cutout.png`, six room recipes compared, `scripts-local/build_ballreach_162c.py`. Hugo read it as the LOGO in 162 C on the untouched photo, which her 18 Sep line also says: `scripts-local/build_ballreach_peachmark.py`, four peach treatments, `peach` chosen. Hugo sent both as two separate emails, each its own thread, one version each (D-060). Registry rows Q-026 and Q-027 updated.
+
+**Learned.**
+- Lucy's February booth photos are phone shots coming via WhatsApp, and the PR team owns the booth design; the poster size arrives after she speaks to them in October. Panel size is now her handoff, not our ask.
+- The wall under the ball photo's mark is in shadow (`#98806C`), so 162 C sits at 2.32:1 against it and reads with the white recipe's shadow. Black was 5.09:1.
+- Recolouring the room to a pale Pantone is not the terracotta recipe with the fill swapped: Overlay 60 goes orange, Color and the tone map go muddy, and plain Multiply drifts orange because the raw wall is already warm. Neutralise the wall to its own reference first, then multiply, and the wall lands on the chip with its shading kept.
+- The feed source is exactly 1080x1350 (no crop) and the story is the same frame at 1.4222 cropped 228px a side, so one mask serves both formats.
+- `psd-tools` is not on the system Python; a venv in the scratchpad with `psd-tools pillow numpy` reads the PSD, and the extracted cutout is saved so the build scripts need only Pillow.
+- Type rendering drift (`docs/gotchas.md`) does not matter here: these are new files, not refreshes of the delivered set.
+
+**Decided.** D-060 (when her line has two honest readings, build both, send her ask first and our idea second, own threads, one version each, no options).
+
+**Open.** Q-026 now waits on two yes-or-no answers. Q-027 carries the phone-photo and PR-team facts. The three GLBs in `generated/3D/` are unlogged: which run, which input, Hugo to say. Everything else unchanged and waiting on Lucy (Q-041, Q-042, Q-043, Q-028).
+
+**Next.** On a yes to email 1, the peach mark on the other seven is a treatment swap in the v3 script. On a yes to email 2, the other seven need cutouts (`rembg` is on the Mac; the duo shot may need Hugo's hand). The Double Bay shot list (Q-042) is still the one thing owed to her that needs nothing from her.
 
 ---
 ## Weekly Review, 2026-09-20 (week of 2026-09-14)
@@ -447,47 +469,6 @@ Three sessions this week (031 on 08-17, 032 running from the evening of 08-20 th
 1. **Send Lucy ONE message that clears the whole queue.** The email-02 v2 batch is packed and has been for six days (Q-012); fold in the collection-grid colourway (Q-011), the Content Creation Strategy reaction (Q-006), music-bed pacing (Q-004) and the incentive A/B/C (Q-003). Five threads have been waiting in parallel and one message is far likelier to get answered than five. This was also last week's number one focus and it did not happen.
 2. **Do Q-016 in one timeboxed sitting, and unblock Gemini while waiting on the mesh.** Tripo is signed up and the plates are ready, so the only real decision is when to abandon it for a hand-built Blender loop. Give it one session, judge the mesh honestly, and switch if it lumps. Q-017 is a settings change plus a new chat and should be done at the same time so the default engine is actually callable from here.
 3. **Turn the measured colours into the commercial assets they unblocked:** colourway strips, the range card, the wholesale line sheet. Four shoots were spent getting to trustworthy colour and nothing has yet been built on top of it. If there is time after that, the waitlist page, seventh session running.
-
----
-
-## Session 038 (2026-09-03, Cowork): Lucy says peach type, and the peach itself is now the question
-
-Client: Sportif
-Tags: sportif, lucy, weave-tiles, brand-colour, pantone, contrast, email, instagram
-
-**Q-029 closed, and it closed the right way.** Lucy replied 2026-09-02 asking for "the branding
-colour like the font colour to be in my logo peach colour". Read plainly that is the TYPE, not the
-plates. She did not choose the brand-colour weave, so D-039 and D-046 hold and the real product
-colour stays on the plates. She is away until Thursday 10 September.
-
-**She attached a Pantone chip and it does not match our records, which is the new loop (Q-033).**
-Her chip is Pantone 162 C, about `#FFC0A0`. Two independent sources say her logo peach is
-`#F0CDB3`: her own logo artwork `assets/05-logo-sportif-white-on-peach.png` and her swatch
-`assets/11-swatch-peach-nude.png` both measure `#F0CDB4`, and her intake questionnaire of
-2026-06-13 lists "Light Orange (in Canva #f0cdb3)". The Pantone chip is the outlier. Her answer
-sets the primary brand colour in `brand.md` line 105, not just these tiles, so it was worth
-stopping for rather than just applying the chip.
-
-**Peach type costs a quarter of the contrast, and the halo buys it back.** Measured behind the
-lockup: LIGHT 2.47:1 cream against 1.86:1 peach, MEDIUM 3.84 against 2.90, HEAVY 5.93 against
-4.47. Darkening the LIGHT plate was already off the table, so the lever was the existing warm
-halo, lifted 1.55x on every peach build. The wordmark, rule, subline and weight line all hold on
-all three at that setting.
-
-**`build_texture_weight_tiles.py` is now parameterised instead of forked.** Three environment
-overrides: `SPORTIF_TYPE_COL`, `SPORTIF_HALO`, `SPORTIF_OUT`. Defaults reproduce the set Lucy has
-already seen, byte for byte. Five builds this session came out of one script rather than five
-copies of it, and when she names the colour the reissue is one command.
-
-**Everything went out in one email, deliberately.** 8 attachments: two comparison rows, one per
-peach, plus BOTH finished postable sets, three tiles each at 1080x1350, numbered in upload order
-(post 1 heavy, then medium, then light, so the grid row reads LIGHT MEDIUM HEAVY). Hugo's reasoning,
-now a standing rule: front-load every version in one send so the client can answer the question and
-use the work off the same email, with no round trip. It also removed the objection that she might
-post live in a colour that turns out to be wrong, since she now holds the files for either answer.
-Draft at `clients/sportif/email-grid-tiles/peach-confirm-to-lucy-2026-09-03.md`. Sent 2026-09-02.
-
-**Housekeeping.** The stranded `.git/HEAD.lock` from a previous Cowork commit is cleared.
 
 ---
 
