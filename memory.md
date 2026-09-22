@@ -20,6 +20,71 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
 
 ---
+## Weekly Review, 2026-09-20 (week of 2026-09-14)
+
+Two sessions this week (042 on 09-18 and 043 on 09-20), both in Claude Code, both driven by Hugo. The shape of the week: one long build session that took the signature from a font name to a finished write-on and four renders, then one morning session that sent three replies and deliberately built nothing. Four things left the building, three emails and a WhatsApp, and the WhatsApp is the one that closed a loop. Underneath it a new workstream opened that nobody had planned for, behind-the-scenes founder-facing content, and with it the first job in months where Hugo is holding a camera rather than a mouse. The board did not get shorter, but for the first time in a while the reason is entirely on the client's side: every open Sportif loop is now waiting on Lucy.
+
+### Highlights
+- **The signature is finished, delivered, and turned out to be ours rather than hers (Q-034, Q-040, D-055, D-056, D-059).** Two sessions took it from "she says yes and here is my Canva file" to five rendered files. Her free Canva made PDF Print the only vector route out, so `scripts-local/extract_lucy_signature.py` flattens PyMuPDF's glyph refs into real paths and emits a font-free artboard; Hugo then built the write-on in After Effects across a whole session from hand-drawn pen paths used as an alpha matte. The delivery was the interesting part. Hugo sent the renders on WhatsApp on 09-20, she loved them, and they are of no direct use to her because she cannot place a video file herself. So they became our asset to apply to her content (D-059), which quietly changed what the whole job was for.
+- **Lucy's placement note was measured onto the frame rather than eyeballed (Q-039).** She asked for the mark above the model's hand with its middle on her middle finger. Her middle finger measured x=340 off the finger creases, the wordmark went to x=343 with the ink bottom 26px clear of the fingertips, applied to both colourways and both build scripts, knowingly above `STORY_SAFE_TOP` because above the hand and inside the story safe zone are mutually exclusive on that frame. She posted it two days later. The mark sat near Instagram's chrome exactly as the 17 Sep email warned, and that was her call to make.
+- **Three chains answered in one morning, and nothing was built (S043).** The 27 Aug set is accepted and live on her grid. She asked for "the three concepts" in the brand peach and a poster from her February 2026 shoot; we hold neither the picture she means nor the shoot files, so the reply asked for both rather than guessing at candidates. Hugo's call, and it is the correct one: an ambiguous client phrase is not fixed by naming candidates.
+- **A new workstream opened on her ask, not ours (Q-041, Q-042, Q-043).** She wants her footage cut with effects and branding in Kia Buckley's founder-facing format, she is sending LA trip footage including her new supplier meeting, and she asked whether Hugo and Lauren would film a day of her in Double Bay. Answered yes for 1 to 10 October, phone by default with camera hire only against a quote (D-057), shot list first. A booth announcement was asked for in the same thread and is blocked on the show date.
+
+### Patterns I noticed
+- **The channel that works with Lucy is not always email.** Q-040 sat unsent through three other replies going out, then closed in one WhatsApp message the same day, and her answer reshaped the job. Meanwhile D-058 was written in the other direction: one topic per thread, one question per email, fresh subject per job, because the mixed chains are what made her 18 Sep messages ambiguous in the first place. Both moves are the same instinct, match the message to what it is actually for.
+- **Delivering a thing tells you what it is, and you cannot learn that beforehand.** The signature was built as something to hand Lucy and turned out to be something we apply for her. Same family as last week's "settled is not the same as wanted now", one step further along: the record was not wrong, the assumption about who the asset was for was.
+- **Measure, then place; and zoom out before judging.** The finger position, the contrast pairings, the terracotta render verified against a reference composite within four levels of solid ink and one level of frame mean. Against that, at 800 percent three of the four faults Hugo flagged in the write-on were correct behaviour. Zoom in to fix, zoom out to decide, and the second half is the one that is easy to forget.
+- **Q-027 accumulates blockers instead of closing, and this is the fourth consecutive review saying so.** It was owed in writing on 08-27. This week it gained two more dependencies (her February shoot files, the show date) and shed one worry (Canva licensing, now that the source is her own shoot). Panel size has been asked three times. The handle line (Q-028) was cut from the sent email again, so a one-line confirmation has now survived four separate opportunities to be made.
+- **The workspace produced no generated imagery at all this week.** Two sessions of After Effects, ffmpeg, measurement and email. Worth noting only because it is the first week in a long run where D-038 and the generator rules never came up.
+
+### Skills / knowledge gained
+- **Trim Paths on a glyph OUTLINE traces the edge of a letter, not the pen stroke.** A write-on needs hand-drawn open paths down the centre of each letter, used as an alpha matte over the real artwork.
+- **Trim Paths runs at constant speed along total path length,** so a long letter eats the animation. Fix with a keyframe at each stroke boundary, stroke weights of length^0.55, and explicit pen-lift holds.
+- **Illustrator stacks newest on top, so drawing in writing order always imports into After Effects backwards.** Group order is trim order.
+- **A shape layer from Create Shapes from Vector Layer anchors at 0,0, while AI footage anchors at its centre.** Typing the same Position into both breaks the matte.
+- **The finished signature is five disconnected islands** and the `u` never touches anything, because Amsterdam Two is a typeface rather than joined handwriting. Every letter is meant to look detached.
+- **Contrast pairings for the signature are settled.** White on the brand peach is 1.60:1, a ghost. Black covers peach, cream and the LIGHT and MEDIUM bands; white exists for the HEAVY terracotta at 8.44:1 and for dark photography.
+- **`psd-tools` can read Hugo's refined cutout and mask straight out of the concept PSD,** so the three-concept rebuild in 162 C is scriptable from the source photo rather than dependent on a Photoshop sitting.
+- **A saved PSD is not the recipe.** The concept file sits at Soft Light 10 and 25 percent against the Overlay 60 written in `WEAVE-ROOM-RECIPE.md`, and the cutout layer carries the mark, so any rebuild starts from the source photo.
+- **`sportif_grade.py` still maps mid tones to the retired `#F0CDB3`,** and the 26 Aug "peach" folder is old peach. Both untouched, both a trap for anyone reaching for them.
+- **QuickTime Animation is effectively dead;** modern QuickTime Player refuses it. ProRes 4444 is the alpha delivery format, verified identical within two levels and smaller.
+- **The only photograph of Lucy the workspace holds is 214x320, inside her Canva PDF.** Anything full frame from it is a six times upscale.
+- **Booth facts now on record:** TheFitExpo Los Angeles 2027 is 23 to 24 January, South Hall, and a 10 by 10 booth is $3,150 with a skirted table. Panel size is still unknown.
+- **Kia Buckley is the founder of Kikiva,** the brand already named in `brand.md`. Founder-facing, phone-shot, bad days included, which is the format the behind-the-scenes edits are being measured against.
+
+### Open questions still unresolved
+**Resolved (by a later session this week):**
+- [x] ~~Q-034: the signature original, file or font name~~ RESOLVED Session 042: she shared the Canva file, the face is Amsterdam Two as live text, extracted via PDF Print and animated in After Effects (D-055, D-056).
+- [x] ~~Q-039: where the side stretch story is going~~ RESOLVED Session 043: she posted it on 18 Sep as a Story, mark near the chrome as warned. No lower version needed. Note: the row in `OPEN-QUESTIONS.md` still carries a `[ ]` marker despite its own RESOLVED text, so it is still printing at startup and should be flipped.
+- [x] ~~Q-040: the signature animation built and unseen~~ RESOLVED Session 043: sent on WhatsApp, she loved it, and it is our asset to apply rather than hers to place (D-059). The drafted email is not needed. White-on-terracotta flat rendered afterwards.
+- Note: Session 043 is the most recent session, so nothing in its own open loops can be flipped yet.
+
+**Still open, opened this week:**
+- [ ] **Q-041: the behind-the-scenes edits.** Her LA footage has not arrived; originals were asked for via Drive, Dropbox or WeTransfer rather than Instagram or WhatsApp. The promise in the 09-20 reply is cuts for Reels and Stories carrying the mark, 162 C and her signature write-on, so the assets exist and the footage does not.
+- [ ] **Q-042: the Double Bay filming day,** 1 to 10 October, Lauren unavailable, phone by default (D-057). Waiting on her dates. The shot list is owed to her BEFORE the day and needs nobody to write.
+- [ ] **Q-043: the LA booth announcement,** blocked on her confirming TheFitExpo LA and 23 to 24 January 2027, plus a booth number. When it lands it settles the Q-027 date correction too.
+
+**Still open, carried from before:**
+- [ ] **Q-026: the three concepts in 162 C.** Unparked this week. She said yes to the idea in the brand peach; which picture she means is ambiguous and was asked back on 09-20. Nothing built, deliberately.
+- [ ] **Q-027: the Fit Expo booth poster,** owed in writing since 08-27 and now carrying three open dependencies: the picture, her February 2026 shoot originals, and panel size with bleed. The show date moved into Q-043.
+- [ ] **Q-028: the handle rule,** off for Instagram, on for booth assets. One line, cut from the sent email again, still unconfirmed to her.
+- [ ] **Q-036: the animated inspiration board,** her four answers then the loop build. Untouched this week; not raised in any of her three chains.
+- [ ] **Q-038: composition end cards** still carry the old mark, the handle and a "Launching September 2026" line. Needs nobody, and the first decision is whether those compositions are still live at all.
+- [ ] **Q-013: back catalogue to 162 C and the master mark.** Remainder on the row; delivered ads and posters explicitly excluded until Hugo asks.
+- [ ] **Q-016, Q-023, Q-020: the 3D band, the dropped band and the label close-ups.** One phone sitting closes all three. Untouched for five weeks now.
+- [ ] **Q-001: the standalone waitlist page plus 3-email welcome flow.** Top unbuilt item in twelve separate sessions. Needs neither Lucy nor the trademark.
+- [ ] **Colourway strips, range card and wholesale line sheet.** Unblocked on colour since August, still unbuilt.
+- [ ] **Q-002: trademark clearance,** still the critical-path gate on Lucy's lawyer's clock.
+- [ ] **Q-017: Gemini egress; Q-014: Hugo's Photoshop reference.**
+- [ ] **Parked behind `[p]`:** Q-001 to Q-010, visible with `open --parked`.
+- [ ] Carried: ambassador and instructor seeding shortlist (fifteenth week, needs nothing from anyone), film the unboxing, ElevenLabs API key, Shopify store, materials question, Stage 3 synthesis template.
+
+### Suggested focus for next week
+1. **Write the Double Bay shot list and send it (Q-042).** It is the only thing owed to Lucy that needs nothing from her, the window she was offered starts in eleven days, and the list is what lets her add her own places and moments rather than being followed around. Lean on the Kikiva founder-facing format, which is already the agreed reference. Sending it also puts a date question in front of her without opening another thread.
+2. **Twenty minutes with the phone to close Q-016, Q-023 and Q-020.** Geometry shot in shade as an open oval so the hole reads, then direct sun for the dropped band and the label close-ups per D-026, then one Tripo run with the real image. This has now been the number one or two recommendation in four consecutive reviews, and it is still the largest unblock available for the smallest effort. If it is not going to happen, the honest move is to park all three rather than carry them a fifth week.
+3. **Build one thing that does not need Lucy.** Everything on the client side is now waiting on her, which makes this the right week for the work that never has been: the colourway strips, range card and line sheet on the settled 162 C with the measured band colours, or the waitlist page and welcome flow. Both have been unblocked for over a month and neither needs an answer from anyone.
+
+---
 ## Session 043 (2026-09-20, Claude Code): three of Lucy's emails answered, nothing built
 
 Client: Sportif
@@ -38,7 +103,7 @@ Tags: sportif, lucy, email, peach-concept, fit-expo, behind-the-scenes, kikiva, 
 
 **Decided.** D-057 (behind-the-scenes is shot on a phone by default; camera hire a quoted cost). D-058 (one topic per thread, one question per email, fresh subject per job). D-059 (motion assets are ours to apply, not hers to use).
 
-**Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still unconfirmed. Q-040 resolved on WhatsApp, our asset to apply (D-059). New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date).
+**Open.** Q-039 resolved. Q-026 unparked, waiting on which picture. Q-027 gains two blockers (her shoot files, the show date). Q-028 still unconfirmed. Q-040 resolved on WhatsApp, our asset to apply (D-059). New: Q-041 (behind-the-scenes edits, LA footage incoming), Q-042 (the Double Bay day, 1 to 10 October, shot list to write), Q-043 (the booth announcement, blocked on the date). *(Weekly review 2026-09-20: this is the most recent session, so no later session exists to resolve anything here. Q-026, Q-027, Q-028 and the three new loops all carry forward unchanged. One registry fix noted for Hugo: the Q-039 row in `OPEN-QUESTIONS.md` still has a `[ ]` marker although its own text records it RESOLVED S043, so it keeps printing at startup.)*
 
 **Next.** When Lucy answers: the peach concept build, the Double Bay shot list, the booth announcement. Terracotta flat rendered, `lucy-signature-writeon-terracotta.mp4` (detail on the Q-040 row). Strays cleared; `studio-reformer-sidestretch.mp4` kept as the signature-over-content preview.
 

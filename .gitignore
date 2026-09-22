@@ -22,8 +22,11 @@ assets/style-references/posters/*
 # Generated media binaries, reproducible from prompts (image-prompts.md is tracked)
 clients/*/generated/images/*
 clients/*/generated/videos/*
+# S044: raw Tripo GLBs dropped in generated/3D/ (56 to 63MB each) stay out of history, same reason as Q-030
+clients/*/generated/3D/*
 !clients/*/generated/images/.gitkeep
 !clients/*/generated/videos/.gitkeep
+!clients/*/generated/3D/.gitkeep
 
 # Node
 node_modules/
