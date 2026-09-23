@@ -5,6 +5,47 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## storyboard: the Double Bay filming day as a drawn shot list (2026-09-22, S045)
+
+Seven storyboard sheets for the 2 October filming day (Q-042), one per stop with the six clips
+from `behind-the-scenes/double-bay-shot-list.md` as panels, plus an eight-panel overview of the
+reel. Script and full prompts: `scripts-local/gen_storyboard.py` (the source of truth). Output
+`generated/images/storyboard/<n>-storyboard-<stop>_<quality>.png`, numbered 0 (overview) to 6 (close) so
+the files sort in page order, 1536x1024, first pass at low.
+Style block: hand-drawn storyboard on cream paper, pencil and ink with grey marker and one peach
+wash accent (#FFBE9F) per panel, every panel a 9:16 phone frame in a grid, the same generic woman
+(blonde ponytail, blazer over activewear, no likeness of Lucy), captions as exact quoted strings in
+small geometric sans capitals, sheet title top left, no logos or brand names. Text came out exact
+on all seven at low. Rules kept: generic woman, band never drawn large (D-033), no photos of Lucy
+touched.
+- **Read of pass 1:** structure, captions and mood all hold. Two fixes for pass 2: (1) "no realistic
+  face detail" gave blank faces on about half the panels, ask for "simple sketched features"
+  instead; (2) the band-loop guard line made a small band appear in sheets that never asked for
+  one (the water bench, the meeting table, the desk), so mention the band only on the gym sheet
+  and forbid it elsewhere.
+- **Pass 2 (same day, medium, portrait 1024x1536):** both fixes applied in the script and both
+  landed on all seven sheets: every face has simple sketched features, and the only band on any
+  sheet is the gym hands panel. Portrait stacks the six panels three across and two down, which
+  reads better on a phone (Hugo's ChatGPT run of the same prompt chose portrait too). Text exact
+  again. These seven `_medium.png` files are the KEEPERS; the `_low.png` set is the proof pass, moved to
+  `storyboard/proofs-low/` (the script now writes low runs there by itself).
+- **Pass 2b (Hugo's catch):** "from behind her as she walks in" drew a figure walking away into
+  daylight, which reads as LEAVING, so arrive and leave were swapped on the studio sheet. Lesson for
+  any storyboard prompt: state where the camera is and which way she faces ("seen from inside,
+  facing the camera" / "her back to the camera, walking out"), never rely on the verb. Studio and
+  gym re-rendered at medium with that wording; the work and meeting arrive panels got the same
+  wording for the next full run. PDF rebuilt.
+- **Pass 2c (Hugo):** panel order changed to the order the stop runs: 1 ARRIVE, 2 PROPPED WIDE,
+  3 MEDIUM, 4 HANDS, 5 INTERVIEW, 6 LEAVE. Six stop sheets re-rendered at medium; the overview is
+  unchanged. The shot list block was renumbered to match, so list and sheets agree.
+- **Pass 2d (Hugo):** she holds the bands in every interview panel, two or three small sketched
+  flat loops in her hands, never large (D-033 holds because these are drawings of a plan, not
+  product images). Six stop sheets re-rendered at medium. Shot list and interview doc updated to
+  match: bands in hand for every answer.
+- Planning asset, and Lucy sees it: the seven medium sheets are bound into
+  `behind-the-scenes/TO-SEND-2026-09-22/Sportif-Double-Bay-filming-day-storyboard.pdf` and attached
+  to the shot-list email (Hugo, 22 Sep). Not a post. Regenerate the PDF if the sheets change.
+
 ## fresh-explore: first gpt-image-2 GENERATIONS (from scratch, not edits) (2026-07-22)
 
 Exploratory Sportif key visuals generated from detailed prompts (our first use of the

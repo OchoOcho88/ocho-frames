@@ -148,3 +148,7 @@ clients/sportif/lucyfriend-band-placement/plates/colourway-compare/01-floor-seat
 # After Effects auto-saves: churn, never the source of truth (S042)
 **/Auto-Save/
 **/*.aep Logs/
+
+# Kia Buckley screenshots, third party style references (D-014). The README index IS tracked.
+clients/sportif/behind-the-scenes/reference-kia/*
+!clients/sportif/behind-the-scenes/reference-kia/README.md

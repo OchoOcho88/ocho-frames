@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-22 | Last session: 044 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: two emails went to Lucy on 2026-09-22 (the ball photo with the logo in 162 C, then the room in 162 C, own threads, D-060), so Q-026 waits on two yes-or-no answers and nothing is owed to her. Still waiting on her: the February phone photos via WhatsApp and the PR team's poster size in October (Q-027), the show date (Q-043), her LA footage (Q-041), a filming date 1 to 10 October (Q-042). The Double Bay shot list is the one thing that needs nobody; three unlogged Tripo GLBs sit ignored in `generated/3D/`.*
+*Last updated: 2026-09-23 | Last session: 045 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: the Double Bay filming day is Friday 2 October (Q-042), both emails went to Lucy on 2026-09-23 (the shot list with the seven-page storyboard PDF, and the interview questions), so she owes Hugo the arrival time, address, a timed run of her day and consent for the gym and clients. Before Friday Hugo opens her Canva share for the Lucy Wayne font (Q-041) and brings the three bands. Also waiting on her: the booth number this week (Q-043, dates confirmed), the Drive files (Q-041, Q-027), the ball-photo yes-or-no pair (Q-026).*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -16,10 +16,28 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Generator rules (D-033, D-034, D-038).** Never let a generator draw the band large: big means shoot or composite the real cutout, small means generate and swap the label from the real photo. No generator touches Lucy's friend's photos.
 - **Client writing rules (D-044, D-046).** Lucy is not the model in the email-02 photos, so never "you" about the person in frame. Bands are named by weight, never "blush". "Show me" and "pick one" are different requests: show the thing with a recommendation attached.
 - **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).**
+- **Behind the scenes is a workstream (D-057, D-059, D-061).** Phone by default, Kia Buckley's format measured in `clients/sportif/behind-the-scenes/reference-kia/`, the Double Bay day runs arrive, propped wide, medium, hands, interview (bands in hand), leave; motion assets are ours to apply. Her LA footage and the Lucy Wayne font arrive via Drive and Canva (Q-041).
 - **Protocol and voice (D-035, D-054).** `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
 
 ---
+## Session 045 (2026-09-23, Claude Code): the Double Bay day planned, drawn and sent
+
+Client: Sportif
+Tags: behind-the-scenes, double-bay, shot-list, interview, storyboard, gpt-image-2, kia-buckley, emails
+
+**Done.** Lucy's 22 Sep reply logged: Friday 2 October, afternoon, Double Bay (studio, gym, walking, work, a client meeting, "like Miss Kia's"); Expo dates confirmed 23 to 24 January 2027, booth number due this week; files via Google Drive; her Lucy Wayne font and logo shared via Canva. Kia Buckley measured from three clips Hugo picked plus thirteen of his screenshots (`behind-the-scenes/reference-kia/README.md`): the narrated day, the time-labelled day, the one-take live moment, the product-story carousel. Shot list written (`double-bay-shot-list.md`), then reworked twice on Hugo's calls: panel order arrive, propped wide, medium, hands, interview, leave, and the bands in her hands for every answer. Twenty interview questions by stop with phone craft and guardrails (`friday-interview.md`). Seven storyboard sheets rendered with gpt-image-2 through the workspace key (`scripts-local/gen_storyboard.py`, keepers numbered 0 to 6 in `generated/images/storyboard/`, proofs in `proofs-low/`), bound into a PDF for her. Two emails sent 23 Sep: the shot list with the PDF, and the interview questions. Hugo's calendar checked clear for the day.
+
+**Learned.** A storyboard prompt must state where the camera is and which way she faces; "from behind as she walks in" draws a leaving picture. gpt-image-2 renders six exact captions per sheet at low; "no realistic face detail" gives blank faces, ask for simple sketched features. A guard line that mentions the band makes the band appear; forbid it per sheet instead. Hugo's screenshots land one folder up from where they are asked for; look before reporting nothing. TikTok and Instagram block reading; the built-in browser plays the video, and frames can be pulled through the video element into a canvas and out as base64 (a result over the tool limit is saved to a file, which is the way out).
+
+**Decided.** D-061, the Double Bay day is shot Kia's way and planned on paper first (propped wide, time-labelled cut by default, voice note optional, interview across stops with bands in hand, storyboard shared with her).
+
+**Open.** Q-042 waiting on her arrival time, address, timed run, consent, and whether she takes the voice note. Q-041 gains the Canva font check (is it the Amsterdam Two of D-055) and the Drive files. Q-043 unblocked, booth number this week. Q-027 dates settled. Not a loop: Hugo's China-trip idea, and a Sportif product-story carousel in Kia's format from what already exists.
+
+**Next.** When Lucy answers: fill the afternoon table in the shot list, confirm consent, and open the Canva share before the first edit.
+
+---
+
 ## Session 044 (2026-09-22, Claude Code): Lucy's picture arrived, the ball photo built two ways and sent as two emails
 
 Client: Sportif
