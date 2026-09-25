@@ -20,6 +20,7 @@ OUT=f'{REPO}/clients/sportif/generated/images/storyboard'
 os.makedirs(OUT, exist_ok=True)
 Q=sys.argv[1] if len(sys.argv)>1 else 'low'
 ONLY=sys.argv[2].split(',') if len(sys.argv)>2 else None
+TAG=f'-{sys.argv[3]}' if len(sys.argv)>3 else ''  # variant suffix, so a second take does not overwrite the first
 
 STYLE=("Hand-drawn film storyboard sheet on warm cream paper. Loose confident pencil and fine ink "
        "line work with soft grey marker shading and a single light peach wash accent (#FFBE9F) on one "
@@ -103,6 +104,21 @@ JOBS={
                  title="DOUBLE BAY, A DAY IN THE LIFE: THE REEL") +
    "Eight panels, two columns and four rows, left to right, top to bottom, filling a portrait sheet. "
    "Panels are sketches, not photos. No camera drawn in the panels. " + NO_BAND),
+ # S047: Lucy's own order of the afternoon (her 25 Sep reply), 1 to 3 pm, all on Cross Street.
+ 'afternoon': (STYLE +
+   "Panel 1 (1:00 OPENER): she stands on a leafy village footpath under plane trees and says a line to the lens, tote bag on her shoulder, smiling. "
+   "Panel 2 (1:05 ERRANDS): she walks toward the lens past boutique shop windows and cafe awnings, a small shopping bag in her hand. "
+   "Panel 3 (1:20 JUICE AND EMAILS): she sits at a small cafe table by a window, a tall glass of green celery juice beside an open laptop, phone in her hand, the screen turned away. "
+   "Panel 4 (1:45 GYM AND STUDIO): a bright modern hotel gym and studio seen from a low corner at table height, mirrors and equipment, large windows, the woman small in the middle setting up a mat. "
+   "Panel 5 (2:00 EXERCISING): she does a slow standing side step on the gym floor by the windows, one small simple sketched fabric loop just above her knees, calm and focused, modest activewear. "
+   "Panel 6 (2:15 CLIENTS ON THE FLOOR): she stands and chats with two women in activewear on the gym floor, everyone relaxed and laughing, nobody exercising. "
+   "Panel 7 (2:30 ROOFTOP POOL): a calm hotel rooftop pool with sun loungers, the harbour and city far behind, the woman small walking along the pool edge in activewear and a light open shirt, not swimwear. "
+   "Panel 8 (2:55 CLOSER): close on her face at the rooftop pool, the harbour soft behind her, saying the last line to the lens, two or three small flat fabric loops held loosely in her hands. "
+   + TEXT.format(caps='"1:00 OPENER", "1:05 ERRANDS", "1:20 JUICE AND EMAILS", "1:45 GYM AND STUDIO", "2:00 EXERCISING", "2:15 CLIENTS ON THE FLOOR", "2:30 ROOFTOP POOL", "2:55 CLOSER"',
+                 title="DOUBLE BAY, FRIDAY 2 OCTOBER: THE AFTERNOON") +
+   "Eight panels, two columns and four rows, left to right, top to bottom, filling a portrait sheet. "
+   "Panels are sketches, not photos. No camera drawn in the panels. "
+   "The only resistance bands on this sheet are the one small loop in panel 5 and the small loops in her hands in panel 8, never large, never the focus."),
 }
 
 def run(item):
@@ -116,8 +132,8 @@ def run(item):
         if 'data' not in j: return f'FAIL {name}: {str(j)[:220]}'
         sub='proofs-low' if Q=='low' else ''
         os.makedirs(f'{OUT}/{sub}', exist_ok=True)
-        num={'overview':0,'studio':1,'gym':2,'walking':3,'work':4,'meeting':5,'close':6}[name]
-        out=f'{OUT}/{sub}/{num}-storyboard-{name}_{Q}.png'.replace('//','/')
+        num={'overview':0,'studio':1,'gym':2,'walking':3,'work':4,'meeting':5,'close':6,'afternoon':7}[name]
+        out=f'{OUT}/{sub}/{num}-storyboard-{name}_{Q}{TAG}.png'.replace('//','/')
         open(out,'wb').write(base64.b64decode(j['data'][0]['b64_json']))
         return f'ok {name} -> {out}'
     except Exception as e:

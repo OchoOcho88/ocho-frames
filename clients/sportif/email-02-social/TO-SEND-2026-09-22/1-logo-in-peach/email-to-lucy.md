@@ -22,6 +22,11 @@ A room-in-162-C build also exists at `created/v5-162c/` (the other reading of he
 
 SENT 2026-09-22 by Hugo from hugo@ochoproductions.com. Subject as typed: "Sportif | Ball photo, logo in your peach - one question" (hyphen before the ask, his mail client). Both addresses in To. Body as below, unchanged. 3.1MB.
 
+HER ANSWER (23 Sep, 3:45 AM, this thread, four minutes after her room-thread answer): "I love this!
+Yes this is what I had in mind. The Peach stands out more! Yes, please thank you!" The yes to the
+rest of the set was delivered 25 Sep in the room thread (`TO-SEND-2026-09-25/3-august-set-peach-logo/`).
+No reply sent in this thread (S047).
+
 Attach, 2 files:
   ball-photo-peach-logo-feed.png    1080x1350, for the grid
   ball-photo-peach-logo-story.png   1080x1920, for stories

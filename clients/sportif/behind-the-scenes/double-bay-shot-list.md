@@ -60,18 +60,37 @@ Inputs:
 - Whether the gym and the clients are fine being on camera (same email).
 - The bands, in case she does not bring them (light, medium, heavy, in her bag or Hugo's).
 
-## The afternoon (fill in from her reply)
+## The afternoon (her reply, 25 Sep 2026, 1:20 AM)
 
-| Time | Stop | Address | What happens there | Notes |
-|---|---|---|---|---|
-| | Studio | | | |
-| | Gym | | | |
-| | Walking, coffee | Cross St, Knox St, Bay St | between stops | 4K 60 clip |
-| | Work | 33 Cross St or a cafe | calls, emails | no readable screens |
-| | Client meeting | | | consent first |
+Her words: "This is what I would do every Friday at work. Let's organise it in this order: 1. Walking
+around Double Bay any errands and head to Indigo for my celery juice and email. 2. The Gym and Studio
+are together. 4. Me Exercising in the gym. 5. Talking to clients on the gym floor. 6. Rooftop pool we
+can shoot up there. I won't be training any clients next Friday. We can use footage I have taken
+training clients another day. Shall we meet at 1pm. As I need to start at 3pm." (Her list skips 3.)
 
-Sunset in Sydney on 2 October is around 5:50 pm (daylight saving has not started), so any
-waterfront walking goes in the last hour of light.
+So the window is TWO HOURS, 1 to 3 pm, and everything is on Cross Street. Hugo asked her for 12:30 instead
+(S047, breathing room), and the table below assumes it; on a no, shift the first three rows 30 minutes later. Her signature address,
+33 Cross Street, is the InterContinental Sydney Double Bay: the gym and studio are Fit Collective on the
+hotel's ground level promenade (open 24/7, members and guests), and the rooftop pool is the hotel's,
+guests only, 7 am to an hour past sunset (hotel website, checked S047). Indigo is on Transvaal Avenue (Lucy, 25 Sep; its website gives 6/15 Cross Street),
+open weekdays 6.30 am to 3.30 pm. The INTERVIEW is shot there in one sitting after Indigo, at her suggestion (`friday-interview.md`). Lucy works at the hotel and filming there is cleared (Hugo, S047).
+
+| Time | Stop | Address | What happens there | Interview (friday-interview.md) | Notes |
+|---|---|---|---|---|---|
+| 12:30 | Walking, errands | Cross St, Knox St, Bay St | errands on foot | none | 4K 60 clip; the one in her own hand; OPENER here |
+| 1:00 | Indigo, work | Transvaal Ave | celery juice, emails, then THE INTERVIEW in the lane (about 20 min, 11 questions) | all of it | no readable screens |
+| 1:40 | Fit Collective, gym and studio | 33 Cross St, ground floor | the room, her exercising with the bands | none | the most valuable clips; windows, gyms are dim |
+| 2:10 | Gym floor | same | talking to clients | none | ask each person before they are in shot |
+| 2:30 | Rooftop pool | 33 Cross St, roof | harbour view, the last stop | quickfire only | cleared, she works there (Hugo); CLOSER here |
+| 2:55 | Wrap | | she starts at 3 | | |
+
+What changed from the storyboard: the client meeting at a table is gone (she is not training
+clients that day, and her own footage of training clients fills that part of the reel, to arrive
+by file share), work moves to Indigo, and the rooftop pool is new. The interview is one sitting on
+Transvaal Avenue after Indigo (her call, 25 Sep): the eleven questions she has, about twenty
+minutes, so the gym and the pool run without interview time and the day still fits.
+Sunset on 2 October is around 5:50 pm, so the light is high and hard at the pool: film her in open shade, or with
+the sun behind her and the exposure locked on her face.
 
 ## Phone settings and kit
 

@@ -6,6 +6,20 @@
 > `email-to-lucy-2026-09-23-interview-questions.md`. Change one, sync the other.
 > Lives alongside `double-bay-shot-list.md`; the day-in-the-life shots do not change.
 
+## Her answer (25 Sep 2026, 1:22 AM, the interview thread)
+
+"Sure, sounds good! We should shoot this in Transvaal Avenue where Indigo is! I'll remove the Why of
+Double Bay as it's my place of work."
+
+- **Where:** Transvaal Avenue, the lane where Indigo is. Read as the whole interview in one sitting
+  there, straight after Indigo, rather than spread across the stops. It fits the day: the questions
+  then take no time at the gym or the pool, so the timetable balances. If she wants one or two
+  answered elsewhere on the day (the bands at the gym, five years at the pool), follow her.
+- **Dropped by her:** question 9, "Why Double Bay?". The other eleven she was sent stand.
+- **Sound:** one sitting outdoors on a street makes the phone mic the weak point. Pick the quietest
+  stretch of the lane, her back to the traffic, phone within a metre; the wired lapel mic below
+  is worth bringing now.
+
 ## The questions, by stop
 
 Two to four per stop, matched to where she is. About five minutes of asking per stop, twenty to
@@ -25,7 +39,7 @@ GYM, the product in her hands (bands in frame, quiet corner or after the session
  8. Who do you picture using them?
 
 WALKING, the place and her life (Cross Street, the water, coffee in hand)
- 9. Why Double Bay? What does this place mean to you?
+ 9. ~~Why Double Bay? What does this place mean to you?~~ DROPPED by Lucy, 25 Sep (it is her place of work).
 10. What does a normal week look like for you?
 11. Where do your ideas come from? People, places, moments.
 

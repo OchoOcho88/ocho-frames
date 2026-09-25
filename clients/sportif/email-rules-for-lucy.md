@@ -27,7 +27,7 @@ Sportif | <the job, as she would name it> | <the ask, five words or fewer>
 ```
 Hi Lucy,
 
-<The question, one sentence, with the attachment named in it. Answerable in one word.>
+<The question, one sentence, with the attachment named in it. Answerable in one word, phrased naturally, no "yes or no?" tag.>
 
 <One or two lines of context, at most. Why it matters to her, not how it was made.>
 
@@ -46,8 +46,11 @@ Hugo
    (reply, attachments on it). A fresh subject for the delivery splits one conversation
    into two chains, which is the confusion this rule exists to stop (Hugo, S046: her 23 Sep
    answer on the room-in-peach thread was answered on that thread, not a new one).
-3. **Question first, attachment named inside the question, answerable in one word**
-   ("1, 2 or 3?", "yes or no?", "which date?"). Explanation goes after, short.
+3. **Question first, attachment named inside the question, answerable in one word**,
+   asked the way a person would ask it: "Could we meet at 12:30 instead?", "Which of the
+   three do you like?", "Which date suits you?". Never tack "yes or no?" onto the end
+   (Hugo, S047: people don't speak like that); a plain question is already a yes or no.
+   Explanation goes after, short.
 4. **One-liners by text, files by email.** She lives on her phone: marks arrive as phone
    photos and she posts within hours. A one-question text gets an answer.
 5. **Ask for a fortnightly 15-minute call.** She has Calendly links in her bio. One call

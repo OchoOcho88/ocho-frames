@@ -17,6 +17,9 @@ NOTE: the questions avoid the launch date, fabrics, "custom" colours and other b
 
 Attach: nothing. Source of truth: `friday-interview.md` in this folder. Change one, sync the other.
 
+HER ANSWER (25 Sep, 1:22 AM, this thread): "Sure, sounds good! We should shoot this in Transvaal Avenue
+where Indigo is! I'll remove the Why of Double Bay as it's my place of work." Logged in `friday-interview.md`.
+
 ---
 
 Hi Lucy,

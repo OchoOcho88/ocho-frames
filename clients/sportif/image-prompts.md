@@ -102,6 +102,35 @@ touched.
 - Planning asset, and Lucy sees it: the seven medium sheets are bound into
   `behind-the-scenes/TO-SEND-2026-09-22/Sportif-Double-Bay-filming-day-storyboard.pdf` and attached
   to the shot-list email (Hugo, 22 Sep). Not a post. Regenerate the PDF if the sheets change.
+- **Pass 3, the afternoon in her order (S047, 2026-09-25, medium, two takes):** Lucy's 25 Sep reply set
+  the order and the window (1 to 3 pm, all on Cross Street), so one new eight-panel sheet, job `afternoon`
+  in the script, captions carry the times: 1:00 OPENER, 1:05 ERRANDS, 1:20 JUICE AND EMAILS, 1:45 GYM AND
+  STUDIO, 2:00 EXERCISING, 2:15 CLIENTS ON THE FLOOR, 2:30 ROOFTOP POOL, 2:55 CLOSER. Bands only in
+  panel 5 (one small loop above the knees, a side step) and panel 8 (small loops in her hands). The pool
+  panel says activewear and a light open shirt, not swimwear. Script gained a third argument, a variant
+  tag, so a second take does not overwrite the first. Text exact on both takes. KEEPER: take b
+  (`7-storyboard-afternoon_medium-b.png`): centred captions like the sheet she liked, the pool water
+  clearly in shot. Take a had left-aligned captions and a terrace with no clear pool. Known flaw in b:
+  the closer panel puts the Opera House behind her, which you cannot see from a Double Bay rooftop; it is
+  a drawn plan, so left. Sent as `behind-the-scenes/TO-SEND-2026-09-25/double-bay-afternoon-storyboard.png`
+  with the run-of-day reply.
+- **Pass 3b (Hugo, same day): the meet moved to 12:30.** Not regenerated: the eight captions on take b
+  were painted out with the paper colour and re-set in script (`scripts-local/retime_afternoon_storyboard.py`,
+  output `7-storyboard-afternoon_medium-b-1230.png`), so the drawing stays exactly as chosen. Font trial
+  against the generator's lettering: Glacial Regular read thin and wide, Glacial Bold heavy, Avenir Next
+  Medium matched (ink 70/68/65, tracking fitted to the original caption widths). Seams invisible at 3x.
+  New times: 12:30 OPENER, 12:35 ERRANDS, 1:00 JUICE AND EMAILS, 1:30 GYM AND STUDIO, 1:50 EXERCISING,
+  2:10 CLIENTS ON THE FLOOR, 2:30 ROOFTOP POOL, 2:55 CLOSER. This is the file in TO-SEND.
+  Lesson: to change only the words on a generated sheet, re-set them in script rather than regenerate.
+- **Pass 3c (Hugo): the Opera House out of the 2:55 CLOSER panel.** You cannot see it from a Double Bay
+  rooftop. `scripts-local/fix_closer_panel.py`: the panel cropped with a paper strip to 3:2, sent to
+  gpt-image-2 edits (medium, n 2) with the prompt in the script (redraw only the far right background as
+  the bay, moored yachts and a low wooded headland with a few houses, keep everything else), then ONLY the
+  Opera House box pasted back with an 8 px feather, so her face, the loops and the captions stay the
+  chosen pixels. KEEPER take 2 (tidier headland, reads as Point Piper across the bay); take 1 denser.
+  Output `7-storyboard-afternoon_medium-b-1230-closerfix.png`, the file now in TO-SEND. Compare at
+  `storyboard/closer-fix/compare-original-take1-take2.png`. Lesson: for one wrong detail on a generated
+  sheet, edit the panel and paste back only the box, rather than regenerate the sheet.
 
 ## fresh-explore: first gpt-image-2 GENERATIONS (from scratch, not edits) (2026-07-22)
 

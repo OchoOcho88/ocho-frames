@@ -32,6 +32,10 @@ Cowork. Paths like `/Users/hugobrizuela/...` mean Claude Code.
 - **Never put `opacity` on SVG text in the PDF generators:** weasyprint clips the line (it ate "powered by" in the Launch Plan diagram).
 - **Git push happens here.** Cowork cannot push reliably, so a Mac session pushes after close-out so GitHub and the Mac agree.
 - **macOS screenshot and screen recording names** carry a narrow no-break space before am and pm. A pasted path fails on `cp`; match with a glob (`*12.02.43*`) or `Path.glob` instead (S040).
+- **Two Pythons, two jobs (S047).** `.venvs/pdf/bin/python` has Pillow and numpy but NOT `requests`; system `python3` has `requests` and Pillow. Scripts that call the OpenAI API run on `python3`.
+- **Getting an image off Instagram or a WordPress site that blocks curl (S047).** Instagram's page and `/embed/` hide the post image from curl, and magnateview.com answers curl with a Mod_Security 406. Open the page in the in-app browser and read `document.images` (`naturalWidth`, `currentSrc`) with the JavaScript tool, then curl that signed URL; it downloads fine. Article text the same way (`innerText` of the paragraphs).
+- **Dropbox folder invites (S047).** An invite to edit a folder needs a Dropbox account on the invited address (free 2GB is enough for a phone shoot). Download from All files, row menu, Download: one zip, stored uncompressed. Never move or delete inside a shared folder; it happens in the owner's copy too.
+- **iPhone video is HLG HDR (S047).** `color_transfer=arib-std-b67` in ffprobe; tone-map to SDR before an edit or the colours wash out.
 
 ## Both environments
 

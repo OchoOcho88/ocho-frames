@@ -6,19 +6,39 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-25 | Last session: 046 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: the Double Bay filming day is Friday 2 October (Q-042) and Lucy still owes the arrival time and a timed run of her afternoon (her signature gives 33 Cross Street, Double Bay). She now owes two yes-or-no answers on the pilates band flick (Q-044) and the booth number (Q-043); on a yes, the flick gets the peach mark and the story size. Hugo said a few Lucy emails came in on 25 Sep and two were worked through, so ask whether any are still unread before starting anything else.*
+*Last updated: 2026-09-25 | Last session: 047 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: Friday 2 October is the Double Bay day (Q-042): Lucy owes only 12:30 or 1pm, the interview is on Transvaal Avenue after Indigo, and the gym and rooftop pool are at the InterContinental, where she works and filming is cleared. Bring the three bands and a lapel mic, and shoot straight label close-ups there to close Q-020. Still owed by her: the pilates flick answers (Q-044), the booth number (Q-043) and a reaction to the Magnate View cover row (Q-046).*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
 - **Brand colour is Pantone 162 C, screen `#FFBE9F` (D-051).** The old `#F0CDB3` is retired for new work; rendered back catalogue still to move (Q-013).
 - **Product colours are measured (D-027):** LIGHT `#B8A080`, MEDIUM `#9D7459`, HEAVY `#6C4333`. Composite ONLY from `assets/Sportif_Bands/Bands_background_removed/colour-corrected/` (D-039). Product assets carry the real colour, never the brand palette (D-046); the brand-colour weave is a background only (D-045).
 - **The weave is a brand asset (D-028):** tiles and plates at `clients/sportif/assets/textures/`, the texture source for everything, 2D or 3D. House tile build is `scripts-local/build_texture_weight_tiles.py` (D-047). The Instagram grid crops to 3:4, a centred 1012px column.
-- **Generator rules (D-033, D-034, D-038, D-062).** A generated band may be large only when its pixels alone reach the final: in-context edit with our band references, unmixed cutout, real label pasted, plate untouched; name the knit and the label orientation in the prompt. No generator touches Lucy's friend's photos.
-- **Client writing rules (D-044, D-046, D-058, D-063).** Lucy is not the model in the email-02 photos, so never "you" about the person in frame. Bands are named by weight, never "blush". New job, new subject; when she answers in one of our threads, deliver in that thread.
-- **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).**
+- **Generator rules (D-033, D-034, D-038, D-062).** A generated band may be large only when its pixels alone reach the final: in-context edit with our band references, unmixed cutout, real label pasted, plate untouched; name the knit and the label orientation in the prompt. No generator touches Lucy's friend's photos, and no generative upscale touches hers or her press (D-066).
+- **Client writing rules (D-044, D-046, D-058, D-063, D-064, D-065).** Lucy is not the model in the email-02 photos, so never "you" about the person in frame. Bands are named by weight, never "blush". New job, new subject; when she answers in one of our threads, deliver in that thread. Ask questions as speech, never "yes or no?" (D-064); never offer unpaid extra work up front, name the problem and ask (D-065).
+- **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).** The booth source is her February 2026 shoot, `assets/photoshoot-feb-2026/` (28 photos at 12MP, numbered F01 to F28 on the contact sheet): the bands carry the old LE SPORT COLLECTIF label, so wide frames only, her call (Q-027).
 - **Behind the scenes is a workstream (D-057, D-059, D-061).** Phone by default, Kia Buckley's format measured in `clients/sportif/behind-the-scenes/reference-kia/`, the Double Bay day runs arrive, propped wide, medium, hands, interview (bands in hand), leave; motion assets are ours to apply. Her LA footage and the Lucy Wayne font arrive via Drive and Canva (Q-041).
 - **Protocol and voice (D-035, D-054).** `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
+
+---
+## Session 047 (2026-09-25, Claude Code): six Lucy emails, the February shoot in, the Double Bay day set, her Magnate View cover as a row
+
+Client: Sportif
+Tags: email, february-shoot, dropbox, contact-sheet, le-sport-collectif, double-bay, intercontinental, storyboard, gpt-image-2, interview, magnate-view, instagram-grid, upscale
+
+**Done.** Worked through Lucy's 23 to 25 Sep emails one at a time. (1) Her logo-thread yes on the ball photo was already delivered in S046, logged on Q-026. (2) Her February shoot came by Dropbox: downloaded, 28 photos and 4 videos into `assets/photoshoot-feb-2026/`, numbered on a contact sheet (`scripts-local/build_feb_shoot_contact_sheet.py`), recorded in `assets/photoshoot-feb-2026.md`. Every band carries the old LE SPORT COLLECTIF label; Hugo asked what she wants with no offer to fix it, and she said far away you cannot see it. (3) The Double Bay run of the day: her order, Hugo's 12:30 ask, and a new storyboard sheet of her afternoon (take b of two, captions re-set in script by `retime_afternoon_storyboard.py`, the Opera House taken out of the closer panel by `fix_closer_panel.py`), sent. (4) The interview moves to Transvaal Avenue, question 9 dropped; a one-line reply sent. (5) Her Magnate View cover for her personal Instagram, taken on as goodwill: a row of three built from the original (`build_magnate_cover_grid.py`), the nine-way split rejected, sent. Shot list, interview doc, registries updated.
+
+**Learned.**
+- 33 Cross Street is the InterContinental Sydney Double Bay: Fit Collective is its gym, the rooftop pool is for guests. Indigo is on Transvaal Avenue (its site says 6/15 Cross Street).
+- To change only the words on a generated sheet, re-set them in script (Avenir Next Medium matches gpt-image-2's captions). To fix one wrong detail, edit the panel and paste back only that box.
+- Adobe "upscales" can be generative re-renders: face, light and barcode all changed at 1.35x. Zoom-compare against the original before use.
+- Instagram and magnateview.com block curl; the in-app browser reads the image URLs. The pdf venv has no `requests`. iPhone video is HLG HDR. (All in `docs/gotchas.md`.)
+
+**Decided.** D-064 (questions as speech, never "yes or no?"), D-065 (no unpaid extra work offered up front), D-066 (no generative upscale on her photos or press).
+
+**Open.** Q-046 new, the Magnate View cover row, waiting on her reaction. Q-042 carries the whole Double Bay plan, waiting on 12:30 or 1pm. Q-027 gains the February shoot and its label caveat for print. The pool panel on the new sheet still shows the Harbour Bridge; sent as is.
+
+**Next.** The Double Bay day on Friday 2 October with the bands and a lapel mic, plus label close-ups for Q-020. Then her answers on Q-044, Q-043 and Q-046.
 
 ---
 ## Session 046 (2026-09-25, Claude Code): the pilates band flick, built and sent two ways; the August set in peach
