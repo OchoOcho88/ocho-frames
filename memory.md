@@ -6,19 +6,41 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-09-23 | Last session: 045 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: the Double Bay filming day is Friday 2 October (Q-042), both emails went to Lucy on 2026-09-23 (the shot list with the seven-page storyboard PDF, and the interview questions), so she owes Hugo the arrival time, address, a timed run of her day and consent for the gym and clients. Before Friday Hugo opens her Canva share for the Lucy Wayne font (Q-041) and brings the three bands. Also waiting on her: the booth number this week (Q-043, dates confirmed), the Drive files (Q-041, Q-027), the ball-photo yes-or-no pair (Q-026).*
+*Last updated: 2026-09-25 | Last session: 046 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: the Double Bay filming day is Friday 2 October (Q-042) and Lucy still owes the arrival time and a timed run of her afternoon (her signature gives 33 Cross Street, Double Bay). She now owes two yes-or-no answers on the pilates band flick (Q-044) and the booth number (Q-043); on a yes, the flick gets the peach mark and the story size. Hugo said a few Lucy emails came in on 25 Sep and two were worked through, so ask whether any are still unread before starting anything else.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
 - **Brand colour is Pantone 162 C, screen `#FFBE9F` (D-051).** The old `#F0CDB3` is retired for new work; rendered back catalogue still to move (Q-013).
 - **Product colours are measured (D-027):** LIGHT `#B8A080`, MEDIUM `#9D7459`, HEAVY `#6C4333`. Composite ONLY from `assets/Sportif_Bands/Bands_background_removed/colour-corrected/` (D-039). Product assets carry the real colour, never the brand palette (D-046); the brand-colour weave is a background only (D-045).
 - **The weave is a brand asset (D-028):** tiles and plates at `clients/sportif/assets/textures/`, the texture source for everything, 2D or 3D. House tile build is `scripts-local/build_texture_weight_tiles.py` (D-047). The Instagram grid crops to 3:4, a centred 1012px column.
-- **Generator rules (D-033, D-034, D-038).** Never let a generator draw the band large: big means shoot or composite the real cutout, small means generate and swap the label from the real photo. No generator touches Lucy's friend's photos.
-- **Client writing rules (D-044, D-046).** Lucy is not the model in the email-02 photos, so never "you" about the person in frame. Bands are named by weight, never "blush". "Show me" and "pick one" are different requests: show the thing with a recommendation attached.
+- **Generator rules (D-033, D-034, D-038, D-062).** A generated band may be large only when its pixels alone reach the final: in-context edit with our band references, unmixed cutout, real label pasted, plate untouched; name the knit and the label orientation in the prompt. No generator touches Lucy's friend's photos.
+- **Client writing rules (D-044, D-046, D-058, D-063).** Lucy is not the model in the email-02 photos, so never "you" about the person in frame. Bands are named by weight, never "blush". New job, new subject; when she answers in one of our threads, deliver in that thread.
 - **Handle OFF on Instagram assets (D-018), ON for Fit Expo booth assets (Q-028).**
 - **Behind the scenes is a workstream (D-057, D-059, D-061).** Phone by default, Kia Buckley's format measured in `clients/sportif/behind-the-scenes/reference-kia/`, the Double Bay day runs arrive, propped wide, medium, hands, interview (bands in hand), leave; motion assets are ours to apply. Her LA footage and the Lucy Wayne font arrive via Drive and Canva (Q-041).
 - **Protocol and voice (D-035, D-054).** `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
+
+---
+## Session 046 (2026-09-25, Claude Code): the pilates band flick, built and sent two ways; the August set in peach
+
+Client: Sportif
+Tags: pilates-flick, gpt-image-2.5, sunburst, photoshop, cutout, label-swap, sportif-stack, peach-logo, email, q-026
+
+**Done.** Lucy's 22 Sep Canva note (found in the old Canva thread): a band flicking off the raised foot on the pilates picture, background as it is, and she wants it for the booth. Generated with `gpt-image-2.5-sunburst` from our HEAVY references in three prompt passes (`scripts-local/gen_pilates_flick.py`), v3-4 kept; the band unmixed from the generated wall into a clean cutout (`scripts-local/cutout_flick_band.py`); Hugo composited it in Photoshop with coaching: real label pinned by Distort, Curves 180 to 210, motion blur taken out by his choice. Hugo then built a variant with SPORTIF stacked behind her (Glacial, Overlay, light shadow, five-row grid). Both sent as two emails, her ask then our idea. Lucy's 23 Sep answer closed Q-026: the ball photo keeps the room in peach, the other three photos get the logo in peach; built (`scripts-local/build_email02_peachmark_set.py`) and sent as a reply in her thread with six files. Glacial Indifference installed in `~/Library/Fonts`. Records in `image-prompts.md` (pilates-flick).
+
+**Learned.**
+- Sunburst keeps the plate within 1 to 2 levels and runs about 25 s for three at high, no timeout. It drew the knit as leather until the prompt named it, and turned the label 90 degrees until the orientation was spelled out.
+- A soft brush mask brings the generated wall along, grainy and 1 to 2 levels off; unmix against the flat wall colour instead.
+- Photoshop's Properties X/Y place the type box, not the ink, and it sets Glacial about 14 percent narrower than a PIL model (kerning). Fit type with guides and Distribute Spacing.
+- Overlay type doubles small wall steps, so the plate's old ankle patches show inside the letters.
+- 162 C on the pilates wall is 1.22:1; a heavier shadow saves SPORTIF, "collection" stays faint.
+- Hugo's Photoshop screenshots are measurable: the canvas scale comes from the cream region.
+
+**Decided.** D-062 (a large generated band is fine when only its pixels reach the final, with the real label pasted). D-063 (deliver in her thread when she answers in one of ours).
+
+**Open.** Q-044 new, two yes-or-no answers on the band flick. Q-027 gains the booth caveats for this picture: template-photo licence, ankle patches, upscale. Q-042 gains the Cross Street address. Q-045 parked, the sportif-collection.com domain. Q-026 resolved.
+
+**Next.** Ask Hugo whether any 25 Sep emails are still unread. Double Bay on Friday still needs her timed run. On a yes to Q-044, the peach mark and story size.
 
 ---
 ## Session 045 (2026-09-23, Claude Code): the Double Bay day planned, drawn and sent

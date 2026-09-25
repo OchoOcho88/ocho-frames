@@ -42,6 +42,10 @@ Hugo
    She answers the easiest one and the other dies.
 2. **Every job starts a fresh subject** in the template above. Never reply into the
    Canva "A design has been shared with you!" thread or any thread older than the job.
+   **But when she answers inside one of OUR job threads, deliver in that same thread**
+   (reply, attachments on it). A fresh subject for the delivery splits one conversation
+   into two chains, which is the confusion this rule exists to stop (Hugo, S046: her 23 Sep
+   answer on the room-in-peach thread was answered on that thread, not a new one).
 3. **Question first, attachment named inside the question, answerable in one word**
    ("1, 2 or 3?", "yes or no?", "which date?"). Explanation goes after, short.
 4. **One-liners by text, files by email.** She lives on her phone: marks arrive as phone

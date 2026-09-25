@@ -5,6 +5,63 @@
 > Shared API settings: output_format png. Iterate quality low (Cowork), finals quality high (Claude Code).
 > SIZING: Instagram feed = 1088x1360 (4:5 portrait), stories/reels = 1088x1920 (9:16), website hero = 1536x1024 (3:2). The v1 to v4 prompts were 3:2; v5 to v7 are the same three concepts recomposed 4:5 for IG ("product in the lower two thirds, breathing room at the top"). Always ask which placement before generating.
 
+## pilates-flick: a band flicked off her raised foot (2026-09-25, S046) ENGINE: gpt-image-2.5-sunburst
+
+Lucy's Canva note on the pilates picture (page 1, "updated picture", sent 22 Sep): "add booty
+band as its like she is flicking the booty band off. Keep the background colour as is", with an
+arc drawn from the toe up and to the right. **Engine mismatch, flagged:** this is NOT gpt-image-2,
+it is `gpt-image-2.5-sunburst` (snapshot 2026-09-08, the quality model of the 2.5 pair; Flare is
+the fast one), Hugo's call to try it. Hugo also overrode D-034 (no generator draws the band large)
+to test it; the house rules still hold in the final because only the band's pixels are kept.
+Script and all three prompt versions: `scripts-local/gen_pilates_flick.py` (the source of truth).
+images/edits with three inputs: the no-weights plate, the colour-corrected HEAVY band (label side,
+D-039) and the HEAVY inside with the grip stripes, tone-matched to D-027. Size 1088x1360 (the
+plate's 4:5), n 3 to 4, about 22 to 33 seconds a run inside Claude Code, no timeout trouble.
+Output `generated/images/pilates-flick/sunburst-<quality>-<prompt>-<n>.png`, review sheet
+`REVIEW-v2-v3-sunburst.jpg`. Outside the band the photo came back within 1 to 2 levels every time
+(resampling only), so the plate is never redrawn.
+- **v1 (medium):** the knit came out as pebbled leather, the label in invented letterforms, every
+  band a tidy upright oval, pushed against the top edge with ghost streaks.
+- **v2 (high):** named the knit ("tight, fine interlocking knit elastic webbing... NOT leather,
+  NOT suede, NOT pebbled"), asked for a mid-tumble twist, a short blur with no streaks, and a
+  position one and a half foot-lengths from the toe. Knit and tumble landed. New fault, on all
+  three: the label turned 90 degrees, SPORTIF reading ALONG the strap. The real label runs ACROSS
+  it (583px of a 776px strap).
+- **v3 (high):** v2 plus the orientation spelled out ("its long side runs ACROSS the width of the
+  strap, perpendicular to the band's length... covers about three quarters of the strap's width").
+  All four came back the right way. **v3-4 is the KEEPER** (Hugo and Claude agree): the blur trails
+  back to her toes so the flick reads, it sits on her arc, 98px of clear wall above it.
+- Still wrong on every variant, by design: the letterforms (D-033, too small to render) and the
+  label material (shiny gold against our matte off-white rubber). Fixed by pasting the real label,
+  `photoshop/real-label-heavy.png`, over it in Photoshop (D-013). Hugo builds the composite:
+  plate + masked `photoshop/band-layer-v3-4-1080x1350.png` + real label.
+- Lessons for any band-in-scene prompt: name the knit and forbid its failure modes; describe the
+  label's orientation relative to the strap, the model does not copy it from the reference.
+- **FINAL (Hugo's Photoshop build, same day):** `photoshop/pilates-flick-v3-4.psd`, exported as
+  `photoshop/pilates-flick-v3-4_lucy_01.png` (1080x1350; `pilates-flick-v3-4.png` is the same
+  pixels with the profile embedded; the stale pre-Curves `-comp.png` was deleted). Layers: the plate;
+  the band as a clean cutout, `photoshop/band-cutout-v3-4-1080x1350.png` from
+  `scripts-local/cutout_flick_band.py` (the generated wall unmixed out with colour
+  decontamination, because a brush mask carried a grainy halo of generated wall 1 to 2 levels off
+  the plate); Hugo's brush mask on it, which takes the motion blur OUT (his call: no blur, and the
+  soft left end it leaves is deliberate, a hard lasso end looked worse); the real HEAVY label at 15
+  percent, Distort-pinned to the generated plate, Gaussian 0.4px, Curves 180 to 210 clipped so the
+  label sits 2.37x the knit's brightness (2.40 in the real product photo). Verified: the photo is
+  pixel-identical to the plate outside the band and label. Known and left: the plate's two faint
+  ankle-patch rectangles from the weight removal (2 to 3 levels, invisible at phone size; fix with
+  a Blend If wall fill before any print version).
+- **VARIANT, our idea not her ask: the SPORTIF stack (Hugo, same day).** `photoshop/pilates-flick-v3-4-sportif-stack_lucy_01.psd`
+  and `.png`. Five rows of SPORTIF behind her (a nod to the PILATES stack in the source ad): Glacial
+  Indifference Regular 321.53pt, tracking -59, Overlay mode in black (reads as taupe, about
+  `#CDC1B3` on the `#E6E0D9` wall), drop shadow Multiply `#2D1814` 8% / 120 deg / 3px / 3px (the
+  first try at 18% and 10px made the letters look blurred: the shadow core matched the letter's own
+  contrast). Grid: rows 873 x 226px ink, 35 to 36px apart, 40 top / 37 bottom, centred to 2px;
+  she sits on a masked copy of the plate ("Girl cut out") in front, band and label on top.
+  Lesson: Photoshop sets SPORTIF about 14 percent narrower than a PIL model of the font (kerning),
+  and Properties X/Y place the type BOX not the ink, so fit type by snapping and Distribute
+  Spacing, never by typed coordinates. Verified: no wall fringe from her mask over the letters.
+  Send as its own email after her version (D-058, the S044 two-email pattern).
+
 ## storyboard: the Double Bay filming day as a drawn shot list (2026-09-22, S045)
 
 Seven storyboard sheets for the 2 October filming day (Q-042), one per stop with the six clips
