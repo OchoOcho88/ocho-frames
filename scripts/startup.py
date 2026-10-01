@@ -51,6 +51,9 @@ CONTENT_GATE = ["brand.md", "voice-guidelines.md"]
 STALE_DAYS = 14
 
 HOUSE_RULES = [
+    "ASK FIRST, THEN ACT. Email, file or request in: say what it is, what it closes",
+    "  or opens, ask what Hugo wants, then STOP. A batch: take in every item first.",
+    "  No build, research, download, draft or edit until he says (S048).",
     "NO em dashes and NO en dashes, anywhere. Commas, full stops, brackets.",
     "Anything Hugo ACTS on: heading, then ONE complete self-contained paste block,",
     "  then inputs as bullets. Analysis goes at the END, a few bullets, never woven in.",

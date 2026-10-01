@@ -147,6 +147,138 @@ def save(name, master, tiles):
     return d
 
 
+# S048: her 27 Sep answer, "I would like the cover to be across three tiles", and on 29 Sep she
+# sent the issue page. Its "Digital Version" is Magnate View's FlipHTML5 book of the issue
+# (online.fliphtml5.com/bgtkc/pgty), whose page 1 is her cover at 1676 x 2200 with clean type:
+# `assets/press/magnate-view-flipbook-cover-2026-03.png`. The best source found; the web upload on
+# their site is 1000 px. Hugo's call: build both nine-post versions and let Lucy pick.
+#   A  straight split, the whole cover edge to edge; the top row seam crosses her nose.
+#   B  face whole, the cover dropped 190 px on its own black so the top seam runs through her fringe
+#      above the brows; costs the foot of the barcode and bottom room under the subtitle.
+# Scale 2.0 for both: the right column seam then runs through her hair clear of the ear, and the left
+# one lands in the G|N gap of the masthead. Lanczos plus a light unsharp mask, no generator (D-066).
+FLIP = SP / "assets/press/magnate-view-flipbook-cover-2026-03.png"
+FLIP_TRIM = (2, 0, 1674, 2196)       # a light 1 px edge left and right, 3 px along the bottom
+FLIP_SCALE = 2.0
+DROP_B = 190                         # option B: the cover's own black added above the masthead
+
+
+def flip_cover():
+    return Image.open(FLIP).convert("RGB").crop(FLIP_TRIM)
+
+
+def nine(drop):
+    c = flip_cover()
+    W, H = TW * 3, TH * 3
+    big = c.resize((round(c.width * FLIP_SCALE), round(c.height * FLIP_SCALE)), Image.LANCZOS)
+    big = big.filter(ImageFilter.UnsharpMask(radius=2, percent=35, threshold=3))
+    master = Image.new("RGB", (W, H), (0, 0, 0))      # the cover's top band is pure black
+    master.paste(big, (0, drop))                       # overflow comes off the right and the bottom
+    tiles = [master.crop((col * TW, r * TH, (col + 1) * TW, (r + 1) * TH)) for r in range(3) for col in range(3)]
+    return master, tiles
+
+
+#   C  the cover on cream (the ground of the row she called beautiful), tilted 2 degrees like a magazine
+#      put down, placed so her face sits whole in the middle right post. The title goes in the top left
+#      post and her line in the bottom left, each inside one post so no seam cuts the words.
+C_SCALE, C_TILT = 1.40, -2.0         # PIL angle: negative is clockwise
+FACE_BOX = (1083, 540, 1371, 875)    # ear to cheek, crown to chin, in trimmed flipbook pixels
+
+
+def tilt_point(x, y, s, w, h, cx, cy):
+    """Where cover pixel (x, y) lands on the canvas once scaled by s, tilted, and centred at (cx, cy)."""
+    import math
+    a = math.radians(-C_TILT)
+    dx, dy = x * s - w / 2, y * s - h / 2
+    return cx + dx * math.cos(a) - dy * math.sin(a), cy + dx * math.sin(a) + dy * math.cos(a)
+
+
+def cream_nine():
+    c = flip_cover()
+    W, H = TW * 3, TH * 3
+    s = C_SCALE
+    w, h = c.width * s, c.height * s
+    # supersample: scale to 2s, tilt, come back down, so the edges are clean
+    big = c.resize((round(w * 2), round(h * 2)), Image.LANCZOS)
+    big = big.filter(ImageFilter.UnsharpMask(radius=3, percent=35, threshold=3)).convert("RGBA")
+    big = big.rotate(C_TILT, resample=Image.BICUBIC, expand=True)
+    cv = big.resize((round(big.width / 2), round(big.height / 2)), Image.LANCZOS)
+
+    # place it: face just inside the middle right post (seam through the hair, as in A and B)
+    corners = [(FACE_BOX[0], FACE_BOX[1]), (FACE_BOX[2], FACE_BOX[1]), (FACE_BOX[0], FACE_BOX[3]), (FACE_BOX[2], FACE_BOX[3])]
+    pts = [tilt_point(x, y, s, w, h, 0, 0) for x, y in corners]
+    cx = TW * 2 + 25 - min(p[0] for p in pts)
+    cy = TH + 30 - min(p[1] for p in pts)
+    x0, y0 = round(cx - cv.width / 2), round(cy - cv.height / 2)
+
+    m = Image.new("RGB", (W, H), CREAM)
+    sh = Image.new("L", (W, H), 0)
+    sh.paste(cv.getchannel("A").point(lambda v: v * 110 // 255), (x0 + 10, y0 + 24))
+    sh = sh.filter(ImageFilter.GaussianBlur(28))
+    m.paste(Image.new("RGB", (W, H), (60, 48, 42)), (0, 0), sh)
+    m.paste(cv, (x0, y0), cv)
+    d = ImageDraw.Draw(m)
+
+    left, right = x0, W - (x0 + cv.width)
+    top, bottom = y0, H - (y0 + cv.height)
+    face = [tilt_point(x, y, s, w, h, cx, cy) for x, y in corners]
+    print(f"C: margins left {left} right {right} top {top} bottom {bottom}; face x "
+          f"{min(p[0] for p in face):.0f}-{max(p[0] for p in face):.0f}, y {min(p[1] for p in face):.0f}-{max(p[1] for p in face):.0f}")
+
+    # top left post: the title, centred in the cream above the cover (the date is on the cover itself)
+    lx = TW / 2
+    ital = ImageFont.truetype(SERIF_I, 74)
+    big_t = ImageFont.truetype(SERIF, 124)
+    block = 74 + 18 + 124
+    y = (top - block) / 2 - 10
+    t = "On the cover of"
+    d.text((lx - ital.getlength(t) / 2, y), t, font=ital, fill=INK)
+    y += 74 + 18
+    t = "Magnate View"
+    d.text((lx - big_t.getlength(t) / 2, y), t, font=big_t, fill=INK)
+    print(f"C: title ends near y {y + 150:.0f}, cover top {top}")
+
+    # bottom left post: her line, in the margin beside the cover
+    qx = left / 2
+    size = 60
+    while max(ImageFont.truetype(SERIF_I, size).getlength(l) for l in QUOTE) > left - 110:
+        size -= 2
+    q = ImageFont.truetype(SERIF_I, size)
+    lh = round(size * 1.25)
+    y = TH * 2 + 380
+    for line in QUOTE:
+        d.text((qx - q.getlength(line) / 2, y), line, font=q, fill=INK)
+        y += lh
+    y += 30
+    d.line((qx - 50, y, qx + 50, y), fill=BEIGE, width=3)
+    y += 34
+    tracked(d, (qx, y), "LUCY WAYNE", ImageFont.truetype(SANS, 26, index=SANS_I), INK, 7)
+    print(f"C: quote at {size}px, column {left} wide")
+
+    tiles = [m.crop((col * TW, r * TH, (col + 1) * TW, (r + 1) * TH)) for r in range(3) for col in range(3)]
+    return m, tiles
+
+
+def main_flip():
+    sheets = []
+    for name, drop in (("option-A-nine-straight", 0), ("option-B-nine-face-whole", DROP_B)):
+        m, t = nine(drop)
+        save(name, m, t)
+        p = preview(t, 3)
+        p.save(OUT / name / "grid-preview.jpg", quality=90)
+        sheets.append(p)
+    m, t = cream_nine()
+    save("option-C-nine-on-cream", m, t)
+    p = preview(t, 3)
+    p.save(OUT / "option-C-nine-on-cream/grid-preview.jpg", quality=90)
+    sheets.append(p)
+    sheet = Image.new("RGB", (sheets[0].width * 3 + 160, sheets[0].height), (255, 255, 255))
+    for i, p in enumerate(sheets):
+        sheet.paste(p, (i * (p.width + 80), 0))
+    sheet.save(OUT / "COMPARE-A-B-C.jpg", quality=90)
+    print(f"from the flipbook cover, A and B at {FLIP_SCALE}x, C at {C_SCALE}x ->", OUT)
+
+
 def main():
     sm, st, s1 = split()
     rm, rt, s2 = row()
@@ -164,4 +296,5 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    import sys
+    main_flip() if "--flip" in sys.argv else main()

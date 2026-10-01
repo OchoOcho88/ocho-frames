@@ -14,6 +14,10 @@ That command IS the session-start protocol (`/startup` in Claude Code). It is re
 
 It is a script because this file is NOT auto-loaded in Cowork (S031) and prose protocols got skipped (S033). Do not start work cold.
 
+## Ask first, then act (core rule, S048)
+
+When Hugo brings something in (an email, a screenshot, a file, a request from Lucy), the reply is: what it is, what it closes or opens, and "what do you want to do with it?" Then STOP. No building, research, downloading, drafting or editing until he says what he wants. When he is feeding in a batch (emails one at a time), take in every item before acting on any of them, because a later one often changes an earlier one. A reply draft counts as acting. (S048: an unasked build on the second of several emails wasted time and tokens, and he did not want to stop it mid flight.)
+
 ## What this workspace is
 
 Hugo's (Ocho's) creative and marketing workspace: a creative-strategy pipeline (competitor analysis, synthesis brief, AI-generated media; `docs/pipeline-architecture.md`, `docs/marketing-fundamentals.md`) and client work under `clients/`. Also a HyperFrames video workspace (video as code, `README.md`).

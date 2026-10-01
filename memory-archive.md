@@ -6,6 +6,109 @@ The newest 4 Weekly Reviews stay in memory.md; older ones are moved here by hand
 
 ---
 
+<!-- archived batch, moved 2026-10-01 -->
+
+## Session 042 (2026-09-18, Claude Code): Lucy's placement on the side stretch, and her signature turned into a write-on
+
+Client: Sportif
+Tags: sportif, lucy, signature, amsterdam-two, canva, after-effects, trim-paths, track-matte, prores, alpha, contrast, story-safe-zone, email
+
+**Done.** Committed three carry-over items found dirty at start (the 2026-09-13 weekly review, `AGENTS.md`, the Codex `.agents/` skills). **Q-039, the side stretch story:** Lucy asked for the mark moved above the model's hand, its middle on her middle finger. Measured her middle finger at x=340 off the finger creases, placed the wordmark at x=343, ink bottom 26px clear of the fingertips, applied to `build_email02_social_v3/v4.py` and both colourways. Email sent under its own subject. **Q-034, the signature, closed end to end.** Lucy said yes and shared her Canva file; the signature is live text in `Amsterdam Two`, so she does not need her PR team, and it is a typeface not handwriting (D-055). Her Canva is free, so PDF Print was the only vector route out. Wrote `scripts-local/extract_lucy_signature.py`: flattens PyMuPDF's glyph `<use>` refs into real paths, inverts the composite for true transparency, and emits a font-free 1080x1920 artboard. Hugo then built the write-on in After Effects across the whole session (D-056) and rendered four files.
+
+**Learned.**
+- Trim Paths on a glyph OUTLINE traces the edge of a letter, not the pen stroke. A write-on needs hand-drawn open paths down the centre of each letter, used as an alpha matte.
+- Illustrator stacks newest on top, so drawing in writing order always imports into AE backwards. Group order is trim order.
+- Trim Paths runs at constant speed along total length, so the `W` (32.6% of the path) ate a third of the animation while `u` and `c` got three frames each. Fixed with a keyframe at each stroke boundary, weights of length^0.55, and pen-lift holds.
+- The finished signature is FIVE disconnected islands; the `u` never touches anything. Every letter must appear detached, because that is the typeface.
+- A shape layer from Create Shapes from Vector Layer anchors at 0,0; AI footage anchors at its centre. Typing the same Position into both breaks the matte. Cost us twenty minutes and my wrong instruction.
+- White on the brand peach is 1.60:1, a ghost. Black covers peach, cream and the light and medium bands; white exists for the heavy terracotta at 8.44:1 and for dark photography.
+- The only photograph of Lucy we hold is 214x320, inside her Canva pdf. Anything full-frame from it is a 6x upscale.
+- Zoom in to fix, zoom out to decide. At 800% three of the four things Hugo flagged were correct behaviour.
+
+**Decided.** D-055 (the signature is Amsterdam Two, animate the outlines, never install the font). D-056 (the write-on is built from pen paths, with the measured numbers).
+
+**Open.** Q-039 new, waiting on Lucy. Q-034 resolved. Q-040 new: the animation is built and Lucy has not seen it, email drafted.
+
+**Next.** Send both drafted emails. Then the white-on-terracotta render, and clear three stray files out of `generated/videos/`.
+
+---
+## Session 041 (2026-09-12, Claude Code): The token diet, then the three loops the workspace could close alone
+
+Client: Ochoproductions, Sportif
+Tags: ochoproductions, sportif, memory-system, token-diet, startup, closeout, band-placement, colourway, poster, ig-ads, master-mark, pantone-162c, hyperframes
+
+**Done.** Part one, the token diet (Q-037, all five moves). `memory_tools.py open --brief` prints one line per loop and `startup.py` uses it; Q-001 to Q-010 parked with `[p]`, which `memory_tools.py` now understands; "Tools and gotchas" moved to `docs/gotchas.md`, named by startup and never printed; the top-entry read dropped from CLAUDE.md and `/startup`; the handoff line cut to three sentences; five-heading template in `docs/memory-system.md` with `closeout.py` warning past 500 words, a missing heading, or a four-sentence handoff. Then, on Hugo's calls: CURRENT STATE cut to 10 D-number pointers, the oldest weekly review archived, Q-026 parked. Part two, the three loops needing nobody. Q-025: `build_colourway_compare_shot01.py` lifts Hugo's placement out of the shot 01 PSD and rebuilds it with LIGHT, MEDIUM and HEAVY, colour the only variable. Q-019: `gen_poster_1b.py` with the band written as a closed loop crossing both thighs; two low candidates both correct. Q-013: band posters rebuilt and the three compositions re-rendered in 162 C. The three Lucy posters and three IG ads were also moved to the master mark through a new shared `house_lockup.py`, and Hugo had that reverted when he saw it: scripts and files restored, the module kept unused.
+
+**Measured** (characters divided by four). Startup print 4,709 to 2,003 tokens (open loops 2,845 to about 480 with the cap at 100, CURRENT STATE 1,144 to 722). CLAUDE.md, paid every turn, 2,810 to 1,289. Close-out entry 1,106 to about 700.
+
+**Learned.**
+- A first-sentence cap needs a floor: "THE 3D BAND." says nothing, so the brief keeps taking sentences until it passes half the cap (50 characters at the 100 cap).
+- Photoshop's rotation sign is the reverse of Pillow's. The PSD layer is the check: +101 in Pillow matched Hugo's -101 at 20/255, the other sign at 88/255.
+- Post-grade, band against the floor around it, the separations are LIGHT +19, MEDIUM +9, HEAVY minus 4. The S034 numbers (42/31/12) were pre-grade against the bare floor.
+- gpt-image-2 at high quality cannot be called from the Claude Code shell, the connection drops at 60 seconds. Low works; high is a native Terminal job.
+- Ask before touching delivered creative. The ad and poster rebuilds followed settled decisions, but Hugo had not asked for them and reverted the lot. Settled is not the same as wanted now.
+- The band geometry failure was wording, not references: "one closed loop that encircles BOTH thighs, perpendicular to the legs" fixed it first time.
+
+**Decided.** D-054, the token diet rules as standing policy.
+
+**Open.** Q-038 new (composition end cards: old mark, handle, and a "Launching September 2026" line). Q-025 resolved, Hugo picks the colourway. Q-019 resolved, the high plate dropped as not needed. Q-013 mostly done, remainder listed on the row. Q-037 resolved. *(Weekly review 2026-09-13: this is the most recent session, so no later session exists to resolve anything here. Q-025's decision half, Q-038 and the Q-013 remainder all carried forward unchanged.)*
+
+**Next.** Lucy's replies (Q-036, Q-034); then Hugo's colourway pick.
+
+---
+## Session 040 (2026-09-12, Claude Code): Lucy asks for an animated inspiration board, and a mock goes back the same day
+
+Client: Sportif
+Tags: sportif, lucy, inspiration-board, stop-motion, mock, signature, email, gmail, pillow
+
+**Q-035 answered by Lucy herself.** She forwarded SABO's "Tropic Muse" marketing email (a stop-motion cork board GIF) and asked "do you happen to know how to do something like this inspiration board?". Hugo's read, correct: can we make a stop-motion loop for Sportif. That is the next job.
+
+**The reference was measured, not eyeballed.** Hugo screen-recorded the GIF (two full loops, `clients/sportif/inspiration-board/reference-sabo-tropic-muse-screenrec.mov`, gitignored). A frame-difference pass over every frame gave the spec in `reference-notes.md`: 4.8 s loop, about 34 frames at roughly 140 ms each (about 7 fps, uniform), empty board held 0.3 s, four big frames for the fabric laying down, then one or two items a frame, full board held 0.2 s, hard cut back to empty. No easing, no slides; each item simply exists in the next frame. Staging: board in a white frame leaning on a pale wall, sunglasses in the foreground that never move, a collection-name caption under the board on every frame.
+
+**A final-frame mock, real assets only.** `scripts-local/build_inspiration_board_mock.py` (Pillow) builds a 1200x1500 board from what the workspace already holds: the seamless weave tiles as the fabric layer (tiled at 0.2 scale so the pitch matches the band cutouts; the plates at native scale read as rope), the three colour-corrected band cutouts hanging from pins, a Pantone 162 C chip plus LIGHT, MEDIUM and HEAVY chips in the measured band colours down the right edge SABO style, the master mark on a card, polaroids (three of Lucy from her Instagram screenshots, two of her friend from the gym set, one Canva pick), a note card with her signature, a placeholder caption in Glacial Italic, and a band lying on the table in front. Cork is procedural. Three passes: v1 (weave too magnified, cork blotchy, a polaroid over two chips), v2 (Hugo's three edits: band centred, Lucy polaroids added, signature card), v3 (her real signature, from a 156x70 crop Hugo screenshotted from her email and dropped in the folder; the script lifts the ink off the paper and tints it chocolate). No generator touched anything, so D-038 is clean. Caption, weave scale, output and signature path are environment overrides (D-050).
+
+**Email sent 2026-09-12** on her thread with the v3 mock attached, draft at `inspiration-board/email-to-lucy-2026-09-12.md`. Two calls by Hugo shaped it: the first draft offered her a choice between a real shoot and a computer build, and he cut that ("just tell her I can do it, and here is a reference I made up for her"), and the mock went in the same send as the questions rather than after them. Four questions remain for her: where it will live, what the board is about, what goes on it, whether it carries words. Recorded as D-053.
+
+**Learned.**
+- Hugo is not on Gmail. Two empty searches for an email he had open in another client. The Gmail connector is not his client mailbox; Lucy's mail arrives as pasted text, screenshots, or files dropped in the client folder. Saved as an auto-memory so no session repeats it.
+- macOS puts a narrow no-break space before am and pm in screenshot and screen recording names. A pasted path fails on `cp`; match with a glob (`*12.02.43*`) or `Path.glob` instead.
+- A screen recording of a GIF is enough to recover its frame timing: extract every frame, threshold the mean frame difference, and the change list gives the hold times and the loop period directly.
+- A close-up plate tiled at its own scale reads as rope, not fabric. The seamless tile scaled so the weave pitch matches the product cutout in the same frame is what reads as the same material.
+- Images pasted into the chat cannot be saved to disk from here. Ask for the file in the folder.
+
+**Decided:** D-053 (a client "can you do this" gets a yes, a mock from her own assets, and short answerable questions; no menu of methods).
+
+**Open:** Q-036 (her four answers, then the loop build: same script pasting the layers in over about 34 frames, 600px GIF for email and 1080x1350 MP4 for Instagram), Q-034 (the signature original is still wanted; the crop is fine for a card, not for a write-on), Q-027 (the booth email, still owed), and every loop carried in CURRENT STATE.
+
+---
+## Session 039 (2026-09-11, Claude Code): Lucy picks Pantone 162 C, the brand colour moves, and two emails go out
+
+Client: Sportif
+Tags: sportif, lucy, brand-colour, pantone, logo, master-mark, collection-grid, pdf, glacial-indifference, weasyprint, email, housekeeping
+
+**Housekeeping first.** The 2026-09-07 weekly review had been written into memory.md but never committed; committed it. Cleared the stale `.git/HEAD.lock` and 33 orphaned `tmp_obj` files left by the S038 Cowork commit with `git gc --prune=now`. The startup flag on `RESUME-NOTE.md` was a false positive: the note was rewritten in S033 but still mentions "Session 013" as history, and the check matches the first "Session N" anywhere. Reworded the line. The "Lucy has responded" auto-memory also fired on a routine email; its research plan finished in June, so the memory was rewritten to say so.
+
+**Q-033 closed: the brand colour is Pantone 162 C (D-051).** Lucy replied 2026-09-11 that her packaging printer, New Directions, matched her Canva `#f0cdb3` to Pantone 162 C as the closest print colour, and asked for the brand colour to become that Pantone. Screen hex is Pantone's own `#FFBE9F`. The weave tiles she is posting measure `#FFC09F`, an invisible difference, so nothing delivered was reissued. Forward sources updated: `brand.md`, `voice-guidelines.md`, `brand-value-plan.md` (client cut checked, synced date bumped, no content change needed), the synthesis brief, and eight build and generation scripts. Left on the old peach on purpose: the two scripts that reproduce comparisons already sent to her, the three HyperFrames compositions, and all rendered media, which join Q-013.
+
+**Both client PDFs rebuilt, and moved onto the real font.** The Mac had no weasyprint: `/usr/bin/python3` cannot load Homebrew's pango, so it now lives in `.venvs/pdf` on Homebrew Python 3.11 (recipe in CLAUDE.md). Body AND titles are Glacial Indifference now: Lora is not on the Mac, and `brand.md` puts headlines in Glacial anyway. Glacial reads about 10 percent smaller than Poppins at the same size, so reading sizes were scaled up; page counts held at 4 and 5. Fixed three faults in the Launch Plan diagram along the way: the loop arrow landed on the "A little paid" pill and "it becomes" sat under its own arrowhead (both there since the first build), and "powered by Shopify" came out clipped, because opacity on SVG text makes weasyprint clip the line. Worth knowing: only the Launch Plan shows the peach at all; the Brand Value Plan defines `--peach` and never uses it. Not resent to Lucy.
+
+**Logos (D-052).** First recoloured her existing peach files (`recolour_logos_162c.py`, a per-pixel projection that keeps anti-aliased edges, originals untouched). Hugo then spotted that her logo files have no "collection", which has been the master mark since D-017. Rebuilt the SPORTIF / rule / collection logo at 2000x2000 with `build_master_mark_logos.py`, which imports the house lockup helpers rather than copying them. Compared the house lockup against a reproduction of her own Canva artwork; Hugo picked her artwork, which matches her 500px original within a pixel. Hugo then asked to double check the font: a per-letter shape match against her artwork scored Glacial Indifference Regular 0.82, ahead of Avenir 0.76, Poppins 0.75, Futura 0.67 and Glacial Bold 0.61, so our file and hers are the same face and weight. Also corrected the stale `brand/fonts/README.md`.
+
+**Collection grid reissued in 162 C.** `build_collection_grid.py` gained `SPORTIF_BG`, `SPORTIF_OUT` and `SPORTIF_SUFFIX` overrides (D-050). Rebuilt in the OLD peach first and it matched the posted August files pixel for pixel, so the new set differs only in colour. New set in `Sportif_Collection/grid-pantone-162c/`, August set untouched. Q-011 closed: she signed off by posting it.
+
+**Two emails sent.** (1) The brand colour reply, 6 attachments (both collection logos, three grid tiles, preview). Hugo cut the monogram and swatch from it, softened the Canva ask into a suggestion, and added a thank you plus "let me know what we want to work on next" (Q-035). (2) A new thread offering an animated version of the handwritten "Lucy Wayne" on her new email signature, asking for the original file or the font name (Q-034). Hugo cut "It is so you" before sending, as familiarity he has not earned yet; saved as a feedback memory.
+
+**Learned.**
+- When a client colour comes from a printer, screen follows print: use the Pantone's own sRGB value, not an eyeballed chip.
+- Before changing one variable in a delivered build, reproduce the delivered file byte for byte first. It turns "only the colour changed" from a claim into a fact.
+- A whole-logo overlay cannot tell fonts apart at 500px (one pixel of drift halves the overlap); a per-letter shape match against lookalike fonts can.
+- Emails for Hugo: praise the work, never claim to know the client, and suggest rather than instruct.
+
+**Decided:** D-051 (Pantone 162 C, `#FFBE9F`), D-052 (logo files follow her artwork). **Deferred by Hugo:** the Fit Expo booth email (Q-027).
+
+**Open:** Q-034 (animated signature, waiting on her), Q-035 (her answer on what next), Q-013 now also covers moving rendered media to the new peach, and every loop carried in CURRENT STATE.
+
+---
 <!-- archived batch, moved 2026-09-22 -->
 
 ## Session 038 (2026-09-03, Cowork): Lucy says peach type, and the peach itself is now the question
