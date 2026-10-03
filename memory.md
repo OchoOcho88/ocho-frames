@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-10-01 | Last session: 048 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: Lucy picks A, B or C for her Magnate View cover grid (Q-046); reply in her thread with that option's nine posts and the posting order. The Double Bay day moved to Friday 9 October while Hugo rests his back (Q-042), plan unchanged, with label close-ups for Q-020. Still owed by her: the pilates flick answers (Q-044) and the booth number (Q-043).*
+*Last updated: 2026-10-03 | Last session: 049 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: The Double Bay day is Friday 9 October (Q-042), plan unchanged, with label close-ups for Q-020. Her Magnate View cover grid is delivered (option B, nine posts sent 3 Oct) and Q-046 waits only on her posting it. Still owed by her: the pilates flick answers (Q-044) and the booth number (Q-043); the Fit Expo posters (Q-027) remain the top open item.*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -19,6 +19,24 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Behind the scenes is a workstream (D-057, D-059, D-061).** Phone by default, Kia Buckley's format measured in `clients/sportif/behind-the-scenes/reference-kia/`, the Double Bay day runs arrive, propped wide, medium, hands, interview (bands in hand), leave; motion assets are ours to apply. Her LA footage and the Lucy Wayne font arrive via Drive and Canva (Q-041).
 - **Protocol and voice (D-035, D-054, D-067).** ASK FIRST, THEN ACT: an incoming email or request gets what it is, what it opens and a question, then nothing until Hugo says; a batch is taken in whole first. `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
+
+---
+## Session 049 (2026-10-03, Claude Code): Lucy picked option B; the nine Magnate View cover posts sent in her thread
+
+Client: Sportif
+Tags: email, magnate-view, instagram-grid, delivery, python, gotchas
+
+**Done.** Lucy answered in the Magnate Cover thread on 30 Sep: option B, the face-whole version. Copied the nine B posts byte for byte from `generated/images/magnate-cover-grid/option-B-nine-face-whole/` into `lucy-personal/magnate-cover-grid/TO-SEND-2026-10-03/`, renamed `1-post-first.png` to `9-post-ninth.png`, plus the profile preview. Checked the order by rebuilding the profile view from the files themselves (1 bottom right, 9 top left, her face whole in 4). Drafted the reply in her thread (thanks first, the posting order, unpin first, check nothing is cropped) and Hugo sent it with all 10 attachments, no edits reported.
+
+**Learned.**
+- Instagram puts the newest post top left, so a grid's posting order runs opposite to reading order: POST-1 is the bottom right tile.
+- A bare `python3` on the Mac is now Homebrew 3.14 with neither Pillow nor `requests`. Image work runs on `.venvs/pdf/bin/python`, API scripts on `/usr/bin/python3` (`docs/gotchas.md` corrected).
+
+**Decided.** Nothing new.
+
+**Open.** Q-046 is delivered and waits only on her posting the grid. Q-042 (Double Bay, 9 Oct), Q-044 and Q-043 unchanged.
+
+**Next.** The Double Bay day on Friday 9 October with the bands, a lapel mic and label close-ups for Q-020. Then the Fit Expo posters (Q-027).
 
 ---
 ## Session 048 (2026-10-01, Claude Code): her Magnate View cover across three tiles, three nine-post options sent; the Double Bay day moved to 9 October; ask first, then act
