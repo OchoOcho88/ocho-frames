@@ -57,10 +57,22 @@ Output `generated/images/pilates-flick/sunburst-<quality>-<prompt>-<n>.png`, rev
   first try at 18% and 10px made the letters look blurred: the shadow core matched the letter's own
   contrast). Grid: rows 873 x 226px ink, 35 to 36px apart, 40 top / 37 bottom, centred to 2px;
   she sits on a masked copy of the plate ("Girl cut out") in front, band and label on top.
-  Lesson: Photoshop sets SPORTIF about 14 percent narrower than a PIL model of the font (kerning),
-  and Properties X/Y place the type BOX not the ink, so fit type by snapping and Distribute
-  Spacing, never by typed coordinates. Verified: no wall fringe from her mask over the letters.
-  Send as its own email after her version (D-058, the S044 two-email pattern).
+  Lesson (corrected S050): the type is about 14 percent narrower than a plain PIL render because
+  the layers carry a NON-UNIFORM transform (150pt, x 1.8336, y 2.1435, read with psd-tools), not
+  because of kerning. Properties X/Y/W/H place the type BOX not the ink, and typed coordinates DO
+  work once converted to that box (S050, docs/gotchas.md). Verified: no wall fringe from her mask
+  over the letters. Send as its own email after her version (D-058, the S044 two-email pattern).
+- **VARIANT 2, SPORTIF COLLECTION (S050, 2026-10-08, Lucy's ask, D-069).** Six rows, SPORTIF and
+  COLLECTION alternating in capitals, Hugo's pick of four mocks (sheet
+  `collection-wall/collection-wall-options.jpg`). COLLECTION rows are the SPORTIF layer retyped and
+  scaled uniformly to 63.416% (Character panel about 203.9pt), same tracking, Overlay and shadow.
+  Panel numbers (text box): SPORTIF Y -8 / 425 / 858 at W 891.42; COLLECTION X 97, Y 268 / 701 /
+  1134, W 896. Ink: every row x 104 to 980, gaps 24px. `photoshop/pilates-flick-v3-4-sportif-stack_lucy_02.psd`,
+  export `photoshop/pilates-flick-v3-4-sportif-collection_lucy_02.png`, plate nub at x 583 to 616,
+  y 1037 to 1070 filled #E4DDD7 (the local wall; the edges are #E6E0D9). Story 1080x1920 by
+  `scripts-local/collection_wall.py story`: his export at y 248, one COLLECTION row added above and
+  one SPORTIF below on the 433px pair pitch. The band flick story (`story-bandflick`) uses the same
+  y and flattens the two ankle patches to #E6E0D9 under the girl cut-out.
 
 ## storyboard: the Double Bay filming day as a drawn shot list (2026-09-22, S045)
 

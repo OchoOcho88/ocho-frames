@@ -6,7 +6,7 @@ Running log of what we've done, what we've learned, decisions made, and question
 
 ## CURRENT STATE (update this block every session, keep it to ~12 lines)
 
-*Last updated: 2026-10-03 | Last session: 049 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: The Double Bay day is Friday 9 October (Q-042), plan unchanged, with label close-ups for Q-020. Her Magnate View cover grid is delivered (option B, nine posts sent 3 Oct) and Q-046 waits only on her posting it. Still owed by her: the pilates flick answers (Q-044) and the booth number (Q-043); the Fit Expo posters (Q-027) remain the top open item.*
+*Last updated: 2026-10-08 | Last session: 050 (Claude Code, CLOSED) | Working tree: committed clean | Git: push from the Mac | Next: The Double Bay day is now Friday 16 October (Q-042), plan unchanged, with label close-ups for Q-020; get the meeting time for the 16th. Both pilates pictures are delivered and closed (Q-044) and are now Fit Expo poster candidates, so Q-027 waits on the PR team's panel size, with the licence and upscale to raise then. Still owed by her: the booth number (Q-043).*
 
 - **The critical path is TRADEMARK, not Shopify (D-001, Q-002 parked).** Launch and go-to-market wait on Lucy's lawyer. Shopify, prices, the pouch threshold and the fabric are all blocked on her.
 - **Lucy Wayne IS the differentiator** (`clients/sportif/brand.md`). Parallel wholesale plus DTC, one hub. Exactly two client PDFs, `Sportif-Brand-Value-Plan.pdf` and `Sportif-Launch-Plan.pdf`.
@@ -19,6 +19,29 @@ Running log of what we've done, what we've learned, decisions made, and question
 - **Behind the scenes is a workstream (D-057, D-059, D-061).** Phone by default, Kia Buckley's format measured in `clients/sportif/behind-the-scenes/reference-kia/`, the Double Bay day runs arrive, propped wide, medium, hands, interview (bands in hand), leave; motion assets are ours to apply. Her LA footage and the Lucy Wayne font arrive via Drive and Canva (Q-041).
 - **Protocol and voice (D-035, D-054, D-067).** ASK FIRST, THEN ACT: an incoming email or request gets what it is, what it opens and a question, then nothing until Hugo says; a batch is taken in whole first. `startup.py` and `closeout.py --commit` ARE the session, because CLAUDE.md is not auto-loaded in Cowork. No em or en dashes anywhere; close-out refuses to commit on a hit.
 - **Where the detail lives.** `DECISIONS.md`, `OPEN-QUESTIONS.md` (dormant loops parked `[p]`, `open --parked`), `docs/gotchas.md`, `memory-archive.md`, all via `python3 scripts/memory_tools.py`.
+
+---
+## Session 050 (2026-10-08, Claude Code): three Lucy emails; SPORTIF COLLECTION on the pilates wall in six rows, both pilates stories sent; the Double Bay day moved to 16 October
+
+Client: Sportif
+Tags: email, pilates-flick, photoshop, type, story, retouch, magnate-view, behind-the-scenes, gotchas
+
+**Done.**
+- The Double Bay day moved to Friday 16 October (Lucy is getting her hair done); Hugo is fine with the 16th (Q-042).
+- Email 1, Magnate Cover thread: her thanks; a two-line close sent (`lucy-personal/magnate-cover-grid/email-to-lucy-2026-10-08-thanks.md`); Q-046 closed on Hugo's call.
+- Email 2, SPORTIF behind her: a yes, with "Sportif Collection" on the wall. Read Hugo's PSD with psd-tools and rebuilt his wall type in `clients/sportif/scripts-local/collection_wall.py` (0.2 levels from his render), mocked four layouts; Hugo picked C, six capital rows (D-069). He built it in Photoshop from numbers converted to his Properties panel; his export matched the mock (0.26 levels). Caught a grey nub in the plate beside her shin; filled with the local wall `#E4DDD7` after a first `#E6E0D9` fill showed as a square through the Overlay type. Story built from his export pixel for pixel plus one row above and one below. Both sent in her thread.
+- Email 3, band flick: a yes; no logo on Instagram, the mark bottom right for the booth (D-070). Story at the same placement, the two ankle patches and the nub flattened under the cut-out; sent in her thread. Q-044 closed.
+
+**Learned.**
+- Photoshop's Properties panel on a type layer is the text box (origin X, ascender-based Y), not the ink, and the Character panel shows the size times the vertical transform scale. Convert before giving Hugo numbers. The S046 "14 percent narrower" was his non-uniform transform, not kerning (`image-prompts.md` corrected, `docs/gotchas.md` added).
+- psd-tools needs scipy to composite a PSD with an adjustment layer; Overlay in black plus Photoshop's knock-out drop shadow reproduce his type to 0.2 levels.
+- A "flat" wall next to a body is rarely flat: sample the local colour before prescribing a fill.
+
+**Decided.** D-069 (the six-row SPORTIF COLLECTION wall), D-070 (band flick: no logo on Instagram, mark bottom right for the booth).
+
+**Open.** Q-027 now holds both pilates pictures as poster candidates; print prep (licence, upscale, handle on, the plate clean-up recipe in `collection_wall.py`) waits on the panel size. Q-042 on 16 Oct, meeting time unknown. Q-043, the booth number.
+
+**Next.** The Double Bay day on Friday 16 October with the three bands, the lapel mic and label close-ups for Q-020. Then the Fit Expo posters once the panel size lands.
 
 ---
 ## Session 049 (2026-10-03, Claude Code): Lucy picked option B; the nine Magnate View cover posts sent in her thread
